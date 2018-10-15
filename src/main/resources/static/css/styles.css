@@ -1,0 +1,37 @@
+body {
+    background-color: white;
+}
+
+#tabela {
+    background-color: orange;
+    padding: 5px;
+    margin: 5px
+}
+
+#rezultati {
+    background-color: yellow;
+    padding: 5px
+}
+
+#raspored {
+    background-color: green;
+    padding: 5px
+}
+
+.content {
+    display: grid;
+    grid-template-columns: auto auto;
+    grid-column-gap: 10px;
+    grid-row-gap: 10px;
+}
+
+.list {
+    background-color: greenyellow;
+
+}
+
+div > a {
+    margin: 10px;
+    background-color: yellow;
+
+}

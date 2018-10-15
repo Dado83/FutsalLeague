@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    </head>
+    <body>
+        <div th:fragment="header">
+            <h1><a th:href="@{/}">Liga Budućih Šampiona</a></h1>
+            <div class="list">
+                <a th:each="tim: ${leagueTable}" th:text="${tim.teamName}" th:href="@{/team(index = ${tim.id})}">fff</a>
+            </div>
+        </div>
+        <div th:fragment="teamEdit">
+            <h1><a th:href="@{/}">Liga Budućih Šampiona</a></h1>
+            <div class="list">
+                <a th:each="tim: ${leagueTable}" th:text="${tim.teamName}" th:href="@{/editTeam(index = ${tim.id})}">fff</a>
+            </div>
+            <div>
+                <a th:each="r: ${pairs}" th:href="@{/enterMatchDayResults(index = ${r.key})}" th:text="${r.key} + '. kolo: unos'">unos rezultata kola</a>
+            </div>
+        </div>
+        <div th:fragment="footer">
+            <h1>Ovo nam je footer</h1>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+    <head>
+        <title>TODO supply a title</title>
+        <meta charset="UTF-8"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+    </head>
+    <body>
+        <div th:insert="fragments :: teamEdit"></div>
+        <div>updated team:</div>
+        <table th:object="${updatedTeam}">
+            <tr>
+                <td>ID:</td>
+                <td th:text="*{id}"></td>
+            </tr>
+            <tr>
+                <td>ekipa</td><td th:text="*{teamName}"></td>
+            </tr>
+            <tr>
+                <td>grad</td><td th:text="*{teamCity}"></td>
+            </tr>
+            <tr>
+                <td>dvorana</td><td th:text="*{venue}"></td>
+            </tr>
+            <tr>
+                <td>boje</td><td th:text="*{kitColor}"></td>
+            </tr>
+            <tr>
+                <td>utakmica</td><td th:text="*{gamesPlayed}"></td>
+            </tr>
+            <tr>
+                <td>pobjeda</td><td th:text="*{gamesWon}"></td>
+            </tr>
+            <tr>
+                <td>nerjeseno</td><td th:text="*{gamesDrew}"</td>
+            </tr>
+            <tr>
+                <td>poraz</td><td th:text="*{gamesLost}"></td>
+            </tr>
+            <tr>
+                <td>gol za</td><td th:text="*{goalsScored}"></td>
+            </tr>
+            <tr>
+                <td>gol protiv</td><td th:text="*{goalsConceded}"></td>
+            </tr>
+            <tr>
+                <td>bodovi</td><td th:text="*{points}"></td>
+            </tr>
+        </table>
+    </body>
+</html>
