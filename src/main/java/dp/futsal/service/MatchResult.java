@@ -42,7 +42,6 @@ public class MatchResult {
             }
             Logger.getLogger(MatchResult.class.getName()).info("utakmica gdje ekipa pauzira");
         } else {
-
             home.setGoalsScored(home.getGoalsScored() + goalsHome);
             home.setGoalsConceded(home.getGoalsConceded() + goalsAway);
             away.setGoalsScored(away.getGoalsScored() + goalsAway);

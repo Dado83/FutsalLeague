@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dp.futsal.service;
 
 import java.util.ArrayList;
@@ -29,7 +24,7 @@ public class FutsalService {
     private Map<Integer, String> notPlaying;
 
     public void init() {
-        LOGGER.info("futsal service init");
+        LOGGER.info("init");
         this.fixture = new Fixture();
         this.fixture.loadFixturePairsFromJsonFile("C:\\Users\\Wade\\Desktop\\berger9-10.json");
         this.fixture.loadFixtureResultsFromJsonFile("C:\\Users\\Wade\\Desktop\\results.json");
@@ -49,15 +44,10 @@ public class FutsalService {
 
         gamePostponed = new HashMap<>();
         notPlaying = new HashMap<>();
-        LOGGER.info(pairsMap.toString());
-        LOGGER.info(resultsMap.toString());
-        LOGGER.info(teamMap.toString());
-        LOGGER.info(teamListSorted.toString());
-        LOGGER.info("_______" + teamListIDindexed.toString());
-        LOGGER.info(teamListSorted.toString());
     }
 
     public void updateTeamData(Map<Integer, Team> teamMap) {
+        LOGGER.info("update team data");
         this.teamMap = teamMap;
         this.teamListSorted = new ArrayList<>(this.teamMap.values());
         this.teamListIDindexed = new ArrayList<>();

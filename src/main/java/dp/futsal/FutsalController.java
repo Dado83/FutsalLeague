@@ -1,12 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package dp.futsal;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,30 +11,13 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import dp.futsal.service.FutsalService;
 import dp.futsal.service.MatchDayForm;
-import dp.futsal.service.MatchPair;
 import dp.futsal.service.MatchResult;
 import dp.futsal.service.Team;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.lang.reflect.Type;
-import java.nio.charset.Charset;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
 
-/**
- *
- * @author Wade
- */
 @Controller
 public class FutsalController {
 
@@ -114,18 +90,7 @@ public class FutsalController {
         model.addAttribute("gameForm", mDayForm);
         model.addAttribute("pairs", service.getPairs());
         model.addAttribute("leagueTable", service.getTeamListSorted());
-        
-        
-//        service.getResults();
-//        Map<Integer, List<MatchResult>> tempRez = null;
-//        if (service.getResults() != null) {
-//            tempRez = new HashMap<>();
-//        } else {
-//            tempRez = new HashMap<>(service.getResults());
-//        }
-        
         model.addAttribute("results", service.getResults().get(index));
-        
         return "enterMatchDayResults";
     }
 

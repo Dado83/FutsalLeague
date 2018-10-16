@@ -3,11 +3,10 @@ package dp.futsal.service;
 
 public class MatchPair {
 
-    
     private int homeTeam;
     private int awayTeam;
 
-    public MatchPair(int homeTeam, int awayTeam) {  
+    public MatchPair(int homeTeam, int awayTeam) {
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
     }

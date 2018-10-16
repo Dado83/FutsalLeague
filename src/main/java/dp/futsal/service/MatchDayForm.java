@@ -1,16 +1,5 @@
 package dp.futsal.service;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.io.Reader;
-import java.lang.reflect.Type;
-import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -68,6 +57,7 @@ public class MatchDayForm {
     }
 
     public void loadForm(int index, List<Team> teamListIndexed, Map<Integer, List<MatchPair>> pairs) {
+        LOGGER.info("load form");
         this.setmDay(index);
         this.setTeam(teamListIndexed);
         this.setPair(pairs.get(index));
@@ -100,8 +90,6 @@ public class MatchDayForm {
         this.teamA5 = team.get(pair.get(4).getAwayTeam()).getId();
         this.home5 = team.get(pair.get(4).getHomeTeam()).getTeamName();
         this.away5 = team.get(pair.get(4).getAwayTeam()).getTeamName();
-
-        LOGGER.info("kraj team data");
     }
 
     public void saveResults(Map<Integer, List<MatchResult>> resultsMap, Map<Integer, String> postponed, Map<Integer, String> notPlaying) {
@@ -457,7 +445,5 @@ public class MatchDayForm {
     public void setAway5(String away5) {
         this.away5 = away5;
     }
-    
-    
 
 }
