@@ -1,67 +1,61 @@
 <!DOCTYPE html>
-<!--
-To change this license header, choose License Headers in Project Properties.
-To change this template file, choose Tools | Templates
-and open the template in the editor.
--->
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Liga Budućih Šampiona</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
-    </head>
-    <body>
-        <a th:href="@{/admin}">edit</a>
-        <div th:insert="fragments :: header"></div>
-        <div class="content">
-            <div id="tabela">
-                <h3>Tabela: </h3>
-                <table>
-                    <tr th:each="tim: ${leagueTable}">
-                        <td th:text="${tim.teamName}">Some name</td>
-                        <td th:text="${tim.teamCity}">Some name</td> 
-                        <td th:text="${tim.gamesPlayed}">Some name</td> 
-                        <td th:text="${tim.gamesWon}">Some name</td> 
-                        <td th:text="${tim.gamesDrew}">Some name</td> 
-                        <td th:text="${tim.gamesLost}">Some name</td> 
-                        <td th:text="${tim.goalsScored}">Some name</td> 
-                        <td th:text="${tim.goalsConceded}">Some name</td> 
-                        <td th:text="${tim.points}">Some name</td> 
-                    </tr>
-                </table>
-            </div>
-            <div id="rezultati">
-                <h3>Rezultati:</h3>
-                <table>
-                    <tr th:each="element: ${results}">
-                        <td th:text="${element.key}+ '. kolo:'"></td>
-                        <table>
-                            <tr th:each="rez: ${element.value}">
-                                <td th:text="${rez.homeTeam}">Some name</td>
-                                <td th:text="${rez.awayTeam}">Some name</td> 
-                                <td th:text="${rez.goalsHome}">Some name</td> 
-                                <td th:text="${rez.goalsAway}">Some name</td> 
-                            </tr>
-                        </table>
-                    </tr>
-                </table>
-            </div>
-            <div id="raspored">
-                <h3>Raspored:</h3>
-                <table>
-                    <tr th:each="element: ${pairs}">
-                        <td th:text="${element.key} + '. kolo:'"></td>
-                        <table>
-                            <tr th:each="par: ${element.value}">
-                                <td th:text="${par.homeTeam} + ${teamListID.get(par.homeTeam).teamName}">Some name</td>
-                                <td th:text="${par.awayTeam} + ${teamListID.get(par.awayTeam).teamName}">Some name</td> 
-                            </tr>
-                        </table>
-                    </tr>
-                </table>
-            </div>
-        </div>    
-        <div th:insert="fragments :: footer"></div>
-    </body>
+  <head>
+    <title>Fair Play LBŠ</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+  </head>
+  <body>
+    <div th:insert="fragments :: header"></div>
+    <div class="content">
+      <div id="tabela">
+        <h3>Tabela: </h3>
+        <table>
+          <tr th:each="tim: ${leagueTable}">
+            <td th:text="${tim.teamName}">Some name</td>
+            <td th:text="${tim.teamCity}">Some name</td> 
+            <td th:text="${tim.gamesPlayed}">Some name</td> 
+            <td th:text="${tim.gamesWon}">Some name</td> 
+            <td th:text="${tim.gamesDrew}">Some name</td> 
+            <td th:text="${tim.gamesLost}">Some name</td> 
+            <td th:text="${tim.goalsScored}">Some name</td> 
+            <td th:text="${tim.goalsConceded}">Some name</td> 
+            <td th:text="${tim.points}">Some name</td> 
+          </tr>
+        </table>
+      </div>
+      <div id="rezultati">
+        <h3>Rezultati:</h3>
+        <table>
+          <tr th:each="element: ${results}">
+            <td th:text="${element.key}+ '. kolo:'"></td>
+            <table>
+              <tr th:each="rez: ${element.value}">
+                <td th:text="${rez.homeTeam}">Some name</td>
+                <td th:text="${rez.awayTeam}">Some name</td> 
+                <td th:text="${rez.goalsHome}">Some name</td> 
+                <td th:text="${rez.goalsAway}">Some name</td> 
+              </tr>
+            </table>
+          </tr>
+        </table>
+      </div>
+      <div id="raspored">
+        <h3>Raspored:</h3>
+        <table>
+          <tr th:each="element: ${pairs}">
+            <td th:text="${element.key} + '. kolo:'"></td>
+            <table>
+              <tr th:each="par: ${element.value}">
+                <td th:text="${teamListID.get(par.homeTeam).teamName}">Some name</td>
+                <td th:text="${teamListID.get(par.awayTeam).teamName}">Some name</td> 
+              </tr>
+            </table>
+          </tr>
+        </table>
+      </div>
+    </div>    
+    <div th:insert="fragments :: footer"></div>
+  </body>
 </html>

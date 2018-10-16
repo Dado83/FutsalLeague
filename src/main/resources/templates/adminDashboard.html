@@ -1,28 +1,13 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-    <head>
-        <title>Edit ekipe</title>
-        <meta charset="UTF-8"/>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-        <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
-    </head>
-    <body>
-        <div th:insert="fragments :: teamEdit"></div>
-        <div>
-            <p>Ispravka rezultata:</p>
-            <table>
-                <tr th:each="r: ${results}">
-                    <td th:text="${r.key} + '. kolo:'"></td>
-                    <table>
-                        <tr th:each="m: ${r.value}">
-                            <td th:text="${m.homeTeam}"></td>
-                            <td th:text="${m.awayTeam}"></td>
-                            <td th:text="${m.goalsHome}"></td>
-                            <td th:text="${m.goalsAway}"></td>
-                        </tr>
-                    </table>
-                </tr>
-            </table>
-        </div>   
-    </body>
+  <head>
+    <title>Admin</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+  </head>
+  <body>
+    <div th:insert="fragments :: teamEdit"></div>   
+    <div th:insert="fragments :: footer"></div>
+  </body>
 </html>

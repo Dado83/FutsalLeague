@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title>Edit ekipe</title>
+    <title th:text="'Unos ' + ${gameForm.mDay} + '. kola'">Unos kola</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
   </head>
   <body>
     <div th:insert="fragments :: teamEdit"></div>
-    <div>unos rezultata kola:</div>
+    <div>
+      <p>Unos rezultata kola:</p>
+    </div>
     <div>
       <form action="#" th:action="@{/addedMatchDayResults}" th:object="${gameForm}" method="post">
-        <input type="number" th:field="*{mDay}"/>               
+        <input type="hidden" th:field="*{mDay}"/>               
         <table>
           <tr>
             <td><input type="hidden" th:field="*{teamH1}"/></td>
@@ -54,8 +56,9 @@
             <td><input type="hidden" th:field="*{teamA5}"/></td>  
           </tr>
           <tr>
-            <input type="submit" value="snimi"/>
-            <input type="reset" value="reset"/>
+            <td></td>
+            <td><input type="submit" value="Snimi"/></td>
+            <td><input type="reset" value="Reset"/></td>
           </tr>
         </table>
       </form>          
@@ -73,5 +76,6 @@
         </table>
       </div>
     </div>
+    <div th:insert="fragments :: footer"></div>
   </body>
 </html>
