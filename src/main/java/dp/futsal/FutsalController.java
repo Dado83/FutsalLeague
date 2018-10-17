@@ -35,33 +35,33 @@ public class FutsalController {
     public String index(Model model) {
         LOGGER.info("inside index");
         model.addAttribute("pairs", service.getPairs());
-        model.addAttribute("results", service.getResults());
-        model.addAttribute("leagueTable", service.getTeamListSorted());
-        model.addAttribute("teamListID", service.getTeamListIDindexed());
+        model.addAttribute("results", service.getResults5());
+        model.addAttribute("leagueTable", service.getTeamListSorted5());
+        model.addAttribute("teamListID", service.getTeamListIDindexed5());
         return "index";
     }
 
     @GetMapping("/team")
     public String team(Model model, int index) {
-        model.addAttribute("team", service.getTeamListIDindexed().get(index));
-        model.addAttribute("results", service.getTeamListIDindexed().get(index).getResults());
-        model.addAttribute("leagueTable", service.getTeamListSorted());
+        model.addAttribute("team", service.getTeamListIDindexed5().get(index));
+        model.addAttribute("results", service.getTeamListIDindexed5().get(index).getResults());
+        model.addAttribute("leagueTable", service.getTeamListSorted5());
         return "teamInfo";
     }
 
     @GetMapping("/admin")
     public String admin(Model model) {
-        model.addAttribute("leagueTable", service.getTeamListSorted());
-        model.addAttribute("results", service.getResults());
+        model.addAttribute("leagueTable", service.getTeamListSorted5());
+        model.addAttribute("results", service.getResults5());
         model.addAttribute("pairs", service.getPairs());
         return "adminDashboard";
     }
 
     @GetMapping("/editTeam")
     public String editTeam(Model model, int index) {
-        model.addAttribute("team", service.getTeamListIDindexed().get(index));
-        model.addAttribute("results", service.getTeamListIDindexed().get(index).getResults());
-        model.addAttribute("leagueTable", service.getTeamListSorted());
+        model.addAttribute("team", service.getTeamListIDindexed5().get(index));
+        model.addAttribute("results", service.getTeamListIDindexed5().get(index).getResults());
+        model.addAttribute("leagueTable", service.getTeamListSorted5());
         model.addAttribute("pairs", service.getPairs());
         return "editTeam";
     }
@@ -70,27 +70,27 @@ public class FutsalController {
     public String updateTeam(Model model, @ModelAttribute Team team) {
         LOGGER.info("" + team.getTeamName());
 
-        Team teamTemp = service.getTeam(team.getId());
+        Team teamTemp = service.getTeam5(team.getId());
         List<MatchResult> matchResultList = teamTemp.getResults();
         team.setResults(matchResultList);
 
-        service.getTeamMap().put(team.getId(), team);
-        service.updateTeamData(service.getTeamMap());
+        service.getTeamMap5().put(team.getId(), team);
+        service.updateTeamData5(service.getTeamMap5());
         model.addAttribute("updatedTeam", team);
-        model.addAttribute("leagueTable", service.getTeamListSorted());
+        model.addAttribute("leagueTable", service.getTeamListSorted5());
         model.addAttribute("pairs", service.getPairs());
-        LOGGER.info(service.getTeamMap().toString());
+        LOGGER.info(service.getTeamMap5().toString());
         return "updatedTeam";
     }
 
     @GetMapping("/enterMatchDayResults")
     public String enterResults(Model model, int index) {
         MatchDayForm mDayForm = new MatchDayForm();
-        mDayForm.loadForm(index, service.getTeamListIDindexed(), service.getPairs());
+        mDayForm.loadForm(index, service.getTeamListIDindexed5(), service.getPairs());
         model.addAttribute("gameForm", mDayForm);
         model.addAttribute("pairs", service.getPairs());
-        model.addAttribute("leagueTable", service.getTeamListSorted());
-        model.addAttribute("results", service.getResults().get(index));
+        model.addAttribute("leagueTable", service.getTeamListSorted5());
+        model.addAttribute("results", service.getResults5().get(index));
         return "enterMatchDayResults";
     }
 
@@ -98,20 +98,20 @@ public class FutsalController {
     public String addedResults(Model model, @ModelAttribute MatchDayForm form) {
         LOGGER.info("pocetak addedmatch");
 
-        form.setTeamMap(service.getTeamMap());
+        form.setTeamMap(service.getTeamMap5());
 
         for (int i = 1; i < 11; i++) {
-            service.getTeam(i).delMatchDay(form.getmDay() + "");
+            service.getTeam5(i).delMatchDay(form.getmDay() + "");
         }
 
-        form.saveResults(service.getResults(), service.getGamePostponed(), service.getNotPlaying());
-        service.setTeamMap(form.getTeamMap());
-        service.updateTeamData(service.getTeamMap());
+        form.saveResults(service.getResults5(), service.getGamePostponed5(), service.getNotPlaying5());
+        service.setTeamMap5(form.getTeamMap());
+        service.updateTeamData5(service.getTeamMap5());
         model.addAttribute("result", form.getResults());
         model.addAttribute("pairs", service.getPairs());
-        model.addAttribute("leagueTable", service.getTeamListSorted());
-        LOGGER.info(service.getGamePostponed().toString());
-        LOGGER.info(service.getNotPlaying().toString());
+        model.addAttribute("leagueTable", service.getTeamListSorted5());
+        LOGGER.info(service.getGamePostponed5().toString());
+        LOGGER.info(service.getNotPlaying5().toString());
         return "addedResults";
     }
 

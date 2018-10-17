@@ -34,7 +34,7 @@ public class TeamCollection {
         return teamList.toString();
     }
 
-    public void loadTeamCollectionFromJson(String fileString) {
+    public Map<Integer, Team> loadTeamCollectionFromJson(String fileString) {
         Gson gson = new Gson();
         Type type = new TypeToken<Map<Integer, Team>>() {
         }.getType();
@@ -51,7 +51,7 @@ public class TeamCollection {
         } catch (IOException e) {
             LOGGER.severe("nisam ucitao json");
         }
-        this.teamMap = (Map<Integer, Team>) gson.fromJson(stringBuilder.toString(), type);
+        return this.teamMap = (Map<Integer, Team>) gson.fromJson(stringBuilder.toString(), type);
 
     }
 

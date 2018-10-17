@@ -31,12 +31,12 @@ public class Fixture {
     private Map<Integer, List<MatchResult>> resultsMap = new HashMap<>();
     private Map<Integer, List<MatchPair>> pairsMap = new HashMap<>();
 
-    public void putFixtureResults(int matchDay, MatchResult... match) {
-        List<MatchResult> matchDayGames = new ArrayList<>();
-        matchDayGames.addAll(Arrays.asList(match));
-        resultsMap.put(matchDay, matchDayGames);
-        fixtureResultsToJson("C:\\Users\\Wade\\Desktop\\results.json", this.resultsMap);
-    }
+//    public void putFixtureResults(int matchDay, MatchResult... match) {
+//        List<MatchResult> matchDayGames = new ArrayList<>();
+//        matchDayGames.addAll(Arrays.asList(match));
+//        resultsMap.put(matchDay, matchDayGames);
+//        fixtureResultsToJson("C:\\Users\\Wade\\Desktop\\results.json", this.resultsMap);
+//    }
 
     private void fixtureResultsToJson(String fileString, Map<Integer, List<MatchResult>> results) {
         Gson gson = new Gson();
@@ -81,7 +81,7 @@ public class Fixture {
         this.pairsMap = (Map<Integer, List<MatchPair>>) gson.fromJson(stringBuilder.toString(), type);
     }
 
-    public void loadFixtureResultsFromJsonFile(String fileString) {
+    public Map<Integer, List<MatchResult>> loadFixtureResultsFromJsonFile(String fileString) {
         Gson gson = new Gson();
         Type type = new TypeToken<Map<Integer, List<MatchResult>>>() {
         }.getType();
@@ -98,7 +98,7 @@ public class Fixture {
         } catch (IOException e) {
             LOGGER.severe("nisam ucitao json");
         }
-        this.resultsMap = (Map<Integer, List<MatchResult>>) gson.fromJson(stringBuilder.toString(), type);
+       return this.resultsMap = (Map<Integer, List<MatchResult>>) gson.fromJson(stringBuilder.toString(), type);
     }
 
     public Map<Integer, List<MatchResult>> getResults() {
