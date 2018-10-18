@@ -48,8 +48,8 @@
             <td th:text="${element.key} + '. kolo:'"></td>
             <table>
               <tr th:each="par: ${element.value}">
-                <td th:text="${teamListID.get(par.homeTeam).teamName}">Some name</td>
-                <td th:text="${teamListID.get(par.awayTeam).teamName}">Some name</td> 
+                <td th:text="${teamLinks.get(par.homeTeam).teamName}">Some name</td>
+                <td th:text="${teamLinks.get(par.awayTeam).teamName}">Some name</td> 
               </tr>
             </table>
           </tr>
