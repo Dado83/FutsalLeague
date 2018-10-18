@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:text="${team.teamName}">Ekipa</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+  </head>
+  <body>
+    <div th:insert="fragments :: teamEdit"></div>
+    <div><p>Ekipa (izmjena): <span th:text="${team.teamName}"></span></p>      
+      <form action="#" th:action="@{/updatedTeam8}" th:object="${team}" method="post">
+        <table>
+          <tr>
+            <td>ID:</td>
+            <td><input type="text" th:field="*{id}"/></td>
+          </tr>
+          <tr>
+            <td>Naziv</td>
+            <td><input type="text" th:field="*{teamName}"/></td>
+          </tr>
+          <tr>
+            <td>Grad</td>
+            <td><input type="text" th:field="*{teamCity}"/></td>
+          </tr>
+          <tr>
+            <td>Dvorana</td>
+            <td><input type="text" th:field="*{venue}"/></td>
+          </tr>
+          <tr>
+            <td>Klupske boje</td>
+            <td><input type="text" th:field="*{kitColor}"/></td>
+          </tr>
+          <tr>  
+            <td><input type="hidden" th:field="*{gamesPlayed}"/></td>
+          </tr>
+          <tr>
+            <td><input type="hidden" th:field="*{gamesWon}"/></td>
+          </tr>
+          <tr>
+            <td><input type="hidden" th:field="*{gamesDrew}"/></td>
+          </tr>
+          <tr>
+            <td><input type="hidden" th:field="*{gamesLost}"/></td>
+          </tr>
+          <tr>
+            <td><input type="hidden" th:field="*{goalsScored}"/></td>
+          </tr>
+          <tr>
+            <td><input type="hidden" th:field="*{goalsConceded}"/></td>
+          </tr>
+          <tr>
+            <td><input type="hidden" th:field="*{points}"/></td>
+          </tr>
+          <tr>
+            <td><input type="submit" value="Snimi"/></td>
+            <td><input type="reset" value="Reset"/></td> 
+          </tr>
+        </table>
+      </form>
+    </div>
+    <div th:insert="fragments :: footer"></div>
+  </body>
+</html>
