@@ -1,5 +1,10 @@
+:root {
+    --color: blue; 
+}
+
+
 body {
-    background-color: wheat;
+    background-color: var(--color);
 }
 
 #tabela {
@@ -33,5 +38,14 @@ body {
 div > a {
     margin: 10px;
     background-color: yellow;
+
+}
+
+
+@media screen and (max-width: 768px) {
+
+}
+
+@media screen and (max-width: 480px) {
 
 }
