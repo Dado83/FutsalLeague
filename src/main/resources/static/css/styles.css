@@ -1,5 +1,5 @@
 :root {
-    --color: blue; 
+    --color: white; 
 }
 
 
@@ -32,7 +32,34 @@ body {
 
 .list {
     background-color: greenyellow;
+    display: flex;
+}
 
+.list li {
+    margin: 0 5px 0 0;
+    list-style-type: none;
+}
+
+li img {
+    width: 100%;
+    display: flex
+}
+
+.clubLogo > img {
+    width: 100px
+}
+
+.pauza {
+  display: none  
+}
+
+.clubLogo {
+    background-color: green;
+    
+}
+
+.logo {
+    font-size: 20px
 }
 
 div > a {

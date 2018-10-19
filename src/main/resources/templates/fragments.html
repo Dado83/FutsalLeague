@@ -8,23 +8,27 @@
   <body>
     <div th:fragment="header">
       <h1><a th:href="@{/}">Fair Play Liga Budućih Šampiona</a></h1>
-      <div class="list">
-        <a th:each="tim: ${teamLinks}" th:text="${tim?.teamName}" th:href="@{/team(index = ${tim?.id})}">tabela</a>
-      </div>
+      <ul class="list" >
+        <li th:each="tim: ${leagueTable}">
+          <img th:class="${tim?.teamName}" th:src="@{${tim?.teamName} + '.png'}"/>
+          <a th:class="${tim?.teamName}" th:href="@{/team(index = ${tim?.id})}" th:text="${tim?.teamName}"> 
+          </a>
+        </li>
+      </ul>
     </div>
     <div th:fragment="teamEdit">
       <h1><a th:href="@{/}">Fair Play Liga Budućih Šampiona</a></h1>
       <div class="list">
         <p>2005 godiste</p>
-        <a th:each="tim: ${teamLinks}" th:text="${tim?.teamName}" th:href="@{/editTeam5(index = ${tim?.id})}">tabela</a>
+        <a th:each="tim: ${leagueTable}" th:text="${tim?.teamName}" th:href="@{/editTeam5(index = ${tim?.id})}" th:class="${tim?.teamName}">tabela</a>
         <p>2006 godiste</p>
-        <a th:each="tim: ${teamLinks}" th:text="${tim?.teamName}" th:href="@{/editTeam6(index = ${tim?.id})}">tabela</a>
+        <a th:each="tim: ${leagueTable}" th:text="${tim?.teamName}" th:href="@{/editTeam6(index = ${tim?.id})}" th:class="${tim?.teamName}">tabela</a>
         <p>2007 godiste</p>
-        <a th:each="tim: ${teamLinks}" th:text="${tim?.teamName}" th:href="@{/editTeam7(index = ${tim?.id})}">tabela</a>
+        <a th:each="tim: ${leagueTable}" th:text="${tim?.teamName}" th:href="@{/editTeam7(index = ${tim?.id})}" th:class="${tim?.teamName}">tabela</a>
         <p>2008 godiste</p>
-        <a th:each="tim: ${teamLinks}" th:text="${tim?.teamName}" th:href="@{/editTeam8(index = ${tim?.id})}">tabela</a>
+        <a th:each="tim: ${leagueTable}" th:text="${tim?.teamName}" th:href="@{/editTeam8(index = ${tim?.id})}" th:class="${tim?.teamName}">tabela</a>
         <p>2009 godiste</p>
-        <a th:each="tim: ${teamLinks}" th:text="${tim?.teamName}" th:href="@{/editTeam9(index = ${tim?.id})}">tabela</a>
+        <a th:each="tim: ${leagueTable}" th:text="${tim?.teamName}" th:href="@{/editTeam9(index = ${tim?.id})}" th:class="${tim?.teamName}">tabela</a>
       </div>
       <div>
         <p>2005 godiste</p>
