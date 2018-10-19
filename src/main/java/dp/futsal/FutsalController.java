@@ -35,9 +35,18 @@ public class FutsalController {
     public String index(Model model) {
         LOGGER.info("inside index");
         model.addAttribute("pairs", service.getPairs());
-        model.addAttribute("results", service.getResults5());
-        model.addAttribute("leagueTable", service.getLeagueTable5());
+        model.addAttribute("results5", service.getResults5());
+        model.addAttribute("results6", service.getResults6());
+        model.addAttribute("results7", service.getResults7());
+        model.addAttribute("results8", service.getResults8());
+        model.addAttribute("results9", service.getResults9());
+        model.addAttribute("leagueTable5", service.getLeagueTable5());
+        model.addAttribute("leagueTable6", service.getLeagueTable6());
+        model.addAttribute("leagueTable7", service.getLeagueTable7());
+        model.addAttribute("leagueTable8", service.getLeagueTable8());
+        model.addAttribute("leagueTable9", service.getLeagueTable9());
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         return "index";
     }
 
@@ -55,6 +64,7 @@ public class FutsalController {
         model.addAttribute("results9", service.getTeamLinks9().get(index).getResults());
         model.addAttribute("leagueTable", service.getLeagueTable5());
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         return "teamInfo";
     }
 
@@ -64,6 +74,7 @@ public class FutsalController {
         model.addAttribute("results", service.getResults5());
         model.addAttribute("pairs", service.getPairs());
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         return "adminDashboard";
     }
 
@@ -76,6 +87,7 @@ public class FutsalController {
         model.addAttribute("leagueTable", service.getLeagueTable5());
         model.addAttribute("pairs", service.getPairs());
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         return "editTeam5";
     }
     @GetMapping("/editTeam6")
@@ -85,6 +97,7 @@ public class FutsalController {
         model.addAttribute("leagueTable", service.getLeagueTable6());
         model.addAttribute("pairs", service.getPairs());
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         return "editTeam6";
     }
     @GetMapping("/editTeam7")
@@ -94,6 +107,7 @@ public class FutsalController {
         model.addAttribute("leagueTable", service.getLeagueTable7());
         model.addAttribute("pairs", service.getPairs());
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         return "editTeam7";
     }
     @GetMapping("/editTeam8")
@@ -103,6 +117,7 @@ public class FutsalController {
         model.addAttribute("leagueTable", service.getLeagueTable8());
         model.addAttribute("pairs", service.getPairs());
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         return "editTeam8";
     }
     @GetMapping("/editTeam9")
@@ -112,6 +127,7 @@ public class FutsalController {
         model.addAttribute("leagueTable", service.getLeagueTable9());
         model.addAttribute("pairs", service.getPairs());
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         return "editTeam9";
     }
     
@@ -130,6 +146,7 @@ public class FutsalController {
         model.addAttribute("leagueTable", service.getLeagueTable5());
         model.addAttribute("pairs", service.getPairs());
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         LOGGER.info(service.getTeams5().toString());
         return "updatedTeam";
     }
@@ -148,6 +165,7 @@ public class FutsalController {
         model.addAttribute("leagueTable", service.getLeagueTable6());
         model.addAttribute("pairs", service.getPairs());
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         LOGGER.info(service.getTeams6().toString());
         return "updatedTeam";
     }
@@ -165,6 +183,7 @@ public class FutsalController {
         model.addAttribute("leagueTable", service.getLeagueTable7());
         model.addAttribute("pairs", service.getPairs());
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         LOGGER.info(service.getTeams7().toString());
         return "updatedTeam";
     }
@@ -182,6 +201,7 @@ public class FutsalController {
         model.addAttribute("leagueTable", service.getLeagueTable8());
         model.addAttribute("pairs", service.getPairs());
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         LOGGER.info(service.getTeams8().toString());
         return "updatedTeam";
     }
@@ -199,6 +219,7 @@ public class FutsalController {
         model.addAttribute("leagueTable", service.getLeagueTable9());
         model.addAttribute("pairs", service.getPairs());
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         LOGGER.info(service.getTeams9().toString());
         return "updatedTeam";
     }
@@ -213,6 +234,7 @@ public class FutsalController {
         model.addAttribute("leagueTable", service.getLeagueTable5());
         model.addAttribute("results", service.getResults5().get(index));
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         return "enterMatchDayResults5";
     }
     @GetMapping("/enterMatchDayResults6")
@@ -224,6 +246,7 @@ public class FutsalController {
         model.addAttribute("leagueTable", service.getLeagueTable6());
         model.addAttribute("results", service.getResults6().get(index));
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         return "enterMatchDayResults6";
     }
     @GetMapping("/enterMatchDayResults7")
@@ -235,6 +258,7 @@ public class FutsalController {
         model.addAttribute("leagueTable", service.getLeagueTable7());
         model.addAttribute("results", service.getResults7().get(index));
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         return "enterMatchDayResults7";
     }
     @GetMapping("/enterMatchDayResults8")
@@ -246,6 +270,7 @@ public class FutsalController {
         model.addAttribute("leagueTable", service.getLeagueTable8());
         model.addAttribute("results", service.getResults8().get(index));
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         return "enterMatchDayResults8";
     }
     @GetMapping("/enterMatchDayResults9")
@@ -257,6 +282,7 @@ public class FutsalController {
         model.addAttribute("leagueTable", service.getLeagueTable9());
         model.addAttribute("results", service.getResults9().get(index));
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         return "enterMatchDayResults9";
     }
 
@@ -277,6 +303,7 @@ public class FutsalController {
         model.addAttribute("pairs", service.getPairs());
         model.addAttribute("leagueTable", service.getLeagueTable5());
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         LOGGER.info(service.getGamePostponed5().toString());
         LOGGER.info(service.getNotPlaying5().toString());
         return "addedResults";
@@ -299,6 +326,7 @@ public class FutsalController {
         model.addAttribute("pairs", service.getPairs());
         model.addAttribute("leagueTable", service.getLeagueTable6());
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         LOGGER.info(service.getGamePostponed6().toString());
         LOGGER.info(service.getNotPlaying6().toString());
         return "addedResults";
@@ -320,6 +348,7 @@ public class FutsalController {
         model.addAttribute("pairs", service.getPairs());
         model.addAttribute("leagueTable", service.getLeagueTable7());
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         LOGGER.info(service.getGamePostponed7().toString());
         LOGGER.info(service.getNotPlaying7().toString());
         return "addedResults";
@@ -341,6 +370,7 @@ public class FutsalController {
         model.addAttribute("pairs", service.getPairs());
         model.addAttribute("leagueTable", service.getLeagueTable8());
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         LOGGER.info(service.getGamePostponed8().toString());
         LOGGER.info(service.getNotPlaying8().toString());
         return "addedResults";
@@ -357,11 +387,12 @@ public class FutsalController {
 
         form.saveResults(service.getResults9(), service.getGamePostponed9(), service.getNotPlaying9());
         service.setTeams9(form.getTeamMap());
-        service.updateTeamData5(service.getTeams9());
+        service.updateTeamData9(service.getTeams9());
         model.addAttribute("result", form.getResults());
         model.addAttribute("pairs", service.getPairs());
         model.addAttribute("leagueTable", service.getLeagueTable9());
         model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
         LOGGER.info(service.getGamePostponed9().toString());
         LOGGER.info(service.getNotPlaying9().toString());
         return "addedResults";

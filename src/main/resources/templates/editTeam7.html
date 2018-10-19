@@ -8,7 +8,7 @@
   </head>
   <body>
     <div th:insert="fragments :: teamEdit"></div>
-    <div><p>Ekipa (izmjena): <span th:text="${team.teamName}"></span></p>      
+    <div class="form"><p>Ekipa (izmjena): <span th:text="${team.teamName}"></span></p>      
       <form action="#" th:action="@{/updatedTeam7}" th:object="${team}" method="post">
         <table>
           <tr>

@@ -7,18 +7,18 @@ body {
     background-color: var(--color);
 }
 
-#tabela {
+.tabela {
     background-color: orange;
     padding: 5px;
     margin: 5px
 }
 
-#rezultati {
+.rezultati {
     background-color: yellow;
     padding: 5px
 }
 
-#raspored {
+.raspored {
     background-color: green;
     padding: 5px
 }
@@ -65,7 +65,19 @@ li img {
 div > a {
     margin: 10px;
     background-color: yellow;
+}
 
+#logo {
+    width: 10%
+}
+
+.header span {
+    font-size: 50px;
+    vertical-align: top
+}
+
+.title {
+    
 }
 
 

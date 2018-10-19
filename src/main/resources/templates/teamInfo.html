@@ -8,7 +8,7 @@
   </head>
   <body>
     <div th:insert="fragments :: header"></div>
-    <div><h3 th:text="${team5.teamName}"></h3>
+    <div class="team"><h3 th:text="${team5.teamName}"></h3>
       <table>
         <tr>
           <td>Ekipa</td><td th:text="${team5.teamName}"></td>
@@ -44,7 +44,7 @@
           <td>Bodovi</td><td th:text="${team5.points}"></td>
         </tr>
       </table>
-      <div>
+      <div class="results">
         <h3>Rezultati:</h3>
         <table>
           <tr th:each="tim: ${results5}">

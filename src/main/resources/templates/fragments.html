@@ -6,29 +6,29 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   </head>
   <body>
-    <div th:fragment="header">
-      <h1><a th:href="@{/}">Fair Play Liga Budućih Šampiona</a></h1>
-      <ul class="list" >
-        <li th:each="tim: ${leagueTable}">
+    <div class="header" th:fragment="header">
+      <a th:href="@{/}"><img id="logo" th:src="@{grb.png}"/></a><span class="title">Fair Play Liga Budućih Šampiona</span>
+      <ul class="logos">
+        <li th:each="tim: ${teamLogos}">
           <img th:class="${tim?.teamName}" th:src="@{${tim?.teamName} + '.png'}"/>
           <a th:class="${tim?.teamName}" th:href="@{/team(index = ${tim?.id})}" th:text="${tim?.teamName}"> 
           </a>
         </li>
       </ul>
     </div>
-    <div th:fragment="teamEdit">
+    <div class="headerEdit" th:fragment="teamEdit">
       <h1><a th:href="@{/}">Fair Play Liga Budućih Šampiona</a></h1>
       <div class="list">
         <p>2005 godiste</p>
-        <a th:each="tim: ${leagueTable}" th:text="${tim?.teamName}" th:href="@{/editTeam5(index = ${tim?.id})}" th:class="${tim?.teamName}">tabela</a>
+        <a th:each="tim: ${teamLogos}" th:text="${tim?.teamName}" th:href="@{/editTeam5(index = ${tim?.id})}" th:class="${tim?.teamName}">tabela</a>
         <p>2006 godiste</p>
-        <a th:each="tim: ${leagueTable}" th:text="${tim?.teamName}" th:href="@{/editTeam6(index = ${tim?.id})}" th:class="${tim?.teamName}">tabela</a>
+        <a th:each="tim: ${teamLogos}" th:text="${tim?.teamName}" th:href="@{/editTeam6(index = ${tim?.id})}" th:class="${tim?.teamName}">tabela</a>
         <p>2007 godiste</p>
-        <a th:each="tim: ${leagueTable}" th:text="${tim?.teamName}" th:href="@{/editTeam7(index = ${tim?.id})}" th:class="${tim?.teamName}">tabela</a>
+        <a th:each="tim: ${teamLogos}" th:text="${tim?.teamName}" th:href="@{/editTeam7(index = ${tim?.id})}" th:class="${tim?.teamName}">tabela</a>
         <p>2008 godiste</p>
-        <a th:each="tim: ${leagueTable}" th:text="${tim?.teamName}" th:href="@{/editTeam8(index = ${tim?.id})}" th:class="${tim?.teamName}">tabela</a>
+        <a th:each="tim: ${teamLogos}" th:text="${tim?.teamName}" th:href="@{/editTeam8(index = ${tim?.id})}" th:class="${tim?.teamName}">tabela</a>
         <p>2009 godiste</p>
-        <a th:each="tim: ${leagueTable}" th:text="${tim?.teamName}" th:href="@{/editTeam9(index = ${tim?.id})}" th:class="${tim?.teamName}">tabela</a>
+        <a th:each="tim: ${teamLogos}" th:text="${tim?.teamName}" th:href="@{/editTeam9(index = ${tim?.id})}" th:class="${tim?.teamName}">tabela</a>
       </div>
       <div>
         <p>2005 godiste</p>
@@ -44,7 +44,7 @@
 
       </div>
     </div>
-    <div th:fragment="footer">
+    <div class="footer" th:fragment="footer">
       <h3>Fair Play Liga Budućih Šampiona</h3>
       <a th:href="@{/admin}">Administrator</a>
     </div>

@@ -8,48 +8,48 @@
   </head>
   <body>
     <div th:insert="fragments :: teamEdit"></div>
-    <div>
-      <p>Ekipa (ispravka):</p>
+    <div class="team">
+      <p>Ekipa (ispravka):</p> 
+      <table th:object="${updatedTeam}">
+        <tr>
+          <td>ID:</td>
+          <td th:text="*{id}"></td>
+        </tr>
+        <tr>
+          <td>Ekipa</td><td th:text="*{teamName}"></td>
+        </tr>
+        <tr>
+          <td>Grad</td><td th:text="*{teamCity}"></td>
+        </tr>
+        <tr>
+          <td>Dvorana</td><td th:text="*{venue}"></td>
+        </tr>
+        <tr>
+          <td>Klupske boje</td><td th:text="*{kitColor}"></td>
+        </tr>
+        <tr>
+          <td>Odigrano</td><td th:text="*{gamesPlayed}"></td>
+        </tr>
+        <tr>
+          <td>Pobjede</td><td th:text="*{gamesWon}"></td>
+        </tr>
+        <tr>
+          <td>Nerjeseno</td><td th:text="*{gamesDrew}"</td>
+        </tr>
+        <tr>
+          <td>Porazi</td><td th:text="*{gamesLost}"></td>
+        </tr>
+        <tr>
+          <td>GolZA</td><td th:text="*{goalsScored}"></td>
+        </tr>
+        <tr>
+          <td>GolProtiv</td><td th:text="*{goalsConceded}"></td>
+        </tr>
+        <tr>
+          <td>Bodovi</td><td th:text="*{points}"></td>
+        </tr>
+      </table>
     </div>
-    <table th:object="${updatedTeam}">
-      <tr>
-        <td>ID:</td>
-        <td th:text="*{id}"></td>
-      </tr>
-      <tr>
-        <td>Ekipa</td><td th:text="*{teamName}"></td>
-      </tr>
-      <tr>
-        <td>Grad</td><td th:text="*{teamCity}"></td>
-      </tr>
-      <tr>
-        <td>Dvorana</td><td th:text="*{venue}"></td>
-      </tr>
-      <tr>
-        <td>Klupske boje</td><td th:text="*{kitColor}"></td>
-      </tr>
-      <tr>
-        <td>Odigrano</td><td th:text="*{gamesPlayed}"></td>
-      </tr>
-      <tr>
-        <td>Pobjede</td><td th:text="*{gamesWon}"></td>
-      </tr>
-      <tr>
-        <td>Nerjeseno</td><td th:text="*{gamesDrew}"</td>
-      </tr>
-      <tr>
-        <td>Porazi</td><td th:text="*{gamesLost}"></td>
-      </tr>
-      <tr>
-        <td>GolZA</td><td th:text="*{goalsScored}"></td>
-      </tr>
-      <tr>
-        <td>GolProtiv</td><td th:text="*{goalsConceded}"></td>
-      </tr>
-      <tr>
-        <td>Bodovi</td><td th:text="*{points}"></td>
-      </tr>
-    </table>
     <div th:insert="fragments :: footer"></div>
   </body>
 </html>

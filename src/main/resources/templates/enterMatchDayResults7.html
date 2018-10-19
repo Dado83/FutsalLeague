@@ -8,10 +8,8 @@
   </head>
   <body>
     <div th:insert="fragments :: teamEdit"></div>
-    <div>
-      <p>Unos rezultata kola:</p>
-    </div>
-    <div>
+    <p>Unos rezultata kola:</p>
+    <div class="form">
       <form action="#" th:action="@{/addedMatchDayResults7}" th:object="${gameForm}" method="post">
         <input type="hidden" th:field="*{mDay}"/>               
         <table>
@@ -64,7 +62,7 @@
       </form>          
     </div>
     <div>
-      <div>
+      <div class="results">
         <h3>Rezultati kola:</h3>
         <table>
           <tr th:each="rez: ${results}">

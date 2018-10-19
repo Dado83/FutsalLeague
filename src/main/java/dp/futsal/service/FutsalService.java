@@ -36,6 +36,7 @@ public class FutsalService {
     private List<Team> teamLinks7;
     private List<Team> teamLinks8;
     private List<Team> teamLinks9;
+    private List<Team> teamLogos;
     private Map<Integer, String> gamePostponed5;
     private Map<Integer, String> gamePostponed6;
     private Map<Integer, String> gamePostponed7;
@@ -66,6 +67,7 @@ public class FutsalService {
         this.teams8 = this.teamCollection.loadTeamCollectionFromJson("C:\\Users\\Wade\\Desktop\\teams8.json");
         this.teams9 = this.teamCollection.loadTeamCollectionFromJson("C:\\Users\\Wade\\Desktop\\teams9.json");
 
+        this.teamLogos = new ArrayList<>(teams5.values());
         this.leagueTable5 = new ArrayList<>(teams5.values());
         this.teamLinks5 = new ArrayList<>();
         this.teamLinks5.add(null);
@@ -445,6 +447,14 @@ public class FutsalService {
 
     public void setNotPlaying9(Map<Integer, String> notPlaying) {
         this.notPlaying9 = notPlaying;
+    }
+
+    public List<Team> getTeamLogos() {
+        return teamLogos;
+    }
+
+    public void setTeamLogos(List<Team> teamLogos) {
+        this.teamLogos = teamLogos;
     }
 
 }
