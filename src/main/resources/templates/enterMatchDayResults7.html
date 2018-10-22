@@ -5,10 +5,11 @@
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
     <div th:insert="fragments :: teamEdit"></div>
-    <p>Unos rezultata kola:</p>
+    <p th:text="'Unos rezultata ' + ${gameForm.mDay} + '. kola (2007):'"></p>
     <div class="form">
       <form action="#" th:action="@{/addedMatchDayResults7}" th:object="${gameForm}" method="post">
         <input type="hidden" th:field="*{mDay}"/>               
@@ -75,5 +76,6 @@
       </div>
     </div>
     <div th:insert="fragments :: footer"></div>
+    <script th:inline="javascript" th:src="@{/js/main.js}"></script>
   </body>
 </html>
