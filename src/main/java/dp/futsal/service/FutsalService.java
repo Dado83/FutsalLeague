@@ -124,6 +124,7 @@ public class FutsalService {
     public void updateTeamData5(Map<Integer, Team> teamMap) {
         LOGGER.info("update team data");
         this.teams5 = teamMap;
+        this.teamLogos = new ArrayList<>(teamMap.values());
         this.leagueTable5 = new ArrayList<>(this.teams5.values());
         this.teamLinks5 = new ArrayList<>();
         this.teamLinks5.add(null);
@@ -136,6 +137,7 @@ public class FutsalService {
     public void updateTeamData6(Map<Integer, Team> teamMap) {
         LOGGER.info("update team data");
         this.teams6 = teamMap;
+        this.teamLogos = new ArrayList<>(teamMap.values());
         this.leagueTable6 = new ArrayList<>(this.teams6.values());
         this.teamLinks6 = new ArrayList<>();
         this.teamLinks6.add(null);
@@ -148,6 +150,7 @@ public class FutsalService {
     public void updateTeamData7(Map<Integer, Team> teamMap) {
         LOGGER.info("update team data");
         this.teams7 = teamMap;
+        this.teamLogos = new ArrayList<>(teamMap.values());
         this.leagueTable7 = new ArrayList<>(this.teams7.values());
         this.teamLinks7 = new ArrayList<>();
         this.teamLinks7.add(null);
@@ -160,6 +163,7 @@ public class FutsalService {
     public void updateTeamData8(Map<Integer, Team> teamMap) {
         LOGGER.info("update team data");
         this.teams8 = teamMap;
+        this.teamLogos = new ArrayList<>(teamMap.values());
         this.leagueTable8 = new ArrayList<>(this.teams8.values());
         this.teamLinks8 = new ArrayList<>();
         this.teamLinks8.add(null);
@@ -172,6 +176,7 @@ public class FutsalService {
     public void updateTeamData9(Map<Integer, Team> teamMap) {
         LOGGER.info("update team data");
         this.teams9 = teamMap;
+        this.teamLogos = new ArrayList<>(teamMap.values());
         this.leagueTable9 = new ArrayList<>(this.teams9.values());
         this.teamLinks9 = new ArrayList<>();
         this.teamLinks9.add(null);
