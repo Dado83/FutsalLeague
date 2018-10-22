@@ -7,77 +7,65 @@ body {
     background-color: var(--color);
 }
 
-.tabela {
-    background-color: orange;
-    padding: 5px;
-    margin: 5px
+#logo {
+    width: 7%
 }
 
-.rezultati {
-    background-color: yellow;
-    padding: 5px
+.title{
+    font-size: 40px;
+    vertical-align: top;
 }
 
-.raspored {
-    background-color: green;
-    padding: 5px
-}
-
-.content {
-    display: grid;
-    grid-template-columns: auto auto;
-    grid-column-gap: 10px;
-    grid-row-gap: 10px;
-}
-
-.list {
-    background-color: greenyellow;
+.logos {
     display: flex;
 }
 
-.list li {
-    margin: 0 5px 0 0;
-    list-style-type: none;
+.logos a {
+    text-decoration: none;
 }
 
-li img {
-    width: 100%;
-    display: flex
+.logos li {
+    list-style: none
 }
 
-.clubLogo > img {
-    width: 100px
+.logos img {
+    width: 100%
 }
 
 .pauza {
-  display: none  
+    display: none
 }
 
-.clubLogo {
-    background-color: green;
-    
+.teamEdit {
+    margin: 5px 10px 20px;
+    box-shadow: 0 0 10px black;
+    padding: 10px 5px
 }
 
-.logo {
-    font-size: 20px
+.teamEdit a {
+    margin: 0 0 0 5px;
+    text-decoration: none;
 }
 
-div > a {
-    margin: 10px;
-    background-color: yellow;
+.headerEdit a {
+    text-decoration: none;
 }
 
-#logo {
-    width: 10%
+.mDayInput span {
+    cursor: pointer;
+    padding: 5px 10px;
+    box-shadow: 0 0 5px black;
+    margin: 5px 10px 20px;
 }
 
-.header span {
-    font-size: 50px;
-    vertical-align: top
+.mDayInput a {
+    margin: 0 0 0 5px;
+    text-decoration: none;
 }
 
-.title {
-    
+#k5, #k6, #k7, #k8, #k9 {
+    display: none;
+    margin: 15px 10px 20px;
 }
 
 
