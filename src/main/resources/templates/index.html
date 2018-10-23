@@ -11,7 +11,7 @@
     <div th:insert="fragments :: header"></div>
     <div class="content">
       <div class="results">
-        <h3>Rezultati:</h3>
+        <h3>Rezultati 2005:</h3>
         <table>
           <tr th:each="element: ${results5}">
             <td th:text="${element.key}+ '. kolo:'"></td>
@@ -27,7 +27,7 @@
         </table>
       </div>
       <div class="table">
-        <h3>Tabela: </h3>
+        <h3>Tabela 2005: </h3>
         <table>
           <tr th:each="tim: ${leagueTable5}">
             <td th:text="${tim.teamName}">Some name</td>
@@ -43,7 +43,7 @@
         </table>
       </div>
       <div class="results">
-        <h3>Rezultati:</h3>
+        <h3>Rezultati 2006:</h3>
         <table>
           <tr th:each="element: ${results6}">
             <td th:text="${element.key}+ '. kolo:'"></td>
@@ -59,7 +59,7 @@
         </table>
       </div>
       <div class="table">
-        <h3>Tabela: </h3>
+        <h3>Tabela 2006: </h3>
         <table>
           <tr th:each="tim: ${leagueTable6}">
             <td th:text="${tim.teamName}">Some name</td>
@@ -75,7 +75,7 @@
         </table>
       </div>
       <div class="results">
-        <h3>Rezultati:</h3>
+        <h3>Rezultati 2007:</h3>
         <table>
           <tr th:each="element: ${results7}">
             <td th:text="${element.key}+ '. kolo:'"></td>
@@ -91,7 +91,7 @@
         </table>
       </div>
       <div class="table">
-        <h3>Tabela: </h3>
+        <h3>Tabela 2007: </h3>
         <table>
           <tr th:each="tim: ${leagueTable7}">
             <td th:text="${tim.teamName}">Some name</td>
@@ -107,7 +107,7 @@
         </table>
       </div>
       <div class="results">
-        <h3>Rezultati:</h3>
+        <h3>Rezultati 2008:</h3>
         <table>
           <tr th:each="element: ${results8}">
             <td th:text="${element.key}+ '. kolo:'"></td>
@@ -123,7 +123,7 @@
         </table>
       </div>
       <div class="table">
-        <h3>Tabela: </h3>
+        <h3>Tabela 2008: </h3>
         <table>
           <tr th:each="tim: ${leagueTable8}">
             <td th:text="${tim.teamName}">Some name</td>
@@ -139,7 +139,7 @@
         </table>
       </div>
       <div class="results">
-        <h3>Rezultati:</h3>
+        <h3>Rezultati 2009:</h3>
         <table>
           <tr th:each="element: ${results9}">
             <td th:text="${element.key}+ '. kolo:'"></td>
@@ -155,7 +155,7 @@
         </table>
       </div>
       <div class="table">
-        <h3>Tabela: </h3>
+        <h3>Tabela 2009:</h3>
         <table>
           <tr th:each="tim: ${leagueTable9}">
             <td th:text="${tim.teamName}">Some name</td>
@@ -170,21 +170,21 @@
           </tr>
         </table>
       </div>
-      
-<!--      <div class="raspored">
-        <h3>Raspored:</h3>
-        <table>
-          <tr th:each="element: ${pairs}">
-            <td th:text="${element.key} + '. kolo:'"></td>
-            <table>
-              <tr th:each="par: ${element.value}">
-                <td th:text="${teamLinks.get(par.homeTeam).teamName}">Some name</td>
-                <td th:text="${teamLinks.get(par.awayTeam).teamName}">Some name</td> 
-              </tr>
-            </table>
-          </tr>
-        </table>
-      </div>-->
+
+      <!--      <div class="raspored">
+              <h3>Raspored:</h3>
+              <table>
+                <tr th:each="element: ${pairs}">
+                  <td th:text="${element.key} + '. kolo:'"></td>
+                  <table>
+                    <tr th:each="par: ${element.value}">
+                      <td th:text="${teamLinks.get(par.homeTeam).teamName}">Some name</td>
+                      <td th:text="${teamLinks.get(par.awayTeam).teamName}">Some name</td> 
+                    </tr>
+                  </table>
+                </tr>
+              </table>
+            </div>-->
     </div>    
     <div th:insert="fragments :: footer"></div>
   </body>

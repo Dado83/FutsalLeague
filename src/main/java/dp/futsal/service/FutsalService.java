@@ -186,6 +186,16 @@ public class FutsalService {
         Collections.sort(this.leagueTable9);
     }
 
+    public void removeDummyTeam(List<Team> teams) {
+        Team toRemove = null;
+        for (Team t: teams){
+            if (t.getTeamName().equals("pauza")) {
+                toRemove = t;
+            }
+        }
+        teams.remove(toRemove);
+    }
+
     public Map<Integer, List<MatchPair>> getPairs() {
         return matchDaypairs;
     }

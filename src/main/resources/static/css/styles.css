@@ -7,6 +7,11 @@ body {
     background-color: var(--color);
 }
 
+.content {
+    display: grid;
+    grid-template-columns: auto auto;
+}
+
 #logo {
     width: 7%
 }
