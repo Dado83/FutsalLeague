@@ -13,7 +13,6 @@ import dp.futsal.service.FutsalService;
 import dp.futsal.service.MatchDayForm;
 import dp.futsal.service.MatchResult;
 import dp.futsal.service.Team;
-import java.util.ArrayList;
 import java.util.List;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,6 +40,8 @@ public class FutsalController {
         model.addAttribute("results7", service.getResults7());
         model.addAttribute("results8", service.getResults8());
         model.addAttribute("results9", service.getResults9());
+        int lastMDay = service.getResults5().size();
+        model.addAttribute("lastMDay", lastMDay);
         service.removeDummyTeam(service.getLeagueTable5());
         service.removeDummyTeam(service.getLeagueTable6());
         service.removeDummyTeam(service.getLeagueTable7());
@@ -402,6 +403,42 @@ public class FutsalController {
         LOGGER.info(service.getGamePostponed9().toString());
         LOGGER.info(service.getNotPlaying9().toString());
         return "addedResults";
+    }
+    
+    @GetMapping("/results")
+    public String results(Model model){
+        model.addAttribute("pairs", service.getPairs());      
+        model.addAttribute("results5", service.getResults5());
+        model.addAttribute("results6", service.getResults6());
+        model.addAttribute("results7", service.getResults7());
+        model.addAttribute("results8", service.getResults8());
+        model.addAttribute("results9", service.getResults9());
+        model.addAttribute("leagueTable5", service.getLeagueTable5());
+        model.addAttribute("leagueTable6", service.getLeagueTable6());
+        model.addAttribute("leagueTable7", service.getLeagueTable7());
+        model.addAttribute("leagueTable8", service.getLeagueTable8());
+        model.addAttribute("leagueTable9", service.getLeagueTable9());
+        model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
+        return "results";
+    }
+    
+    @GetMapping("/fixtures")
+    public String fixtures(Model model){
+        model.addAttribute("pairs", service.getPairs());      
+        model.addAttribute("results5", service.getResults5());
+        model.addAttribute("results6", service.getResults6());
+        model.addAttribute("results7", service.getResults7());
+        model.addAttribute("results8", service.getResults8());
+        model.addAttribute("results9", service.getResults9());
+        model.addAttribute("leagueTable5", service.getLeagueTable5());
+        model.addAttribute("leagueTable6", service.getLeagueTable6());
+        model.addAttribute("leagueTable7", service.getLeagueTable7());
+        model.addAttribute("leagueTable8", service.getLeagueTable8());
+        model.addAttribute("leagueTable9", service.getLeagueTable9());
+        model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
+        return "fixtures";
     }
     
     @ExceptionHandler(Exception.class)

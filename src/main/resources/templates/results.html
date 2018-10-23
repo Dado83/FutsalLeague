@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>LBŠ rezultati</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div th:insert="fragments :: header"></div>
+    <div class="content">
+      <div class="results">
+        <h3>Rezultati 2005:</h3>
+        <table>
+          <tr th:each="element: ${results5}">
+            <td th:text="${element.key}+ '. kolo:'"></td>
+            <table>
+              <tr th:each="rez: ${element.value}">
+                <td th:text="${rez.homeTeam}">Some name</td>
+                <td th:text="${rez.awayTeam}">Some name</td> 
+                <td th:text="${rez.goalsHome}">Some name</td> 
+                <td th:text="${rez.goalsAway}">Some name</td> 
+              </tr>
+            </table>
+          </tr>
+        </table>
+      </div>
+      <div class="results">
+        <h3>Rezultati 2006:</h3>
+        <table>
+          <tr th:each="element: ${results6}">
+            <td th:text="${element.key}+ '. kolo:'"></td>
+            <table>
+              <tr th:each="rez: ${element.value}">
+                <td th:text="${rez.homeTeam}">Some name</td>
+                <td th:text="${rez.awayTeam}">Some name</td> 
+                <td th:text="${rez.goalsHome}">Some name</td> 
+                <td th:text="${rez.goalsAway}">Some name</td> 
+              </tr>
+            </table>
+          </tr>
+        </table>
+      </div>
+      <div class="results">
+        <h3>Rezultati 2007:</h3>
+        <table>
+          <tr th:each="element: ${results7}">
+            <td th:text="${element.key}+ '. kolo:'"></td>
+            <table>
+              <tr th:each="rez: ${element.value}">
+                <td th:text="${rez.homeTeam}">Some name</td>
+                <td th:text="${rez.awayTeam}">Some name</td> 
+                <td th:text="${rez.goalsHome}">Some name</td> 
+                <td th:text="${rez.goalsAway}">Some name</td> 
+              </tr>
+            </table>
+          </tr>
+        </table>
+      </div>
+      <div class="results">
+        <h3>Rezultati 2008:</h3>
+        <table>
+          <tr th:each="element: ${results8}">
+            <td th:text="${element.key}+ '. kolo:'"></td>
+            <table>
+              <tr th:each="rez: ${element.value}">
+                <td th:text="${rez.homeTeam}">Some name</td>
+                <td th:text="${rez.awayTeam}">Some name</td> 
+                <td th:text="${rez.goalsHome}">Some name</td> 
+                <td th:text="${rez.goalsAway}">Some name</td> 
+              </tr>
+            </table>
+          </tr>
+        </table>
+      </div>
+      <div class="results">
+        <h3>Rezultati 2009:</h3>
+        <table>
+          <tr th:each="element: ${results9}">
+            <td th:text="${element.key}+ '. kolo:'"></td>
+            <table>
+              <tr th:each="rez: ${element.value}">
+                <td th:text="${rez.homeTeam}">Some name</td>
+                <td th:text="${rez.awayTeam}">Some name</td> 
+                <td th:text="${rez.goalsHome}">Some name</td> 
+                <td th:text="${rez.goalsAway}">Some name</td> 
+              </tr>
+            </table>
+          </tr>
+        </table>
+      </div>
+    </div>    
+    <div th:insert="fragments :: footer"></div>
+  </body>
+</html>
