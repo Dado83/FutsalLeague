@@ -97,50 +97,6 @@ public class FutsalController {
         return "editTeam";
     }
 
-    @GetMapping("/editTeam6")
-    public String editTeam6(Model model, int index) {
-        model.addAttribute("team", service.getTeamLinks6().get(index));
-        model.addAttribute("results", service.getTeamLinks6().get(index).getResults());
-        model.addAttribute("leagueTable", service.getLeagueTable6());
-        model.addAttribute("pairs", service.getPairs());
-        model.addAttribute("teamLinks", service.getTeamLinks5());
-        model.addAttribute("teamLogos", service.getTeamLogos());
-        return "editTeam6";
-    }
-
-    @GetMapping("/editTeam7")
-    public String editTeam7(Model model, int index) {
-        model.addAttribute("team", service.getTeamLinks7().get(index));
-        model.addAttribute("results", service.getTeamLinks7().get(index).getResults());
-        model.addAttribute("leagueTable", service.getLeagueTable7());
-        model.addAttribute("pairs", service.getPairs());
-        model.addAttribute("teamLinks", service.getTeamLinks5());
-        model.addAttribute("teamLogos", service.getTeamLogos());
-        return "editTeam7";
-    }
-
-    @GetMapping("/editTeam8")
-    public String editTeam8(Model model, int index) {
-        model.addAttribute("team", service.getTeamLinks8().get(index));
-        model.addAttribute("results", service.getTeamLinks8().get(index).getResults());
-        model.addAttribute("leagueTable", service.getLeagueTable8());
-        model.addAttribute("pairs", service.getPairs());
-        model.addAttribute("teamLinks", service.getTeamLinks5());
-        model.addAttribute("teamLogos", service.getTeamLogos());
-        return "editTeam8";
-    }
-
-    @GetMapping("/editTeam9")
-    public String editTeam9(Model model, int index) {
-        model.addAttribute("team", service.getTeamLinks9().get(index));
-        model.addAttribute("results", service.getTeamLinks9().get(index).getResults());
-        model.addAttribute("leagueTable", service.getLeagueTable9());
-        model.addAttribute("pairs", service.getPairs());
-        model.addAttribute("teamLinks", service.getTeamLinks5());
-        model.addAttribute("teamLogos", service.getTeamLogos());
-        return "editTeam9";
-    }
-
     @PostMapping("/updatedTeam")
     public String updateTeam5(Model model, @ModelAttribute TeamForm team) {
         LOGGER.info("" + team.getTeamName());
@@ -151,82 +107,6 @@ public class FutsalController {
         model.addAttribute("teamLinks", service.getTeamLinks5());
         model.addAttribute("teamLogos", service.getTeamLogos());
         LOGGER.info(service.getTeams5().toString());
-        return "updatedTeam";
-    }
-
-    @PostMapping("/updatedTeam6")
-    public String updateTeam6(Model model, @ModelAttribute Team team) {
-        LOGGER.info("" + team.getTeamName());
-
-        Team teamTemp = service.getTeam6(team.getId());
-        List<MatchResult> matchResultList = teamTemp.getResults();
-        team.setResults(matchResultList);
-
-        service.getTeams6().put(team.getId(), team);
-        service.updateTeamData6(service.getTeams6());
-        model.addAttribute("updatedTeam", team);
-        model.addAttribute("leagueTable", service.getLeagueTable6());
-        model.addAttribute("pairs", service.getPairs());
-        model.addAttribute("teamLinks", service.getTeamLinks5());
-        model.addAttribute("teamLogos", service.getTeamLogos());
-        LOGGER.info(service.getTeams6().toString());
-        return "updatedTeam";
-    }
-
-    @PostMapping("/updatedTeam7")
-    public String updateTeam7(Model model, @ModelAttribute Team team) {
-        LOGGER.info("" + team.getTeamName());
-
-        Team teamTemp = service.getTeam7(team.getId());
-        List<MatchResult> matchResultList = teamTemp.getResults();
-        team.setResults(matchResultList);
-
-        service.getTeams7().put(team.getId(), team);
-        service.updateTeamData7(service.getTeams7());
-        model.addAttribute("updatedTeam", team);
-        model.addAttribute("leagueTable", service.getLeagueTable7());
-        model.addAttribute("pairs", service.getPairs());
-        model.addAttribute("teamLinks", service.getTeamLinks5());
-        model.addAttribute("teamLogos", service.getTeamLogos());
-        LOGGER.info(service.getTeams7().toString());
-        return "updatedTeam";
-    }
-
-    @PostMapping("/updatedTeam8")
-    public String updateTeam8(Model model, @ModelAttribute Team team) {
-        LOGGER.info("" + team.getTeamName());
-
-        Team teamTemp = service.getTeam8(team.getId());
-        List<MatchResult> matchResultList = teamTemp.getResults();
-        team.setResults(matchResultList);
-
-        service.getTeams8().put(team.getId(), team);
-        service.updateTeamData8(service.getTeams8());
-        model.addAttribute("updatedTeam", team);
-        model.addAttribute("leagueTable", service.getLeagueTable8());
-        model.addAttribute("pairs", service.getPairs());
-        model.addAttribute("teamLinks", service.getTeamLinks5());
-        model.addAttribute("teamLogos", service.getTeamLogos());
-        LOGGER.info(service.getTeams8().toString());
-        return "updatedTeam";
-    }
-
-    @PostMapping("/updatedTeam9")
-    public String updateTeam9(Model model, @ModelAttribute Team team) {
-        LOGGER.info("" + team.getTeamName());
-
-        Team teamTemp = service.getTeam9(team.getId());
-        List<MatchResult> matchResultList = teamTemp.getResults();
-        team.setResults(matchResultList);
-
-        service.getTeams9().put(team.getId(), team);
-        service.updateTeamData9(service.getTeams9());
-        model.addAttribute("updatedTeam", team);
-        model.addAttribute("leagueTable", service.getLeagueTable9());
-        model.addAttribute("pairs", service.getPairs());
-        model.addAttribute("teamLinks", service.getTeamLinks5());
-        model.addAttribute("teamLogos", service.getTeamLogos());
-        LOGGER.info(service.getTeams9().toString());
         return "updatedTeam";
     }
 
@@ -445,9 +325,9 @@ public class FutsalController {
         model.addAttribute("teamLogos", service.getTeamLogos());
         return "fixtures";
     }
-    
+
     @GetMapping("/save")
-    public String save(Model model){
+    public String save(Model model) {
         LOGGER.info("save");
         model.addAttribute("leagueTable", service.getLeagueTable5());
         model.addAttribute("results", service.getResults5());
@@ -457,15 +337,15 @@ public class FutsalController {
         service.saveFutsalData();
         return "adminDashboard";
     }
-    
+
     @GetMapping("/deleteMDay")
-    public String delMDay(Model model){
+    public String delMDay(Model model) {
         LOGGER.info("save");
         model.addAttribute("leagueTable", service.getLeagueTable5());
         model.addAttribute("results", service.getResults5());
         model.addAttribute("pairs", service.getPairs());
         model.addAttribute("teamLinks", service.getTeamLinks5());
-        model.addAttribute("teamLogos", service.getTeamLogos());  
+        model.addAttribute("teamLogos", service.getTeamLogos());
         service.deleteLastMDay();
         service.updateTeamData5(service.getTeams5());
         service.updateTeamData6(service.getTeams6());
