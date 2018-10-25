@@ -19,17 +19,17 @@
       </ul>
     </div>
     <div class="headerEdit" th:fragment="teamEdit">
-      <h1><a th:href="@{/}">Fair Play Liga Budućih Šampiona</a></h1>
+      <span><a th:href="@{/}">Fair Play Liga Budućih Šampiona</a></span><span class="save"><a th:href="@{/save}">Snimi promjene</a></span>
       <div class="teamEdit">
         <p>Izmjena ekipa...</p>
-        <a th:each="tim: ${teamLogos}" th:text="${tim?.teamName}" th:href="@{/editTeam5(index = ${tim?.id})}" th:class="${tim?.teamName}">tabela</a>
+        <a th:each="tim: ${teamLogos}" th:text="${tim?.teamName}" th:href="@{/editTeam(index = ${tim?.id})}" th:class="${tim?.teamName}">tabela</a>
       </div>
       <div class="mDayInput">
-        <span id="g5">2005. godiste</span>
-        <span id="g6">2006. godiste</span>
-        <span id="g7">2007. godiste</span>
-        <span id="g8">2008. godiste</span>
-        <span id="g9">2009. godiste</span>
+        <p id="g5">2005. godiste</p>
+        <p id="g6">2006. godiste</p>
+        <p id="g7">2007. godiste</p>
+        <p id="g8">2008. godiste</p>
+        <p id="g9">2009. godiste</p>
         <div id="k5">2005 godiste<br>
           <a th:each="r: ${pairs}" th:href="@{/enterMatchDayResults5(index = ${r.key})}" th:text="${r.key} + '. kolo'">unos rezultata kola</a>
         </div>  
@@ -45,6 +45,9 @@
         <div id="k9">2009 godiste<br>
           <a th:each="r: ${pairs}" th:href="@{/enterMatchDayResults9(index = ${r.key})}" th:text="${r.key} + '. kolo'">unos rezultata kola</a>
         </div>
+      </div>
+      <div>
+        <a th:href="@{/deleteMDay}">brisi zadnje kolo</a>
       </div>
     </div>
     <div class="footer" th:fragment="footer">

@@ -5,7 +5,6 @@ import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -15,6 +14,7 @@ import java.io.OutputStreamWriter;
 import java.io.Reader;
 import java.io.Writer;
 import java.lang.reflect.Type;
+import java.net.URL;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -34,28 +34,28 @@ public class TeamCollection {
         return teamList.toString();
     }
 
-    public Map<Integer, Team> loadTeamCollectionFromJson(String fileString) {
+    public Map<Integer, Team> loadTeamsFromJson(String file) {
         Gson gson = new Gson();
         Type type = new TypeToken<Map<Integer, Team>>() {
         }.getType();
         StringBuilder stringBuilder = new StringBuilder();
-        File file = new File(fileString);
         try {
-            InputStream fileInputStream = new FileInputStream(file);
-            Reader inputStream = new InputStreamReader(fileInputStream, Charset.forName("utf-8").newDecoder());
-            BufferedReader reader = new BufferedReader(inputStream);
+            URL url = new URL(file);
+            InputStream inputStream = url.openStream();
+            Reader reader = new InputStreamReader(inputStream, Charset.forName("utf-8").newDecoder());
+            BufferedReader buffReader = new BufferedReader(reader);
             String line;
-            while ((line = reader.readLine()) != null) {
+            while ((line = buffReader.readLine()) != null) {
                 stringBuilder.append(line);
             }
         } catch (IOException e) {
-            LOGGER.severe("nisam ucitao json");
+            LOGGER.severe("nisam ucitao teams json");
         }
         return this.teamMap = (Map<Integer, Team>) gson.fromJson(stringBuilder.toString(), type);
 
     }
 
-    public void saveTeamMapToJson(String fileString) {
+    public void saveTeamsToJson(String fileString, Map<Integer, Team> teams) {
         Gson gson = new Gson();
         Type type = new TypeToken<Map<Integer, Team>>() {
         }.getType();
@@ -64,7 +64,7 @@ public class TeamCollection {
             OutputStream outputStream = new FileOutputStream(file);
             Writer writer = new OutputStreamWriter(outputStream, Charset.forName("utf-8").newEncoder());
             try (BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
-                String json = gson.toJson(teamMap, type);
+                String json = gson.toJson(teams, type);
                 bufferedWriter.write(json);
             }
         } catch (IOException e) {

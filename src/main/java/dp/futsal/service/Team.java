@@ -72,7 +72,7 @@ public class Team implements Comparable<Team> {
     }
 
     public void delMatchDay(String s) {
-        List<MatchResult> temp = new ArrayList<>();
+        List<MatchResult> resultsToRemove = new ArrayList<>();
         for (MatchResult m : this.results) {
             if (m.getId().startsWith(s)) {
                 this.gamesPlayed--;
@@ -101,10 +101,10 @@ public class Team implements Comparable<Team> {
                         this.points--;
                     }
                 }
-                temp.add(m);
+                resultsToRemove.add(m);
             }
         }
-        this.results.removeAll(temp);
+        this.results.removeAll(resultsToRemove);
     }
 
     public int getId() {

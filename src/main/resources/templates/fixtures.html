@@ -8,15 +8,16 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
-    <div class="raspored">
+    <div th:insert="fragments :: header"></div>
+    <div class="fixtures">
       <h3>Raspored:</h3>
-      <table>
+      <table class="gamePairs">
         <tr th:each="element: ${pairs}">
-          <td th:text="${element.key} + '. kolo:'"></td>
+          <h4 th:text="${element.key} + '. kolo:'"></h4>
           <table>
             <tr th:each="par: ${element.value}">
-              <td th:text="${teamLinks.get(par.homeTeam).teamName}">Some name</td>
-              <td th:text="${teamLinks.get(par.awayTeam).teamName}">Some name</td> 
+              <td th:text="${teamLinks.get(par.homeTeam).teamName.equals('pauza')} ? 'pauzira' : ${teamLinks.get(par.homeTeam).teamName}"></td>
+              <td th:text="${teamLinks.get(par.awayTeam).teamName.equals('pauza')} ? 'pauzira' : ${teamLinks.get(par.awayTeam).teamName}">Some name</td>
             </tr>
           </table>
         </tr>

@@ -13,6 +13,7 @@ import dp.futsal.service.FutsalService;
 import dp.futsal.service.MatchDayForm;
 import dp.futsal.service.MatchResult;
 import dp.futsal.service.Team;
+import dp.futsal.service.TeamForm;
 import java.util.List;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -34,7 +35,7 @@ public class FutsalController {
     @GetMapping("/")
     public String index(Model model) {
         LOGGER.info("inside index");
-        model.addAttribute("pairs", service.getPairs());      
+        model.addAttribute("pairs", service.getPairs());
         model.addAttribute("results5", service.getResults5());
         model.addAttribute("results6", service.getResults6());
         model.addAttribute("results7", service.getResults7());
@@ -85,9 +86,7 @@ public class FutsalController {
         return "adminDashboard";
     }
 
-    
-    
-    @GetMapping("/editTeam5")
+    @GetMapping("/editTeam")
     public String editTeam5(Model model, int index) {
         model.addAttribute("team", service.getTeamLinks5().get(index));
         model.addAttribute("results", service.getTeamLinks5().get(index).getResults());
@@ -95,8 +94,9 @@ public class FutsalController {
         model.addAttribute("pairs", service.getPairs());
         model.addAttribute("teamLinks", service.getTeamLinks5());
         model.addAttribute("teamLogos", service.getTeamLogos());
-        return "editTeam5";
+        return "editTeam";
     }
+
     @GetMapping("/editTeam6")
     public String editTeam6(Model model, int index) {
         model.addAttribute("team", service.getTeamLinks6().get(index));
@@ -107,6 +107,7 @@ public class FutsalController {
         model.addAttribute("teamLogos", service.getTeamLogos());
         return "editTeam6";
     }
+
     @GetMapping("/editTeam7")
     public String editTeam7(Model model, int index) {
         model.addAttribute("team", service.getTeamLinks7().get(index));
@@ -117,6 +118,7 @@ public class FutsalController {
         model.addAttribute("teamLogos", service.getTeamLogos());
         return "editTeam7";
     }
+
     @GetMapping("/editTeam8")
     public String editTeam8(Model model, int index) {
         model.addAttribute("team", service.getTeamLinks8().get(index));
@@ -127,6 +129,7 @@ public class FutsalController {
         model.addAttribute("teamLogos", service.getTeamLogos());
         return "editTeam8";
     }
+
     @GetMapping("/editTeam9")
     public String editTeam9(Model model, int index) {
         model.addAttribute("team", service.getTeamLinks9().get(index));
@@ -137,18 +140,11 @@ public class FutsalController {
         model.addAttribute("teamLogos", service.getTeamLogos());
         return "editTeam9";
     }
-    
 
-    @PostMapping("/updatedTeam5")
-    public String updateTeam5(Model model, @ModelAttribute Team team) {
+    @PostMapping("/updatedTeam")
+    public String updateTeam5(Model model, @ModelAttribute TeamForm team) {
         LOGGER.info("" + team.getTeamName());
-
-        Team teamTemp = service.getTeam5(team.getId());
-        List<MatchResult> matchResultList = teamTemp.getResults();
-        team.setResults(matchResultList);
-
-        service.getTeams5().put(team.getId(), team);
-        service.updateTeamData5(service.getTeams5());
+        service.updateTeam(team);
         model.addAttribute("updatedTeam", team);
         model.addAttribute("leagueTable", service.getLeagueTable5());
         model.addAttribute("pairs", service.getPairs());
@@ -176,6 +172,7 @@ public class FutsalController {
         LOGGER.info(service.getTeams6().toString());
         return "updatedTeam";
     }
+
     @PostMapping("/updatedTeam7")
     public String updateTeam7(Model model, @ModelAttribute Team team) {
         LOGGER.info("" + team.getTeamName());
@@ -194,6 +191,7 @@ public class FutsalController {
         LOGGER.info(service.getTeams7().toString());
         return "updatedTeam";
     }
+
     @PostMapping("/updatedTeam8")
     public String updateTeam8(Model model, @ModelAttribute Team team) {
         LOGGER.info("" + team.getTeamName());
@@ -212,6 +210,7 @@ public class FutsalController {
         LOGGER.info(service.getTeams8().toString());
         return "updatedTeam";
     }
+
     @PostMapping("/updatedTeam9")
     public String updateTeam9(Model model, @ModelAttribute Team team) {
         LOGGER.info("" + team.getTeamName());
@@ -230,8 +229,7 @@ public class FutsalController {
         LOGGER.info(service.getTeams9().toString());
         return "updatedTeam";
     }
-    
-    
+
     @GetMapping("/enterMatchDayResults5")
     public String enterResults5(Model model, int index) {
         MatchDayForm mDayForm = new MatchDayForm();
@@ -244,6 +242,7 @@ public class FutsalController {
         model.addAttribute("teamLogos", service.getTeamLogos());
         return "enterMatchDayResults5";
     }
+
     @GetMapping("/enterMatchDayResults6")
     public String enterResults6(Model model, int index) {
         MatchDayForm mDayForm = new MatchDayForm();
@@ -256,6 +255,7 @@ public class FutsalController {
         model.addAttribute("teamLogos", service.getTeamLogos());
         return "enterMatchDayResults6";
     }
+
     @GetMapping("/enterMatchDayResults7")
     public String enterResults7(Model model, int index) {
         MatchDayForm mDayForm = new MatchDayForm();
@@ -268,6 +268,7 @@ public class FutsalController {
         model.addAttribute("teamLogos", service.getTeamLogos());
         return "enterMatchDayResults7";
     }
+
     @GetMapping("/enterMatchDayResults8")
     public String enterResults8(Model model, int index) {
         MatchDayForm mDayForm = new MatchDayForm();
@@ -280,6 +281,7 @@ public class FutsalController {
         model.addAttribute("teamLogos", service.getTeamLogos());
         return "enterMatchDayResults8";
     }
+
     @GetMapping("/enterMatchDayResults9")
     public String enterResults9(Model model, int index) {
         MatchDayForm mDayForm = new MatchDayForm();
@@ -338,6 +340,7 @@ public class FutsalController {
         LOGGER.info(service.getNotPlaying6().toString());
         return "addedResults";
     }
+
     @PostMapping("/addedMatchDayResults7")
     public String addedResults7(Model model, @ModelAttribute MatchDayForm form) {
         LOGGER.info("pocetak addedmatch");
@@ -360,6 +363,7 @@ public class FutsalController {
         LOGGER.info(service.getNotPlaying7().toString());
         return "addedResults";
     }
+
     @PostMapping("/addedMatchDayResults8")
     public String addedResults8(Model model, @ModelAttribute MatchDayForm form) {
         LOGGER.info("pocetak addedmatch");
@@ -382,6 +386,7 @@ public class FutsalController {
         LOGGER.info(service.getNotPlaying8().toString());
         return "addedResults";
     }
+
     @PostMapping("/addedMatchDayResults9")
     public String addedResults9(Model model, @ModelAttribute MatchDayForm form) {
         LOGGER.info("pocetak addedmatch");
@@ -404,10 +409,10 @@ public class FutsalController {
         LOGGER.info(service.getNotPlaying9().toString());
         return "addedResults";
     }
-    
+
     @GetMapping("/results")
-    public String results(Model model){
-        model.addAttribute("pairs", service.getPairs());      
+    public String results(Model model) {
+        model.addAttribute("pairs", service.getPairs());
         model.addAttribute("results5", service.getResults5());
         model.addAttribute("results6", service.getResults6());
         model.addAttribute("results7", service.getResults7());
@@ -422,10 +427,10 @@ public class FutsalController {
         model.addAttribute("teamLogos", service.getTeamLogos());
         return "results";
     }
-    
+
     @GetMapping("/fixtures")
-    public String fixtures(Model model){
-        model.addAttribute("pairs", service.getPairs());      
+    public String fixtures(Model model) {
+        model.addAttribute("pairs", service.getPairs());
         model.addAttribute("results5", service.getResults5());
         model.addAttribute("results6", service.getResults6());
         model.addAttribute("results7", service.getResults7());
@@ -441,6 +446,35 @@ public class FutsalController {
         return "fixtures";
     }
     
+    @GetMapping("/save")
+    public String save(Model model){
+        LOGGER.info("save");
+        model.addAttribute("leagueTable", service.getLeagueTable5());
+        model.addAttribute("results", service.getResults5());
+        model.addAttribute("pairs", service.getPairs());
+        model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
+        service.saveFutsalData();
+        return "adminDashboard";
+    }
+    
+    @GetMapping("/deleteMDay")
+    public String delMDay(Model model){
+        LOGGER.info("save");
+        model.addAttribute("leagueTable", service.getLeagueTable5());
+        model.addAttribute("results", service.getResults5());
+        model.addAttribute("pairs", service.getPairs());
+        model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());  
+        service.deleteLastMDay();
+        service.updateTeamData5(service.getTeams5());
+        service.updateTeamData6(service.getTeams6());
+        service.updateTeamData7(service.getTeams7());
+        service.updateTeamData8(service.getTeams8());
+        service.updateTeamData9(service.getTeams9());
+        return "adminDashboard";
+    }
+
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Error message")
     public void handleError(Exception e) {

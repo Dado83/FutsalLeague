@@ -21,7 +21,8 @@ public class FTP {
     String[] loggonData = new String[2];
     InputStream inputStream;
 
-    public void uploadFile(String uploadFile) {
+    public void uploadFile(String remoteFile, String uploadFile) {
+        ftp = new FTPClient();
         try {
             inputStream = new FileInputStream(uploadFile);
             ftp.connect("files9.hostinger.in");
@@ -35,7 +36,7 @@ public class FTP {
             }
 
             ftp.login(loggonData[0], loggonData[1]);
-            ftp.storeFile(uploadFile, inputStream);
+            ftp.storeFile(remoteFile, inputStream);
 
             inputStream.close();
             if (ftp.isConnected()) {
