@@ -11,9 +11,9 @@ import org.springframework.stereotype.Service;
 
 
 @Service
-public class FutsalService {
+public class FutsalServiceA {
 
-    private static final Logger LOGGER = Logger.getLogger(FutsalService.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(FutsalServiceA.class.getName());
     private FTP ftpClient;
     private Fixture fixture;
     private TeamCollection teamCollection;
@@ -39,36 +39,28 @@ public class FutsalService {
     private List<Team> teamLinks8;
     private List<Team> teamLinks9;
     private List<Team> teamLogos;
-    private Map<Integer, String> gamePostponed5;
-    private Map<Integer, String> gamePostponed6;
-    private Map<Integer, String> gamePostponed7;
-    private Map<Integer, String> gamePostponed8;
-    private Map<Integer, String> gamePostponed9;
-    private Map<Integer, String> notPlaying5;
-    private Map<Integer, String> notPlaying6;
-    private Map<Integer, String> notPlaying7;
-    private Map<Integer, String> notPlaying8;
-    private Map<Integer, String> notPlaying9;
+    private Map<Integer, String> gamePostponed;
+    private Map<Integer, String> notPlaying;
 
     public void init() {
         LOGGER.info("init");
         ftpClient = new FTP();
         this.fixture = new Fixture();
-        this.fixture.loadFixturesFromJson("http://fairplay.hol.es/futsal/berger9-10.json");
+        this.fixture.loadFixturesFromJson("http://fairplay.hol.es/futsal/berger5.json");
         this.matchDaypairs = fixture.getPairs();
 
-        this.results5 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results5.json");
-        this.results6 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results6.json");
-        this.results7 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results7.json");
-        this.results8 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results8.json");
-        this.results9 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results9.json");
+        this.results5 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results5a.json");
+        this.results6 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results6a.json");
+        this.results7 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results7a.json");
+        this.results8 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results8a.json");
+        this.results9 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results9a.json");
 
         this.teamCollection = new TeamCollection();
-        this.teams5 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams5.json");
-        this.teams6 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams6.json");
-        this.teams7 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams7.json");
-        this.teams8 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams8.json");
-        this.teams9 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams9.json");
+        this.teams5 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams5a.json");
+        this.teams6 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams6a.json");
+        this.teams7 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams7a.json");
+        this.teams8 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams8a.json");
+        this.teams9 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams9a.json");
 
         this.teamLogos = new ArrayList<>(teams5.values());
         this.leagueTable5 = new ArrayList<>(teams5.values());
@@ -111,41 +103,33 @@ public class FutsalService {
         }
         Collections.sort(this.leagueTable9);
 
-        gamePostponed5 = new HashMap<>();
-        gamePostponed6 = new HashMap<>();
-        gamePostponed7 = new HashMap<>();
-        gamePostponed8 = new HashMap<>();
-        gamePostponed9 = new HashMap<>();
+        gamePostponed = new HashMap<>();
 
-        notPlaying5 = new HashMap<>();
-        notPlaying6 = new HashMap<>();
-        notPlaying7 = new HashMap<>();
-        notPlaying8 = new HashMap<>();
-        notPlaying9 = new HashMap<>();
+        notPlaying = new HashMap<>();
     }
 
     public void saveFutsalData() {
-        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results5.json", results5);
-        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results6.json", results6);
-        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results7.json", results7);
-        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results8.json", results8);
-        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results9.json", results9);
-        ftpClient.uploadFile("futsal/results5.json", "D:/fer plej/Zimska liga 2018-2019/app data/results5.json");
-        ftpClient.uploadFile("futsal/results6.json", "D:/fer plej/Zimska liga 2018-2019/app data/results6.json");
-        ftpClient.uploadFile("futsal/results7.json", "D:/fer plej/Zimska liga 2018-2019/app data/results7.json");
-        ftpClient.uploadFile("futsal/results8.json", "D:/fer plej/Zimska liga 2018-2019/app data/results8.json");
-        ftpClient.uploadFile("futsal/results9.json", "D:/fer plej/Zimska liga 2018-2019/app data/results9.json");
+        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results5a.json", results5);
+        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results6a.json", results6);
+        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results7a.json", results7);
+        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results8a.json", results8);
+        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results9a.json", results9);
+        ftpClient.uploadFile("futsal/results5a.json", "D:/fer plej/Zimska liga 2018-2019/app data/results5a.json");
+        ftpClient.uploadFile("futsal/results6a.json", "D:/fer plej/Zimska liga 2018-2019/app data/results6a.json");
+        ftpClient.uploadFile("futsal/results7a.json", "D:/fer plej/Zimska liga 2018-2019/app data/results7a.json");
+        ftpClient.uploadFile("futsal/results8a.json", "D:/fer plej/Zimska liga 2018-2019/app data/results8a.json");
+        ftpClient.uploadFile("futsal/results9a.json", "D:/fer plej/Zimska liga 2018-2019/app data/results9a.json");
 
-        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams5.json", teams5);
-        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams6.json", teams6);
-        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams7.json", teams7);
-        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams8.json", teams8);
-        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams9.json", teams9);
-        ftpClient.uploadFile("futsal/teams5.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams5.json");
-        ftpClient.uploadFile("futsal/teams6.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams6.json");
-        ftpClient.uploadFile("futsal/teams7.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams7.json");
-        ftpClient.uploadFile("futsal/teams8.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams8.json");
-        ftpClient.uploadFile("futsal/teams9.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams9.json");
+        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams5a.json", teams5);
+        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams6a.json", teams6);
+        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams7a.json", teams7);
+        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams8a.json", teams8);
+        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams9a.json", teams9);
+        ftpClient.uploadFile("futsal/teams5a.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams5a.json");
+        ftpClient.uploadFile("futsal/teams6a.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams6a.json");
+        ftpClient.uploadFile("futsal/teams7a.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams7a.json");
+        ftpClient.uploadFile("futsal/teams8a.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams8a.json");
+        ftpClient.uploadFile("futsal/teams9a.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams9a.json");
     }
 
     public void updateTeam(TeamForm team) {
@@ -465,84 +449,20 @@ public class FutsalService {
         return this.teams9.get(index);
     }
 
-    public Map<Integer, String> getGamePostponed5() {
-        return gamePostponed5;
+    public Map<Integer, String> getGamePostponed() {
+        return gamePostponed;
     }
 
-    public void setGamePostponed5(Map<Integer, String> gamePostponed) {
-        this.gamePostponed5 = gamePostponed;
+    public void setGamePostponed(Map<Integer, String> gamePostponed) {
+        this.gamePostponed = gamePostponed;
     }
 
-    public Map<Integer, String> getGamePostponed6() {
-        return gamePostponed6;
+    public Map<Integer, String> getNotPlaying() {
+        return notPlaying;
     }
 
-    public void setGamePostponed6(Map<Integer, String> gamePostponed) {
-        this.gamePostponed6 = gamePostponed;
-    }
-
-    public Map<Integer, String> getGamePostponed7() {
-        return gamePostponed7;
-    }
-
-    public void setGamePostponed7(Map<Integer, String> gamePostponed) {
-        this.gamePostponed7 = gamePostponed;
-    }
-
-    public Map<Integer, String> getGamePostponed8() {
-        return gamePostponed8;
-    }
-
-    public void setGamePostponed8(Map<Integer, String> gamePostponed) {
-        this.gamePostponed8 = gamePostponed;
-    }
-
-    public Map<Integer, String> getGamePostponed9() {
-        return gamePostponed9;
-    }
-
-    public void setGamePostponed9(Map<Integer, String> gamePostponed) {
-        this.gamePostponed9 = gamePostponed;
-    }
-
-    public Map<Integer, String> getNotPlaying5() {
-        return notPlaying5;
-    }
-
-    public void setNotPlaying5(Map<Integer, String> notPlaying) {
-        this.notPlaying5 = notPlaying;
-    }
-
-    public Map<Integer, String> getNotPlaying6() {
-        return notPlaying6;
-    }
-
-    public void setNotPlaying6(Map<Integer, String> notPlaying) {
-        this.notPlaying6 = notPlaying;
-    }
-
-    public Map<Integer, String> getNotPlaying7() {
-        return notPlaying7;
-    }
-
-    public void setNotPlaying7(Map<Integer, String> notPlaying) {
-        this.notPlaying7 = notPlaying;
-    }
-
-    public Map<Integer, String> getNotPlaying8() {
-        return notPlaying8;
-    }
-
-    public void setNotPlaying8(Map<Integer, String> notPlaying) {
-        this.notPlaying8 = notPlaying;
-    }
-
-    public Map<Integer, String> getNotPlaying9() {
-        return notPlaying9;
-    }
-
-    public void setNotPlaying9(Map<Integer, String> notPlaying) {
-        this.notPlaying9 = notPlaying;
+    public void setNotPlaying(Map<Integer, String> notPlaying) {
+        this.notPlaying = notPlaying;
     }
 
     public List<Team> getTeamLogos() {

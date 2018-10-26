@@ -22,39 +22,69 @@
         <tr>
           <td>Klupske boje</td> <td th:text="${team5.kitColor}"></td>
         </tr>
-        <tr>
-          <td>Odigrano</td><td th:text="${team5.gamesPlayed}"></td>
-        </tr>
-        <tr>
-          <td>Pobjede</td><td th:text="${team5.gamesWon}"></td>
-        </tr>
-        <tr>
-          <td>Nerjeseno</td><td th:text="${team5.gamesDrew}"></td>
-        </tr>
-        <tr>
-          <td>Porazi</td><td th:text="${team5.gamesLost}"></td>
-        </tr>
-        <tr>
-          <td>GolZa</td><td th:text="${team5.goalsScored}"></td>
-        </tr>
-        <tr>
-          <td>GolProtiv</td><td th:text="${team5.goalsConceded}"></td>
-        </tr>
-        <tr>
-          <td>Bodovi</td><td th:text="${team5.points}"></td>
-        </tr>
       </table>
-      <div class="results">
-        <h3>Rezultati:</h3>
-        <table>
-          <tr th:each="tim: ${results5}">
-            <td th:text="${tim.matchDay} + '. kolo'"></td>
-            <td th:text="${tim.homeTeam}"></td>
-            <td th:text="${tim.awayTeam}"></td>
-            <td th:text="${tim.goalsHome}"></td>
-            <td th:text="${tim.goalsAway}"></td>
-          </tr>
-        </table>
+      <h4>Rezultati:</h4>
+      <div class="teamResults">
+        <div class="results">
+          <table>
+            <h5>2005</h5>
+            <tr th:each="tim: ${results5}">
+              <td th:text="${tim.matchDay} + '. kolo'"></td>
+              <td th:text="${tim.homeTeam}"></td>
+              <td th:text="${tim.awayTeam}"></td>
+              <td th:text="${tim.goalsHome}"></td>
+              <td th:text="${tim.goalsAway}"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="results">
+          <table>
+            <h5>2006</h5>
+            <tr th:each="tim: ${results6}">
+              <td th:text="${tim.matchDay} + '. kolo'"></td>
+              <td th:text="${tim.homeTeam}"></td>
+              <td th:text="${tim.awayTeam}"></td>
+              <td th:text="${tim.goalsHome}"></td>
+              <td th:text="${tim.goalsAway}"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="results">
+          <table>
+            <h5>2007</h5>
+            <tr th:each="tim: ${results7}">
+              <td th:text="${tim.matchDay} + '. kolo'"></td>
+              <td th:text="${tim.homeTeam}"></td>
+              <td th:text="${tim.awayTeam}"></td>
+              <td th:text="${tim.goalsHome}"></td>
+              <td th:text="${tim.goalsAway}"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="results">
+          <table>
+            <h5>2008</h5>
+            <tr th:each="tim: ${results8}">
+              <td th:text="${tim.matchDay} + '. kolo'"></td>
+              <td th:text="${tim.homeTeam}"></td>
+              <td th:text="${tim.awayTeam}"></td>
+              <td th:text="${tim.goalsHome}"></td>
+              <td th:text="${tim.goalsAway}"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="results">
+          <table>
+            <h5>2009</h5>
+            <tr th:each="tim: ${results9}">
+              <td th:text="${tim.matchDay} + '. kolo'"></td>
+              <td th:text="${tim.homeTeam}"></td>
+              <td th:text="${tim.awayTeam}"></td>
+              <td th:text="${tim.goalsHome}"></td>
+              <td th:text="${tim.goalsAway}"></td>
+            </tr>
+          </table>
+        </div>
       </div>
     </div>
     <div th:insert="fragments :: footer"></div>
