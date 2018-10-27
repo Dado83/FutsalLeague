@@ -40,6 +40,7 @@ public class FutsalServiceB {
     private List<Team> teamLinks9;
     private List<Team> teamLogos;
     private Map<Integer, String> gamePostponed;
+    private Map<Integer, String> notPlaying;
 
     public void init() {
         LOGGER.info("init");
@@ -103,6 +104,7 @@ public class FutsalServiceB {
         Collections.sort(this.leagueTable9);
 
         gamePostponed = new HashMap<>();
+        notPlaying = new HashMap<>();
     }
 
     public void saveFutsalData() {
@@ -452,6 +454,14 @@ public class FutsalServiceB {
 
     public void setGamePostponed(Map<Integer, String> gamePostponed) {
         this.gamePostponed = gamePostponed;
+    }
+
+    public Map<Integer, String> getNotPlaying() {
+        return notPlaying;
+    }
+
+    public void setNotPlaying(Map<Integer, String> notPlaying) {
+        this.notPlaying = notPlaying;
     }
 
     public List<Team> getTeamLogos() {

@@ -9,9 +9,9 @@
   </head>
   <body>
     <div th:insert="fragments :: teamEdit"></div>
-    <p th:text="'Unos rezultata ' + ${gameForm.mDay} + '. kola (2008):'"></p>
+    <p th:text="'Unos rezultata ' + ${gameForm.mDay} + '. kola (2006):'"></p>
     <div class="form">
-      <form action="#" th:action="@{/addedMatchDayResults8}" th:object="${gameForm}" method="post">
+      <form action="#" th:action="@{/addedMatchDayResults6B}" th:object="${gameForm}" method="post">
         <input type="hidden" th:field="*{mDay}"/>               
         <table>
           <tr>
@@ -29,30 +29,6 @@
             <td><input type="number" th:field="*{goalsA2}" /></td>
             <td th:text="*{away2}"></td>
             <td><input type="hidden" th:field="*{teamA2}"/></td>
-          </tr>
-          <tr>
-            <td><input type="hidden" th:field="*{teamH3}"/></td>
-            <td th:text="*{home3}"></td>
-            <td><input type="number" th:field="*{goalsH3}"/></td>
-            <td><input type="number" th:field="*{goalsA3}" /></td>
-            <td th:text="*{away3}"></td>
-            <td><input type="hidden" th:field="*{teamA3}"/></td>
-          </tr>
-          <tr>
-            <td><input type="hidden" th:field="*{teamH4}"/></td>
-            <td th:text="*{home4}"></td>
-            <td><input type="number" th:field="*{goalsH4}"/></td>
-            <td><input type="number" th:field="*{goalsA4}" /></td>
-            <td th:text="*{away4}"></td>
-            <td><input type="hidden" th:field="*{teamA4}"/></td>
-          </tr>
-          <tr>
-            <td><input type="hidden" th:field="*{teamH5}"/></td>
-            <td th:text="*{home5}"></td>
-            <td><input type="number" th:field="*{goalsH5}"/></td>
-            <td><input type="number" th:field="*{goalsA5}" /></td>
-            <td th:text="*{away5}"></td>
-            <td><input type="hidden" th:field="*{teamA5}"/></td>  
           </tr>
           <tr>
             <td></td>

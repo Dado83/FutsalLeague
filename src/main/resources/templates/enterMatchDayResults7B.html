@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:text="'Unos ' + ${gameForm.mDay} + '. kola'">Unos kola</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div th:insert="fragments :: teamEdit"></div>
+    <p th:text="'Unos rezultata ' + ${gameForm.mDay} + '. kola (2007):'"></p>
+    <div class="form">
+      <form action="#" th:action="@{/addedMatchDayResults7B}" th:object="${gameForm}" method="post">
+        <input type="hidden" th:field="*{mDay}"/>               
+        <table>
+          <tr>
+            <td><input type="hidden" th:field="*{teamH1}"/></td>
+            <td th:text="*{home1}"></td>
+            <td><input type="number" th:field="*{goalsH1}"/></td>
+            <td><input type="number" th:field="*{goalsA1}" /></td>
+            <td th:text="*{away1}"></td>
+            <td><input type="hidden" th:field="*{teamA1}"/></td>
+          </tr>
+          <tr>
+            <td><input type="hidden" th:field="*{teamH2}"/></td>
+            <td th:text="*{home2}"></td>
+            <td><input type="number" th:field="*{goalsH2}"/></td>    
+            <td><input type="number" th:field="*{goalsA2}" /></td>
+            <td th:text="*{away2}"></td>
+            <td><input type="hidden" th:field="*{teamA2}"/></td>
+          </tr>
+          <tr>
+            <td></td>
+            <td><input type="submit" value="Snimi"/></td>
+            <td><input type="reset" value="Reset"/></td>
+          </tr>
+        </table>
+      </form>          
+    </div>
+    <div>
+      <div class="results">
+        <h3>Rezultati kola:</h3>
+        <table>
+          <tr th:each="rez: ${results}">
+            <td th:text="${rez.homeTeam}">Some name</td>
+            <td th:text="${rez.awayTeam}">Some name</td> 
+            <td th:text="${rez.goalsHome}">Some name</td> 
+            <td th:text="${rez.goalsAway}">Some name</td> 
+          </tr>
+        </table>
+      </div>
+    </div>
+    <div th:insert="fragments :: footer"></div>
+    <script th:inline="javascript" th:src="@{/js/main.js}"></script>
+  </body>
+</html>

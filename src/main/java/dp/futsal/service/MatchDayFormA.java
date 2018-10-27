@@ -6,9 +6,9 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 
-public class MatchDayForm {
+public class MatchDayFormA {
 
-    private static final Logger LOGGER = Logger.getLogger(MatchDayForm.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(MatchDayFormA.class.getName());
     private List<Team> team;
     private List<MatchPair> pair;
     private Map<Integer, Team> teamMap;
@@ -38,21 +38,7 @@ public class MatchDayForm {
     private int goalsH3;
     private int goalsA3;
 
-    private int teamH4;
-    private int teamA4;
-    private String home4;
-    private String away4;
-    private int goalsH4;
-    private int goalsA4;
-
-    private int teamH5;
-    private int teamA5;
-    private String home5;
-    private String away5;
-    private int goalsH5;
-    private int goalsA5;
-
-    public MatchDayForm() {
+    public MatchDayFormA() {
         LOGGER.info("konstruktor");
     }
 
@@ -81,15 +67,6 @@ public class MatchDayForm {
         this.home3 = team.get(pair.get(2).getHomeTeam()).getTeamName();
         this.away3 = team.get(pair.get(2).getAwayTeam()).getTeamName();
 
-        this.teamH4 = team.get(pair.get(3).getHomeTeam()).getId();
-        this.teamA4 = team.get(pair.get(3).getAwayTeam()).getId();
-        this.home4 = team.get(pair.get(3).getHomeTeam()).getTeamName();
-        this.away4 = team.get(pair.get(3).getAwayTeam()).getTeamName();
-
-        this.teamH5 = team.get(pair.get(4).getHomeTeam()).getId();
-        this.teamA5 = team.get(pair.get(4).getAwayTeam()).getId();
-        this.home5 = team.get(pair.get(4).getHomeTeam()).getTeamName();
-        this.away5 = team.get(pair.get(4).getAwayTeam()).getTeamName();
     }
 
     public void saveResults(Map<Integer, List<MatchResult>> resultsMap, Map<Integer, String> postponed, Map<Integer, String> notPlaying) {
@@ -98,8 +75,6 @@ public class MatchDayForm {
         MatchResult m1 = new MatchResult(this.mDay, this.teamMap, this.teamH1, this.teamA1, this.goalsH1, this.goalsA1, postponed);
         MatchResult m2 = new MatchResult(this.mDay, this.teamMap, this.teamH2, this.teamA2, this.goalsH2, this.goalsA2, postponed);
         MatchResult m3 = new MatchResult(this.mDay, this.teamMap, this.teamH3, this.teamA3, this.goalsH3, this.goalsA3, postponed);
-        MatchResult m4 = new MatchResult(this.mDay, this.teamMap, this.teamH4, this.teamA4, this.goalsH4, this.goalsA4, postponed);
-        MatchResult m5 = new MatchResult(this.mDay, this.teamMap, this.teamH5, this.teamA5, this.goalsH5, this.goalsA5, postponed);
 
         if (m1.getHomeTeam().equals("pauza") || m1.getAwayTeam().equals("pauza") || m1.getGoalsHome() == -1) {
             if (m1.getAwayTeam().equals("pauza")) {
@@ -133,28 +108,6 @@ public class MatchDayForm {
             LOGGER.info("ekipa slobodna");
         } else {
             results.add(m3);
-        }
-        if (m4.getHomeTeam().equals("pauza") || m4.getAwayTeam().equals("pauza") || m4.getGoalsHome() == -1) {
-            if (m4.getAwayTeam().equals("pauza")) {
-                notPlaying.put(this.mDay, m4.getHomeTeam());
-            }
-            if (m1.getHomeTeam().equals("pauza")) {
-                notPlaying.put(this.mDay, m4.getAwayTeam());
-            }
-            LOGGER.info("ekipa slobodna");
-        } else {
-            results.add(m4);
-        }
-        if (m5.getHomeTeam().equals("pauza") || m5.getAwayTeam().equals("pauza") || m5.getGoalsHome() == -1) {
-            if (m5.getAwayTeam().equals("pauza")) {
-                notPlaying.put(this.mDay, m5.getHomeTeam());
-            }
-            if (m1.getHomeTeam().equals("pauza")) {
-                notPlaying.put(this.mDay, m5.getAwayTeam());
-            }
-            LOGGER.info("ekipa slobodna");
-        } else {
-            results.add(m5);
         }
 
         resultsMap.put(this.mDay, results);
@@ -302,70 +255,6 @@ public class MatchDayForm {
         this.goalsA3 = goalsA3;
     }
 
-    public int getTeamH4() {
-        return teamH4;
-    }
-
-    public void setTeamH4(int teamH4) {
-        this.teamH4 = teamH4;
-    }
-
-    public int getTeamA4() {
-        return teamA4;
-    }
-
-    public void setTeamA4(int teamA4) {
-        this.teamA4 = teamA4;
-    }
-
-    public int getGoalsH4() {
-        return goalsH4;
-    }
-
-    public void setGoalsH4(int goalsH4) {
-        this.goalsH4 = goalsH4;
-    }
-
-    public int getGoalsA4() {
-        return goalsA4;
-    }
-
-    public void setGoalsA4(int goalsA4) {
-        this.goalsA4 = goalsA4;
-    }
-
-    public int getTeamH5() {
-        return teamH5;
-    }
-
-    public void setTeamH5(int teamH5) {
-        this.teamH5 = teamH5;
-    }
-
-    public int getTeamA5() {
-        return teamA5;
-    }
-
-    public void setTeamA5(int teamA5) {
-        this.teamA5 = teamA5;
-    }
-
-    public int getGoalsH5() {
-        return goalsH5;
-    }
-
-    public void setGoalsH5(int goalsH5) {
-        this.goalsH5 = goalsH5;
-    }
-
-    public int getGoalsA5() {
-        return goalsA5;
-    }
-
-    public void setGoalsA5(int goalsA5) {
-        this.goalsA5 = goalsA5;
-    }
-
     public String getHome1() {
         return home1;
     }
@@ -412,38 +301,6 @@ public class MatchDayForm {
 
     public void setAway3(String away3) {
         this.away3 = away3;
-    }
-
-    public String getHome4() {
-        return home4;
-    }
-
-    public void setHome4(String home4) {
-        this.home4 = home4;
-    }
-
-    public String getAway4() {
-        return away4;
-    }
-
-    public void setAway4(String away4) {
-        this.away4 = away4;
-    }
-
-    public String getHome5() {
-        return home5;
-    }
-
-    public void setHome5(String home5) {
-        this.home5 = home5;
-    }
-
-    public String getAway5() {
-        return away5;
-    }
-
-    public void setAway5(String away5) {
-        this.away5 = away5;
     }
 
 }

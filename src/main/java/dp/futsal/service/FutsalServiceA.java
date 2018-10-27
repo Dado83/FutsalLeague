@@ -104,7 +104,6 @@ public class FutsalServiceA {
         Collections.sort(this.leagueTable9);
 
         gamePostponed = new HashMap<>();
-
         notPlaying = new HashMap<>();
     }
 
