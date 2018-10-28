@@ -1,16 +1,16 @@
 <!DOCTYPE html>
 <html  xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title th:text="${updatedTeam.teamName}">Ekipa</title>
+    <title th:text="${updatedTeamA.teamName}">Ekipa</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
   </head>
   <body>
-    <div th:insert="fragments :: teamEdit"></div>
+    <div th:insert="fragments :: teamEditA"></div>
     <div class="team">
       <p>Ekipa (ispravka):</p> 
-      <table th:object="${updatedTeam}">
+      <table th:object="${updatedTeamA}">
         <tr>
           <td>ID:</td>
           <td th:text="*{id}"></td>

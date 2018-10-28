@@ -1,26 +1,26 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title th:text="${team5.teamName}">Ekipa</title>
+    <title th:text="${team5B.teamName}">Ekipa</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
   </head>
   <body>
-    <div th:insert="fragments :: header"></div>
-    <div class="team"><h3 th:text="${team5.teamName}"></h3>
+    <div th:insert="fragments :: headerB"></div>
+    <div class="team"><h3 th:text="${team5B.teamName}"></h3>
       <table>
         <tr>
-          <td>Ekipa</td><td th:text="${team5.teamName}"></td>
+          <td>Ekipa</td><td th:text="${team5B.teamName}"></td>
         </tr>
         <tr>
-          <td>Grad</td><td th:text="${team5.teamCity}"></td>
+          <td>Grad</td><td th:text="${team5B.teamCity}"></td>
         </tr>
         <tr>
-          <td>Dvorana</td><td th:text="${team5.venue}"></td>
+          <td>Dvorana</td><td th:text="${team5B.venue}"></td>
         </tr>
         <tr>
-          <td>Klupske boje</td> <td th:text="${team5.kitColor}"></td>
+          <td>Klupske boje</td> <td th:text="${team5B.kitColor}"></td>
         </tr>
       </table>
       <h4>Rezultati:</h4>
@@ -28,7 +28,7 @@
         <div class="results">
           <table>
             <h5>2005</h5>
-            <tr th:each="tim: ${results5}">
+            <tr th:each="tim: ${results5B}">
               <td th:text="${tim.matchDay} + '. kolo'"></td>
               <td th:text="${tim.homeTeam}"></td>
               <td th:text="${tim.awayTeam}"></td>
@@ -40,7 +40,7 @@
         <div class="results">
           <table>
             <h5>2006</h5>
-            <tr th:each="tim: ${results6}">
+            <tr th:each="tim: ${results6B}">
               <td th:text="${tim.matchDay} + '. kolo'"></td>
               <td th:text="${tim.homeTeam}"></td>
               <td th:text="${tim.awayTeam}"></td>
@@ -52,7 +52,7 @@
         <div class="results">
           <table>
             <h5>2007</h5>
-            <tr th:each="tim: ${results7}">
+            <tr th:each="tim: ${results7B}">
               <td th:text="${tim.matchDay} + '. kolo'"></td>
               <td th:text="${tim.homeTeam}"></td>
               <td th:text="${tim.awayTeam}"></td>
@@ -64,7 +64,7 @@
         <div class="results">
           <table>
             <h5>2008</h5>
-            <tr th:each="tim: ${results8}">
+            <tr th:each="tim: ${results8B}">
               <td th:text="${tim.matchDay} + '. kolo'"></td>
               <td th:text="${tim.homeTeam}"></td>
               <td th:text="${tim.awayTeam}"></td>
@@ -76,7 +76,7 @@
         <div class="results">
           <table>
             <h5>2009</h5>
-            <tr th:each="tim: ${results9}">
+            <tr th:each="tim: ${results9B}">
               <td th:text="${tim.matchDay} + '. kolo'"></td>
               <td th:text="${tim.homeTeam}"></td>
               <td th:text="${tim.awayTeam}"></td>

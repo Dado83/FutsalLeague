@@ -51,8 +51,8 @@ a:link, a:visited {
     text-align: left;
 }
 
-.teamResults div {
-    
+.form p {
+    text-align: left;
 }
 
 .teamEdit {
@@ -158,6 +158,10 @@ a:link, a:visited {
 
 .detail a {
     margin: 50px 5px;
+}
+
+.detail p {
+    text-align: left;
 }
 
 .footer {

@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title th:text="'Unos ' + ${gameForm.mDay} + '. kola'">Unos kola</title>
+    <title th:text="'Unos ' + ${gameFormA.mDay} + '. kola'">Unos kola</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
-    <div th:insert="fragments :: teamEdit"></div>
-    <p th:text="'Unos rezultata ' + ${gameForm.mDay} + '. kola (2007):'"></p>
+    <div th:insert="fragments :: teamEditA"></div>
+    <p th:text="'Unos rezultata ' + ${gameFormA.mDay} + '. kola (2007):'"></p>
     <div class="form">
-      <form action="#" th:action="@{/addedMatchDayResults7A}" th:object="${gameForm}" method="post">
+      <form action="#" th:action="@{/addedMatchDayResults7A}" th:object="${gameFormA}" method="post">
         <input type="hidden" th:field="*{mDay}"/>               
         <table>
           <tr>
@@ -50,7 +50,7 @@
       <div class="results">
         <h3>Rezultati kola:</h3>
         <table>
-          <tr th:each="rez: ${results}">
+          <tr th:each="rez: ${resultsA}">
             <td th:text="${rez.homeTeam}">Some name</td>
             <td th:text="${rez.awayTeam}">Some name</td> 
             <td th:text="${rez.goalsHome}">Some name</td> 

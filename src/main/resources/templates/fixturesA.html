@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title>Fair Play LBŠ</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  </head>
+  <body>
+    <div th:insert="fragments :: headerA"></div>
+    <div class="fixtures">
+      <h3>Raspored:</h3>
+      <table class="gamePairs">
+        <tr th:each="element: ${pairsA}">
+          <h4 th:text="${element.key} + '. kolo:'"></h4>
+          <table>
+            <tr th:each="par: ${element.value}">
+              <td th:text="${teamLinksA.get(par.homeTeam).teamName.equals('pauza')} ? 'pauzira' : ${teamLinksA.get(par.homeTeam).teamName}"></td>
+              <td th:text="${teamLinksA.get(par.awayTeam).teamName.equals('pauza')} ? 'pauzira' : ${teamLinksA.get(par.awayTeam).teamName}">Some name</td>
+            </tr>
+          </table>
+        </tr>
+      </table>
+    </div>
+    </div>    
+    <div th:insert="fragments :: footer"></div>
+  </body>
+</html>
