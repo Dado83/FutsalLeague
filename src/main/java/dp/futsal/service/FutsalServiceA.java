@@ -171,7 +171,7 @@ public class FutsalServiceA {
 
     public void deleteLastMDay() {
         int md = results5.size();
-        for (int i = 1; i < 11; i++) {
+        for (int i = 1; i < 6; i++) {
             teams5.get(i).delMatchDay(md + "");
             teams6.get(i).delMatchDay(md + "");
             teams7.get(i).delMatchDay(md + "");

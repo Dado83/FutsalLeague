@@ -11,10 +11,6 @@ import java.util.logging.Logger;
 import org.apache.commons.net.ftp.FTPClient;
 
 
-/**
- *
- * @author Wade
- */
 public class FTP {
 
     FTPClient ftp;
