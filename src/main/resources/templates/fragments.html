@@ -7,8 +7,10 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
-    <div class="header" th:fragment="headerA">
+    <div class="fpLogo" th:fragment="fpLOGO">
       <a th:href="@{/}"><img id="logo" th:src="@{grb.png}"/></a><span class="title">Fair Play Liga Budućih Šampiona</span>
+    </div>
+    <div class="headerA" th:fragment="headerA"> 
       <ul class="logos">
         <li th:each="tim: ${teamLogosA}">
           <img th:class="${tim?.teamName}" th:src="@{${tim?.id} + '.png'}"/>
@@ -18,8 +20,7 @@
         </li>
       </ul>
     </div>
-    <div class="header" th:fragment="headerB">
-      <a th:href="@{/}"><img id="logo" th:src="@{grb.png}"/></a><span class="title">Fair Play Liga Budućih Šampiona</span>
+    <div class="headerB" th:fragment="headerB">
       <ul class="logos">
         <li th:each="tim: ${teamLogosB}">
           <img th:class="${tim?.teamName}" th:src="@{${tim?.id} + '.png'}"/>

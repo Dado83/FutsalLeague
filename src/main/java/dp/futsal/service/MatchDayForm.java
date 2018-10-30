@@ -6,9 +6,9 @@ import java.util.Map;
 import java.util.logging.Logger;
 
 
-public class MatchDayFormB {
+public class MatchDayForm {
 
-    private static final Logger LOGGER = Logger.getLogger(MatchDayFormB.class.getName());
+    private static final Logger LOGGER = Logger.getLogger(MatchDayForm.class.getName());
     private List<Team> team;
     private List<MatchPair> pair;
     private Map<Integer, Team> teamMap;
@@ -31,7 +31,14 @@ public class MatchDayFormB {
     private int goalsH2;
     private int goalsA2;
 
-    public MatchDayFormB() {
+    private int teamH3;
+    private int teamA3;
+    private String home3;
+    private String away3;
+    private int goalsH3;
+    private int goalsA3;
+
+    public MatchDayForm() {
         LOGGER.info("konstruktor");
     }
 
@@ -55,6 +62,11 @@ public class MatchDayFormB {
         this.home2 = team.get(pair.get(1).getHomeTeam()).getTeamName();
         this.away2 = team.get(pair.get(1).getAwayTeam()).getTeamName();
 
+        this.teamH3 = team.get(pair.get(2).getHomeTeam()).getId();
+        this.teamA3 = team.get(pair.get(2).getAwayTeam()).getId();
+        this.home3 = team.get(pair.get(2).getHomeTeam()).getTeamName();
+        this.away3 = team.get(pair.get(2).getAwayTeam()).getTeamName();
+
     }
 
     public void saveResults(Map<Integer, List<MatchResult>> resultsMap, Map<Integer, String> postponed, Map<Integer, String> notPlaying) {
@@ -62,6 +74,7 @@ public class MatchDayFormB {
 
         MatchResult m1 = new MatchResult(this.mDay, this.teamMap, this.teamH1, this.teamA1, this.goalsH1, this.goalsA1, postponed);
         MatchResult m2 = new MatchResult(this.mDay, this.teamMap, this.teamH2, this.teamA2, this.goalsH2, this.goalsA2, postponed);
+        MatchResult m3 = new MatchResult(this.mDay, this.teamMap, this.teamH3, this.teamA3, this.goalsH3, this.goalsA3, postponed);
 
         if (m1.getHomeTeam().equals("pauza") || m1.getAwayTeam().equals("pauza") || m1.getGoalsHome() == -1) {
             if (m1.getAwayTeam().equals("pauza")) {
@@ -84,6 +97,17 @@ public class MatchDayFormB {
             LOGGER.info("ekipa slobodna");
         } else {
             results.add(m2);
+        }
+        if (m3.getHomeTeam().equals("pauza") || m3.getAwayTeam().equals("pauza") || m3.getGoalsHome() == -1) {
+            if (m3.getAwayTeam().equals("pauza")) {
+                notPlaying.put(this.mDay, m3.getHomeTeam());
+            }
+            if (m1.getHomeTeam().equals("pauza")) {
+                notPlaying.put(this.mDay, m3.getAwayTeam());
+            }
+            LOGGER.info("ekipa slobodna");
+        } else {
+            results.add(m3);
         }
 
         resultsMap.put(this.mDay, results);
@@ -199,6 +223,38 @@ public class MatchDayFormB {
         this.goalsA2 = goalsA2;
     }
 
+    public int getTeamH3() {
+        return teamH3;
+    }
+
+    public void setTeamH3(int teamH3) {
+        this.teamH3 = teamH3;
+    }
+
+    public int getTeamA3() {
+        return teamA3;
+    }
+
+    public void setTeamA3(int teamA3) {
+        this.teamA3 = teamA3;
+    }
+
+    public int getGoalsH3() {
+        return goalsH3;
+    }
+
+    public void setGoalsH3(int goalsH3) {
+        this.goalsH3 = goalsH3;
+    }
+
+    public int getGoalsA3() {
+        return goalsA3;
+    }
+
+    public void setGoalsA3(int goalsA3) {
+        this.goalsA3 = goalsA3;
+    }
+
     public String getHome1() {
         return home1;
     }
@@ -229,6 +285,22 @@ public class MatchDayFormB {
 
     public void setAway2(String away2) {
         this.away2 = away2;
+    }
+
+    public String getHome3() {
+        return home3;
+    }
+
+    public void setHome3(String home3) {
+        this.home3 = home3;
+    }
+
+    public String getAway3() {
+        return away3;
+    }
+
+    public void setAway3(String away3) {
+        this.away3 = away3;
     }
 
 }

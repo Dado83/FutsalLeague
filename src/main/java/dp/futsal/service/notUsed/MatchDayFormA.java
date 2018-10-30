@@ -1,5 +1,8 @@
-package dp.futsal.service;
+package dp.futsal.service.notUsed;
 
+import dp.futsal.service.MatchPair;
+import dp.futsal.service.MatchResult;
+import dp.futsal.service.Team;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;

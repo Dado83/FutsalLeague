@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+  <head>
+    <title th:text="${team5A.teamName}">Ekipa</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
+  </head>
+  <body>
+    <div th:insert="fragments :: headerA"></div>
+    <div class="team"><h3 th:text="${team5A.teamName}"></h3>
+      <table>
+        <tr>
+          <td>Ekipa</td><td th:text="${team5A.teamName}"></td>
+        </tr>
+        <tr>
+          <td>Grad</td><td th:text="${team5A.teamCity}"></td>
+        </tr>
+        <tr>
+          <td>Dvorana</td><td th:text="${team5A.venue}"></td>
+        </tr>
+        <tr>
+          <td>Klupske boje</td> <td th:text="${team5A.kitColor}"></td>
+        </tr>
+      </table>
+      <h4>Rezultati:</h4>
+      <div class="teamResults">
+        <div class="results">
+          <table>
+            <h5>2005</h5>
+            <tr th:each="tim: ${results5A}">
+              <td th:text="${tim.matchDay} + '. kolo'"></td>
+              <td th:text="${tim.homeTeam}"></td>
+              <td th:text="${tim.awayTeam}"></td>
+              <td th:text="${tim.goalsHome}"></td>
+              <td th:text="${tim.goalsAway}"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="results">
+          <table>
+            <h5>2006</h5>
+            <tr th:each="tim: ${results6A}">
+              <td th:text="${tim.matchDay} + '. kolo'"></td>
+              <td th:text="${tim.homeTeam}"></td>
+              <td th:text="${tim.awayTeam}"></td>
+              <td th:text="${tim.goalsHome}"></td>
+              <td th:text="${tim.goalsAway}"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="results">
+          <table>
+            <h5>2007</h5>
+            <tr th:each="tim: ${results7A}">
+              <td th:text="${tim.matchDay} + '. kolo'"></td>
+              <td th:text="${tim.homeTeam}"></td>
+              <td th:text="${tim.awayTeam}"></td>
+              <td th:text="${tim.goalsHome}"></td>
+              <td th:text="${tim.goalsAway}"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="results">
+          <table>
+            <h5>2008</h5>
+            <tr th:each="tim: ${results8A}">
+              <td th:text="${tim.matchDay} + '. kolo'"></td>
+              <td th:text="${tim.homeTeam}"></td>
+              <td th:text="${tim.awayTeam}"></td>
+              <td th:text="${tim.goalsHome}"></td>
+              <td th:text="${tim.goalsAway}"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="results">
+          <table>
+            <h5>2009</h5>
+            <tr th:each="tim: ${results9A}">
+              <td th:text="${tim.matchDay} + '. kolo'"></td>
+              <td th:text="${tim.homeTeam}"></td>
+              <td th:text="${tim.awayTeam}"></td>
+              <td th:text="${tim.goalsHome}"></td>
+              <td th:text="${tim.goalsAway}"></td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+    <div th:insert="fragments :: footer"></div>
+  </body>
+</html>
