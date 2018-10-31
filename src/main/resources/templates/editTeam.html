@@ -1,16 +1,17 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
   <head>
-    <title th:text="${teamA.teamName}">Ekipa</title>
+    <title th:text="${team.teamName}">Ekipa</title>
     <meta charset="UTF-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
     <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
   <body>
-    <div th:insert="fragments :: teamEditA"></div>
-    <div class="form"><p>Ekipa (izmjena): <span th:text="${teamA.teamName}"></span></p>      
-      <form action="#" th:action="@{/updatedTeamA}" th:object="${teamA}" method="post">
+    <div th:insert="fragments :: fpLOGO"></div>
+    <div th:insert="fragments :: teamEdit"></div>
+    <div class="form"><p>Ekipa (izmjena): <span th:text="${team.teamName}"></span></p>      
+      <form action="#" th:action="@{/updatedTeam}" th:object="${team}" method="post">
         <table>
           <tr>
             <td>ID:</td>

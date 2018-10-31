@@ -1,5 +1,7 @@
 package dp.futsal;
 
+import dp.futsal.service.FutsalService;
+import dp.futsal.service.MatchDayForm;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +11,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import dp.futsal.service.notUsed.FutsalServiceA;
-import dp.futsal.service.notUsed.FutsalServiceB;
-import dp.futsal.service.notUsed.MatchDayFormA;
-import dp.futsal.service.notUsed.MatchDayFormB;
 import dp.futsal.service.TeamForm;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -23,500 +21,259 @@ public class FutsalController {
 
     private static final Logger LOGGER = Logger.getLogger(FutsalController.class.getName());
     @Autowired
-    private FutsalServiceA serviceA;
-    @Autowired
-    private FutsalServiceB serviceB;
+    private FutsalService service;
 
     @PostConstruct
     public void init() {
         LOGGER.info("inside controller postconstruct");
-        serviceA.init();
-        serviceB.init();
+        service.init();
     }
 
     @ModelAttribute
     public void addCommonAttributes(Model model) {
-        model.addAttribute("pairsA", serviceA.getPairs());
-        model.addAttribute("results5A", serviceA.getResults5());
-        model.addAttribute("results6A", serviceA.getResults6());
-        model.addAttribute("results7A", serviceA.getResults7());
-        model.addAttribute("results8A", serviceA.getResults8());
-        model.addAttribute("results9A", serviceA.getResults9());
-        model.addAttribute("leagueTable5A", serviceA.getLeagueTable5());
-        model.addAttribute("leagueTable6A", serviceA.getLeagueTable6());
-        model.addAttribute("leagueTable7A", serviceA.getLeagueTable7());
-        model.addAttribute("leagueTable8A", serviceA.getLeagueTable8());
-        model.addAttribute("leagueTable9A", serviceA.getLeagueTable9());
-        model.addAttribute("teamLinksA", serviceA.getTeamLinks5());
-        model.addAttribute("teamLogosA", serviceA.getTeamLogos());
-
-        model.addAttribute("pairsB", serviceB.getPairs());
-        model.addAttribute("results5B", serviceB.getResults5());
-        model.addAttribute("results6B", serviceB.getResults6());
-        model.addAttribute("results7B", serviceB.getResults7());
-        model.addAttribute("results8B", serviceB.getResults8());
-        model.addAttribute("results9B", serviceB.getResults9());
-        model.addAttribute("leagueTable5B", serviceB.getLeagueTable5());
-        model.addAttribute("leagueTable6B", serviceB.getLeagueTable6());
-        model.addAttribute("leagueTable7B", serviceB.getLeagueTable7());
-        model.addAttribute("leagueTable8B", serviceB.getLeagueTable8());
-        model.addAttribute("leagueTable9B", serviceB.getLeagueTable9());
-        model.addAttribute("teamLinksB", serviceB.getTeamLinks5());
-        model.addAttribute("teamLogosB", serviceB.getTeamLogos());
+        model.addAttribute("pairs", service.getPairs());
+        model.addAttribute("results5", service.getResults5());
+        model.addAttribute("results6", service.getResults6());
+        model.addAttribute("results7", service.getResults7());
+        model.addAttribute("results8", service.getResults8());
+        model.addAttribute("results9", service.getResults9());
+        model.addAttribute("leagueTable5", service.getLeagueTable5());
+        model.addAttribute("leagueTable6", service.getLeagueTable6());
+        model.addAttribute("leagueTable7", service.getLeagueTable7());
+        model.addAttribute("leagueTable8", service.getLeagueTable8());
+        model.addAttribute("leagueTable9", service.getLeagueTable9());
+        model.addAttribute("teamLinks", service.getTeamLinks5());
+        model.addAttribute("teamLogos", service.getTeamLogos());
     }
 
     @GetMapping("/")
     public String index(Model model) {
         LOGGER.info("inside index");
 
-        int lastMDay = serviceA.getResults5().size();
-        model.addAttribute("lastMDayA", lastMDay);
-        serviceA.removeDummyTeam(serviceA.getLeagueTable5());
-        serviceA.removeDummyTeam(serviceA.getLeagueTable6());
-        serviceA.removeDummyTeam(serviceA.getLeagueTable7());
-        serviceA.removeDummyTeam(serviceA.getLeagueTable8());
-        serviceA.removeDummyTeam(serviceA.getLeagueTable9());
-
-        int lastMDayB = serviceA.getResults5().size();
-        model.addAttribute("lastMDayB", lastMDayB);
-        serviceB.removeDummyTeam(serviceB.getLeagueTable5());
-        serviceB.removeDummyTeam(serviceB.getLeagueTable6());
-        serviceB.removeDummyTeam(serviceB.getLeagueTable7());
-        serviceB.removeDummyTeam(serviceB.getLeagueTable8());
-        serviceB.removeDummyTeam(serviceB.getLeagueTable9());
+        int lastMDay = service.getResults5().size();
+        model.addAttribute("lastMDay", lastMDay);
+        service.removeDummyTeam(service.getLeagueTable5());
+        service.removeDummyTeam(service.getLeagueTable6());
+        service.removeDummyTeam(service.getLeagueTable7());
+        service.removeDummyTeam(service.getLeagueTable8());
+        service.removeDummyTeam(service.getLeagueTable9());
 
         return "index";
     }
 
-    @GetMapping("/adminA")
-    public String adminA(Model model) {
+    @GetMapping("/admin")
+    public String admin(Model model) {
 
-        return "adminDashboardA";
+        return "adminDashboard";
     }
 
-    @GetMapping("/teamA")
-    public String teamA(Model model, int index) {
-        model.addAttribute("team5A", serviceA.getTeamLinks5().get(index));
-        model.addAttribute("team6A", serviceA.getTeamLinks6().get(index));
-        model.addAttribute("team7A", serviceA.getTeamLinks7().get(index));
-        model.addAttribute("team8A", serviceA.getTeamLinks8().get(index));
-        model.addAttribute("team9A", serviceA.getTeamLinks9().get(index));
-        model.addAttribute("results5A", serviceA.getTeamLinks5().get(index).getResults());
-        model.addAttribute("results6A", serviceA.getTeamLinks6().get(index).getResults());
-        model.addAttribute("results7A", serviceA.getTeamLinks7().get(index).getResults());
-        model.addAttribute("results8A", serviceA.getTeamLinks8().get(index).getResults());
-        model.addAttribute("results9A", serviceA.getTeamLinks9().get(index).getResults());
+    @GetMapping("/team")
+    public String team(Model model, int index) {
+        model.addAttribute("team5", service.getTeamLinks5().get(index));
+        model.addAttribute("team6", service.getTeamLinks6().get(index));
+        model.addAttribute("team7", service.getTeamLinks7().get(index));
+        model.addAttribute("team8", service.getTeamLinks8().get(index));
+        model.addAttribute("team9", service.getTeamLinks9().get(index));
+        model.addAttribute("results5", service.getTeamLinks5().get(index).getResults());
+        model.addAttribute("results6", service.getTeamLinks6().get(index).getResults());
+        model.addAttribute("results7", service.getTeamLinks7().get(index).getResults());
+        model.addAttribute("results8", service.getTeamLinks8().get(index).getResults());
+        model.addAttribute("results9", service.getTeamLinks9().get(index).getResults());
 
-        return "teamInfoA";
+        return "teamInfo";
     }
 
-    @GetMapping("/editTeamA")
-    public String editTeam5A(Model model, int index) {
-        model.addAttribute("teamA", serviceA.getTeamLinks5().get(index));
+    @GetMapping("/editTeam")
+    public String editTeam5(Model model, int index) {
+        model.addAttribute("team", service.getTeamLinks5().get(index));
 
-        return "editTeamA";
+        return "editTeam";
     }
 
-    @PostMapping("/updatedTeamA")
-    public String updateTeam5A(Model model, @ModelAttribute TeamForm team) {
+    @PostMapping("/updatedTeam")
+    public String updateTeam5(Model model, @ModelAttribute TeamForm team) {
         LOGGER.info("" + team.getTeamName());
-        serviceA.updateTeam(team);
-        model.addAttribute("updatedTeamA", team);
-        LOGGER.info(serviceA.getTeams5().toString());
+        service.updateTeam(team);
+        model.addAttribute("updatedTeam", team);
+        LOGGER.info(service.getTeams5().toString());
 
-        return "updatedTeamA";
+        return "updatedTeam";
     }
 
-    @GetMapping("/enterMatchDayResults5A")
-    public String enterResults5A(Model model, int index) {
-        MatchDayFormA mDayForm = new MatchDayFormA();
-        mDayForm.loadForm(index, serviceA.getTeamLinks5(), serviceA.getPairs());
-        model.addAttribute("gameFormA", mDayForm);
-        model.addAttribute("resultsA", serviceA.getResults5().get(index));
+    @GetMapping("/enterMatchDayResults5")
+    public String enterResults5(Model model, int index) {
+        MatchDayForm mDayForm = new MatchDayForm();
+        mDayForm.loadForm(index, service.getTeamLinks5(), service.getPairs());
+        model.addAttribute("gameForm", mDayForm);
+        model.addAttribute("results", service.getResults5().get(index));
 
-        return "enterMatchDayResults5A";
+        return "enterMatchDayResults5";
     }
 
-    @GetMapping("/enterMatchDayResults6A")
-    public String enterResults6A(Model model, int index) {
-        MatchDayFormA mDayForm = new MatchDayFormA();
-        mDayForm.loadForm(index, serviceA.getTeamLinks6(), serviceA.getPairs());
-        model.addAttribute("gameFormA", mDayForm);
-        model.addAttribute("resultsA", serviceA.getResults6().get(index));
+    @GetMapping("/enterMatchDayResults6")
+    public String enterResults6(Model model, int index) {
+        MatchDayForm mDayForm = new MatchDayForm();
+        mDayForm.loadForm(index, service.getTeamLinks6(), service.getPairs());
+        model.addAttribute("gameForm", mDayForm);
+        model.addAttribute("results", service.getResults6().get(index));
 
-        return "enterMatchDayResults6A";
+        return "enterMatchDayResults6";
     }
 
-    @GetMapping("/enterMatchDayResults7A")
-    public String enterResults7A(Model model, int index) {
-        MatchDayFormA mDayForm = new MatchDayFormA();
-        mDayForm.loadForm(index, serviceA.getTeamLinks7(), serviceA.getPairs());
-        model.addAttribute("gameFormA", mDayForm);
-        model.addAttribute("resultsA", serviceA.getResults7().get(index));
+    @GetMapping("/enterMatchDayResults7")
+    public String enterResults7(Model model, int index) {
+        MatchDayForm mDayForm = new MatchDayForm();
+        mDayForm.loadForm(index, service.getTeamLinks7(), service.getPairs());
+        model.addAttribute("gameForm", mDayForm);
+        model.addAttribute("results", service.getResults7().get(index));
 
-        return "enterMatchDayResults7A";
+        return "enterMatchDayResults7";
     }
 
-    @GetMapping("/enterMatchDayResults8A")
-    public String enterResults8A(Model model, int index) {
-        MatchDayFormA mDayForm = new MatchDayFormA();
-        mDayForm.loadForm(index, serviceA.getTeamLinks8(), serviceA.getPairs());
-        model.addAttribute("gameFormA", mDayForm);
-        model.addAttribute("resultsA", serviceA.getResults8().get(index));
+    @GetMapping("/enterMatchDayResults8")
+    public String enterResults8(Model model, int index) {
+        MatchDayForm mDayForm = new MatchDayForm();
+        mDayForm.loadForm(index, service.getTeamLinks8(), service.getPairs());
+        model.addAttribute("gameForm", mDayForm);
+        model.addAttribute("results", service.getResults8().get(index));
 
-        return "enterMatchDayResults8A";
+        return "enterMatchDayResults8";
     }
 
-    @GetMapping("/enterMatchDayResults9A")
-    public String enterResults9A(Model model, int index) {
-        MatchDayFormA mDayForm = new MatchDayFormA();
-        mDayForm.loadForm(index, serviceA.getTeamLinks9(), serviceA.getPairs());
-        model.addAttribute("gameFormA", mDayForm);
-        model.addAttribute("resultsA", serviceA.getResults9().get(index));
+    @GetMapping("/enterMatchDayResults9")
+    public String enterResults9(Model model, int index) {
+        MatchDayForm mDayForm = new MatchDayForm();
+        mDayForm.loadForm(index, service.getTeamLinks9(), service.getPairs());
+        model.addAttribute("gameForm", mDayForm);
+        model.addAttribute("results", service.getResults9().get(index));
 
-        return "enterMatchDayResults9A";
+        return "enterMatchDayResults9";
     }
 
-    @PostMapping("/addedMatchDayResults5A")
-    public String addedResults5A(Model model, @ModelAttribute MatchDayFormA form) {
+    @PostMapping("/addedMatchDayResults5")
+    public String addedResults5(Model model, @ModelAttribute MatchDayForm form) {
         LOGGER.info("pocetak addedmatch");
 
-        form.setTeamMap(serviceA.getTeams5());
+        form.setTeamMap(service.getTeams5());
 
-        for (int i = 1; i < 6; i++) {
-            serviceA.getTeam5(i).delMatchDay(form.getmDay() + "");
+        for (int i = 1; i < 11; i++) {
+            service.getTeam5(i).delMatchDay(form.getmDay() + "");
         }
 
-        form.saveResults(serviceA.getResults5(), serviceA.getGamePostponed(), serviceA.getNotPlaying());
-        serviceA.setTeams5(form.getTeamMap());
-        serviceA.updateTeamData5(serviceA.getTeams5());
-        model.addAttribute("resultA", form.getResults());
-        LOGGER.info(serviceA.getGamePostponed().toString());
-        LOGGER.info(serviceA.getNotPlaying().toString());
+        form.saveResults(service.getResults5(), service.getGamePostponed(), service.getNotPlaying());
+        service.setTeams5(form.getTeamMap());
+        service.updateTeamData5(service.getTeams5());
+        model.addAttribute("result", form.getResults());
+        LOGGER.info(service.getGamePostponed().toString());
+        LOGGER.info(service.getNotPlaying().toString());
 
-        return "addedResultsA";
+        return "addedResults";
     }
 
-    @PostMapping("/addedMatchDayResults6A")
-    public String addedResults6A(Model model, @ModelAttribute MatchDayFormA form) {
+    @PostMapping("/addedMatchDayResults6")
+    public String addedResults6(Model model, @ModelAttribute MatchDayForm form) {
         LOGGER.info("pocetak addedmatch");
 
-        form.setTeamMap(serviceA.getTeams6());
+        form.setTeamMap(service.getTeams6());
 
-        for (int i = 1; i < 6; i++) {
-            serviceA.getTeam6(i).delMatchDay(form.getmDay() + "");
+        for (int i = 1; i < 11; i++) {
+            service.getTeam6(i).delMatchDay(form.getmDay() + "");
         }
 
-        form.saveResults(serviceA.getResults6(), serviceA.getGamePostponed(), serviceA.getNotPlaying());
-        serviceA.setTeams6(form.getTeamMap());
-        serviceA.updateTeamData6(serviceA.getTeams6());
-        model.addAttribute("resultA", form.getResults());
+        form.saveResults(service.getResults6(), service.getGamePostponed(), service.getNotPlaying());
+        service.setTeams6(form.getTeamMap());
+        service.updateTeamData6(service.getTeams6());
+        model.addAttribute("result", form.getResults());
 
-        return "addedResultsA";
+        return "addedResults";
     }
 
-    @PostMapping("/addedMatchDayResults7A")
-    public String addedResults7A(Model model, @ModelAttribute MatchDayFormA form) {
+    @PostMapping("/addedMatchDayResults7")
+    public String addedResults7(Model model, @ModelAttribute MatchDayForm form) {
         LOGGER.info("pocetak addedmatch");
 
-        form.setTeamMap(serviceA.getTeams7());
+        form.setTeamMap(service.getTeams7());
 
-        for (int i = 1; i < 6; i++) {
-            serviceA.getTeam7(i).delMatchDay(form.getmDay() + "");
+        for (int i = 1; i < 11; i++) {
+            service.getTeam7(i).delMatchDay(form.getmDay() + "");
         }
 
-        form.saveResults(serviceA.getResults7(), serviceA.getGamePostponed(), serviceA.getNotPlaying());
-        serviceA.setTeams7(form.getTeamMap());
-        serviceA.updateTeamData7(serviceA.getTeams7());
-        model.addAttribute("resultA", form.getResults());
+        form.saveResults(service.getResults7(), service.getGamePostponed(), service.getNotPlaying());
+        service.setTeams7(form.getTeamMap());
+        service.updateTeamData7(service.getTeams7());
+        model.addAttribute("result", form.getResults());
 
-        return "addedResultsA";
+        return "addedResults";
     }
 
-    @PostMapping("/addedMatchDayResults8A")
-    public String addedResults8A(Model model, @ModelAttribute MatchDayFormA form) {
+    @PostMapping("/addedMatchDayResults8")
+    public String addedResults8(Model model, @ModelAttribute MatchDayForm form) {
         LOGGER.info("pocetak addedmatch");
 
-        form.setTeamMap(serviceA.getTeams8());
+        form.setTeamMap(service.getTeams8());
 
-        for (int i = 1; i < 6; i++) {
-            serviceA.getTeam8(i).delMatchDay(form.getmDay() + "");
+        for (int i = 1; i < 11; i++) {
+            service.getTeam8(i).delMatchDay(form.getmDay() + "");
         }
 
-        form.saveResults(serviceA.getResults8(), serviceA.getGamePostponed(), serviceA.getNotPlaying());
-        serviceA.setTeams8(form.getTeamMap());
-        serviceA.updateTeamData8(serviceA.getTeams8());
-        model.addAttribute("resultA", form.getResults());
+        form.saveResults(service.getResults8(), service.getGamePostponed(), service.getNotPlaying());
+        service.setTeams8(form.getTeamMap());
+        service.updateTeamData8(service.getTeams8());
+        model.addAttribute("result", form.getResults());
 
-        return "addedResultsA";
+        return "addedResults";
     }
 
-    @PostMapping("/addedMatchDayResults9A")
-    public String addedResults9A(Model model, @ModelAttribute MatchDayFormA form) {
+    @PostMapping("/addedMatchDayResults9")
+    public String addedResults9(Model model, @ModelAttribute MatchDayForm form) {
         LOGGER.info("pocetak addedmatch");
 
-        form.setTeamMap(serviceA.getTeams9());
+        form.setTeamMap(service.getTeams9());
 
-        for (int i = 1; i < 6; i++) {
-            serviceA.getTeam9(i).delMatchDay(form.getmDay() + "");
+        for (int i = 1; i < 11; i++) {
+            service.getTeam9(i).delMatchDay(form.getmDay() + "");
         }
 
-        form.saveResults(serviceA.getResults9(), serviceA.getGamePostponed(), serviceA.getNotPlaying());
-        serviceA.setTeams9(form.getTeamMap());
-        serviceA.updateTeamData9(serviceA.getTeams9());
-        model.addAttribute("resultA", form.getResults());
+        form.saveResults(service.getResults9(), service.getGamePostponed(), service.getNotPlaying());
+        service.setTeams9(form.getTeamMap());
+        service.updateTeamData9(service.getTeams9());
+        model.addAttribute("result", form.getResults());
 
-        return "addedResultsA";
+        return "addedResults";
     }
 
-    @GetMapping("/resultsA")
-    public String resultsA(Model model) {
+    @GetMapping("/results")
+    public String results(Model model) {
 
-        return "resultsA";
+        return "results";
     }
 
-    @GetMapping("/fixturesA")
-    public String fixturesA(Model model) {
+    @GetMapping("/fixtures")
+    public String fixtures(Model model) {
 
-        return "fixturesA";
+        return "fixtures";
     }
 
-    @GetMapping("/saveA")
-    public String saveA(Model model) {
+    @GetMapping("/save")
+    public String save(Model model) {
         LOGGER.info("save");
-        serviceA.saveFutsalData();
+        service.saveFutsalData();
 
-        return "adminDashboardA";
+        return "adminDashboard";
     }
 
-    @GetMapping("/deleteMDayA")
-    public String delMDayA(Model model) {
-        LOGGER.info("save");
-
-        serviceA.deleteLastMDay();
-        serviceA.updateTeamData5(serviceA.getTeams5());
-        serviceA.updateTeamData6(serviceA.getTeams6());
-        serviceA.updateTeamData7(serviceA.getTeams7());
-        serviceA.updateTeamData8(serviceA.getTeams8());
-        serviceA.updateTeamData9(serviceA.getTeams9());
-
-        return "adminDashboardA";
-    }
-
-    @GetMapping("/adminB")
-    public String adminB(Model model) {
-
-        return "adminDashboardB";
-    }
-
-    @GetMapping("/teamB")
-    public String teamB(Model model, int index) {
-        model.addAttribute("team5B", serviceB.getTeamLinks5().get(index));
-        model.addAttribute("team6B", serviceB.getTeamLinks6().get(index));
-        model.addAttribute("team7B", serviceB.getTeamLinks7().get(index));
-        model.addAttribute("team8B", serviceB.getTeamLinks8().get(index));
-        model.addAttribute("team9B", serviceB.getTeamLinks9().get(index));
-        model.addAttribute("results5B", serviceB.getTeamLinks5().get(index).getResults());
-        model.addAttribute("results6B", serviceB.getTeamLinks6().get(index).getResults());
-        model.addAttribute("results7B", serviceB.getTeamLinks7().get(index).getResults());
-        model.addAttribute("results8B", serviceB.getTeamLinks8().get(index).getResults());
-        model.addAttribute("results9B", serviceB.getTeamLinks9().get(index).getResults());
-
-        return "teamInfoB";
-    }
-
-    @GetMapping("/editTeamB")
-    public String editTeam5B(Model model, int index) {
-        model.addAttribute("teamB", serviceB.getTeamLinks5().get(index));
-
-        return "editTeamB";
-    }
-
-    @PostMapping("/updatedTeamB")
-    public String updateTeam5B(Model model, @ModelAttribute TeamForm team) {
-        LOGGER.info("" + team.getTeamName());
-        serviceB.updateTeam(team);
-        model.addAttribute("updatedTeamB", team);
-        LOGGER.info(serviceB.getTeams5().toString());
-
-        return "updatedTeamB";
-    }
-
-    @GetMapping("/enterMatchDayResults5B")
-    public String enterResults5B(Model model, int index) {
-        MatchDayFormB mDayForm = new MatchDayFormB();
-        mDayForm.loadForm(index, serviceB.getTeamLinks5(), serviceB.getPairs());
-        model.addAttribute("gameFormB", mDayForm);
-        model.addAttribute("resultsB", serviceB.getResults5().get(index));
-
-        return "enterMatchDayResults5B";
-    }
-
-    @GetMapping("/enterMatchDayResults6B")
-    public String enterResults6B(Model model, int index) {
-        MatchDayFormB mDayForm = new MatchDayFormB();
-        mDayForm.loadForm(index, serviceB.getTeamLinks6(), serviceB.getPairs());
-        model.addAttribute("gameFormB", mDayForm);
-        model.addAttribute("resultsB", serviceB.getResults6().get(index));
-
-        return "enterMatchDayResults6B";
-    }
-
-    @GetMapping("/enterMatchDayResults7B")
-    public String enterResults7B(Model model, int index) {
-        MatchDayFormB mDayForm = new MatchDayFormB();
-        mDayForm.loadForm(index, serviceB.getTeamLinks7(), serviceB.getPairs());
-        model.addAttribute("gameFormB", mDayForm);
-        model.addAttribute("resultsB", serviceB.getResults7().get(index));
-
-        return "enterMatchDayResults7B";
-    }
-
-    @GetMapping("/enterMatchDayResults8B")
-    public String enterResults8B(Model model, int index) {
-        MatchDayFormB mDayForm = new MatchDayFormB();
-        mDayForm.loadForm(index, serviceB.getTeamLinks8(), serviceB.getPairs());
-        model.addAttribute("gameFormB", mDayForm);
-        model.addAttribute("resultsB", serviceB.getResults8().get(index));
-
-        return "enterMatchDayResults8B";
-    }
-
-    @GetMapping("/enterMatchDayResults9B")
-    public String enterResults9B(Model model, int index) {
-        MatchDayFormB mDayForm = new MatchDayFormB();
-        mDayForm.loadForm(index, serviceB.getTeamLinks9(), serviceB.getPairs());
-        model.addAttribute("gameFormB", mDayForm);
-        model.addAttribute("resultsB", serviceB.getResults9().get(index));
-
-        return "enterMatchDayResults9B";
-    }
-
-    @PostMapping("/addedMatchDayResults5B")
-    public String addedResults5B(Model model, @ModelAttribute MatchDayFormB form) {
-        LOGGER.info("pocetak addedmatch");
-
-        form.setTeamMap(serviceB.getTeams5());
-
-        for (int i = 1; i < 4; i++) {
-            serviceB.getTeam5(i).delMatchDay(form.getmDay() + "");
-        }
-
-        form.saveResults(serviceB.getResults5(), serviceB.getGamePostponed(), serviceB.getNotPlaying());
-        serviceB.setTeams5(form.getTeamMap());
-        serviceB.updateTeamData5(serviceB.getTeams5());
-        model.addAttribute("resultB", form.getResults());
-
-        LOGGER.info(serviceB.getGamePostponed().toString());
-        LOGGER.info(serviceB.getNotPlaying().toString());
-
-        return "addedResultsB";
-    }
-
-    @PostMapping("/addedMatchDayResults6B")
-    public String addedResults6B(Model model, @ModelAttribute MatchDayFormB form) {
-        LOGGER.info("pocetak addedmatch");
-
-        form.setTeamMap(serviceB.getTeams6());
-
-        for (int i = 1; i < 4; i++) {
-            serviceB.getTeam6(i).delMatchDay(form.getmDay() + "");
-        }
-
-        form.saveResults(serviceB.getResults6(), serviceB.getGamePostponed(), serviceB.getNotPlaying());
-        serviceB.setTeams6(form.getTeamMap());
-        serviceB.updateTeamData6(serviceB.getTeams6());
-        model.addAttribute("resultB", form.getResults());
-
-        return "addedResultsB";
-    }
-
-    @PostMapping("/addedMatchDayResults7B")
-    public String addedResults7B(Model model, @ModelAttribute MatchDayFormB form) {
-        LOGGER.info("pocetak addedmatch");
-
-        form.setTeamMap(serviceB.getTeams7());
-
-        for (int i = 1; i < 4; i++) {
-            serviceB.getTeam7(i).delMatchDay(form.getmDay() + "");
-        }
-
-        form.saveResults(serviceB.getResults7(), serviceB.getGamePostponed(), serviceB.getNotPlaying());
-        serviceB.setTeams7(form.getTeamMap());
-        serviceB.updateTeamData7(serviceB.getTeams7());
-        model.addAttribute("resultB", form.getResults());
-
-        return "addedResultsB";
-    }
-
-    @PostMapping("/addedMatchDayResults8B")
-    public String addedResults8B(Model model, @ModelAttribute MatchDayFormB form) {
-        LOGGER.info("pocetak addedmatch");
-
-        form.setTeamMap(serviceB.getTeams8());
-
-        for (int i = 1; i < 4; i++) {
-            serviceB.getTeam8(i).delMatchDay(form.getmDay() + "");
-        }
-
-        form.saveResults(serviceB.getResults8(), serviceB.getGamePostponed(), serviceB.getNotPlaying());
-        serviceB.setTeams8(form.getTeamMap());
-        serviceB.updateTeamData8(serviceB.getTeams8());
-        model.addAttribute("resultB", form.getResults());
-
-        return "addedResultsB";
-    }
-
-    @PostMapping("/addedMatchDayResults9B")
-    public String addedResults9B(Model model, @ModelAttribute MatchDayFormB form) {
-        LOGGER.info("pocetak addedmatch");
-
-        form.setTeamMap(serviceB.getTeams9());
-
-        for (int i = 1; i < 4; i++) {
-            serviceB.getTeam9(i).delMatchDay(form.getmDay() + "");
-        }
-
-        form.saveResults(serviceB.getResults9(), serviceB.getGamePostponed(), serviceB.getNotPlaying());
-        serviceB.setTeams9(form.getTeamMap());
-        serviceB.updateTeamData9(serviceB.getTeams9());
-        model.addAttribute("resultB", form.getResults());
-
-        return "addedResultsB";
-    }
-
-    @GetMapping("/resultsB")
-    public String resultsB(Model model) {
-
-        return "resultsB";
-    }
-
-    @GetMapping("/fixturesB")
-    public String fixturesB(Model model) {
-
-        return "fixturesB";
-    }
-
-    @GetMapping("/saveB")
-    public String saveB(Model model) {
-        LOGGER.info("save");
-        serviceB.saveFutsalData();
-
-        return "adminDashboardB";
-    }
-
-    @GetMapping("/deleteMDayB")
-    public String delMDayB(Model model) {
+    @GetMapping("/deleteMDay")
+    public String delMDay(Model model) {
         LOGGER.info("save");
 
-        serviceB.deleteLastMDay();
-        serviceB.updateTeamData5(serviceB.getTeams5());
-        serviceB.updateTeamData6(serviceB.getTeams6());
-        serviceB.updateTeamData7(serviceB.getTeams7());
-        serviceB.updateTeamData8(serviceB.getTeams8());
-        serviceB.updateTeamData9(serviceB.getTeams9());
+        service.deleteLastMDay();
+        service.updateTeamData5(service.getTeams5());
+        service.updateTeamData6(service.getTeams6());
+        service.updateTeamData7(service.getTeams7());
+        service.updateTeamData8(service.getTeams8());
+        service.updateTeamData9(service.getTeams9());
 
-        return "adminDashboardB";
+        return "adminDashboard";
     }
 
     @ExceptionHandler(Exception.class)

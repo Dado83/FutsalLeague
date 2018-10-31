@@ -46,21 +46,21 @@ public class FutsalService {
         LOGGER.info("init");
         ftpClient = new FTP();
         this.fixture = new Fixture();
-        this.fixture.loadFixturesFromJson("http://fairplay.hol.es/futsal/berger5.json");
+        this.fixture.loadFixturesFromJson("http://fairplay.hol.es/futsal/berger9-10.json");
         this.matchDaypairs = fixture.getPairs();
 
-        this.results5 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results5a.json");
-        this.results6 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results6a.json");
-        this.results7 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results7a.json");
-        this.results8 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results8a.json");
-        this.results9 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results9a.json");
+        this.results5 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results5.json");
+        this.results6 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results6.json");
+        this.results7 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results7.json");
+        this.results8 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results8.json");
+        this.results9 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results9.json");
 
         this.teamCollection = new TeamCollection();
-        this.teams5 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams5a.json");
-        this.teams6 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams6a.json");
-        this.teams7 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams7a.json");
-        this.teams8 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams8a.json");
-        this.teams9 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams9a.json");
+        this.teams5 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams5.json");
+        this.teams6 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams6.json");
+        this.teams7 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams7.json");
+        this.teams8 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams8.json");
+        this.teams9 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams9.json");
 
         this.teamLogos = new ArrayList<>(teams5.values());
         this.leagueTable5 = new ArrayList<>(teams5.values());
@@ -108,27 +108,27 @@ public class FutsalService {
     }
 
     public void saveFutsalData() {
-        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results5a.json", results5);
-        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results6a.json", results6);
-        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results7a.json", results7);
-        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results8a.json", results8);
-        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results9a.json", results9);
-        ftpClient.uploadFile("futsal/results5a.json", "D:/fer plej/Zimska liga 2018-2019/app data/results5a.json");
-        ftpClient.uploadFile("futsal/results6a.json", "D:/fer plej/Zimska liga 2018-2019/app data/results6a.json");
-        ftpClient.uploadFile("futsal/results7a.json", "D:/fer plej/Zimska liga 2018-2019/app data/results7a.json");
-        ftpClient.uploadFile("futsal/results8a.json", "D:/fer plej/Zimska liga 2018-2019/app data/results8a.json");
-        ftpClient.uploadFile("futsal/results9a.json", "D:/fer plej/Zimska liga 2018-2019/app data/results9a.json");
+        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results5.json", results5);
+        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results6.json", results6);
+        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results7.json", results7);
+        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results8.json", results8);
+        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results9.json", results9);
+        ftpClient.uploadFile("futsal/results5.json", "D:/fer plej/Zimska liga 2018-2019/app data/results5.json");
+        ftpClient.uploadFile("futsal/results6.json", "D:/fer plej/Zimska liga 2018-2019/app data/results6.json");
+        ftpClient.uploadFile("futsal/results7.json", "D:/fer plej/Zimska liga 2018-2019/app data/results7.json");
+        ftpClient.uploadFile("futsal/results8.json", "D:/fer plej/Zimska liga 2018-2019/app data/results8.json");
+        ftpClient.uploadFile("futsal/results9.json", "D:/fer plej/Zimska liga 2018-2019/app data/results9.json");
 
-        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams5a.json", teams5);
-        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams6a.json", teams6);
-        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams7a.json", teams7);
-        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams8a.json", teams8);
-        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams9a.json", teams9);
-        ftpClient.uploadFile("futsal/teams5a.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams5a.json");
-        ftpClient.uploadFile("futsal/teams6a.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams6a.json");
-        ftpClient.uploadFile("futsal/teams7a.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams7a.json");
-        ftpClient.uploadFile("futsal/teams8a.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams8a.json");
-        ftpClient.uploadFile("futsal/teams9a.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams9a.json");
+        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams5.json", teams5);
+        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams6.json", teams6);
+        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams7.json", teams7);
+        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams8.json", teams8);
+        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams9.json", teams9);
+        ftpClient.uploadFile("futsal/teams5.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams5.json");
+        ftpClient.uploadFile("futsal/teams6.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams6.json");
+        ftpClient.uploadFile("futsal/teams7.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams7.json");
+        ftpClient.uploadFile("futsal/teams8.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams8.json");
+        ftpClient.uploadFile("futsal/teams9.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams9.json");
     }
 
     public void updateTeam(TeamForm team) {
@@ -171,7 +171,7 @@ public class FutsalService {
 
     public void deleteLastMDay() {
         int md = results5.size();
-        for (int i = 1; i < 6; i++) {
+        for (int i = 1; i < 11; i++) {
             teams5.get(i).delMatchDay(md + "");
             teams6.get(i).delMatchDay(md + "");
             teams7.get(i).delMatchDay(md + "");
