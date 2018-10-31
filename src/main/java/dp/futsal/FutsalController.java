@@ -83,7 +83,7 @@ public class FutsalController {
         return "teamInfo";
     }
 
-    @GetMapping("/editTeam")
+    @GetMapping("/admin/editTeam")
     public String editTeam5(Model model, int index) {
         model.addAttribute("team", service.getTeamLinks5().get(index));
 
@@ -100,7 +100,7 @@ public class FutsalController {
         return "updatedTeam";
     }
 
-    @GetMapping("/enterMatchDayResults5")
+    @GetMapping("/admin/enterMatchDayResults5")
     public String enterResults5(Model model, int index) {
         MatchDayForm mDayForm = new MatchDayForm();
         mDayForm.loadForm(index, service.getTeamLinks5(), service.getPairs());
@@ -110,7 +110,7 @@ public class FutsalController {
         return "enterMatchDayResults5";
     }
 
-    @GetMapping("/enterMatchDayResults6")
+    @GetMapping("/admin/enterMatchDayResults6")
     public String enterResults6(Model model, int index) {
         MatchDayForm mDayForm = new MatchDayForm();
         mDayForm.loadForm(index, service.getTeamLinks6(), service.getPairs());
@@ -120,7 +120,7 @@ public class FutsalController {
         return "enterMatchDayResults6";
     }
 
-    @GetMapping("/enterMatchDayResults7")
+    @GetMapping("/admin/enterMatchDayResults7")
     public String enterResults7(Model model, int index) {
         MatchDayForm mDayForm = new MatchDayForm();
         mDayForm.loadForm(index, service.getTeamLinks7(), service.getPairs());
@@ -130,7 +130,7 @@ public class FutsalController {
         return "enterMatchDayResults7";
     }
 
-    @GetMapping("/enterMatchDayResults8")
+    @GetMapping("/admin/enterMatchDayResults8")
     public String enterResults8(Model model, int index) {
         MatchDayForm mDayForm = new MatchDayForm();
         mDayForm.loadForm(index, service.getTeamLinks8(), service.getPairs());
@@ -140,7 +140,7 @@ public class FutsalController {
         return "enterMatchDayResults8";
     }
 
-    @GetMapping("/enterMatchDayResults9")
+    @GetMapping("/admin/enterMatchDayResults9")
     public String enterResults9(Model model, int index) {
         MatchDayForm mDayForm = new MatchDayForm();
         mDayForm.loadForm(index, service.getTeamLinks9(), service.getPairs());
@@ -254,7 +254,7 @@ public class FutsalController {
         return "fixtures";
     }
 
-    @GetMapping("/save")
+    @GetMapping("/admin/save")
     public String save(Model model) {
         LOGGER.info("save");
         service.saveFutsalData();
@@ -262,7 +262,7 @@ public class FutsalController {
         return "adminDashboard";
     }
 
-    @GetMapping("/deleteMDay")
+    @GetMapping("/admin/deleteMDay")
     public String delMDay(Model model) {
         LOGGER.info("save");
 
