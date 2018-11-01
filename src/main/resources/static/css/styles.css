@@ -13,14 +13,6 @@ body {
     margin-bottom: 40px;
 }
 
-.generation {
-    margin: 20px
-}
-
-.group {
-    margin-top: 60px
-}
-
 #logo {
     width: 5%
 }
@@ -43,8 +35,7 @@ body {
 }
 
 .header {
-    display: flex;
-    box-shadow: 0 0 10px black;
+    
 }
 
 .logos {
@@ -129,11 +120,13 @@ a:link, a:visited {
 }
 
 .table table {
-    background-color: yellow;
+    background-color: seashell;
+    border-collapse: collapse;
 }
 
-.table th, td {
-    text-align: center
+.table th, .table td {
+    text-align: center;
+    border-bottom: 1px solid gray;
 }
 
 .table th {
@@ -142,17 +135,19 @@ a:link, a:visited {
 
 .table td {
     font-size: 20px;
+    padding: 3px 10px
 }
 
-.table th:nth-child(2), .table td:nth-of-type(1), .table td:nth-of-type(2) {
-    text-align: left
+.table th:nth-child(2), .table td:nth-of-type(2), .table td:nth-of-type(3) {
+    text-align: left;
+    padding-left: 5px;
 }
 
 .table tr:nth-of-type(1) {
-    background-color: green;
+    background-color: yellow;
 }
 
-.table tr:nth-of-type(2), .table tr:nth-of-type(3), .table tr:nth-of-type(4), .table tr:nth-of-type(5) {
+.table tr:nth-of-type(n+2):nth-of-type(-n+5) td:nth-of-type(1) {
     background-color: blue;
 }
 
@@ -164,7 +159,7 @@ a:link, a:visited {
 
 .results td {
     border-bottom: 1px solid black;
-    padding: 0 5px;
+    padding: 3px 5px;
 }
 
 .results td:first-of-type {
@@ -205,24 +200,27 @@ a:link, a:visited {
     text-align: left;
 }
 
-.detail {
-    box-shadow: 0 0 10px black;
-    padding: 5px;
+.fixture table {
+    border-collapse: collapse;
+    margin-bottom: 10px;
 }
 
-.detail a {
-    margin: 50px 5px;
+.fixture td {
+   padding-right: 15px;
+   padding-bottom: 5px;
+   border-bottom: 1px solid black;
+   font-style: italic;
+   font-size: 20px;
 }
 
-.detail p {
-    text-align: left;
+.fixture a {
+    font-size: 20px;
+    margin: 0 25px 0 0; 
 }
 
 .footer {
     clear: both;
-    padding-top: 50px;
-    box-shadow: 0 0 10px black;
-    padding: 5px;
+    margin-top: 100px;
 }
 
 

@@ -28,6 +28,7 @@
         <h4>Tabela</h4>
         <table>
           <tr>
+            <th></th>
             <th>2005</th>
             <th></th>
             <th>OS</th>
@@ -67,6 +68,7 @@
         <h4>Tabela</h4>
         <table>
           <tr>
+            <th></th>
             <th>2006</th>
             <th></th>
             <th>OS</th>
@@ -106,6 +108,7 @@
         <h4>Tabela</h4>
         <table>
           <tr>
+            <th></th>
             <th>2007</th>
             <th></th>
             <th>OS</th>
@@ -145,6 +148,7 @@
         <h4>Tabela</h4>
         <table>
           <tr>
+            <th></th>
             <th>2008</th>
             <th></th>
             <th>OS</th>
@@ -184,6 +188,7 @@
         <h4>Tabela</h4>
         <table>
           <tr>
+            <th></th>
             <th>2009</th>
             <th></th>
             <th>OS</th>
@@ -206,12 +211,12 @@
           </tr>
         </table>
       </div>
-      <div class="raspored">
+      <div class="fixture">
         <h3>Naredno (<span th:text="${lastMDay + 1}"></span>.) kolo</h3>
         <table>
           <tr th:each="par: ${pairs.get(lastMDay + 1)}">
-            <td th:text="${teamLinks.get(par.homeTeam).teamName}">Some name</td>
-            <td th:text="${teamLinks.get(par.awayTeam).teamName}">Some name</td> 
+            <td th:text="${teamLinks.get(par.homeTeam).teamName.equals('pauza')} ? 'pauzira': ${teamLinks.get(par.homeTeam).teamName}">Some name</td>
+            <td th:text="${teamLinks.get(par.awayTeam).teamName.equals('pauza')} ? 'pauzira': ${teamLinks.get(par.awayTeam).teamName}">Some name</td> 
           </tr>
         </table>
         <a th:href="@{/results}">Svi rezultati...</a><a th:href="@{/fixtures}" th:text="Raspored..."></a>
