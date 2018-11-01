@@ -17,17 +17,15 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {
+
         http
                 .authorizeRequests()
-                    .antMatchers("/admin/**")
-                    .hasRole("ADMIN")
-                    .and()
+                .antMatchers("/admin/**")
+                .authenticated()
+                .and()
                 .formLogin()
-                    .loginPage("/login")
-                    .permitAll()
-                    .and()
-                .logout()
-                    .permitAll();
+                .loginPage("/login")
+                .permitAll();
     }
 
     @Bean
@@ -36,7 +34,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         UserDetails user
                 = User.withDefaultPasswordEncoder()
                         .username("user")
-                        .password("password")
+                        .password("liga")
                         .roles("ADMIN")
                         .build();
 

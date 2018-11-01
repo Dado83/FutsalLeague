@@ -12,14 +12,15 @@
     <div th:insert="fragments :: header"></div>
     <div class="content">
       <div class="results">
-        <h4>Rezultati prethodnog kola</h4>
+        <h5>Rezultati prethodnog kola</h5>
         <table>
           <p th:text="${lastMDay} + '. kolo (2005)'"></p>
           <tr th:each="rez: ${results5.get(lastMDay)}">
-            <td th:text="${rez.homeTeam}">Some name</td>
-            <td th:text="${rez.awayTeam}">Some name</td> 
+            <td th:text="${rez.homeTeam}">Some name</td> 
             <td th:text="${rez.goalsHome}">Some name</td> 
+            <td>-</td>
             <td th:text="${rez.goalsAway}">Some name</td> 
+            <td th:text="${rez.awayTeam}">Some name</td> 
           </tr>
         </table>
       </div>
@@ -36,7 +37,8 @@
             <th>G</th>
             <th>B</th>
           </tr>
-          <tr th:each="tim: ${leagueTable5}">
+          <tr th:each="tim, i: ${leagueTable5}">
+            <td th:text="${i.count}"></td>
             <td th:text="${tim.teamName}">Some name</td>
             <td th:text="${tim.teamCity}">Some name</td> 
             <td th:text="${tim.gamesPlayed}">Some name</td> 
@@ -49,14 +51,15 @@
         </table>
       </div>
       <div class="results">
-        <h4>Rezultati prethodnog kola</h4>
+        <h5>Rezultati prethodnog kola</h5>
         <table>
           <p th:text="${lastMDay} + '. kolo (2006)'"></p>
           <tr th:each="rez: ${results6.get(lastMDay)}">
-            <td th:text="${rez.homeTeam}">Some name</td>
-            <td th:text="${rez.awayTeam}">Some name</td> 
+            <td th:text="${rez.homeTeam}">Some name</td>           
             <td th:text="${rez.goalsHome}">Some name</td> 
+            <td>-</td>
             <td th:text="${rez.goalsAway}">Some name</td> 
+            <td th:text="${rez.awayTeam}">Some name</td> 
           </tr>
         </table>
       </div>
@@ -73,7 +76,8 @@
             <th>G</th>
             <th>B</th>
           </tr>
-          <tr th:each="tim: ${leagueTable6}">
+          <tr th:each="tim, i: ${leagueTable6}">
+            <td th:text="${i.count}"></td>
             <td th:text="${tim.teamName}">Some name</td>
             <td th:text="${tim.teamCity}">Some name</td> 
             <td th:text="${tim.gamesPlayed}">Some name</td> 
@@ -86,14 +90,15 @@
         </table>
       </div>
       <div class="results">
-        <h4>Rezultati prethodnog kola</h4>
+        <h5>Rezultati prethodnog kola</h5>
         <table>
           <p th:text="${lastMDay} + '. kolo (2007)'"></p>
           <tr th:each="rez: ${results7.get(lastMDay)}">
-            <td th:text="${rez.homeTeam}">Some name</td>
-            <td th:text="${rez.awayTeam}">Some name</td> 
+            <td th:text="${rez.homeTeam}">Some name</td>        
             <td th:text="${rez.goalsHome}">Some name</td> 
+            <td>-</td>
             <td th:text="${rez.goalsAway}">Some name</td> 
+            <td th:text="${rez.awayTeam}">Some name</td> 
           </tr>
         </table>
       </div>
@@ -110,7 +115,8 @@
             <th>G</th>
             <th>B</th>
           </tr>
-          <tr th:each="tim: ${leagueTable7}">
+          <tr th:each="tim, i: ${leagueTable7}">
+            <td th:text="${i.count}"></td>
             <td th:text="${tim.teamName}">Some name</td>
             <td th:text="${tim.teamCity}">Some name</td> 
             <td th:text="${tim.gamesPlayed}">Some name</td> 
@@ -123,14 +129,15 @@
         </table>
       </div>
       <div class="results">
-        <h4>Rezultati prethodnog kola</h4>
+        <h5>Rezultati prethodnog kola</h5>
         <table>
           <p th:text="${lastMDay} + '. kolo (2008)'"></p>
           <tr th:each="rez: ${results8.get(lastMDay)}">
-            <td th:text="${rez.homeTeam}">Some name</td>
+            <td th:text="${rez.homeTeam}">Some name</td>          
+            <td th:text="${rez.goalsHome}">Some name</td>        
+            <td>-</td>
+            <td th:text="${rez.goalsAway}">Some name</td>
             <td th:text="${rez.awayTeam}">Some name</td> 
-            <td th:text="${rez.goalsHome}">Some name</td> 
-            <td th:text="${rez.goalsAway}">Some name</td> 
           </tr>
         </table>
       </div>
@@ -147,7 +154,8 @@
             <th>G</th>
             <th>B</th>
           </tr>
-          <tr th:each="tim: ${leagueTable8}">
+          <tr th:each="tim, i: ${leagueTable8}">
+            <td th:text="${i.count}"></td>
             <td th:text="${tim.teamName}">Some name</td>
             <td th:text="${tim.teamCity}">Some name</td> 
             <td th:text="${tim.gamesPlayed}">Some name</td> 
@@ -160,14 +168,15 @@
         </table>
       </div>
       <div class="results">
-        <h4>Rezultati prethodnog kola</h4>
+        <h5>Rezultati prethodnog kola</h5>
         <table>
           <p th:text="${lastMDay} + '. kolo (2009)'"></p>
           <tr th:each="rez: ${results9.get(lastMDay)}">
-            <td th:text="${rez.homeTeam}">Some name</td>
-            <td th:text="${rez.awayTeam}">Some name</td> 
+            <td th:text="${rez.homeTeam}">Some name</td>           
             <td th:text="${rez.goalsHome}">Some name</td> 
+            <td>-</td>
             <td th:text="${rez.goalsAway}">Some name</td> 
+            <td th:text="${rez.awayTeam}">Some name</td> 
           </tr>
         </table>
       </div>
@@ -184,7 +193,8 @@
             <th>G</th>
             <th>B</th>
           </tr>
-          <tr th:each="tim: ${leagueTable9}">
+          <tr th:each="tim, i: ${leagueTable9}">
+            <td th:text="${i.count}"></td>
             <td th:text="${tim.teamName}">Some name</td>
             <td th:text="${tim.teamCity}">Some name</td> 
             <td th:text="${tim.gamesPlayed}">Some name</td> 
