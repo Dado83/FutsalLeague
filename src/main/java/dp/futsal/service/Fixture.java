@@ -71,7 +71,7 @@ public class Fixture {
         } catch (IOException e) {
             LOGGER.severe("nisam ucitao fixtures json");
         }
-        this.pairsMap = (Map<Integer, List<MatchPair>>) gson.fromJson(stringBuilder.toString(), type);
+        pairsMap = (Map<Integer, List<MatchPair>>) gson.fromJson(stringBuilder.toString(), type);
     }
 
     public Map<Integer, List<MatchResult>> loadResultsFromJson(String file) {
@@ -91,7 +91,7 @@ public class Fixture {
         } catch (IOException e) {
             LOGGER.severe("nisam ucitao results json");
         }
-        return this.resultsMap = (Map<Integer, List<MatchResult>>) gson.fromJson(stringBuilder.toString(), type);
+        return resultsMap = (Map<Integer, List<MatchResult>>) gson.fromJson(stringBuilder.toString(), type);
     }
 
     public Map<Integer, List<MatchResult>> getResults() {
@@ -99,7 +99,7 @@ public class Fixture {
     }
 
     public Map<Integer, List<MatchPair>> getPairs() {
-        return this.pairsMap;
+        return pairsMap;
     }
 
 }

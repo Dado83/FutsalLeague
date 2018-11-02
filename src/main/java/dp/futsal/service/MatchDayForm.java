@@ -58,48 +58,48 @@ public class MatchDayForm {
 
     public void loadForm(int index, List<Team> teamListIndexed, Map<Integer, List<MatchPair>> pairs) {
         LOGGER.info("load form");
-        this.setmDay(index);
-        this.setTeam(teamListIndexed);
-        this.setPair(pairs.get(index));
-        this.setTeamData();
+        setmDay(index);
+        setTeam(teamListIndexed);
+        setPair(pairs.get(index));
+        setTeamData();
     }
 
     private void setTeamData() {
         LOGGER.info("pocetak team data");
-        this.teamH1 = team.get(pair.get(0).getHomeTeam()).getId();
-        this.teamA1 = team.get(pair.get(0).getAwayTeam()).getId();
-        this.home1 = team.get(pair.get(0).getHomeTeam()).getTeamName();
-        this.away1 = team.get(pair.get(0).getAwayTeam()).getTeamName();
+        teamH1 = team.get(pair.get(0).getHomeTeam()).getId();
+        teamA1 = team.get(pair.get(0).getAwayTeam()).getId();
+        home1 = team.get(pair.get(0).getHomeTeam()).getTeamName();
+        away1 = team.get(pair.get(0).getAwayTeam()).getTeamName();
 
-        this.teamH2 = team.get(pair.get(1).getHomeTeam()).getId();
-        this.teamA2 = team.get(pair.get(1).getAwayTeam()).getId();
-        this.home2 = team.get(pair.get(1).getHomeTeam()).getTeamName();
-        this.away2 = team.get(pair.get(1).getAwayTeam()).getTeamName();
+        teamH2 = team.get(pair.get(1).getHomeTeam()).getId();
+        teamA2 = team.get(pair.get(1).getAwayTeam()).getId();
+        home2 = team.get(pair.get(1).getHomeTeam()).getTeamName();
+        away2 = team.get(pair.get(1).getAwayTeam()).getTeamName();
 
-        this.teamH3 = team.get(pair.get(2).getHomeTeam()).getId();
-        this.teamA3 = team.get(pair.get(2).getAwayTeam()).getId();
-        this.home3 = team.get(pair.get(2).getHomeTeam()).getTeamName();
-        this.away3 = team.get(pair.get(2).getAwayTeam()).getTeamName();
+        teamH3 = team.get(pair.get(2).getHomeTeam()).getId();
+        teamA3 = team.get(pair.get(2).getAwayTeam()).getId();
+        home3 = team.get(pair.get(2).getHomeTeam()).getTeamName();
+        away3 = team.get(pair.get(2).getAwayTeam()).getTeamName();
 
-        this.teamH4 = team.get(pair.get(3).getHomeTeam()).getId();
-        this.teamA4 = team.get(pair.get(3).getAwayTeam()).getId();
-        this.home4 = team.get(pair.get(3).getHomeTeam()).getTeamName();
-        this.away4 = team.get(pair.get(3).getAwayTeam()).getTeamName();
+        teamH4 = team.get(pair.get(3).getHomeTeam()).getId();
+        teamA4 = team.get(pair.get(3).getAwayTeam()).getId();
+        home4 = team.get(pair.get(3).getHomeTeam()).getTeamName();
+        away4 = team.get(pair.get(3).getAwayTeam()).getTeamName();
 
-        this.teamH5 = team.get(pair.get(4).getHomeTeam()).getId();
-        this.teamA5 = team.get(pair.get(4).getAwayTeam()).getId();
-        this.home5 = team.get(pair.get(4).getHomeTeam()).getTeamName();
-        this.away5 = team.get(pair.get(4).getAwayTeam()).getTeamName();
+        teamH5 = team.get(pair.get(4).getHomeTeam()).getId();
+        teamA5 = team.get(pair.get(4).getAwayTeam()).getId();
+        home5 = team.get(pair.get(4).getHomeTeam()).getTeamName();
+        away5 = team.get(pair.get(4).getAwayTeam()).getTeamName();
     }
 
     public void saveResults(Map<Integer, List<MatchResult>> resultsMap, Map<Integer, String> postponed, Map<Integer, String> notPlaying) {
         LOGGER.info("addresults");
 
-        MatchResult m1 = new MatchResult(this.mDay, this.teamMap, this.teamH1, this.teamA1, this.goalsH1, this.goalsA1, postponed);
-        MatchResult m2 = new MatchResult(this.mDay, this.teamMap, this.teamH2, this.teamA2, this.goalsH2, this.goalsA2, postponed);
-        MatchResult m3 = new MatchResult(this.mDay, this.teamMap, this.teamH3, this.teamA3, this.goalsH3, this.goalsA3, postponed);
-        MatchResult m4 = new MatchResult(this.mDay, this.teamMap, this.teamH4, this.teamA4, this.goalsH4, this.goalsA4, postponed);
-        MatchResult m5 = new MatchResult(this.mDay, this.teamMap, this.teamH5, this.teamA5, this.goalsH5, this.goalsA5, postponed);
+        MatchResult m1 = new MatchResult(mDay, teamMap, teamH1, teamA1, goalsH1, goalsA1, postponed);
+        MatchResult m2 = new MatchResult(mDay, teamMap, teamH2, teamA2, goalsH2, goalsA2, postponed);
+        MatchResult m3 = new MatchResult(mDay, teamMap, teamH3, teamA3, goalsH3, goalsA3, postponed);
+        MatchResult m4 = new MatchResult(mDay, teamMap, teamH4, teamA4, goalsH4, goalsA4, postponed);
+        MatchResult m5 = new MatchResult(mDay, teamMap, teamH5, teamA5, goalsH5, goalsA5, postponed);
 
         if (m1.getHomeTeam().equals("pauza") || m1.getAwayTeam().equals("pauza") || m1.getGoalsHome() == -1) {
             if (m1.getAwayTeam().equals("pauza")) {

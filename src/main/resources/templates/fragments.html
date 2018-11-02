@@ -21,9 +21,9 @@
         </li>
       </ul>
     </div>
-    <div class="headerEdit" th:fragment="teamEdit">
-      <div class="teamEdit">
-        <p>Izmjena ekipa</p>
+    <div class="headerEdit" th:fragment="teamEdit"> 
+      <p>Izmjena ekipa</p>
+      <div class="teamEdit"> 
         <a th:each="tim: ${teamLogos}" th:text="${tim?.teamName}" th:href="@{/admin/editTeam(index = ${tim?.id})}" th:class="${tim?.teamName}">tabela</a>
       </div>
       <div class="mDayInput">
@@ -48,9 +48,9 @@
           <a th:each="r: ${pairs}" th:href="@{/admin/enterMatchDayResults9(index = ${r.key})}" th:text="${r.key} + '. kolo'">unos rezultata kola</a>
         </div>
       </div>
-      <div>
-        <a th:href="@{/admin/deleteMDay}">Brisi zadnje kolo</a>
+      <div>      
         <span class="save"><a th:href="@{/admin/save}">Snimi promjene</a></span>
+        <a class="deleteMday" th:href="@{/admin/deleteMDay}">Brisi zadnje kolo</a>
       </div>
     </div>
     <div class="footer" th:fragment="footer">

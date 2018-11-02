@@ -9,7 +9,8 @@
   <body>
     <div th:insert="fragments :: fpLOGO"></div>
     <div th:insert="fragments :: header"></div>
-    <div class="team"><h3 th:text="${team5.teamName}"></h3>
+    <div class="team">
+      <h3 th:text="${team5.teamName}"></h3>
       <table>
         <tr>
           <td>Ekipa</td><td th:text="${team5.teamName}"></td>
@@ -25,64 +26,69 @@
         </tr>
       </table>
       <h4>Rezultati:</h4>
-      <div class="teamResults">
-        <div class="results">
+      <div>
+        <div class="teamResults">
           <table>
             <h5>2005</h5>
             <tr th:each="tim: ${results5}">
               <td th:text="${tim.matchDay} + '. kolo'"></td>
-              <td th:text="${tim.homeTeam}"></td>
-              <td th:text="${tim.awayTeam}"></td>
+              <td th:text="${tim.homeTeam}"></td>              
               <td th:text="${tim.goalsHome}"></td>
+              <td>-</td>
               <td th:text="${tim.goalsAway}"></td>
+              <td th:text="${tim.awayTeam}"></td>
             </tr>
           </table>
         </div>
-        <div class="results">
+        <div class="teamResults">
           <table>
             <h5>2006</h5>
             <tr th:each="tim: ${results6}">
               <td th:text="${tim.matchDay} + '. kolo'"></td>
-              <td th:text="${tim.homeTeam}"></td>
-              <td th:text="${tim.awayTeam}"></td>
+              <td th:text="${tim.homeTeam}"></td>             
               <td th:text="${tim.goalsHome}"></td>
+              <td>-</td>
               <td th:text="${tim.goalsAway}"></td>
+              <td th:text="${tim.awayTeam}"></td>
             </tr>
           </table>
         </div>
-        <div class="results">
+        <div class="teamResults">
           <table>
             <h5>2007</h5>
             <tr th:each="tim: ${results7}">
               <td th:text="${tim.matchDay} + '. kolo'"></td>
-              <td th:text="${tim.homeTeam}"></td>
-              <td th:text="${tim.awayTeam}"></td>
+              <td th:text="${tim.homeTeam}"></td>            
               <td th:text="${tim.goalsHome}"></td>
+              <td>-</td>
               <td th:text="${tim.goalsAway}"></td>
+              <td th:text="${tim.awayTeam}"></td>
             </tr>
           </table>
         </div>
-        <div class="results">
+        <div class="teamResults">
           <table>
             <h5>2008</h5>
             <tr th:each="tim: ${results8}">
               <td th:text="${tim.matchDay} + '. kolo'"></td>
-              <td th:text="${tim.homeTeam}"></td>
-              <td th:text="${tim.awayTeam}"></td>
+              <td th:text="${tim.homeTeam}"></td>              
               <td th:text="${tim.goalsHome}"></td>
+              <td>-</td>
               <td th:text="${tim.goalsAway}"></td>
+              <td th:text="${tim.awayTeam}"></td>
             </tr>
           </table>
         </div>
-        <div class="results">
+        <div class="teamResults">
           <table>
             <h5>2009</h5>
             <tr th:each="tim: ${results9}">
               <td th:text="${tim.matchDay} + '. kolo'"></td>
-              <td th:text="${tim.homeTeam}"></td>
-              <td th:text="${tim.awayTeam}"></td>
+              <td th:text="${tim.homeTeam}"></td>           
               <td th:text="${tim.goalsHome}"></td>
+              <td>-</td>
               <td th:text="${tim.goalsAway}"></td>
+              <td th:text="${tim.awayTeam}"></td>
             </tr>
           </table>
         </div>

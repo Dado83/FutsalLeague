@@ -51,7 +51,7 @@ public class TeamCollection {
         } catch (IOException e) {
             LOGGER.severe("nisam ucitao teams json");
         }
-        return this.teamMap = (Map<Integer, Team>) gson.fromJson(stringBuilder.toString(), type);
+        return teamMap = (Map<Integer, Team>) gson.fromJson(stringBuilder.toString(), type);
 
     }
 

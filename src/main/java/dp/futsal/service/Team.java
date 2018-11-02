@@ -73,38 +73,38 @@ public class Team implements Comparable<Team> {
 
     public void delMatchDay(String s) {
         List<MatchResult> resultsToRemove = new ArrayList<>();
-        for (MatchResult m : this.results) {
+        for (MatchResult m : results) {
             if (m.getId().startsWith(s)) {
-                this.gamesPlayed--;
-                if (m.getHomeTeamID() == this.id) {
-                    this.goalsScored -= m.getGoalsHome();
-                    this.goalsConceded -= m.getGoalsAway();
+                gamesPlayed--;
+                if (m.getHomeTeamID() == id) {
+                    goalsScored -= m.getGoalsHome();
+                    goalsConceded -= m.getGoalsAway();
                     if (m.getGoalsHome() > m.getGoalsAway()) {
-                        this.gamesWon--;
-                        this.points -= 3;
+                        gamesWon--;
+                        points -= 3;
                     } else if (m.getGoalsHome() < m.getGoalsAway()) {
-                        this.gamesLost--;
+                        gamesLost--;
                     } else {
-                        this.gamesDrew--;
-                        this.points--;
+                        gamesDrew--;
+                        points--;
                     }
                 } else {
-                    this.goalsScored -= m.getGoalsAway();
-                    this.goalsConceded -= m.getGoalsHome();
+                    goalsScored -= m.getGoalsAway();
+                    goalsConceded -= m.getGoalsHome();
                     if (m.getGoalsAway() > m.getGoalsHome()) {
-                        this.gamesWon--;
-                        this.points -= 3;
+                        gamesWon--;
+                        points -= 3;
                     } else if (m.getGoalsAway() < m.getGoalsHome()) {
-                        this.gamesLost--;
+                        gamesLost--;
                     } else {
-                        this.gamesDrew--;
-                        this.points--;
+                        gamesDrew--;
+                        points--;
                     }
                 }
                 resultsToRemove.add(m);
             }
         }
-        this.results.removeAll(resultsToRemove);
+        results.removeAll(resultsToRemove);
     }
 
     public int getId() {

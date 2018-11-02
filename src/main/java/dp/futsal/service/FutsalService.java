@@ -45,63 +45,63 @@ public class FutsalService {
     public void init() {
         LOGGER.info("init");
         ftpClient = new FTP();
-        this.fixture = new Fixture();
-        this.fixture.loadFixturesFromJson("http://fairplay.hol.es/futsal/berger9-10.json");
-        this.matchDaypairs = fixture.getPairs();
+        fixture = new Fixture();
+        fixture.loadFixturesFromJson("http://fairplay.hol.es/futsal/berger9-10.json");
+        matchDaypairs = fixture.getPairs();
 
-        this.results5 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results5.json");
-        this.results6 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results6.json");
-        this.results7 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results7.json");
-        this.results8 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results8.json");
-        this.results9 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results9.json");
+        results5 = fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results5.json");
+        results6 = fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results6.json");
+        results7 = fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results7.json");
+        results8 = fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results8.json");
+        results9 = fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results9.json");
 
-        this.teamCollection = new TeamCollection();
-        this.teams5 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams5.json");
-        this.teams6 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams6.json");
-        this.teams7 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams7.json");
-        this.teams8 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams8.json");
-        this.teams9 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams9.json");
+        teamCollection = new TeamCollection();
+        teams5 = teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams5.json");
+        teams6 = teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams6.json");
+        teams7 = teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams7.json");
+        teams8 = teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams8.json");
+        teams9 = teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams9.json");
 
-        this.teamLogos = new ArrayList<>(teams5.values());
-        this.leagueTable5 = new ArrayList<>(teams5.values());
-        this.teamLinks5 = new ArrayList<>();
-        this.teamLinks5.add(null);
-        for (Team tab : this.leagueTable5) {
-            this.teamLinks5.add(tab.getId(), tab);
+        teamLogos = new ArrayList<>(teams5.values());
+        leagueTable5 = new ArrayList<>(teams5.values());
+        teamLinks5 = new ArrayList<>();
+        teamLinks5.add(null);
+        for (Team tab : leagueTable5) {
+            teamLinks5.add(tab.getId(), tab);
         }
-        Collections.sort(this.leagueTable5);
+        Collections.sort(leagueTable5);
 
-        this.leagueTable6 = new ArrayList<>(teams6.values());
-        this.teamLinks6 = new ArrayList<>();
-        this.teamLinks6.add(null);
-        for (Team tab : this.leagueTable6) {
-            this.teamLinks6.add(tab.getId(), tab);
+        leagueTable6 = new ArrayList<>(teams6.values());
+        teamLinks6 = new ArrayList<>();
+        teamLinks6.add(null);
+        for (Team tab : leagueTable6) {
+            teamLinks6.add(tab.getId(), tab);
         }
-        Collections.sort(this.leagueTable6);
+        Collections.sort(leagueTable6);
 
-        this.leagueTable7 = new ArrayList<>(teams7.values());
-        this.teamLinks7 = new ArrayList<>();
-        this.teamLinks7.add(null);
-        for (Team tab : this.leagueTable7) {
-            this.teamLinks7.add(tab.getId(), tab);
+        leagueTable7 = new ArrayList<>(teams7.values());
+        teamLinks7 = new ArrayList<>();
+        teamLinks7.add(null);
+        for (Team tab : leagueTable7) {
+            teamLinks7.add(tab.getId(), tab);
         }
-        Collections.sort(this.leagueTable7);
+        Collections.sort(leagueTable7);
 
-        this.leagueTable8 = new ArrayList<>(teams8.values());
-        this.teamLinks8 = new ArrayList<>();
-        this.teamLinks8.add(null);
-        for (Team tab : this.leagueTable8) {
-            this.teamLinks8.add(tab.getId(), tab);
+        leagueTable8 = new ArrayList<>(teams8.values());
+        teamLinks8 = new ArrayList<>();
+        teamLinks8.add(null);
+        for (Team tab : leagueTable8) {
+            teamLinks8.add(tab.getId(), tab);
         }
-        Collections.sort(this.leagueTable8);
+        Collections.sort(leagueTable8);
 
-        this.leagueTable9 = new ArrayList<>(teams9.values());
-        this.teamLinks9 = new ArrayList<>();
-        this.teamLinks9.add(null);
-        for (Team tab : this.leagueTable9) {
-            this.teamLinks9.add(tab.getId(), tab);
+        leagueTable9 = new ArrayList<>(teams9.values());
+        teamLinks9 = new ArrayList<>();
+        teamLinks9.add(null);
+        for (Team tab : leagueTable9) {
+            teamLinks9.add(tab.getId(), tab);
         }
-        Collections.sort(this.leagueTable9);
+        Collections.sort(leagueTable9);
 
         gamePostponed = new HashMap<>();
         notPlaying = new HashMap<>();
@@ -187,67 +187,67 @@ public class FutsalService {
 
     public void updateTeamData5(Map<Integer, Team> teamMap) {
         LOGGER.info("update team data");
-        this.teams5 = teamMap;
-        this.teamLogos = new ArrayList<>(teamMap.values());
-        this.leagueTable5 = new ArrayList<>(this.teams5.values());
-        this.teamLinks5 = new ArrayList<>();
-        this.teamLinks5.add(null);
-        for (Team tab : this.leagueTable5) {
+        teams5 = teamMap;
+        teamLogos = new ArrayList<>(teamMap.values());
+        leagueTable5 = new ArrayList<>(teams5.values());
+        teamLinks5 = new ArrayList<>();
+        teamLinks5.add(null);
+        for (Team tab : leagueTable5) {
             teamLinks5.add(tab.getId(), tab);
         }
-        Collections.sort(this.leagueTable5);
+        Collections.sort(leagueTable5);
     }
 
     public void updateTeamData6(Map<Integer, Team> teamMap) {
         LOGGER.info("update team data");
-        this.teams6 = teamMap;
-        this.teamLogos = new ArrayList<>(teamMap.values());
-        this.leagueTable6 = new ArrayList<>(this.teams6.values());
-        this.teamLinks6 = new ArrayList<>();
-        this.teamLinks6.add(null);
-        for (Team tab : this.leagueTable6) {
+        teams6 = teamMap;
+        teamLogos = new ArrayList<>(teamMap.values());
+        leagueTable6 = new ArrayList<>(teams6.values());
+        teamLinks6 = new ArrayList<>();
+        teamLinks6.add(null);
+        for (Team tab : leagueTable6) {
             teamLinks6.add(tab.getId(), tab);
         }
-        Collections.sort(this.leagueTable6);
+        Collections.sort(leagueTable6);
     }
 
     public void updateTeamData7(Map<Integer, Team> teamMap) {
         LOGGER.info("update team data");
-        this.teams7 = teamMap;
-        this.teamLogos = new ArrayList<>(teamMap.values());
-        this.leagueTable7 = new ArrayList<>(this.teams7.values());
-        this.teamLinks7 = new ArrayList<>();
-        this.teamLinks7.add(null);
-        for (Team tab : this.leagueTable7) {
+        teams7 = teamMap;
+        teamLogos = new ArrayList<>(teamMap.values());
+        leagueTable7 = new ArrayList<>(teams7.values());
+        teamLinks7 = new ArrayList<>();
+        teamLinks7.add(null);
+        for (Team tab : leagueTable7) {
             teamLinks7.add(tab.getId(), tab);
         }
-        Collections.sort(this.leagueTable7);
+        Collections.sort(leagueTable7);
     }
 
     public void updateTeamData8(Map<Integer, Team> teamMap) {
         LOGGER.info("update team data");
-        this.teams8 = teamMap;
-        this.teamLogos = new ArrayList<>(teamMap.values());
-        this.leagueTable8 = new ArrayList<>(this.teams8.values());
-        this.teamLinks8 = new ArrayList<>();
-        this.teamLinks8.add(null);
-        for (Team tab : this.leagueTable8) {
+        teams8 = teamMap;
+        teamLogos = new ArrayList<>(teamMap.values());
+        leagueTable8 = new ArrayList<>(teams8.values());
+        teamLinks8 = new ArrayList<>();
+        teamLinks8.add(null);
+        for (Team tab : leagueTable8) {
             teamLinks8.add(tab.getId(), tab);
         }
-        Collections.sort(this.leagueTable8);
+        Collections.sort(leagueTable8);
     }
 
     public void updateTeamData9(Map<Integer, Team> teamMap) {
         LOGGER.info("update team data");
-        this.teams9 = teamMap;
-        this.teamLogos = new ArrayList<>(teamMap.values());
-        this.leagueTable9 = new ArrayList<>(this.teams9.values());
-        this.teamLinks9 = new ArrayList<>();
-        this.teamLinks9.add(null);
-        for (Team tab : this.leagueTable9) {
+        teams9 = teamMap;
+        teamLogos = new ArrayList<>(teamMap.values());
+        leagueTable9 = new ArrayList<>(teams9.values());
+        teamLinks9 = new ArrayList<>();
+        teamLinks9.add(null);
+        for (Team tab : leagueTable9) {
             teamLinks9.add(tab.getId(), tab);
         }
-        Collections.sort(this.leagueTable9);
+        Collections.sort(leagueTable9);
     }
 
     public void removeDummyTeam(List<Team> teams) {
@@ -397,7 +397,7 @@ public class FutsalService {
     }
 
     public Team getTeam5(int index) {
-        return this.teams5.get(index);
+        return teams5.get(index);
     }
 
     public Map<Integer, Team> getTeams6() {
@@ -409,7 +409,7 @@ public class FutsalService {
     }
 
     public Team getTeam6(int index) {
-        return this.teams6.get(index);
+        return teams6.get(index);
     }
 
     public Map<Integer, Team> getTeams7() {
@@ -421,7 +421,7 @@ public class FutsalService {
     }
 
     public Team getTeam7(int index) {
-        return this.teams7.get(index);
+        return teams7.get(index);
     }
 
     public Map<Integer, Team> getTeams8() {
@@ -433,7 +433,7 @@ public class FutsalService {
     }
 
     public Team getTeam8(int index) {
-        return this.teams8.get(index);
+        return teams8.get(index);
     }
 
     public Map<Integer, Team> getTeams9() {
@@ -445,7 +445,7 @@ public class FutsalService {
     }
 
     public Team getTeam9(int index) {
-        return this.teams9.get(index);
+        return teams9.get(index);
     }
 
     public Map<Integer, String> getGamePostponed() {

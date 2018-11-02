@@ -68,10 +68,11 @@
         <h3>Rezultati kola:</h3>
         <table>
           <tr th:each="rez: ${results}">
-            <td th:text="${rez.homeTeam}">Some name</td>
-            <td th:text="${rez.awayTeam}">Some name</td> 
+            <td th:text="${rez.homeTeam}">Some name</td>            
             <td th:text="${rez.goalsHome}">Some name</td> 
-            <td th:text="${rez.goalsAway}">Some name</td> 
+            <td>-</td>
+            <td th:text="${rez.goalsAway}">Some name</td>
+            <td th:text="${rez.awayTeam}">Some name</td> 
           </tr>
         </table>
       </div>

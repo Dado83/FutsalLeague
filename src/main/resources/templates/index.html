@@ -36,6 +36,7 @@
             <th>N</th>
             <th>I</th>
             <th>G</th>
+            <th>GR</th>
             <th>B</th>
           </tr>
           <tr th:each="tim, i: ${leagueTable5}">
@@ -47,6 +48,7 @@
             <td th:text="${tim.gamesDrew}">Some name</td> 
             <td th:text="${tim.gamesLost}">Some name</td> 
             <td th:text="${tim.goalsScored} + ':' + ${tim.goalsConceded}">Some name</td> 
+            <td th:text="${tim.goalsScored - tim.goalsConceded}"></td>
             <td th:text="${tim.points}">Some name</td> 
           </tr>
         </table>
@@ -76,6 +78,7 @@
             <th>N</th>
             <th>I</th>
             <th>G</th>
+            <th>GR</th>
             <th>B</th>
           </tr>
           <tr th:each="tim, i: ${leagueTable6}">
@@ -87,6 +90,7 @@
             <td th:text="${tim.gamesDrew}">Some name</td> 
             <td th:text="${tim.gamesLost}">Some name</td> 
             <td th:text="${tim.goalsScored} + ':' + ${tim.goalsConceded}">Some name</td> 
+            <td th:text="${tim.goalsScored - tim.goalsConceded}"></td>
             <td th:text="${tim.points}">Some name</td> 
           </tr>
         </table>
@@ -116,6 +120,7 @@
             <th>N</th>
             <th>I</th>
             <th>G</th>
+            <th>GR</th>
             <th>B</th>
           </tr>
           <tr th:each="tim, i: ${leagueTable7}">
@@ -127,6 +132,7 @@
             <td th:text="${tim.gamesDrew}">Some name</td> 
             <td th:text="${tim.gamesLost}">Some name</td> 
             <td th:text="${tim.goalsScored} + ':' + ${tim.goalsConceded}">Some name</td> 
+            <td th:text="${tim.goalsScored - tim.goalsConceded}"></td>
             <td th:text="${tim.points}">Some name</td> 
           </tr>
         </table>
@@ -156,6 +162,7 @@
             <th>N</th>
             <th>I</th>
             <th>G</th>
+            <th>GR</th>
             <th>B</th>
           </tr>
           <tr th:each="tim, i: ${leagueTable8}">
@@ -167,6 +174,7 @@
             <td th:text="${tim.gamesDrew}">Some name</td> 
             <td th:text="${tim.gamesLost}">Some name</td> 
             <td th:text="${tim.goalsScored} + ':' + ${tim.goalsConceded}">Some name</td> 
+            <td th:text="${tim.goalsScored - tim.goalsConceded}"></td>
             <td th:text="${tim.points}">Some name</td> 
           </tr>
         </table>
@@ -196,6 +204,7 @@
             <th>N</th>
             <th>I</th>
             <th>G</th>
+            <th>GR</th>
             <th>B</th>
           </tr>
           <tr th:each="tim, i: ${leagueTable9}">
@@ -207,6 +216,7 @@
             <td th:text="${tim.gamesDrew}">Some name</td> 
             <td th:text="${tim.gamesLost}">Some name</td> 
             <td th:text="${tim.goalsScored} + ':' + ${tim.goalsConceded}">Some name</td> 
+            <td th:text="${tim.goalsScored - tim.goalsConceded}"></td>
             <td th:text="${tim.points}">Some name</td> 
           </tr>
         </table>
