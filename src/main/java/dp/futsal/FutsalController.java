@@ -44,7 +44,10 @@ public class FutsalController {
                 .addAttribute("leagueTable8", service.getLeagueTable8())
                 .addAttribute("leagueTable9", service.getLeagueTable9())
                 .addAttribute("teamLinks", service.getTeamLinks5())
-                .addAttribute("teamLogos", service.getTeamLogos());
+                .addAttribute("teamLogos", service.getTeamLogos())
+                .addAttribute("leagueDates", service.getLeagueDates())
+                .addAttribute("freeTeam", service.getNotPlaying())
+                .addAttribute("postponed", service.getGamePostponed());
     }
 
     @GetMapping("/")

@@ -12,9 +12,8 @@
     <div th:insert="fragments :: header"></div>
     <div class="content">
       <div class="results">
-        <h5>Rezultati prethodnog kola</h5>
-        <table>
-          <p th:text="${lastMDay} + '. kolo (2005)'"></p>
+        <p th:text="${lastMDay} + '. kolo (2005)'"></p>
+        <table>         
           <tr th:each="rez: ${results5.get(lastMDay)}">
             <td th:text="${rez.homeTeam}">Some name</td> 
             <td th:text="${rez.goalsHome}">Some name</td> 
@@ -22,10 +21,13 @@
             <td th:text="${rez.goalsAway}">Some name</td> 
             <td th:text="${rez.awayTeam}">Some name</td> 
           </tr>
+          <tr>
+            <td colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
+          </tr>
         </table>
       </div>
       <div class="table">
-        <h4>Tabela</h4>
+        <p>Tabela</p>
         <table>
           <tr>
             <th></th>
@@ -54,9 +56,8 @@
         </table>
       </div>
       <div class="results">
-        <h5>Rezultati prethodnog kola</h5>
-        <table>
-          <p th:text="${lastMDay} + '. kolo (2006)'"></p>
+        <p th:text="${lastMDay} + '. kolo (2006)'"></p>
+        <table>        
           <tr th:each="rez: ${results6.get(lastMDay)}">
             <td th:text="${rez.homeTeam}">Some name</td>           
             <td th:text="${rez.goalsHome}">Some name</td> 
@@ -64,10 +65,13 @@
             <td th:text="${rez.goalsAway}">Some name</td> 
             <td th:text="${rez.awayTeam}">Some name</td> 
           </tr>
+          <tr>
+            <td colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
+          </tr>
         </table>
       </div>
       <div class="table">
-        <h4>Tabela</h4>
+        <p>Tabela</p>
         <table>
           <tr>
             <th></th>
@@ -96,9 +100,8 @@
         </table>
       </div>
       <div class="results">
-        <h5>Rezultati prethodnog kola</h5>
-        <table>
-          <p th:text="${lastMDay} + '. kolo (2007)'"></p>
+        <p th:text="${lastMDay} + '. kolo (2007)'"></p>
+        <table>         
           <tr th:each="rez: ${results7.get(lastMDay)}">
             <td th:text="${rez.homeTeam}">Some name</td>        
             <td th:text="${rez.goalsHome}">Some name</td> 
@@ -106,10 +109,13 @@
             <td th:text="${rez.goalsAway}">Some name</td> 
             <td th:text="${rez.awayTeam}">Some name</td> 
           </tr>
+          <tr>
+            <td colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
+          </tr>
         </table>
       </div>
       <div class="table">
-        <h4>Tabela</h4>
+        <p>Tabela</p>
         <table>
           <tr>
             <th></th>
@@ -138,9 +144,8 @@
         </table>
       </div>
       <div class="results">
-        <h5>Rezultati prethodnog kola</h5>
-        <table>
-          <p th:text="${lastMDay} + '. kolo (2008)'"></p>
+        <p th:text="${lastMDay} + '. kolo (2008)'"></p>
+        <table>         
           <tr th:each="rez: ${results8.get(lastMDay)}">
             <td th:text="${rez.homeTeam}">Some name</td>          
             <td th:text="${rez.goalsHome}">Some name</td>        
@@ -148,10 +153,13 @@
             <td th:text="${rez.goalsAway}">Some name</td>
             <td th:text="${rez.awayTeam}">Some name</td> 
           </tr>
+          <tr>
+            <td colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
+          </tr>
         </table>
       </div>
       <div class="table">
-        <h4>Tabela</h4>
+        <p>Tabela</p>
         <table>
           <tr>
             <th></th>
@@ -180,9 +188,8 @@
         </table>
       </div>
       <div class="results">
-        <h5>Rezultati prethodnog kola</h5>
-        <table>
-          <p th:text="${lastMDay} + '. kolo (2009)'"></p>
+        <p th:text="${lastMDay} + '. kolo (2009)'"></p>
+        <table>         
           <tr th:each="rez: ${results9.get(lastMDay)}">
             <td th:text="${rez.homeTeam}">Some name</td>           
             <td th:text="${rez.goalsHome}">Some name</td> 
@@ -190,10 +197,13 @@
             <td th:text="${rez.goalsAway}">Some name</td> 
             <td th:text="${rez.awayTeam}">Some name</td> 
           </tr>
+          <tr>
+            <td colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
+          </tr>
         </table>
       </div>
       <div class="table">
-        <h4>Tabela</h4>
+        <p>Tabela</p>
         <table>
           <tr>
             <th></th>
@@ -222,7 +232,7 @@
         </table>
       </div>
       <div class="fixture">
-        <h3>Naredno (<span th:text="${lastMDay + 1}"></span>.) kolo</h3>
+        <h4 th:text="|Naredno (${lastMDay + 1}.) kolo|"></h4>
         <table>
           <tr th:each="par: ${pairs.get(lastMDay + 1)}">
             <td th:text="${teamLinks.get(par.homeTeam).teamName.equals('pauza')} ? 'pauzira': ${teamLinks.get(par.homeTeam).teamName}">Some name</td>

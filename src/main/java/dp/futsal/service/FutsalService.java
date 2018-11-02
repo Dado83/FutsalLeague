@@ -18,6 +18,7 @@ public class FutsalService {
     private Fixture fixture;
     private TeamCollection teamCollection;
     private Map<Integer, List<MatchPair>> matchDaypairs;
+    private Map<Integer, String> leagueDates;
     private Map<Integer, List<MatchResult>> results5;
     private Map<Integer, List<MatchResult>> results6;
     private Map<Integer, List<MatchResult>> results7;
@@ -48,6 +49,7 @@ public class FutsalService {
         fixture = new Fixture();
         fixture.loadFixturesFromJson("http://fairplay.hol.es/futsal/berger9-10.json");
         matchDaypairs = fixture.getPairs();
+        leagueDates = fixture.loadDatesFromJson("http://fairplay.hol.es/futsal/leagueDates.json");
 
         results5 = fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results5.json");
         results6 = fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results6.json");
@@ -266,6 +268,14 @@ public class FutsalService {
 
     public void setPairs(Map<Integer, List<MatchPair>> pairs) {
         this.matchDaypairs = pairs;
+    }
+
+    public Map<Integer, String> getLeagueDates() {
+        return leagueDates;
+    }
+
+    public void setLeagueDates(Map<Integer, String> leagueDates) {
+        this.leagueDates = leagueDates;
     }
 
     public Map<Integer, List<MatchResult>> getResults5() {

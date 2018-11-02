@@ -30,6 +30,7 @@ public class Fixture {
 
     private Map<Integer, List<MatchResult>> resultsMap = new HashMap<>();
     private Map<Integer, List<MatchPair>> pairsMap = new HashMap<>();
+    private Map<Integer, String> leagueMatchDates = new HashMap<>();
 
     public void saveResultsToJson(String fileString, Map<Integer, List<MatchResult>> results) {
         Gson gson = new Gson();
@@ -94,12 +95,40 @@ public class Fixture {
         return resultsMap = (Map<Integer, List<MatchResult>>) gson.fromJson(stringBuilder.toString(), type);
     }
 
+    public Map<Integer, String> loadDatesFromJson(String file) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<Map<Integer, String>>() {
+        }.getType();
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            URL url = new URL(file);
+            InputStream inputStream = url.openStream();
+            Reader reader = new InputStreamReader(inputStream, Charset.forName("utf-8").newDecoder());
+            BufferedReader buffReader = new BufferedReader(reader);
+            String line;
+            while ((line = buffReader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+        } catch (IOException e) {
+            LOGGER.severe("nisam ucitao dates json");
+        }
+        return leagueMatchDates = (Map<Integer, String>) gson.fromJson(stringBuilder.toString(), type);
+    }
+
     public Map<Integer, List<MatchResult>> getResults() {
         return resultsMap;
     }
 
     public Map<Integer, List<MatchPair>> getPairs() {
         return pairsMap;
+    }
+
+    public Map<Integer, String> getLeagueMatchDates() {
+        return leagueMatchDates;
+    }
+
+    public void setLeagueMatchDates(Map<Integer, String> leagueMatchDates) {
+        this.leagueMatchDates = leagueMatchDates;
     }
 
 }
