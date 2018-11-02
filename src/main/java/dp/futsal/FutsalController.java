@@ -31,19 +31,20 @@ public class FutsalController {
 
     @ModelAttribute
     public void addCommonAttributes(Model model) {
-        model.addAttribute("pairs", service.getPairs());
-        model.addAttribute("results5", service.getResults5());
-        model.addAttribute("results6", service.getResults6());
-        model.addAttribute("results7", service.getResults7());
-        model.addAttribute("results8", service.getResults8());
-        model.addAttribute("results9", service.getResults9());
-        model.addAttribute("leagueTable5", service.getLeagueTable5());
-        model.addAttribute("leagueTable6", service.getLeagueTable6());
-        model.addAttribute("leagueTable7", service.getLeagueTable7());
-        model.addAttribute("leagueTable8", service.getLeagueTable8());
-        model.addAttribute("leagueTable9", service.getLeagueTable9());
-        model.addAttribute("teamLinks", service.getTeamLinks5());
-        model.addAttribute("teamLogos", service.getTeamLogos());
+        model
+                .addAttribute("pairs", service.getPairs())
+                .addAttribute("results5", service.getResults5())
+                .addAttribute("results6", service.getResults6())
+                .addAttribute("results7", service.getResults7())
+                .addAttribute("results8", service.getResults8())
+                .addAttribute("results9", service.getResults9())
+                .addAttribute("leagueTable5", service.getLeagueTable5())
+                .addAttribute("leagueTable6", service.getLeagueTable6())
+                .addAttribute("leagueTable7", service.getLeagueTable7())
+                .addAttribute("leagueTable8", service.getLeagueTable8())
+                .addAttribute("leagueTable9", service.getLeagueTable9())
+                .addAttribute("teamLinks", service.getTeamLinks5())
+                .addAttribute("teamLogos", service.getTeamLogos());
     }
 
     @GetMapping("/")
