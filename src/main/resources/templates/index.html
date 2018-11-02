@@ -21,7 +21,7 @@
             <td th:text="${rez.goalsAway}">Some name</td> 
             <td th:text="${rez.awayTeam}">Some name</td> 
           </tr>
-          <tr>
+          <tr th:if="${lastMDay} > 0">
             <td colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
           </tr>
         </table>
@@ -65,7 +65,7 @@
             <td th:text="${rez.goalsAway}">Some name</td> 
             <td th:text="${rez.awayTeam}">Some name</td> 
           </tr>
-          <tr>
+          <tr th:if="${lastMDay} > 0">
             <td colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
           </tr>
         </table>
@@ -109,7 +109,7 @@
             <td th:text="${rez.goalsAway}">Some name</td> 
             <td th:text="${rez.awayTeam}">Some name</td> 
           </tr>
-          <tr>
+          <tr th:if="${lastMDay} > 0">
             <td colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
           </tr>
         </table>
@@ -153,7 +153,7 @@
             <td th:text="${rez.goalsAway}">Some name</td>
             <td th:text="${rez.awayTeam}">Some name</td> 
           </tr>
-          <tr>
+          <tr th:if="${lastMDay} > 0">
             <td colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
           </tr>
         </table>
@@ -197,8 +197,8 @@
             <td th:text="${rez.goalsAway}">Some name</td> 
             <td th:text="${rez.awayTeam}">Some name</td> 
           </tr>
-          <tr>
-            <td colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
+          <tr th:if="${lastMDay} > 0">
+            <td th:if="${lastMDay} > 0" colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
           </tr>
         </table>
       </div>
@@ -235,8 +235,16 @@
         <h4 th:text="|Naredno (${lastMDay + 1}.) kolo|"></h4>
         <table>
           <tr th:each="par: ${pairs.get(lastMDay + 1)}">
-            <td th:text="${teamLinks.get(par.homeTeam).teamName.equals('pauza')} ? 'pauzira': ${teamLinks.get(par.homeTeam).teamName}">Some name</td>
-            <td th:text="${teamLinks.get(par.awayTeam).teamName.equals('pauza')} ? 'pauzira': ${teamLinks.get(par.awayTeam).teamName}">Some name</td> 
+            <div th:if="${teamLinks.get(par.homeTeam).teamName.equals('pauza')}">
+              <p th:text="|${teamLinks.get(par.awayTeam).teamName} pauzira|"></p>
+            </div>
+            <div th:if="${teamLinks.get(par.awayTeam).teamName.equals('pauza')}">
+              <p th:text="|${teamLinks.get(par.homeTeam).teamName} pauzira|"></p>              
+            </div>     
+            <div th:unless="${teamLinks.get(par.homeTeam).teamName.equals('pauza') or teamLinks.get(par.awayTeam).teamName.equals('pauza')}">
+              <td th:text="${teamLinks.get(par.homeTeam).teamName}"></td>
+              <td th:text="${teamLinks.get(par.awayTeam).teamName}"></td>          
+            </div>
           </tr>
         </table>
         <a th:href="@{/results}">Svi rezultati...</a><a th:href="@{/fixtures}" th:text="Raspored..."></a>
