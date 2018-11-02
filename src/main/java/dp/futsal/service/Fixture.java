@@ -39,7 +39,7 @@ public class Fixture {
         File file = new File(fileString);
         try {
             OutputStream outputStream = new FileOutputStream(file);
-            Writer writer = new OutputStreamWriter(outputStream);
+            Writer writer = new OutputStreamWriter(outputStream, Charset.forName("utf-8").newEncoder());
             try (BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
                 bufferedWriter.write(json);
             }
