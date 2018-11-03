@@ -168,11 +168,14 @@ public class FutsalController {
         for (int i = 1; i < 11; i++) {
             service.getTeam5(i).delMatchDay(form.getmDay() + "");
         }
+        
+        service.getGamePostponed().remove(form.getmDay());
 
         form.saveResults(service.getResults5(), service.getGamePostponed(), service.getNotPlaying());
         service.setTeams5(form.getTeamMap());
         service.updateTeamData5(service.getTeams5());
         model.addAttribute("result", form.getResults());
+        model.addAttribute("god", "2005");
         LOGGER.info(service.getGamePostponed().toString());
         LOGGER.info(service.getNotPlaying().toString());
 
@@ -188,11 +191,14 @@ public class FutsalController {
         for (int i = 1; i < 11; i++) {
             service.getTeam6(i).delMatchDay(form.getmDay() + "");
         }
+        
+        service.getGamePostponed().remove(form.getmDay());
 
         form.saveResults(service.getResults6(), service.getGamePostponed(), service.getNotPlaying());
         service.setTeams6(form.getTeamMap());
         service.updateTeamData6(service.getTeams6());
         model.addAttribute("result", form.getResults());
+        model.addAttribute("god", "2006");
 
         return "addedResults";
     }
@@ -207,10 +213,13 @@ public class FutsalController {
             service.getTeam7(i).delMatchDay(form.getmDay() + "");
         }
 
+        service.getGamePostponed().remove(form.getmDay());
+        
         form.saveResults(service.getResults7(), service.getGamePostponed(), service.getNotPlaying());
         service.setTeams7(form.getTeamMap());
         service.updateTeamData7(service.getTeams7());
         model.addAttribute("result", form.getResults());
+        model.addAttribute("god", "2007");
 
         return "addedResults";
     }
@@ -224,11 +233,14 @@ public class FutsalController {
         for (int i = 1; i < 11; i++) {
             service.getTeam8(i).delMatchDay(form.getmDay() + "");
         }
+        
+        service.getGamePostponed().remove(form.getmDay());
 
         form.saveResults(service.getResults8(), service.getGamePostponed(), service.getNotPlaying());
         service.setTeams8(form.getTeamMap());
         service.updateTeamData8(service.getTeams8());
         model.addAttribute("result", form.getResults());
+        model.addAttribute("god", "2008");
 
         return "addedResults";
     }
@@ -242,11 +254,14 @@ public class FutsalController {
         for (int i = 1; i < 11; i++) {
             service.getTeam9(i).delMatchDay(form.getmDay() + "");
         }
+        
+        service.getGamePostponed().remove(form.getmDay());
 
         form.saveResults(service.getResults9(), service.getGamePostponed(), service.getNotPlaying());
         service.setTeams9(form.getTeamMap());
         service.updateTeamData9(service.getTeams9());
         model.addAttribute("result", form.getResults());
+        model.addAttribute("god", "2009");
 
         return "addedResults";
     }

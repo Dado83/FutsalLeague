@@ -25,6 +25,9 @@
           <tr th:if="${lastMDay} > 0">
             <td colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
           </tr>
+          <tr th:if="${postponed?.get(lastMDay)}">
+            <td colspan="5" th:text="|${postponed.get(lastMDay)} nije odigrano|"></td>   
+          </tr>
         </table>
       </div>
       <div class="table">
@@ -66,9 +69,6 @@
             <td th:text="${rez.goalsAway}">Some name</td> 
             <td th:text="${rez.awayTeam}">Some name</td> 
           </tr>
-          <tr th:if="${lastMDay} > 0">
-            <td colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
-          </tr>
         </table>
       </div>
       <div class="table">
@@ -109,10 +109,7 @@
             <td>-</td>
             <td th:text="${rez.goalsAway}">Some name</td> 
             <td th:text="${rez.awayTeam}">Some name</td> 
-          </tr>
-          <tr th:if="${lastMDay} > 0">
-            <td colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
-          </tr>
+          </tr>         
         </table>
       </div>
       <div class="table">
@@ -153,10 +150,7 @@
             <td>-</td>
             <td th:text="${rez.goalsAway}">Some name</td>
             <td th:text="${rez.awayTeam}">Some name</td> 
-          </tr>
-          <tr th:if="${lastMDay} > 0">
-            <td colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
-          </tr>
+          </tr>        
         </table>
       </div>
       <div class="table">
@@ -197,10 +191,7 @@
             <td>-</td>
             <td th:text="${rez.goalsAway}">Some name</td> 
             <td th:text="${rez.awayTeam}">Some name</td> 
-          </tr>
-          <tr th:if="${lastMDay} > 0">
-            <td th:if="${lastMDay} > 0" colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
-          </tr>
+          </tr>         
         </table>
       </div>
       <div class="table">

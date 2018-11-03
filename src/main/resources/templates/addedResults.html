@@ -12,6 +12,7 @@
     <div th:insert="fragments :: teamEdit"></div>
     <div class="results">
       <table>
+        <p th:text="${god}"></p>
         <tr th:each="r: ${result}">
           <td th:text="${r}"></td>
         </tr>
