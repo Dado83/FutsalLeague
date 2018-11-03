@@ -19,6 +19,7 @@ public class Team implements Comparable<Team> {
     private List<MatchResult> results;
     private String kitColor;
     private String venue;
+    private String gameTime;
 
     public Team() {
 
@@ -213,6 +214,14 @@ public class Team implements Comparable<Team> {
 
     public void setVenue(String venue) {
         this.venue = venue;
+    }
+
+    public String getGameTime() {
+        return gameTime;
+    }
+
+    public void setGameTime(String gameTime) {
+        this.gameTime = gameTime;
     }
 
 }

@@ -183,6 +183,10 @@ a:link, a:visited {
     text-align: left;
 }
 
+.results p.results {
+    text-decoration: underline;
+}
+
 .teamResults table td:nth-of-type(2) {
     text-align: right;
     padding: 0 5px;

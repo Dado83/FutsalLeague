@@ -140,6 +140,7 @@ public class FutsalService {
         team5.setTeamCity(team.getTeamCity());
         team5.setKitColor(team.getKitColor());
         team5.setVenue(team.getVenue());
+        team5.setGameTime(team.getGameTime());
         updateTeamData5(getTeams5());
         Team team6 = getTeam6(team.getId());
         team6.setId(team.getId());
@@ -147,12 +148,14 @@ public class FutsalService {
         team6.setTeamCity(team.getTeamCity());
         team6.setKitColor(team.getKitColor());
         team6.setVenue(team.getVenue());
+        team6.setGameTime(team.getGameTime());
         updateTeamData6(getTeams6());
         Team team7 = getTeam7(team.getId());
         team7.setId(team.getId());
         team7.setTeamName(team.getTeamName());
         team7.setTeamCity(team.getTeamCity());
         team7.setKitColor(team.getKitColor());
+        team7.setGameTime(team.getGameTime());
         team7.setVenue(team.getVenue());
         updateTeamData7(getTeams7());
         Team team8 = getTeam8(team.getId());
@@ -161,6 +164,7 @@ public class FutsalService {
         team8.setTeamCity(team.getTeamCity());
         team8.setKitColor(team.getKitColor());
         team8.setVenue(team.getVenue());
+        team8.setGameTime(team.getGameTime());
         updateTeamData8(getTeams8());
         Team team9 = getTeam9(team.getId());
         team9.setId(team.getId());
@@ -168,6 +172,7 @@ public class FutsalService {
         team9.setTeamCity(team.getTeamCity());
         team9.setKitColor(team.getKitColor());
         team9.setVenue(team.getVenue());
+        team9.setGameTime(team.getGameTime());
         updateTeamData9(getTeams9());
     }
 
