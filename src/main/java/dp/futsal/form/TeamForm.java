@@ -1,4 +1,4 @@
-package dp.futsal.service;
+package dp.futsal.form;
 
 
 public class TeamForm {

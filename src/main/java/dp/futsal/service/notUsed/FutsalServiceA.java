@@ -6,7 +6,7 @@ import dp.futsal.service.MatchPair;
 import dp.futsal.service.MatchResult;
 import dp.futsal.service.Team;
 import dp.futsal.service.TeamCollection;
-import dp.futsal.service.TeamForm;
+import dp.futsal.form.TeamForm;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;

@@ -1,7 +1,7 @@
 package dp.futsal;
 
 import dp.futsal.service.FutsalService;
-import dp.futsal.service.MatchDayForm;
+import dp.futsal.form.MatchDayForm;
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import dp.futsal.service.TeamForm;
+import dp.futsal.form.TeamForm;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
