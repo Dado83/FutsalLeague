@@ -111,27 +111,50 @@ public class FutsalService {
     }
 
     public void saveFutsalData() {
-        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results5.json", results5);
-        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results6.json", results6);
-        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results7.json", results7);
-        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results8.json", results8);
-        fixture.saveResultsToJson("D:/fer plej/Zimska liga 2018-2019/app data/results9.json", results9);
-        ftpClient.uploadFile("futsal/results5.json", "D:/fer plej/Zimska liga 2018-2019/app data/results5.json");
-        ftpClient.uploadFile("futsal/results6.json", "D:/fer plej/Zimska liga 2018-2019/app data/results6.json");
-        ftpClient.uploadFile("futsal/results7.json", "D:/fer plej/Zimska liga 2018-2019/app data/results7.json");
-        ftpClient.uploadFile("futsal/results8.json", "D:/fer plej/Zimska liga 2018-2019/app data/results8.json");
-        ftpClient.uploadFile("futsal/results9.json", "D:/fer plej/Zimska liga 2018-2019/app data/results9.json");
+        String results5localFile = "D:/fer plej/Zimska liga 2018-2019/app data/results5.json";
+        String results6localFile = "D:/fer plej/Zimska liga 2018-2019/app data/results6.json";
+        String results7localFile = "D:/fer plej/Zimska liga 2018-2019/app data/results7.json";
+        String results8localFile = "D:/fer plej/Zimska liga 2018-2019/app data/results8.json";
+        String results9localFile = "D:/fer plej/Zimska liga 2018-2019/app data/results9.json";
+        String teams5localFile = "D:/fer plej/Zimska liga 2018-2019/app data/teams5.json";
+        String teams6localFile = "D:/fer plej/Zimska liga 2018-2019/app data/teams6.json";
+        String teams7localFile = "D:/fer plej/Zimska liga 2018-2019/app data/teams7.json";
+        String teams8localFile = "D:/fer plej/Zimska liga 2018-2019/app data/teams8.json";
+        String teams9localFile = "D:/fer plej/Zimska liga 2018-2019/app data/teams9.json";
+        
+        String results5serverFile = "futsal/results5.json";
+        String results6serverFile = "futsal/results6.json";
+        String results7serverFile = "futsal/results7.json";
+        String results8serverFile = "futsal/results8.json";
+        String results9serverFile = "futsal/results9.json";
+        String teams5serverFile = "futsal/teams5.json";
+        String teams6serverFile = "futsal/teams6.json";
+        String teams7serverFile = "futsal/teams7.json";
+        String teams8serverFile = "futsal/teams8.json";
+        String teams9serverFile = "futsal/teams9.json";
+        
+        
+        fixture.saveResultsToJson(results5localFile, results5);
+        fixture.saveResultsToJson(results6localFile, results6);
+        fixture.saveResultsToJson(results7localFile, results7);
+        fixture.saveResultsToJson(results8localFile, results8);
+        fixture.saveResultsToJson(results9localFile, results9);
+        ftpClient.uploadFile(results5serverFile, results5localFile);
+        ftpClient.uploadFile(results6serverFile, results6localFile);
+        ftpClient.uploadFile(results7serverFile, results7localFile);
+        ftpClient.uploadFile(results8serverFile, results8localFile);
+        ftpClient.uploadFile(results9serverFile, results9localFile);
 
-        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams5.json", teams5);
-        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams6.json", teams6);
-        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams7.json", teams7);
-        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams8.json", teams8);
-        teamCollection.saveTeamsToJson("D:/fer plej/Zimska liga 2018-2019/app data/teams9.json", teams9);
-        ftpClient.uploadFile("futsal/teams5.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams5.json");
-        ftpClient.uploadFile("futsal/teams6.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams6.json");
-        ftpClient.uploadFile("futsal/teams7.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams7.json");
-        ftpClient.uploadFile("futsal/teams8.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams8.json");
-        ftpClient.uploadFile("futsal/teams9.json", "D:/fer plej/Zimska liga 2018-2019/app data/teams9.json");
+        teamCollection.saveTeamsToJson(teams5localFile, teams5);
+        teamCollection.saveTeamsToJson(teams6localFile, teams6);
+        teamCollection.saveTeamsToJson(teams7localFile, teams7);
+        teamCollection.saveTeamsToJson(teams8localFile, teams8);
+        teamCollection.saveTeamsToJson(teams9localFile, teams9);
+        ftpClient.uploadFile(teams5serverFile, teams5localFile);
+        ftpClient.uploadFile(teams6serverFile, teams6localFile);
+        ftpClient.uploadFile(teams7serverFile, teams7localFile);
+        ftpClient.uploadFile(teams8serverFile, teams8localFile);
+        ftpClient.uploadFile(teams9serverFile, teams9localFile);
     }
 
     public void updateTeam(TeamForm team) {
