@@ -66,6 +66,7 @@ public class FutsalService {
         teams9 = teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams9.json");
 
         teamLogos = new ArrayList<>(teams5.values());
+
         leagueTable5 = new ArrayList<>(teams5.values());
         teamLinks5 = new ArrayList<>();
         teamLinks5.add(null);
@@ -111,92 +112,52 @@ public class FutsalService {
     }
 
     public void saveFutsalData() {
-        String results5localFile = "D:/fer plej/Zimska liga 2018-2019/app data/results5.json";
-        String results6localFile = "D:/fer plej/Zimska liga 2018-2019/app data/results6.json";
-        String results7localFile = "D:/fer plej/Zimska liga 2018-2019/app data/results7.json";
-        String results8localFile = "D:/fer plej/Zimska liga 2018-2019/app data/results8.json";
-        String results9localFile = "D:/fer plej/Zimska liga 2018-2019/app data/results9.json";
-        String teams5localFile = "D:/fer plej/Zimska liga 2018-2019/app data/teams5.json";
-        String teams6localFile = "D:/fer plej/Zimska liga 2018-2019/app data/teams6.json";
-        String teams7localFile = "D:/fer plej/Zimska liga 2018-2019/app data/teams7.json";
-        String teams8localFile = "D:/fer plej/Zimska liga 2018-2019/app data/teams8.json";
-        String teams9localFile = "D:/fer plej/Zimska liga 2018-2019/app data/teams9.json";
-        
-        String results5serverFile = "futsal/results5.json";
-        String results6serverFile = "futsal/results6.json";
-        String results7serverFile = "futsal/results7.json";
-        String results8serverFile = "futsal/results8.json";
-        String results9serverFile = "futsal/results9.json";
-        String teams5serverFile = "futsal/teams5.json";
-        String teams6serverFile = "futsal/teams6.json";
-        String teams7serverFile = "futsal/teams7.json";
-        String teams8serverFile = "futsal/teams8.json";
-        String teams9serverFile = "futsal/teams9.json";
-        
-        
-        fixture.saveResultsToJson(results5localFile, results5);
-        fixture.saveResultsToJson(results6localFile, results6);
-        fixture.saveResultsToJson(results7localFile, results7);
-        fixture.saveResultsToJson(results8localFile, results8);
-        fixture.saveResultsToJson(results9localFile, results9);
-        ftpClient.uploadFile(results5serverFile, results5localFile);
-        ftpClient.uploadFile(results6serverFile, results6localFile);
-        ftpClient.uploadFile(results7serverFile, results7localFile);
-        ftpClient.uploadFile(results8serverFile, results8localFile);
-        ftpClient.uploadFile(results9serverFile, results9localFile);
+        String appDataLocalDir = "D:/fer plej/Zimska liga 2018-2019/app data/";
+        String appDataServerDir = "futsal/";
 
-        teamCollection.saveTeamsToJson(teams5localFile, teams5);
-        teamCollection.saveTeamsToJson(teams6localFile, teams6);
-        teamCollection.saveTeamsToJson(teams7localFile, teams7);
-        teamCollection.saveTeamsToJson(teams8localFile, teams8);
-        teamCollection.saveTeamsToJson(teams9localFile, teams9);
-        ftpClient.uploadFile(teams5serverFile, teams5localFile);
-        ftpClient.uploadFile(teams6serverFile, teams6localFile);
-        ftpClient.uploadFile(teams7serverFile, teams7localFile);
-        ftpClient.uploadFile(teams8serverFile, teams8localFile);
-        ftpClient.uploadFile(teams9serverFile, teams9localFile);
+        fixture.saveResultsToJson(appDataLocalDir + "results5.json", results5);
+        fixture.saveResultsToJson(appDataLocalDir + "results6.json", results6);
+        fixture.saveResultsToJson(appDataLocalDir + "results7.json", results7);
+        fixture.saveResultsToJson(appDataLocalDir + "results8.json", results8);
+        fixture.saveResultsToJson(appDataLocalDir + "results9.json", results9);
+        ftpClient.uploadFile(appDataServerDir + "results5.json", appDataLocalDir + "results5.json");
+        ftpClient.uploadFile(appDataServerDir + "results6.json", appDataLocalDir + "results6.json");
+        ftpClient.uploadFile(appDataServerDir + "results7.json", appDataLocalDir + "results7.json");
+        ftpClient.uploadFile(appDataServerDir + "results8.json", appDataLocalDir + "results8.json");
+        ftpClient.uploadFile(appDataServerDir + "results9.json", appDataLocalDir + "results9.json");
+
+        teamCollection.saveTeamsToJson(appDataLocalDir + "teams5.json", teams5);
+        teamCollection.saveTeamsToJson(appDataLocalDir + "teams6.json", teams6);
+        teamCollection.saveTeamsToJson(appDataLocalDir + "teams7.json", teams7);
+        teamCollection.saveTeamsToJson(appDataLocalDir + "teams8.json", teams8);
+        teamCollection.saveTeamsToJson(appDataLocalDir + "teams9.json", teams9);
+        ftpClient.uploadFile(appDataServerDir + "teams5.json", appDataLocalDir + "teams5.json");
+        ftpClient.uploadFile(appDataServerDir + "teams6.json", appDataLocalDir + "teams6.json");
+        ftpClient.uploadFile(appDataServerDir + "teams7.json", appDataLocalDir + "teams7.json");
+        ftpClient.uploadFile(appDataServerDir + "teams8.json", appDataLocalDir + "teams8.json");
+        ftpClient.uploadFile(appDataServerDir + "teams9.json", appDataLocalDir + "teams9.json");
     }
 
     public void updateTeam(TeamForm team) {
-        Team team5 = getTeam5(team.getId());
-        team5.setId(team.getId());
-        team5.setTeamName(team.getTeamName());
-        team5.setTeamCity(team.getTeamCity());
-        team5.setKitColor(team.getKitColor());
-        team5.setVenue(team.getVenue());
-        team5.setGameTime(team.getGameTime());
+        Team t5 = getTeam5(team.getId());
+        Team t6 = getTeam6(team.getId());
+        Team t7 = getTeam7(team.getId());
+        Team t8 = getTeam8(team.getId());
+        Team t9 = getTeam9(team.getId());
+
+        Team[] teams = {t5, t6, t7, t8, t9};
+        for (Team team1 : teams) {
+            team1.setId(team.getId());
+            team1.setTeamName(team.getTeamName());
+            team1.setTeamCity(team.getTeamCity());
+            team1.setKitColor(team.getKitColor());
+            team1.setVenue(team.getVenue());
+            team1.setGameTime(team.getGameTime());
+        }
         updateTeamData5(getTeams5());
-        Team team6 = getTeam6(team.getId());
-        team6.setId(team.getId());
-        team6.setTeamName(team.getTeamName());
-        team6.setTeamCity(team.getTeamCity());
-        team6.setKitColor(team.getKitColor());
-        team6.setVenue(team.getVenue());
-        team6.setGameTime(team.getGameTime());
         updateTeamData6(getTeams6());
-        Team team7 = getTeam7(team.getId());
-        team7.setId(team.getId());
-        team7.setTeamName(team.getTeamName());
-        team7.setTeamCity(team.getTeamCity());
-        team7.setKitColor(team.getKitColor());
-        team7.setGameTime(team.getGameTime());
-        team7.setVenue(team.getVenue());
         updateTeamData7(getTeams7());
-        Team team8 = getTeam8(team.getId());
-        team8.setId(team.getId());
-        team8.setTeamName(team.getTeamName());
-        team8.setTeamCity(team.getTeamCity());
-        team8.setKitColor(team.getKitColor());
-        team8.setVenue(team.getVenue());
-        team8.setGameTime(team.getGameTime());
         updateTeamData8(getTeams8());
-        Team team9 = getTeam9(team.getId());
-        team9.setId(team.getId());
-        team9.setTeamName(team.getTeamName());
-        team9.setTeamCity(team.getTeamCity());
-        team9.setKitColor(team.getKitColor());
-        team9.setVenue(team.getVenue());
-        team9.setGameTime(team.getGameTime());
         updateTeamData9(getTeams9());
     }
 
