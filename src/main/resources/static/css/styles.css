@@ -1,20 +1,35 @@
 :root {
-    --color: white; 
+    --logoWidth: 50px;
+    --clubLogoWidth: 100px;
+    --fontSize30: 30px;
+    --fontSize25: 25px;
+    --fontSize20: 20px;
+    --fontSize15: 15px;
+    --gridTemplateColumns: auto auto;
+    --black: #1d1815;
+    --yellow: #f0dc00;
+    --red: #db2519;
+    --orange: #e6760e;
 }
 
 
 body {
-    background-color: var(--color);
+    background-color: whitesmoke;
 }
 
 .content {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: var(--gridTemplateColumns);
     margin-bottom: 40px;
 }
 
 #logo {
-    width: 5%
+    width: var(--logoWidth);
+}
+
+#trophy {
+    width: var(--logoWidth);
+    float: right;
 }
 
 .fpLogo {
@@ -22,13 +37,13 @@ body {
 }
 
 .title1 {
-    font-size: 25px;
+    font-size: var(--fontSize25);
     vertical-align: top;
     font-style: italic;
 }
 
 .title2 {
-    font-size: 30px;
+    font-size: var(--fontSize30);
     vertical-align: bottom;
     font-style: italic;
     font-weight: bold;
@@ -40,11 +55,13 @@ body {
 
 .logos {
     display: flex;
+    text-align: center;
 }
 
 .logos a, .logos p {
     text-decoration: none;
     text-align: center;
+    font-size: var(--fontSize15);
 }
 
 a:link, a:visited {
@@ -52,11 +69,12 @@ a:link, a:visited {
 }
 
 .logos li {
-    list-style: none
+    list-style: none;
+    padding: 5px;
 }
 
 .logos img {
-    width: 100%
+    width: var(--clubLogoWidth);
 }
 
 .pauza {
@@ -98,7 +116,7 @@ a:link, a:visited {
 }
 
 .headerEdit > span:first-of-type {
-    font-size: 30px;
+    font-size: var(--fontSize30);
     padding: 20px 0px;
 }
 
@@ -132,11 +150,11 @@ a:link, a:visited {
 }
 
 .table th {
-    font-size: 15px;
+    font-size: var(--fontSize15);
 }
 
 .table td {
-    font-size: 20px;
+    font-size:  var(--fontSize20);
     padding: 3px 10px
 }
 
@@ -154,7 +172,7 @@ a:link, a:visited {
 }
 
 .results table {
-    font-size: 20px;
+    font-size:  var(--fontSize20);
     margin-bottom: 20px; 
     border-collapse: collapse;
 }
@@ -185,6 +203,7 @@ a:link, a:visited {
 
 .results p.results {
     text-decoration: underline;
+    font-size:  var(--fontSize25);
 }
 
 .teamResults table td:nth-of-type(2) {
@@ -212,7 +231,7 @@ a:link, a:visited {
 .fixtures {
     margin: 10px;
     padding: 5px;
-    font-size: 18px;
+    font-size: var(--fontSize20);
 }
 
 .fixtures td:nth-child(1) {
@@ -234,28 +253,55 @@ a:link, a:visited {
     padding-right: 15px;
     padding-bottom: 5px;
     border-bottom: 1px solid black;
-    font-size: 20px;
+    font-size: var(--fontSize20);
 }
 
 .fixture a {
-    font-size: 20px;
+    font-size: var(--fontSize20);
     margin: 0 25px 0 0; 
 }
 
 .fixture p {
-    font-size: 20px;
+    font-size: var(--fontSize20);
 }
 
 .footer {
     clear: both;
     margin-top: 100px;
+    text-align: center;
+}
+
+.footer p {
+    font-size: var(--fontSize20);
 }
 
 
 @media screen and (max-width: 768px) {
+    :root {
+        --color: white; 
+        --logoWidth: 30px;
+        --clubLogoWidth: 70px;
+        --fontSize30: 25px;
+        --fontSize25: 20px;
+        --fontSize20: 15px;
+        --fontSize15: 10px;
+    }
 
 }
 
 @media screen and (max-width: 480px) {
-
+    :root {
+        --color: white; 
+        --logoWidth: 20px;
+        --clubLogoWidth: 50px;
+        --fontSize30: 20px;
+        --fontSize25: 15px;
+        --fontSize20: 12px;
+        --fontSize15: 10px;
+        --gridTemplateColumns: auto;
+    }
+    
+    #trophy {
+        display: none;
+    }
 }
