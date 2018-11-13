@@ -46,24 +46,25 @@ public class FutsalService {
 
     public void init() {
         LOGGER.info("init");
+        String httpUrl = "http://www.fairplayliga.cf/futsal/";
         ftpClient = new FTP();
         fixture = new Fixture();
-        fixture.loadFixturesFromJson("http://fairplay.hol.es/futsal/berger9-10.json");
+        fixture.loadFixturesFromJson(httpUrl + "berger9-10.json");
         matchDaypairs = fixture.getPairs();
-        leagueDates = fixture.loadDatesFromJson("http://fairplay.hol.es/futsal/leagueDates.json");
+        leagueDates = fixture.loadDatesFromJson(httpUrl + "leagueDates.json");
 
-        results5 = fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results5.json");
-        results6 = fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results6.json");
-        results7 = fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results7.json");
-        results8 = fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results8.json");
-        results9 = fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results9.json");
+        results5 = fixture.loadResultsFromJson(httpUrl + "results5.json");
+        results6 = fixture.loadResultsFromJson(httpUrl + "results6.json");
+        results7 = fixture.loadResultsFromJson(httpUrl + "results7.json");
+        results8 = fixture.loadResultsFromJson(httpUrl + "results8.json");
+        results9 = fixture.loadResultsFromJson(httpUrl + "results9.json");
 
         teamCollection = new TeamCollection();
-        teams5 = teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams5.json");
-        teams6 = teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams6.json");
-        teams7 = teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams7.json");
-        teams8 = teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams8.json");
-        teams9 = teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams9.json");
+        teams5 = teamCollection.loadTeamsFromJson(httpUrl + "teams5.json");
+        teams6 = teamCollection.loadTeamsFromJson(httpUrl + "teams6.json");
+        teams7 = teamCollection.loadTeamsFromJson(httpUrl + "teams7.json");
+        teams8 = teamCollection.loadTeamsFromJson(httpUrl + "teams8.json");
+        teams9 = teamCollection.loadTeamsFromJson(httpUrl + "teams9.json");
 
         teamLogos = new ArrayList<>(teams5.values());
 
@@ -113,7 +114,7 @@ public class FutsalService {
 
     public void saveFutsalData() {
         String appDataLocalDir = "D:/fer plej/Zimska liga 2018-2019/app data/";
-        String appDataServerDir = "futsal/";
+        String appDataServerDir = "public_html/futsal/";
 
         fixture.saveResultsToJson(appDataLocalDir + "results5.json", results5);
         fixture.saveResultsToJson(appDataLocalDir + "results6.json", results6);
