@@ -21,7 +21,7 @@ public class FTP {
         ftp = new FTPClient();
         try {
             inputStream = new FileInputStream(uploadFile);
-            ftp.connect("files9.hostinger.in");
+            ftp.connect("files.000webhost.com");
 
             BufferedReader reader = new BufferedReader(new FileReader(new File("C:/ftp.txt")));
             String line;
