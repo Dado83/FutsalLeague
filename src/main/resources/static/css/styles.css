@@ -1,6 +1,7 @@
 :root {
     --logoWidth: 50px;
     --clubLogoWidth: 100px;
+    --clubLogoHeight: 100px;
     --fontSize30: 30px;
     --fontSize25: 25px;
     --fontSize20: 20px;
@@ -64,6 +65,10 @@ body {
     font-size: var(--fontSize15);
 }
 
+.logos p {
+    vertical-align: bottom
+}
+
 a:link, a:visited {
     color: blue;
 }
@@ -75,6 +80,7 @@ a:link, a:visited {
 
 .logos img {
     width: var(--clubLogoWidth);
+    height: var(--clubLogoHeight);
 }
 
 .pauza {
@@ -279,8 +285,9 @@ a:link, a:visited {
 @media screen and (max-width: 768px) {
     :root {
         --color: white; 
-        --logoWidth: 30px;
+        --logoWidth: 30px;      
         --clubLogoWidth: 70px;
+        --clubLogoHeight: 70px;
         --fontSize30: 25px;
         --fontSize25: 20px;
         --fontSize20: 15px;
@@ -294,6 +301,7 @@ a:link, a:visited {
         --color: white; 
         --logoWidth: 20px;
         --clubLogoWidth: 50px;
+        --clubLogoHeight: 50px;
         --fontSize30: 20px;
         --fontSize25: 15px;
         --fontSize20: 12px;
