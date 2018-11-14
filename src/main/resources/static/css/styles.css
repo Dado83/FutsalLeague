@@ -1,7 +1,5 @@
 :root {
     --logoWidth: 50px;
-    --clubLogoWidth: 100px;
-    --clubLogoHeight: 100px;
     --fontSize30: 30px;
     --fontSize25: 25px;
     --fontSize20: 20px;
@@ -50,23 +48,16 @@ body {
     font-weight: bold;
 }
 
-.header {
-
-}
-
 .logos {
     display: flex;
-    text-align: center;
+    text-align: center; 
+    padding: 0;
 }
 
 .logos a, .logos p {
     text-decoration: none;
     text-align: center;
     font-size: var(--fontSize15);
-}
-
-.logos a {
-   
 }
 
 a:link, a:visited {
@@ -79,8 +70,11 @@ a:link, a:visited {
 }
 
 .logos img {
-    width: var(--clubLogoWidth);
-    height: var(--clubLogoHeight);
+    max-height: 100px;
+    max-width: 100px;
+    min-height: 50%;
+    min-width: 50%;
+    width: 100%;
 }
 
 .pauza {
@@ -286,8 +280,6 @@ a:link, a:visited {
     :root {
         --color: white; 
         --logoWidth: 30px;      
-        --clubLogoWidth: 70px;
-        --clubLogoHeight: 70px;
         --fontSize30: 25px;
         --fontSize25: 20px;
         --fontSize20: 15px;
@@ -300,15 +292,13 @@ a:link, a:visited {
     :root {
         --color: white; 
         --logoWidth: 20px;
-        --clubLogoWidth: 50px;
-        --clubLogoHeight: 50px;
         --fontSize30: 20px;
         --fontSize25: 15px;
         --fontSize20: 12px;
         --fontSize15: 10px;
         --gridTemplateColumns: auto;
     }
-    
+
     #trophy {
         display: none;
     }
