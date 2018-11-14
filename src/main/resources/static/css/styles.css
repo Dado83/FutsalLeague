@@ -9,6 +9,7 @@
     --yellow: #f0dc00;
     --red: #db2519;
     --orange: #e6760e;
+    --display: table-cell;
 }
 
 
@@ -19,6 +20,7 @@ body {
 .content {
     display: grid;
     grid-template-columns: var(--gridTemplateColumns);
+    justify-items: center;
     margin-bottom: 40px;
 }
 
@@ -52,6 +54,7 @@ body {
     display: flex;
     text-align: center; 
     padding: 0;
+    justify-content: space-between;
 }
 
 .logos a, .logos p {
@@ -139,6 +142,10 @@ a:link, a:visited {
     padding: 5px;
 }
 
+.table {
+    margin-left: 10px;
+}
+
 .table table {
     background-color: seashell;
     border-collapse: collapse;
@@ -169,6 +176,10 @@ a:link, a:visited {
 
 .table tr:nth-of-type(n+2):nth-of-type(-n+5) td:nth-of-type(1) {
     background-color: blue;
+}
+
+.results {
+    
 }
 
 .results table {
@@ -275,6 +286,10 @@ a:link, a:visited {
     font-size: var(--fontSize20);
 }
 
+.display {
+    display: var(--display);
+}
+
 
 @media screen and (max-width: 768px) {
     :root {
@@ -284,6 +299,7 @@ a:link, a:visited {
         --fontSize25: 20px;
         --fontSize20: 15px;
         --fontSize15: 10px;
+        --display: none;
     }
 
 }
@@ -297,6 +313,7 @@ a:link, a:visited {
         --fontSize20: 12px;
         --fontSize15: 10px;
         --gridTemplateColumns: auto;
+        --display: none;
     }
 
     #trophy {

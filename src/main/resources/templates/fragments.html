@@ -12,16 +12,14 @@
       <span class="title1">Fair Play</span><span class="title2">Liga Budućih Šampiona</span>
       <img id="trophy" th:src="@{/trophy.png}"/>
     </div>
-    <div class="header" th:fragment="header"> 
-      <ul class="logos">
-        <li th:each="tim: ${teamLogos}">
+    <ul class="logos"  th:fragment="header">
+      <li th:each="tim: ${teamLogos}">
+        <a th:class="${tim?.teamName}" th:href="@{/team(index = ${tim?.id})}">
           <img th:class="${tim?.teamName}" th:src="@{${tim?.id} + '.png'}"/>
-          <p>
-            <a th:class="${tim?.teamName}" th:href="@{/team(index = ${tim?.id})}" th:text="${tim?.teamName}"></a>
-          </p>
-        </li>
-      </ul>
-    </div>
+          <p th:text="${tim?.teamName}"></p>
+        </a>       
+      </li>
+    </ul>
     <div class="headerEdit" th:fragment="teamEdit"> 
       <p>Izmjena ekipa</p>
       <div class="teamEdit"> 
