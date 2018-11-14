@@ -65,8 +65,8 @@ body {
     font-size: var(--fontSize15);
 }
 
-.logos p {
-    vertical-align: bottom
+.logos a {
+   
 }
 
 a:link, a:visited {
