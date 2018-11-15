@@ -10,11 +10,12 @@
     --red: #db2519;
     --orange: #e6760e;
     --display: table-cell;
+    --clubLogoWidth: 400px;
 }
 
 
 body {
-    background-color: whitesmoke;
+    background-color: ;
 }
 
 .content {
@@ -64,7 +65,7 @@ body {
 }
 
 a:link, a:visited {
-    color: blue;
+    color: var(--red);
 }
 
 .logos li {
@@ -147,7 +148,7 @@ a:link, a:visited {
 }
 
 .table table {
-    background-color: seashell;
+    background-color: ;
     border-collapse: collapse;
 }
 
@@ -171,15 +172,15 @@ a:link, a:visited {
 }
 
 .table tr:nth-of-type(1) {
-    background-color: yellow;
+    background-color: var(--orange);
 }
 
 .table tr:nth-of-type(n+2):nth-of-type(-n+5) td:nth-of-type(1) {
-    background-color: blue;
+    background-color: var(--yellow);
 }
 
 .results {
-    
+
 }
 
 .results table {
@@ -204,7 +205,7 @@ a:link, a:visited {
 }
 
 .results td:nth-of-type(n+2):nth-of-type(-n+4) {
-    background-color: blue;
+    background-color: var(--yellow);
     font-weight: bold;
 }
 
@@ -222,8 +223,8 @@ a:link, a:visited {
     padding: 0 5px;
 }
 
-.teamResults {
-
+.team table {
+    
 }
 
 .teamResults table td:nth-of-type(6) {
@@ -290,23 +291,29 @@ a:link, a:visited {
     display: var(--display);
 }
 
+.teamLogo {
+    float: right;
+    max-width: var(--clubLogoWidth);
+    width: 100%;
+
+}
+
 
 @media screen and (max-width: 768px) {
     :root {
-        --color: white; 
         --logoWidth: 30px;      
         --fontSize30: 25px;
         --fontSize25: 20px;
         --fontSize20: 15px;
         --fontSize15: 10px;
         --display: none;
+        --clubLogoWidth: 200px;
     }
 
 }
 
 @media screen and (max-width: 480px) {
     :root {
-        --color: white; 
         --logoWidth: 20px;
         --fontSize30: 20px;
         --fontSize25: 15px;
@@ -314,6 +321,7 @@ a:link, a:visited {
         --fontSize15: 10px;
         --gridTemplateColumns: auto;
         --display: none;
+        --clubLogoWidth: 100px;
     }
 
     #trophy {

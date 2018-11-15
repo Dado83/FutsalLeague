@@ -15,7 +15,7 @@
     <ul class="logos"  th:fragment="header">
       <li th:each="tim: ${teamLogos}">
         <a th:class="${tim?.teamName}" th:href="@{/team(index = ${tim?.id})}">
-          <img th:class="${tim?.teamName}" th:src="@{${tim?.id} + '.png'}"/>
+          <img th:class="${tim?.teamName}" th:src="@{'logos/' + ${tim?.id} + '.png'}"/>
           <p th:text="${tim?.teamName}"></p>
         </a>       
       </li>

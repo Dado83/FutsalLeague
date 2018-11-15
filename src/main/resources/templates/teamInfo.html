@@ -11,6 +11,7 @@
     <div th:insert="fragments :: header"></div>
     <div class="team">
       <h3 th:text="${team5.teamName}"></h3>
+      <img class="teamLogo" th:src="@{'/logosBig/' + ${team5.id} + '.png'}"/>
       <table>
         <tr>
           <td>Ekipa</td><td th:text="${team5.teamName}"></td>
