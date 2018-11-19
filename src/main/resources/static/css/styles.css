@@ -123,9 +123,30 @@ a:link, a:visited {
     padding: 5px;
 }
 
-.deleteMday {
+.adminActions {
+    display: flex;
+    flex-direction: column;
     float: right;
+    clear: both;
+}
+
+.deleteMday {
     padding: 5px;
+    text-align: right;
+    margin-bottom: 10px;
+}
+
+.save, .save:visited, save:link {
+    padding: 5px;
+    text-align: right;
+    color: var(--yellow);
+    margin-bottom: 8px;
+}
+
+.newsletter {
+    padding: 5px;
+    text-align: right;
+    color: var(--orange);
 }
 
 .headerEdit {
@@ -161,7 +182,7 @@ a:link, a:visited {
 }
 
 .table {
-    margin-left: 10px;
+    margin-left: 10px; 
 }
 
 .table table {
@@ -200,12 +221,58 @@ a:link, a:visited {
     font-weight: bold;
 }
 
-.results {
+.bulletin h1, .bulletin h2, .bulletin h3 {
+    text-align: center;
+}
 
+.resultsNews table {
+    font-size: var(--fontSize20);
+    margin-bottom: 20px; 
+    border-collapse: collapse;
+}
+
+.resultsNews tr td {
+    padding: 0 5px;
+}
+
+.resultsNews p {
+    font-size: var(--fontSize20);
+    font-weight: bold;
+}
+
+.news {
+    font-size: var(--fontSize20);
+}
+
+.resultsNews td:nth-of-type(n+2):nth-of-type(-n+4) {
+    padding: 0 2px;
+}
+
+.resultsNews td:first-of-type {
+    padding-right: 20px;
+}
+
+.resultsNews td:last-of-type {
+    padding-left: 20px;
+}
+
+.fixtureNews{
+    margin-bottom: 100px;
+    padding: 0 5px 0 0;
+    font-size: var(--fontSize20);
+}
+
+.fixtureNews td:nth-of-type(2) {
+    padding: 0 10px
+}
+
+.fixtureNews td:nth-of-type(4) {
+    padding-left: 50px;
+    font-style: italic;
 }
 
 .results table {
-    font-size:  var(--fontSize20);
+    font-size: var(--fontSize20);
     margin-bottom: 20px; 
     border-collapse: collapse;
     background-color:  rgba(255, 255, 255, 0.8);
@@ -229,6 +296,7 @@ a:link, a:visited {
 .results td:nth-of-type(n+2):nth-of-type(-n+4) {
     background-color: var(--yellow);
     font-weight: bold;
+    padding: 0 3px;
 }
 
 .results p {

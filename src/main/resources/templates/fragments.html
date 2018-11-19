@@ -47,9 +47,10 @@
           <a th:each="r: ${pairs}" th:href="@{/admin/enterMatchDayResults9(index = ${r.key})}" th:text="${r.key} + '. kolo'">unos rezultata kola</a>
         </div>
       </div>
-      <div>      
-        <span class="save"><a th:href="@{/admin/save}">Snimi promjene</a></span>
-        <a class="deleteMday" th:href="@{/admin/deleteMDay}">Brisi zadnje kolo</a>
+      <div class="adminActions">             
+        <a class="deleteMday" th:href="@{/admin/deleteMDay}" onclick="return confirm('Brišem zadnje kolo?')">Briši zadnje kolo</a>
+        <a class="save" th:href="@{/admin/save}" onclick="return confirm('Sačuvaj?')">Snimi promjene</a>
+        <a class="newsletter" th:href="@{/admin/newsletter}">Bilten</a>
       </div>
     </div>
     <div class="footer" th:fragment="footer">

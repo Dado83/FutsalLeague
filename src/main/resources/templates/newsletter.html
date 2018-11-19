@@ -7,31 +7,31 @@
     <link rel="stylesheet" type="text/css" href="/css/styles.css"/>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
   </head>
-  <body>
-    <div th:insert="fragments :: fpLOGO"></div>
-    <div th:insert="fragments :: header"></div>
-    <div class="content">
-      <div class="results">
-        <p th:if="${lastMDay} > 0" th:text="${lastMDay} + '. kolo (2009)'"></p>
-        <p class="results" th:unless="${lastMDay} > 0">Fair Play Liga Budućih Šampiona<br>počinje 24/25.11.2018. godine utakmicama prvog kola</p>
+  <body style="background: white">
+    <div class="bulletin">
+      <h1>FAIR PLAY Liga Budućih Šampiona</h1>
+      <h2>takmičarska sezona 2017/18</h2>
+      <h3 th:text="|BILTEN br. ${lastMDay}|"></h3>
+      <br/>
+      <p th:text="|1. Registracija utakmica ${lastMDay}. kola|"></p>
+      <p th:text="|2. Raspored utakmica ${lastMDay + 1}. kola|"></p>
+      <br/>
+      <p>ad 1)</p>  
+      <p class="news" th:if="${lastMDay} > 0" th:text="|${freeTeam.get(lastMDay)} pauzira|"></p>
+      <p class="news" th:if="${postponed?.get(lastMDay)}" th:text="|${postponed.get(lastMDay)} nije odigrano|"></p>
+      <div class="resultsNews">
+        <p>godište: 2009</p>
         <table>         
           <tr th:each="rez: ${results9.get(lastMDay)}">
             <td th:text="${rez.homeTeam}">Some name</td>           
             <td th:text="${rez.goalsHome}">Some name</td> 
             <td>-</td>
             <td th:text="${rez.goalsAway}">Some name</td> 
-            <td th:text="${rez.awayTeam}">Some name</td> 
-            <tr th:if="${lastMDay} > 0">
-              <td colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
-            </tr>
-            <tr th:if="${postponed?.get(lastMDay)}">
-              <td colspan="5" th:text="|${postponed.get(lastMDay)} nije odigrano|"></td>   
-            </tr>
+            <td th:text="${rez.awayTeam}">Some name</td>     
           </tr>         
         </table>
       </div>
       <div class="table">
-        <p>Tabela</p>
         <table>
           <tr>
             <th></th>
@@ -59,8 +59,9 @@
           </tr>
         </table>
       </div>
-      <div class="results">
-        <p th:if="${lastMDay} > 0" th:text="${lastMDay} + '. kolo (2008)'"></p>
+      <br/>
+      <div class="resultsNews">
+        <p>godište: 2008</p>
         <table>         
           <tr th:each="rez: ${results8.get(lastMDay)}">
             <td th:text="${rez.homeTeam}">Some name</td>          
@@ -72,7 +73,6 @@
         </table>
       </div>
       <div class="table">
-        <p>Tabela</p>
         <table>
           <tr>
             <th></th>
@@ -99,9 +99,10 @@
             <td th:text="${tim.points}">Some name</td> 
           </tr>
         </table>
-      </div>      
-      <div class="results">
-        <p th:if="${lastMDay} > 0" th:text="${lastMDay} + '. kolo (2007)'"></p>
+      </div>     
+      <br/>
+      <div class="resultsNews">
+        <p>godište: 2007</p>
         <table>         
           <tr th:each="rez: ${results7.get(lastMDay)}">
             <td th:text="${rez.homeTeam}">Some name</td>        
@@ -113,7 +114,6 @@
         </table>
       </div>
       <div class="table">
-        <p>Tabela</p>
         <table>
           <tr>
             <th></th>
@@ -141,8 +141,9 @@
           </tr>
         </table>
       </div>
-      <div class="results">
-        <p th:if="${lastMDay} > 0" th:text="${lastMDay} + '. kolo (2006)'"></p>
+      <br/>
+      <div class="resultsNews">
+        <p>godište: 2006</p>
         <table>        
           <tr th:each="rez: ${results6.get(lastMDay)}">
             <td th:text="${rez.homeTeam}">Some name</td>           
@@ -154,7 +155,6 @@
         </table>
       </div>
       <div class="table">
-        <p>Tabela</p>
         <table>
           <tr>
             <th></th>
@@ -182,8 +182,9 @@
           </tr>
         </table>
       </div>      
-      <div class="results">
-        <p th:if="${lastMDay} > 0" th:text="${lastMDay} + '. kolo (2005)'"></p>
+      <br/>
+      <div class="resultsNews">
+        <p>godište: 2005</p>
         <table>         
           <tr th:each="rez: ${results5.get(lastMDay)}">
             <td th:text="${rez.homeTeam}">Some name</td> 
@@ -195,7 +196,6 @@
         </table>
       </div>
       <div class="table">
-        <p>Tabela</p>
         <table>
           <tr>
             <th></th>
@@ -223,8 +223,12 @@
           </tr>
         </table>
       </div>
-      <div class="fixture">
-        <h4 th:text="|${lastMDay + 1}. kolo (${leagueDates.get(lastMDay + 1)})|"></h4>
+      <br/>
+      <br/>
+      <br/>
+      <p>ad 2)</p>
+      <div class="fixtureNews">
+        <h4 th:text="|${lastMDay + 1}. kolo, ${leagueDates.get(lastMDay + 1)}|"></h4>
         <table>
           <tr th:each="par: ${pairs.get(lastMDay + 1)}">
             <div th:if="${teamLinks.get(par.homeTeam).teamName.equals('pauza')}">
@@ -235,13 +239,13 @@
             </div>     
             <div th:unless="${teamLinks.get(par.homeTeam).teamName.equals('pauza') or teamLinks.get(par.awayTeam).teamName.equals('pauza')}">
               <td th:text="${teamLinks.get(par.homeTeam).teamName}"></td>
-              <td th:text="${teamLinks.get(par.awayTeam).teamName}"></td>          
+              <td>-</td>
+              <td th:text="${teamLinks.get(par.awayTeam).teamName}"></td>   
+              <td th:text="|${teamLinks.get(par.homeTeam).venue}, ${teamLinks.get(par.homeTeam).gameTime}|"></td>
             </div>
           </tr>
         </table>
-        <a th:href="@{/results}">Svi rezultati...</a><a th:href="@{/fixtures}" th:text="Raspored..."></a>
       </div>
-    </div>    
-    <div th:insert="fragments :: footer"></div>
+    </div>        
   </body>
 </html>

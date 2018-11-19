@@ -1,4 +1,4 @@
-$(document).ready(function(){
+$(function(){
 
        $("#g5").click(function(){
         $("#k5").show();

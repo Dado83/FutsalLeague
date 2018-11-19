@@ -31,6 +31,7 @@ public class FutsalController {
 
     @ModelAttribute
     public void addCommonAttributes(Model model) {
+        int lastMDay = service.getResults5().size();
         model
                 .addAttribute("pairs", service.getPairs())
                 .addAttribute("results5", service.getResults5())
@@ -47,15 +48,14 @@ public class FutsalController {
                 .addAttribute("teamLogos", service.getTeamLogos())
                 .addAttribute("leagueDates", service.getLeagueDates())
                 .addAttribute("freeTeam", service.getNotPlaying())
-                .addAttribute("postponed", service.getGamePostponed());
+                .addAttribute("postponed", service.getGamePostponed())
+                .addAttribute("lastMDay", lastMDay);
     }
 
     @GetMapping("/")
     public String index(Model model) {
         LOGGER.info("inside index");
 
-        int lastMDay = service.getResults5().size();
-        model.addAttribute("lastMDay", lastMDay);
         service.removeDummyTeam(service.getLeagueTable5());
         service.removeDummyTeam(service.getLeagueTable6());
         service.removeDummyTeam(service.getLeagueTable7());
@@ -72,8 +72,12 @@ public class FutsalController {
 
     @GetMapping("/admin")
     public String admin(Model model) {
-
         return "adminDashboard";
+    }
+
+    @GetMapping("/admin/newsletter")
+    public String newsletter() {
+        return "newsletter";
     }
 
     @GetMapping("/team")
@@ -168,7 +172,7 @@ public class FutsalController {
         for (int i = 1; i < 11; i++) {
             service.getTeam5(i).delMatchDay(form.getmDay() + "");
         }
-        
+
         service.getGamePostponed().remove(form.getmDay());
 
         form.saveResults(service.getResults5(), service.getGamePostponed(), service.getNotPlaying());
@@ -191,7 +195,7 @@ public class FutsalController {
         for (int i = 1; i < 11; i++) {
             service.getTeam6(i).delMatchDay(form.getmDay() + "");
         }
-        
+
         service.getGamePostponed().remove(form.getmDay());
 
         form.saveResults(service.getResults6(), service.getGamePostponed(), service.getNotPlaying());
@@ -214,7 +218,7 @@ public class FutsalController {
         }
 
         service.getGamePostponed().remove(form.getmDay());
-        
+
         form.saveResults(service.getResults7(), service.getGamePostponed(), service.getNotPlaying());
         service.setTeams7(form.getTeamMap());
         service.updateTeamData7(service.getTeams7());
@@ -233,7 +237,7 @@ public class FutsalController {
         for (int i = 1; i < 11; i++) {
             service.getTeam8(i).delMatchDay(form.getmDay() + "");
         }
-        
+
         service.getGamePostponed().remove(form.getmDay());
 
         form.saveResults(service.getResults8(), service.getGamePostponed(), service.getNotPlaying());
@@ -254,7 +258,7 @@ public class FutsalController {
         for (int i = 1; i < 11; i++) {
             service.getTeam9(i).delMatchDay(form.getmDay() + "");
         }
-        
+
         service.getGamePostponed().remove(form.getmDay());
 
         form.saveResults(service.getResults9(), service.getGamePostponed(), service.getNotPlaying());
