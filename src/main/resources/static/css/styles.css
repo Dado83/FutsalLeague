@@ -398,6 +398,25 @@ a:link, a:visited {
 @media screen and (max-width: 768px) {
     :root {
         --logoWidth: 20px;
+        --fontSize30: 25px;
+        --fontSize25: 20px;
+        --fontSize20: 16px;
+        --fontSize15: 12px;
+        --gridTemplateColumns: auto;
+        --display: none;
+        --clubLogoWidth: 100px;
+        --wallpaper: url(/wall.png);
+    }
+
+    #trophy {
+        display: none;
+    }
+
+}
+
+@media screen and (max-width: 600px) {
+    :root {
+        --logoWidth: 20px;
         --fontSize30: 20px;
         --fontSize25: 15px;
         --fontSize20: 12px;
@@ -405,10 +424,17 @@ a:link, a:visited {
         --gridTemplateColumns: auto;
         --display: none;
         --clubLogoWidth: 100px;
+        --wallpaper: url(/wall.png);
     }
 
     #trophy {
         display: none;
+    }
+
+    .logos img {
+        max-height: 30px;
+        max-width: 30px;
+        width: 100%;
     }
 
 }
