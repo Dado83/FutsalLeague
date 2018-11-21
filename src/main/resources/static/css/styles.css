@@ -11,14 +11,14 @@
     --orange: #e6760e;
     --display: table-cell;
     --clubLogoWidth: 400px;
-    --wallpaper: url(/wall.png);
+    --wallpaper: url(/wall2.jpg);
 }
 
 
 body {
     background-image: var(--wallpaper);
-    background-repeat: repeat;
     background-attachment: fixed;
+    background-size: cover;
 }
 
 .content {
@@ -68,7 +68,7 @@ body {
 }
 
 a:link, a:visited {
-    color: var(--red);
+    color: white;
 }
 
 .logos li {
@@ -405,6 +405,10 @@ a:link, a:visited {
         --gridTemplateColumns: auto;
         --display: none;
         --clubLogoWidth: 100px;
+    }
+
+    #trophy {
+        display: none;
     }
 
 }
