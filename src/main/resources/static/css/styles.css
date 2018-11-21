@@ -397,19 +397,6 @@ a:link, a:visited {
 
 @media screen and (max-width: 768px) {
     :root {
-        --logoWidth: 30px;      
-        --fontSize30: 25px;
-        --fontSize25: 20px;
-        --fontSize20: 15px;
-        --fontSize15: 10px;
-        --display: none;
-        --clubLogoWidth: 200px;
-    }
-
-}
-
-@media screen and (max-width: 480px) {
-    :root {
         --logoWidth: 20px;
         --fontSize30: 20px;
         --fontSize25: 15px;
@@ -420,7 +407,4 @@ a:link, a:visited {
         --clubLogoWidth: 100px;
     }
 
-    #trophy {
-        display: none;
-    }
 }
