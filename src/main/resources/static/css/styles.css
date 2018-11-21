@@ -405,7 +405,7 @@ a:link, a:visited {
         --gridTemplateColumns: auto;
         --display: none;
         --clubLogoWidth: 100px;
-        --wallpaper: url(/wall.png);
+        --wallpaper: url(/wall.jpg);
     }
 
     #trophy {
@@ -430,7 +430,7 @@ a:link, a:visited {
         --gridTemplateColumns: auto;
         --display: none;
         --clubLogoWidth: 100px;
-        --wallpaper: url(/wall.png);
+        --wallpaper: url(/wall.jpg);
     }
 
     #trophy {
