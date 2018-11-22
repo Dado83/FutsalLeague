@@ -26,11 +26,12 @@
         <a th:each="tim: ${teamLogos}" th:text="${tim?.teamName}" th:href="@{/admin/editTeam(index = ${tim?.id})}" th:class="${tim?.teamName}">tabela</a>
       </div>
       <div class="mDayInput">
-        <p id="g5">2005. godiste</p>
-        <p id="g6">2006. godiste</p>
-        <p id="g7">2007. godiste</p>
-        <p id="g8">2008. godiste</p>
         <p id="g9">2009. godiste</p>
+        <p id="g8">2008. godiste</p>
+        <p id="g7">2007. godiste</p>
+        <p id="g6">2006. godiste</p>
+        <p id="g5">2005. godiste</p>
+
         <div id="k5">2005 godiste<br>
           <a th:each="r: ${pairs}" th:href="@{/admin/enterMatchDayResults5(index = ${r.key})}" th:text="${r.key} + '. kolo'">unos rezultata kola</a>
         </div>  

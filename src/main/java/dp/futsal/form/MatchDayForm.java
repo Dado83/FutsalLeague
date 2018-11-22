@@ -95,7 +95,8 @@ public class MatchDayForm {
         away5 = team.get(pair.get(4).getAwayTeam()).getTeamName();
     }
 
-    public void saveResults(Map<Integer, List<MatchResult>> resultsMap, Map<Integer, String> postponed, Map<Integer, String> notPlaying) {
+    public void saveResults(Map<Integer, List<MatchResult>> resultsMap, Map<Integer, String> postponed,
+            Map<Integer, String> notPlaying, Map<Integer, String> notPlaying9) {
         LOGGER.info("addresults");
 
         MatchResult m1 = new MatchResult(mDay, teamMap, teamH1, teamA1, goalsH1, goalsA1, postponed);
@@ -104,56 +105,102 @@ public class MatchDayForm {
         MatchResult m4 = new MatchResult(mDay, teamMap, teamH4, teamA4, goalsH4, goalsA4, postponed);
         MatchResult m5 = new MatchResult(mDay, teamMap, teamH5, teamA5, goalsH5, goalsA5, postponed);
 
-        if (m1.getHomeTeam().equals("pauza") || m1.getAwayTeam().equals("pauza") || m1.getGoalsHome() == -1) {
+        boolean notPlayed1 = m1.getHomeTeam().equals("pauza") || m1.getAwayTeam().equals("pauza")
+                || m1.getHomeTeam().equals("pauza9") || m1.getAwayTeam().equals("pauza9")
+                || m1.getGoalsHome() == -1;
+        boolean notPlayed2 = m2.getHomeTeam().equals("pauza") || m2.getAwayTeam().equals("pauza")
+                || m2.getHomeTeam().equals("pauza9") || m2.getAwayTeam().equals("pauza9")
+                || m2.getGoalsHome() == -1;
+        boolean notPlayed3 = m3.getHomeTeam().equals("pauza") || m3.getAwayTeam().equals("pauza")
+                || m3.getHomeTeam().equals("pauza9") || m3.getAwayTeam().equals("pauza9")
+                || m3.getGoalsHome() == -1;
+        boolean notPlayed4 = m4.getHomeTeam().equals("pauza") || m4.getAwayTeam().equals("pauza")
+                || m4.getHomeTeam().equals("pauza9") || m4.getAwayTeam().equals("pauza9")
+                || m4.getGoalsHome() == -1;
+        boolean notPlayed5 = m5.getHomeTeam().equals("pauza") || m5.getAwayTeam().equals("pauza")
+                || m5.getHomeTeam().equals("pauza9") || m5.getAwayTeam().equals("pauza9")
+                || m5.getGoalsHome() == -1;
+
+        if (notPlayed1) {
             if (m1.getAwayTeam().equals("pauza")) {
                 notPlaying.put(mDay, m1.getHomeTeam());
             }
             if (m1.getHomeTeam().equals("pauza")) {
                 notPlaying.put(mDay, m1.getAwayTeam());
             }
+            if (m1.getAwayTeam().equals("pauza9")) {
+                notPlaying9.put(mDay, m1.getHomeTeam());
+            }
+            if (m1.getHomeTeam().equals("pauza9")) {
+                notPlaying9.put(mDay, m1.getAwayTeam());
+            }
             LOGGER.info("ekipa slobodna");
         } else {
             results.add(m1);
         }
-        if (m2.getHomeTeam().equals("pauza") || m2.getAwayTeam().equals("pauza") || m2.getGoalsHome() == -1) {
+        if (notPlayed2) {
             if (m2.getAwayTeam().equals("pauza")) {
                 notPlaying.put(mDay, m2.getHomeTeam());
             }
-            if (m1.getHomeTeam().equals("pauza")) {
+            if (m2.getHomeTeam().equals("pauza")) {
                 notPlaying.put(mDay, m2.getAwayTeam());
+            }
+            if (m2.getAwayTeam().equals("pauza9")) {
+                notPlaying9.put(mDay, m2.getHomeTeam());
+            }
+            if (m2.getHomeTeam().equals("pauza9")) {
+                notPlaying9.put(mDay, m2.getAwayTeam());
             }
             LOGGER.info("ekipa slobodna");
         } else {
             results.add(m2);
         }
-        if (m3.getHomeTeam().equals("pauza") || m3.getAwayTeam().equals("pauza") || m3.getGoalsHome() == -1) {
+        if (notPlayed3) {
             if (m3.getAwayTeam().equals("pauza")) {
                 notPlaying.put(mDay, m3.getHomeTeam());
             }
-            if (m1.getHomeTeam().equals("pauza")) {
+            if (m3.getHomeTeam().equals("pauza")) {
                 notPlaying.put(mDay, m3.getAwayTeam());
+            }
+            if (m3.getAwayTeam().equals("pauza9")) {
+                notPlaying9.put(mDay, m3.getHomeTeam());
+            }
+            if (m3.getHomeTeam().equals("pauza9")) {
+                notPlaying9.put(mDay, m3.getAwayTeam());
             }
             LOGGER.info("ekipa slobodna");
         } else {
             results.add(m3);
         }
-        if (m4.getHomeTeam().equals("pauza") || m4.getAwayTeam().equals("pauza") || m4.getGoalsHome() == -1) {
+        if (notPlayed4) {
             if (m4.getAwayTeam().equals("pauza")) {
                 notPlaying.put(mDay, m4.getHomeTeam());
             }
-            if (m1.getHomeTeam().equals("pauza")) {
+            if (m4.getHomeTeam().equals("pauza")) {
                 notPlaying.put(mDay, m4.getAwayTeam());
+            }
+            if (m4.getAwayTeam().equals("pauza9")) {
+                notPlaying9.put(mDay, m4.getHomeTeam());
+            }
+            if (m4.getHomeTeam().equals("pauza9")) {
+                notPlaying9.put(mDay, m4.getAwayTeam());
             }
             LOGGER.info("ekipa slobodna");
         } else {
             results.add(m4);
         }
-        if (m5.getHomeTeam().equals("pauza") || m5.getAwayTeam().equals("pauza") || m5.getGoalsHome() == -1) {
+        if (notPlayed5) {
             if (m5.getAwayTeam().equals("pauza")) {
                 notPlaying.put(mDay, m5.getHomeTeam());
             }
-            if (m1.getHomeTeam().equals("pauza")) {
+            if (m5.getHomeTeam().equals("pauza")) {
                 notPlaying.put(mDay, m5.getAwayTeam());
+            }
+            if (m5.getAwayTeam().equals("pauza9")) {
+                notPlaying9.put(mDay, m5.getHomeTeam());
+            }
+            if (m5.getHomeTeam().equals("pauza9")) {
+                notPlaying9.put(mDay, m5.getAwayTeam());
             }
             LOGGER.info("ekipa slobodna");
         } else {

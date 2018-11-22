@@ -43,6 +43,7 @@ public class FutsalService {
     private List<Team> teamLogos;
     private Map<Integer, String> gamePostponed;
     private Map<Integer, String> notPlaying;
+    private Map<Integer, String> notPlaying9;
 
     public void init() {
         LOGGER.info("init");
@@ -55,6 +56,7 @@ public class FutsalService {
         leagueDates = fixture.loadDatesFromJson(httpUrl + "leagueDates.json");
         gamePostponed = fixture.loadGameNotPlayedFromJson(httpUrl + "gamePostponed.json");
         notPlaying = fixture.loadGameNotPlayedFromJson(httpUrl + "notPlaying.json");
+        notPlaying9 = fixture.loadGameNotPlayedFromJson(httpUrl + "notPlaying9.json");
 
         results5 = fixture.loadResultsFromJson(httpUrl + "results5.json");
         results6 = fixture.loadResultsFromJson(httpUrl + "results6.json");
@@ -117,6 +119,7 @@ public class FutsalService {
 
     public void saveFutsalData() {
         String appDataLocalDir = "D:/Fair Play/Zimska liga 2018-2019/app data/";
+        String appDataLocalDirGit = "E:/Java/JsonLiga/";
         String appDataServerDir = "public_html/futsal/";
 
         fixture.saveResultsToJson(appDataLocalDir + "results5.json", results5);
@@ -126,6 +129,15 @@ public class FutsalService {
         fixture.saveResultsToJson(appDataLocalDir + "results9.json", results9);
         fixture.saveGameNotPlayedtoJson(appDataLocalDir + "gamePostponed.json", gamePostponed);
         fixture.saveGameNotPlayedtoJson(appDataLocalDir + "notPlaying.json", notPlaying);
+        fixture.saveGameNotPlayedtoJson(appDataLocalDir + "notPlaying9.json", notPlaying9);
+        fixture.saveResultsToJson(appDataLocalDirGit + "results5.json", results5);
+        fixture.saveResultsToJson(appDataLocalDirGit + "results6.json", results6);
+        fixture.saveResultsToJson(appDataLocalDirGit + "results7.json", results7);
+        fixture.saveResultsToJson(appDataLocalDirGit + "results8.json", results8);
+        fixture.saveResultsToJson(appDataLocalDirGit + "results9.json", results9);
+        fixture.saveGameNotPlayedtoJson(appDataLocalDirGit + "gamePostponed.json", gamePostponed);
+        fixture.saveGameNotPlayedtoJson(appDataLocalDirGit + "notPlaying.json", notPlaying);
+        fixture.saveGameNotPlayedtoJson(appDataLocalDirGit + "notPlaying9.json", notPlaying9);
         ftpClient.uploadFile(appDataServerDir + "results5.json", appDataLocalDir + "results5.json");
         ftpClient.uploadFile(appDataServerDir + "results6.json", appDataLocalDir + "results6.json");
         ftpClient.uploadFile(appDataServerDir + "results7.json", appDataLocalDir + "results7.json");
@@ -133,12 +145,18 @@ public class FutsalService {
         ftpClient.uploadFile(appDataServerDir + "results9.json", appDataLocalDir + "results9.json");
         ftpClient.uploadFile(appDataServerDir + "gamePostponed.json", appDataLocalDir + "gamePostponed.json");
         ftpClient.uploadFile(appDataServerDir + "notPlaying.json", appDataLocalDir + "notPlaying.json");
+        ftpClient.uploadFile(appDataServerDir + "notPlaying9.json", appDataLocalDir + "notPlaying9.json");
 
         teamCollection.saveTeamsToJson(appDataLocalDir + "teams5.json", teams5);
         teamCollection.saveTeamsToJson(appDataLocalDir + "teams6.json", teams6);
         teamCollection.saveTeamsToJson(appDataLocalDir + "teams7.json", teams7);
         teamCollection.saveTeamsToJson(appDataLocalDir + "teams8.json", teams8);
         teamCollection.saveTeamsToJson(appDataLocalDir + "teams9.json", teams9);
+        teamCollection.saveTeamsToJson(appDataLocalDirGit + "teams5.json", teams5);
+        teamCollection.saveTeamsToJson(appDataLocalDirGit + "teams6.json", teams6);
+        teamCollection.saveTeamsToJson(appDataLocalDirGit + "teams7.json", teams7);
+        teamCollection.saveTeamsToJson(appDataLocalDirGit + "teams8.json", teams8);
+        teamCollection.saveTeamsToJson(appDataLocalDirGit + "teams9.json", teams9);
         ftpClient.uploadFile(appDataServerDir + "teams5.json", appDataLocalDir + "teams5.json");
         ftpClient.uploadFile(appDataServerDir + "teams6.json", appDataLocalDir + "teams6.json");
         ftpClient.uploadFile(appDataServerDir + "teams7.json", appDataLocalDir + "teams7.json");
@@ -154,13 +172,17 @@ public class FutsalService {
         Team t9 = getTeam9(team.getId());
 
         Team[] teams = {t5, t6, t7, t8, t9};
-        for (Team team1 : teams) {
-            team1.setId(team.getId());
-            team1.setTeamName(team.getTeamName());
-            team1.setTeamCity(team.getTeamCity());
-            team1.setKitColor(team.getKitColor());
-            team1.setVenue(team.getVenue());
-            team1.setGameTime(team.getGameTime());
+        for (Team t : teams) {
+            if (t.getTeamName().equals("pauza") || t.getTeamName().equals("pauza9")) {
+                LOGGER.info("nisam dirao pauza9 tim");
+            } else {
+                t.setId(t.getId());
+                t.setTeamName(t.getTeamName());
+                t.setTeamCity(t.getTeamCity());
+                t.setKitColor(t.getKitColor());
+                t.setVenue(t.getVenue());
+                t.setGameTime(t.getGameTime());
+            }
         }
         updateTeamData5(getTeams5());
         updateTeamData6(getTeams6());
@@ -251,13 +273,11 @@ public class FutsalService {
     }
 
     public void removeDummyTeam(List<Team> teams) {
-        Team toRemove = null;
-        for (Team t : teams) {
-            if (t.getTeamName().equals("pauza")) {
-                toRemove = t;
+        for (int i = 0; i < teams.size(); i++) {
+            if (teams.get(i).getTeamName().equals("pauza") || teams.get(i).getTeamName().equals("pauza9")) {
+                teams.remove(i);
             }
         }
-        teams.remove(toRemove);
     }
 
     public Map<Integer, List<MatchPair>> getPairs() {
@@ -470,6 +490,14 @@ public class FutsalService {
 
     public void setNotPlaying(Map<Integer, String> notPlaying) {
         this.notPlaying = notPlaying;
+    }
+
+    public Map<Integer, String> getNotPlaying9() {
+        return notPlaying9;
+    }
+
+    public void setNotPlaying9(Map<Integer, String> notPlaying9) {
+        this.notPlaying9 = notPlaying9;
     }
 
     public List<Team> getTeamLogos() {

@@ -35,10 +35,12 @@ public class MatchResult {
 
         this.id = "" + matchDay + homeTeam + awayTeam;
 
-        if (this.homeTeam.equals("pauza") || this.awayTeam.equals("pauza") || this.goalsHome == -1) {
+        if (this.homeTeam.equals("pauza") || this.awayTeam.equals("pauza")
+                || this.homeTeam.equals("pauza9") || this.awayTeam.equals("pauza9")
+                || this.goalsHome == -1) {
             if (this.goalsHome == -1) {
                 postponed.put(this.matchDay, this.homeTeam + " - " + this.awayTeam);
-                Logger.getLogger(MatchResult.class.getName()).info("ponistena utakmica");
+                Logger.getLogger(MatchResult.class.getName()).info("utakmica nije odigrana");
             }
             Logger.getLogger(MatchResult.class.getName()).info("utakmica gdje ekipa pauzira");
         } else {
