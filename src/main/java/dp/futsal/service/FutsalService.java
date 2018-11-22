@@ -111,12 +111,6 @@ public class FutsalService {
             teamLinks9.add(tab.getId(), tab);
         }
         Collections.sort(leagueTable9);
-
-        removeDummyTeam(getLeagueTable5());
-        removeDummyTeam(getLeagueTable6());
-        removeDummyTeam(getLeagueTable7());
-        removeDummyTeam(getLeagueTable8());
-        removeDummyTeam(getLeagueTable9());
     }
 
     public void saveFutsalData() {
