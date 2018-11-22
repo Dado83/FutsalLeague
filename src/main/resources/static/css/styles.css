@@ -415,7 +415,7 @@ a:link, a:visited {
     body {
     background-image: var(--wallpaper);
     background-attachment: fixed;
-    background-size: contain;
+    background-size: cover;
 }
 
 }
@@ -443,10 +443,18 @@ a:link, a:visited {
         width: 100%;
     }
     
+    .logos li {
+        padding: 0
+    }
+    
+    .logos p {
+        font-size: 8px;
+    }
+    
     body {
     background-image: var(--wallpaper);
     background-attachment: fixed;
-    background-size: contain;
+    background-size: cover;
 }
 
 }

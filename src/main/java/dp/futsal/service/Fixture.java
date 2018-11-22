@@ -32,6 +32,43 @@ public class Fixture {
     private Map<Integer, List<MatchPair>> pairsMap = new HashMap<>();
     private Map<Integer, String> leagueMatchDates = new HashMap<>();
 
+    public void saveGameNotPlayedtoJson(String fileString, Map<Integer, String> games) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<Map<Integer, String>>() {
+        }.getType();
+        String json = gson.toJson(games, type);
+        File file = new File(fileString);
+        try {
+            OutputStream outputStream = new FileOutputStream(file);
+            Writer writer = new OutputStreamWriter(outputStream, Charset.forName("utf-8").newEncoder());
+            try (BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
+                bufferedWriter.write(json);
+            }
+        } catch (IOException e) {
+
+        }
+    }
+
+    public Map<Integer, String> loadGameNotPlayedFromJson(String file) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<Map<Integer, List<MatchPair>>>() {
+        }.getType();
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            URL url = new URL(file);
+            InputStream inputStream = url.openStream();
+            Reader reader = new InputStreamReader(inputStream, Charset.forName("utf-8").newDecoder());
+            BufferedReader buffReader = new BufferedReader(reader);
+            String line;
+            while ((line = buffReader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+        } catch (IOException e) {
+            LOGGER.severe("nisam ucitao notPlayed json");
+        }
+        return (Map<Integer, String>) gson.fromJson(stringBuilder.toString(), type);
+    }
+
     public void saveResultsToJson(String fileString, Map<Integer, List<MatchResult>> results) {
         Gson gson = new Gson();
         Type type = new TypeToken<Map<Integer, List<MatchResult>>>() {

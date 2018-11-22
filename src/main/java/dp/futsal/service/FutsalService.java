@@ -46,13 +46,15 @@ public class FutsalService {
 
     public void init() {
         LOGGER.info("init");
-        String httpUrl1 = "http://www.fairplayliga.cf/futsal/";
-        String httpUrl = "https://dado83.github.io/jsonRepo/";
+        String httpUrl = "http://www.fairplayliga.cf/futsal/";
+        String httpUrl1 = "https://dado83.github.io/jsonRepo/";
         ftpClient = new FTP();
         fixture = new Fixture();
         fixture.loadFixturesFromJson(httpUrl + "berger9-10.json");
         matchDaypairs = fixture.getPairs();
         leagueDates = fixture.loadDatesFromJson(httpUrl + "leagueDates.json");
+        gamePostponed = fixture.loadGameNotPlayedFromJson(httpUrl + "gamePostponed.json");
+        notPlaying = fixture.loadGameNotPlayedFromJson(httpUrl + "notPlaying.json");
 
         results5 = fixture.loadResultsFromJson(httpUrl + "results5.json");
         results6 = fixture.loadResultsFromJson(httpUrl + "results6.json");
@@ -114,7 +116,7 @@ public class FutsalService {
     }
 
     public void saveFutsalData() {
-        String appDataLocalDir = "D:/fer plej/Zimska liga 2018-2019/app data/";
+        String appDataLocalDir = "D:/Fair Play/Zimska liga 2018-2019/app data/";
         String appDataServerDir = "public_html/futsal/";
 
         fixture.saveResultsToJson(appDataLocalDir + "results5.json", results5);
@@ -122,11 +124,15 @@ public class FutsalService {
         fixture.saveResultsToJson(appDataLocalDir + "results7.json", results7);
         fixture.saveResultsToJson(appDataLocalDir + "results8.json", results8);
         fixture.saveResultsToJson(appDataLocalDir + "results9.json", results9);
+        fixture.saveGameNotPlayedtoJson(appDataLocalDir + "gamePostponed.json", gamePostponed);
+        fixture.saveGameNotPlayedtoJson(appDataLocalDir + "notPlaying.json", notPlaying);
         ftpClient.uploadFile(appDataServerDir + "results5.json", appDataLocalDir + "results5.json");
         ftpClient.uploadFile(appDataServerDir + "results6.json", appDataLocalDir + "results6.json");
         ftpClient.uploadFile(appDataServerDir + "results7.json", appDataLocalDir + "results7.json");
         ftpClient.uploadFile(appDataServerDir + "results8.json", appDataLocalDir + "results8.json");
         ftpClient.uploadFile(appDataServerDir + "results9.json", appDataLocalDir + "results9.json");
+        ftpClient.uploadFile(appDataServerDir + "gamePostponed.json", appDataLocalDir + "gamePostponed.json");
+        ftpClient.uploadFile(appDataServerDir + "notPlaying.json", appDataLocalDir + "notPlaying.json");
 
         teamCollection.saveTeamsToJson(appDataLocalDir + "teams5.json", teams5);
         teamCollection.saveTeamsToJson(appDataLocalDir + "teams6.json", teams6);
