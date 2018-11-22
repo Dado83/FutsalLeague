@@ -51,7 +51,7 @@ public class Fixture {
 
     public Map<Integer, String> loadGameNotPlayedFromJson(String file) {
         Gson gson = new Gson();
-        Type type = new TypeToken<Map<Integer, List<MatchPair>>>() {
+        Type type = new TypeToken<Map<Integer, String>>() {
         }.getType();
         StringBuilder stringBuilder = new StringBuilder();
         try {
