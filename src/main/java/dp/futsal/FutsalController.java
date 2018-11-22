@@ -56,7 +56,11 @@ public class FutsalController {
     @GetMapping("/")
     public String index(Model model) {
         LOGGER.info("inside index");
-
+        service.removeDummyTeam(service.getLeagueTable5());
+        service.removeDummyTeam(service.getLeagueTable6());
+        service.removeDummyTeam(service.getLeagueTable7());
+        service.removeDummyTeam(service.getLeagueTable8());
+        service.removeDummyTeam(service.getLeagueTable9());
         return "index";
     }
 
