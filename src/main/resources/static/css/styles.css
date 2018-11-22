@@ -454,7 +454,7 @@ a:link, a:visited {
     body {
         background-image: var(--wallpaper);
         background-attachment: fixed;
-        background-size: cover;
+        background-size: contain;
     }
 
 }
