@@ -13,7 +13,7 @@
       <img id="trophy" th:src="@{/trophy.png}"/>
     </div>
     <ul class="logos"  th:fragment="header">
-      <li th:each="tim: ${teamLogos}">
+      <li class="logosLi" th:each="tim: ${teamLogos}">
         <a th:class="${tim?.teamName}" th:href="@{/team(index = ${tim?.id})}">
           <img th:class="${tim?.teamName}" th:src="@{'logos/' + ${tim?.id} + '.png'}"/>
           <p th:text="${tim?.teamName}"></p>
@@ -50,7 +50,7 @@
       </div>
       <div class="adminActions">             
         <a class="deleteMday" th:href="@{/admin/deleteMDay}" onclick="return confirm('Brišem zadnje kolo?')">Briši zadnje kolo</a>
-        <a class="save" th:href="@{/admin/save}" onclick="return confirm('Sačuvaj?')">Snimi promjene</a>
+        <a class="save" th:href="@{/admin/save}" onclick="return confirm('Snimam promjene?')">Snimi promjene</a>
         <a class="newsletter" th:href="@{/admin/newsletter}">Bilten</a>
       </div>
     </div>

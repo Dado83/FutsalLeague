@@ -88,6 +88,10 @@ a:link, a:visited {
     width: 100%;
 }
 
+.logosLi:hover p {
+    color: var(--yellow);
+}
+
 .pauza {
     display: none
 }
@@ -98,6 +102,7 @@ a:link, a:visited {
 
 .form {
     background-color: rgba(255, 255, 255, 0.4);
+    clear: both;
 }
 
 .form td {
@@ -129,13 +134,16 @@ a:link, a:visited {
     display: flex;
     flex-direction: column;
     float: right;
-    clear: both;
+
 }
 
-.deleteMday {
+.deleteMday, .deleteMday:visited, .deleteMday:link {
     padding: 5px;
     text-align: right;
-    margin-bottom: 10px;
+    margin: 10px 0;
+    color: var(--red);
+    border: 1px solid var(--black);
+    background-color: rgba(255, 255, 255, 0.4);    
 }
 
 .save, .save:visited, save:link {
@@ -143,12 +151,21 @@ a:link, a:visited {
     text-align: right;
     color: var(--yellow);
     margin-bottom: 8px;
+    border: 1px solid var(--black);
+    background-color: rgba(255, 255, 255, 0.4);    
 }
 
 .newsletter {
     padding: 5px;
     text-align: right;
     color: var(--orange);
+    border: 1px solid var(--black);
+    margin-bottom: 6px;
+    background-color: rgba(255, 255, 255, 0.4);    
+}
+
+.deleteMday:hover, .save:hover, .newsletter:hover, .mDayInput p:hover, .teamEdit a:hover {
+    background-color: rgba(255, 255, 255, 0.2);
 }
 
 .headerEdit {
@@ -221,6 +238,10 @@ a:link, a:visited {
 
 .table td:nth-of-type(10), .table td:nth-of-type(2) {
     font-weight: bold;
+}
+
+.display {
+    display: var(--display);
 }
 
 .bulletin h1, .bulletin h2, .bulletin h3 {
@@ -343,6 +364,13 @@ a:link, a:visited {
     border-right: 1px solid var(--black);
 }
 
+.teamLogo {
+    float: right;
+    max-width: var(--clubLogoWidth);
+    width: 100%;
+
+}
+
 .fixtures {
     margin: 10px;
     padding: 5px;
@@ -392,15 +420,13 @@ a:link, a:visited {
     font-size: var(--fontSize15);
 }
 
-.display {
-    display: var(--display);
-}
-
-.teamLogo {
-    float: right;
-    max-width: var(--clubLogoWidth);
-    width: 100%;
-
+.loginForm {
+    width: 240px;
+    padding: 10px;
+    margin: auto;
+    background-color: rgba(255, 255, 255, 0.4);
+    text-align: right;
+    margin-top: 100px;
 }
 
 
