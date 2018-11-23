@@ -33,46 +33,20 @@
       <div>
         <div class="teamResults">
           <table>
-            <h5>2005</h5>
-            <tr th:each="tim: ${results5}">
+            <h5 th:unless="${results9.isEmpty()}" th:text="2009">2009</h5>
+            <tr th:each="tim: ${results9}">
               <td th:text="${tim.matchDay} + '. kolo'"></td>
-              <td th:text="${tim.homeTeam}"></td>              
+              <td th:text="${tim.homeTeam}"></td>           
               <td th:text="${tim.goalsHome}"></td>
               <td>-</td>
               <td th:text="${tim.goalsAway}"></td>
               <td th:text="${tim.awayTeam}"></td>
             </tr>
           </table>
-        </div>
+        </div>               
         <div class="teamResults">
           <table>
-            <h5>2006</h5>
-            <tr th:each="tim: ${results6}">
-              <td th:text="${tim.matchDay} + '. kolo'"></td>
-              <td th:text="${tim.homeTeam}"></td>             
-              <td th:text="${tim.goalsHome}"></td>
-              <td>-</td>
-              <td th:text="${tim.goalsAway}"></td>
-              <td th:text="${tim.awayTeam}"></td>
-            </tr>
-          </table>
-        </div>
-        <div class="teamResults">
-          <table>
-            <h5>2007</h5>
-            <tr th:each="tim: ${results7}">
-              <td th:text="${tim.matchDay} + '. kolo'"></td>
-              <td th:text="${tim.homeTeam}"></td>            
-              <td th:text="${tim.goalsHome}"></td>
-              <td>-</td>
-              <td th:text="${tim.goalsAway}"></td>
-              <td th:text="${tim.awayTeam}"></td>
-            </tr>
-          </table>
-        </div>
-        <div class="teamResults">
-          <table>
-            <h5>2008</h5>
+            <h5 th:unless="${results8.isEmpty()}" th:text="2008">2008</h5>
             <tr th:each="tim: ${results8}">
               <td th:text="${tim.matchDay} + '. kolo'"></td>
               <td th:text="${tim.homeTeam}"></td>              
@@ -85,10 +59,10 @@
         </div>
         <div class="teamResults">
           <table>
-            <h5>2009</h5>
-            <tr th:each="tim: ${results9}">
+            <h5 th:unless="${results7.isEmpty()}" th:text="2007">2007</h5>
+            <tr th:each="tim: ${results7}">
               <td th:text="${tim.matchDay} + '. kolo'"></td>
-              <td th:text="${tim.homeTeam}"></td>           
+              <td th:text="${tim.homeTeam}"></td>            
               <td th:text="${tim.goalsHome}"></td>
               <td>-</td>
               <td th:text="${tim.goalsAway}"></td>
@@ -96,6 +70,32 @@
             </tr>
           </table>
         </div>
+        <div class="teamResults">
+          <table>
+            <h5 th:unless="${results6.isEmpty()}" th:text="2006">2006</h5>
+            <tr th:each="tim: ${results6}">
+              <td th:text="${tim.matchDay} + '. kolo'"></td>
+              <td th:text="${tim.homeTeam}"></td>             
+              <td th:text="${tim.goalsHome}"></td>
+              <td>-</td>
+              <td th:text="${tim.goalsAway}"></td>
+              <td th:text="${tim.awayTeam}"></td>
+            </tr>
+          </table>
+        </div>
+        <div class="teamResults">
+          <table>
+            <h5 th:unless="${results5.isEmpty()}" th:text="2005">2005</h5>
+            <tr th:each="tim: ${results5}">
+              <td th:text="${tim.matchDay} + '. kolo'"></td>
+              <td th:text="${tim.homeTeam}"></td>              
+              <td th:text="${tim.goalsHome}"></td>
+              <td>-</td>
+              <td th:text="${tim.goalsAway}"></td>
+              <td th:text="${tim.awayTeam}"></td>
+            </tr>
+          </table>
+        </div>       
       </div>
     </div>
     <div th:insert="fragments :: footer"></div>
