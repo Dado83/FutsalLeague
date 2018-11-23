@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import dp.futsal.form.TeamForm;
+import java.util.Set;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 
@@ -31,7 +32,14 @@ public class FutsalController {
 
     @ModelAttribute
     public void addCommonAttributes(Model model) {
-        int lastMDay = service.getResults5().size();
+
+        Set<Integer> mDays = service.getResults5().keySet();
+        int lastMDay = 0;
+        for (Integer i : mDays) {
+            if (i > lastMDay) {
+                lastMDay = i;
+            }
+        }
         model
                 .addAttribute("pairs", service.getPairs())
                 .addAttribute("results5", service.getResults5())
@@ -56,11 +64,7 @@ public class FutsalController {
     @GetMapping("/")
     public String index(Model model) {
         LOGGER.info("inside index");
-        service.removeDummyTeam(service.getLeagueTable5());
-        service.removeDummyTeam(service.getLeagueTable6());
-        service.removeDummyTeam(service.getLeagueTable7());
-        service.removeDummyTeam(service.getLeagueTable8());
-        service.removeDummyTeam(service.getLeagueTable9());
+
         return "index";
     }
 
