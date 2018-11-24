@@ -26,6 +26,7 @@
               <div th:unless="${teamLinks.get(par.homeTeam).teamName.equals('pauza') or teamLinks.get(par.awayTeam).teamName.equals('pauza')}">
                 <td th:text="${teamLinks.get(par.homeTeam).teamName}"></td>
                 <td th:text="${teamLinks.get(par.awayTeam).teamName}"></td>          
+                <td class="fixtures" th:text="${teamLinks.get(par.homeTeam).gameTime}"></td>
               </div>
             </tr>
           </table>      
