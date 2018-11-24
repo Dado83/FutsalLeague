@@ -393,6 +393,10 @@ a:link, a:visited {
     font-weight: bold;
 }
 
+td.fixtures {
+    text-align: right;
+}
+
 .fixture table {
     border-collapse: collapse;
     margin-bottom: 10px;
