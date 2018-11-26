@@ -46,8 +46,8 @@ public class FutsalService {
 
     public void init() {
         LOGGER.info("init");
-        String httpUrl = "http://www.fairplayliga.cf/futsal/";
-        String httpUrl1 = "https://dado83.github.io/jsonRepo/";
+        String httpUrl1 = "http://www.fairplayliga.cf/futsal/";
+        String httpUrl = "https://dado83.github.io/jsonRepo/";
         ftpClient = new FTP();
         fixture = new Fixture();
         fixture.loadFixturesFromJson(httpUrl + "berger9-10.json");
