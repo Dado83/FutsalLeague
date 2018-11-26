@@ -78,7 +78,7 @@ public class FutsalController {
         return "adminDashboard";
     }
 
-    @GetMapping("/admin/newsletter")
+    @GetMapping("/newsletter")
     public String newsletter() {
         return "newsletter";
     }
