@@ -245,7 +245,11 @@ a:link, a:visited {
 }
 
 .bulletin h1, .bulletin h2, .bulletin h3 {
-    text-align: center;
+    
+}
+
+.bulletin {
+    margin: 100px 0 0 20px;
 }
 
 .resultsNews table {
