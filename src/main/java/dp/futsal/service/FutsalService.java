@@ -58,27 +58,24 @@ public class FutsalService {
 
     public void init() {
         LOGGER.info("init");
-        String httpUrl1 = "http://www.fairplayliga.cf/futsal/";
-        String httpUrl = "https://dado83.github.io/jsonRepo/";
 
-        fixture.loadFixturesFromJson(httpUrl + "berger9-10.json");
-        matchDaypairs = fixture.getPairs();
-        leagueDates = fixture.loadDatesFromJson(httpUrl + "leagueDates.json");
-        gamePostponed = fixture.loadGameNotPlayedFromJson(httpUrl + "gamePostponed.json");
-        notPlaying = fixture.loadGameNotPlayedFromJson(httpUrl + "notPlaying.json");
-        notPlaying9 = fixture.loadGameNotPlayedFromJson(httpUrl + "notPlaying9.json");
+        matchDaypairs = fixture.loadFixturesFromJson(databaseService.findJson("berger9-10"));
+        leagueDates = fixture.loadDatesFromJson(databaseService.findJson("leagueDates"));
+        gamePostponed = fixture.loadGameNotPlayedFromJson(databaseService.findJson("gamePostponed"));
+        notPlaying = fixture.loadGameNotPlayedFromJson(databaseService.findJson("notPlaying"));
+        notPlaying9 = fixture.loadGameNotPlayedFromJson(databaseService.findJson("notPlaying9"));
 
-        results5 = fixture.loadResultsFromJson(httpUrl + "results5.json");
-        results6 = fixture.loadResultsFromJson(httpUrl + "results6.json");
-        results7 = fixture.loadResultsFromJson(httpUrl + "results7.json");
-        results8 = fixture.loadResultsFromJson(httpUrl + "results8.json");
-        results9 = fixture.loadResultsFromJson(httpUrl + "results9.json");
+        results5 = fixture.loadResultsFromJson(databaseService.findJson("results5"));
+        results6 = fixture.loadResultsFromJson(databaseService.findJson("results6"));
+        results7 = fixture.loadResultsFromJson(databaseService.findJson("results7"));
+        results8 = fixture.loadResultsFromJson(databaseService.findJson("results8"));
+        results9 = fixture.loadResultsFromJson(databaseService.findJson("results9"));
 
-        teams5 = teamCollection.loadTeamsFromJson(httpUrl + "teams5.json");
-        teams6 = teamCollection.loadTeamsFromJson(httpUrl + "teams6.json");
-        teams7 = teamCollection.loadTeamsFromJson(httpUrl + "teams7.json");
-        teams8 = teamCollection.loadTeamsFromJson(httpUrl + "teams8.json");
-        teams9 = teamCollection.loadTeamsFromJson(httpUrl + "teams9.json");
+        teams5 = teamCollection.loadTeamsFromJson(databaseService.findJson("teams5"));
+        teams6 = teamCollection.loadTeamsFromJson(databaseService.findJson("teams6"));
+        teams7 = teamCollection.loadTeamsFromJson(databaseService.findJson("teams7"));
+        teams8 = teamCollection.loadTeamsFromJson(databaseService.findJson("teams8"));
+        teams9 = teamCollection.loadTeamsFromJson(databaseService.findJson("teams9"));
 
         teamLogos = new ArrayList<>(teams5.values());
 

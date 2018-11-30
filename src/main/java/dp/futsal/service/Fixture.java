@@ -2,6 +2,7 @@ package dp.futsal.service;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
+import dp.futsal.database.Json;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -83,6 +84,13 @@ public class Fixture {
         return (Map<Integer, String>) gson.fromJson(stringBuilder.toString(), type);
     }
 
+    public Map<Integer, String> loadGameNotPlayedFromJson(Json json) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<Map<Integer, String>>() {
+        }.getType();
+        return (Map<Integer, String>) gson.fromJson(json.getJsonData(), type);
+    }
+
     public void saveResultsToJson(String fileString, Map<Integer, List<MatchResult>> results) {
         Gson gson = new Gson();
         Type type = new TypeToken<Map<Integer, List<MatchResult>>>() {
@@ -142,6 +150,13 @@ public class Fixture {
         pairsMap = (Map<Integer, List<MatchPair>>) gson.fromJson(stringBuilder.toString(), type);
     }
 
+    public Map<Integer, List<MatchPair>> loadFixturesFromJson(Json json) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<Map<Integer, List<MatchPair>>>() {
+        }.getType();
+        return (Map<Integer, List<MatchPair>>) gson.fromJson(json.getJsonData(), type);
+    }
+
     public Map<Integer, List<MatchResult>> loadResultsFromJson(String file) {
         Gson gson = new Gson();
         Type type = new TypeToken<Map<Integer, List<MatchResult>>>() {
@@ -160,6 +175,13 @@ public class Fixture {
             LOGGER.severe("nisam ucitao results json");
         }
         return resultsMap = (Map<Integer, List<MatchResult>>) gson.fromJson(stringBuilder.toString(), type);
+    }
+
+    public Map<Integer, List<MatchResult>> loadResultsFromJson(Json json) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<Map<Integer, List<MatchResult>>>() {
+        }.getType();
+        return (Map<Integer, List<MatchResult>>) gson.fromJson(json.getJsonData(), type);
     }
 
     public String saveLeagueDatesToJson(Map<Integer, String> leagueMatchDates) {
@@ -188,6 +210,13 @@ public class Fixture {
             LOGGER.severe("nisam ucitao dates json");
         }
         return leagueMatchDates = (Map<Integer, String>) gson.fromJson(stringBuilder.toString(), type);
+    }
+
+    public Map<Integer, String> loadDatesFromJson(Json json) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<Map<Integer, String>>() {
+        }.getType();
+        return (Map<Integer, String>) gson.fromJson(json.getJsonData(), type);
     }
 
     public Map<Integer, List<MatchResult>> getResults() {

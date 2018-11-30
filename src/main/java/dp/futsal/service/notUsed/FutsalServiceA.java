@@ -50,8 +50,8 @@ public class FutsalServiceA {
 
     public void init() {
         LOGGER.info("init");
-        ftpClient = new FTP();
-        this.fixture = new Fixture();
+//        ftpClient = new FTP();
+//        this.fixture = new Fixture();
         this.fixture.loadFixturesFromJson("http://fairplay.hol.es/futsal/berger5.json");
         this.matchDaypairs = fixture.getPairs();
 
@@ -61,7 +61,7 @@ public class FutsalServiceA {
         this.results8 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results8a.json");
         this.results9 = this.fixture.loadResultsFromJson("http://fairplay.hol.es/futsal/results9a.json");
 
-        this.teamCollection = new TeamCollection();
+//        this.teamCollection = new TeamCollection();
         this.teams5 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams5a.json");
         this.teams6 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams6a.json");
         this.teams7 = this.teamCollection.loadTeamsFromJson("http://fairplay.hol.es/futsal/teams7a.json");
