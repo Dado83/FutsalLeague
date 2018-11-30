@@ -21,12 +21,18 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
+import org.springframework.stereotype.Service;
 
 
+@Service
 public class TeamCollection {
 
     private static final Logger LOGGER = Logger.getLogger(TeamCollection.class.getName());
     private Map<Integer, Team> teamMap = new HashMap<>();
+
+    public TeamCollection() {
+
+    }
 
     @Override
     public String toString() {
@@ -69,6 +75,14 @@ public class TeamCollection {
             }
         } catch (IOException e) {
         }
+    }
+
+    public String saveTeamsToJson(Map<Integer, Team> teams) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<Map<Integer, Team>>() {
+        }.getType();
+        String json = gson.toJson(teams, type);
+        return json;
     }
 
     public Team getTeam(int index) {

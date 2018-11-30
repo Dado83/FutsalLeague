@@ -9,13 +9,19 @@ import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.net.ftp.FTPClient;
+import org.springframework.stereotype.Service;
 
 
+@Service
 public class FTP {
 
     FTPClient ftp;
     String[] loggonData = new String[2];
     InputStream inputStream;
+
+    public FTP() {
+
+    }
 
     public void uploadFile(String remoteFile, String uploadFile) {
         ftp = new FTPClient();

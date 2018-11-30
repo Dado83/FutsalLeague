@@ -22,8 +22,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
+import org.springframework.stereotype.Service;
 
 
+@Service
 public class Fixture {
 
     private static final Logger LOGGER = Logger.getLogger(Fixture.class.getName());
@@ -32,7 +34,11 @@ public class Fixture {
     private Map<Integer, List<MatchPair>> pairsMap = new HashMap<>();
     private Map<Integer, String> leagueMatchDates = new HashMap<>();
 
-    public void saveGameNotPlayedtoJson(String fileString, Map<Integer, String> games) {
+    public Fixture() {
+
+    }
+
+    public void saveGameNotPlayedToJson(String fileString, Map<Integer, String> games) {
         Gson gson = new Gson();
         Type type = new TypeToken<Map<Integer, String>>() {
         }.getType();
@@ -47,6 +53,14 @@ public class Fixture {
         } catch (IOException e) {
 
         }
+    }
+
+    public String saveGameNotPlayedToJson(Map<Integer, String> games) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<Map<Integer, String>>() {
+        }.getType();
+        String json = gson.toJson(games, type);
+        return json;
     }
 
     public Map<Integer, String> loadGameNotPlayedFromJson(String file) {
@@ -86,10 +100,26 @@ public class Fixture {
         }
     }
 
+    public String saveResultsToJson(Map<Integer, List<MatchResult>> results) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<Map<Integer, List<MatchResult>>>() {
+        }.getType();
+        String json = gson.toJson(results, type);
+        return json;
+    }
+
     private void putfixturePairs(int matchDay, MatchPair... match) {
         List<MatchPair> pairs = new ArrayList<>();
         pairs.addAll(Arrays.asList(match));
         pairsMap.put(matchDay, pairs);
+    }
+
+    public String saveFixturesToJson(Map<Integer, List<MatchPair>> pairsMap) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<Map<Integer, List<MatchPair>>>() {
+        }.getType();
+        String json = gson.toJson(pairsMap, type);
+        return json;
     }
 
     public void loadFixturesFromJson(String file) {
@@ -130,6 +160,14 @@ public class Fixture {
             LOGGER.severe("nisam ucitao results json");
         }
         return resultsMap = (Map<Integer, List<MatchResult>>) gson.fromJson(stringBuilder.toString(), type);
+    }
+
+    public String saveLeagueDatesToJson(Map<Integer, String> leagueMatchDates) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<Map<Integer, String>>() {
+        }.getType();
+        String json = gson.toJson(leagueMatchDates, type);
+        return json;
     }
 
     public Map<Integer, String> loadDatesFromJson(String file) {

@@ -1,5 +1,7 @@
 package dp.futsal.service;
 
+import dp.futsal.database.DatabaseService;
+import dp.futsal.database.Json;
 import dp.futsal.form.TeamForm;
 import dp.futsal.ftp.FTP;
 import java.util.ArrayList;
@@ -7,6 +9,7 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 
@@ -14,9 +17,14 @@ import org.springframework.stereotype.Service;
 public class FutsalService {
 
     private static final Logger LOGGER = Logger.getLogger(FutsalService.class.getName());
+    @Autowired
     private FTP ftpClient;
+    @Autowired
     private Fixture fixture;
+    @Autowired
     private TeamCollection teamCollection;
+    @Autowired
+    private DatabaseService databaseService;
     private Map<Integer, List<MatchPair>> matchDaypairs;
     private Map<Integer, String> leagueDates;
     private Map<Integer, List<MatchResult>> results5;
@@ -44,12 +52,15 @@ public class FutsalService {
     private Map<Integer, String> notPlaying;
     private Map<Integer, String> notPlaying9;
 
+    public FutsalService() {
+
+    }
+
     public void init() {
         LOGGER.info("init");
         String httpUrl1 = "http://www.fairplayliga.cf/futsal/";
         String httpUrl = "https://dado83.github.io/jsonRepo/";
-        ftpClient = new FTP();
-        fixture = new Fixture();
+
         fixture.loadFixturesFromJson(httpUrl + "berger9-10.json");
         matchDaypairs = fixture.getPairs();
         leagueDates = fixture.loadDatesFromJson(httpUrl + "leagueDates.json");
@@ -63,7 +74,6 @@ public class FutsalService {
         results8 = fixture.loadResultsFromJson(httpUrl + "results8.json");
         results9 = fixture.loadResultsFromJson(httpUrl + "results9.json");
 
-        teamCollection = new TeamCollection();
         teams5 = teamCollection.loadTeamsFromJson(httpUrl + "teams5.json");
         teams6 = teamCollection.loadTeamsFromJson(httpUrl + "teams6.json");
         teams7 = teamCollection.loadTeamsFromJson(httpUrl + "teams7.json");
@@ -118,6 +128,27 @@ public class FutsalService {
         Collections.sort(leagueTable9);
     }
 
+    public void saveDataToDatabase() {
+        databaseService.saveJson(new Json("berger9-10", fixture.saveFixturesToJson(matchDaypairs)));
+        databaseService.saveJson(new Json("leagueDates", fixture.saveLeagueDatesToJson(leagueDates)));
+
+        databaseService.saveJson(new Json("gamePostponed", fixture.saveGameNotPlayedToJson(gamePostponed)));
+        databaseService.saveJson(new Json("notPlaying", fixture.saveGameNotPlayedToJson(notPlaying)));
+        databaseService.saveJson(new Json("notPlaying9", fixture.saveGameNotPlayedToJson(notPlaying9)));
+
+        databaseService.saveJson(new Json("results5", fixture.saveResultsToJson(results5)));
+        databaseService.saveJson(new Json("results6", fixture.saveResultsToJson(results6)));
+        databaseService.saveJson(new Json("results7", fixture.saveResultsToJson(results7)));
+        databaseService.saveJson(new Json("results8", fixture.saveResultsToJson(results8)));
+        databaseService.saveJson(new Json("results9", fixture.saveResultsToJson(results9)));
+
+        databaseService.saveJson(new Json("teams5", teamCollection.saveTeamsToJson(teams5)));
+        databaseService.saveJson(new Json("teams6", teamCollection.saveTeamsToJson(teams6)));
+        databaseService.saveJson(new Json("teams7", teamCollection.saveTeamsToJson(teams7)));
+        databaseService.saveJson(new Json("teams8", teamCollection.saveTeamsToJson(teams8)));
+        databaseService.saveJson(new Json("teams9", teamCollection.saveTeamsToJson(teams9)));
+    }
+
     public void saveFutsalData() {
         String appDataLocalDir = "D:/Fair Play/Zimska liga 2018-2019/app data/";
         String appDataLocalDirGit = "E:/Java/JsonLiga/";
@@ -128,17 +159,17 @@ public class FutsalService {
         fixture.saveResultsToJson(appDataLocalDir + "results7.json", results7);
         fixture.saveResultsToJson(appDataLocalDir + "results8.json", results8);
         fixture.saveResultsToJson(appDataLocalDir + "results9.json", results9);
-        fixture.saveGameNotPlayedtoJson(appDataLocalDir + "gamePostponed.json", gamePostponed);
-        fixture.saveGameNotPlayedtoJson(appDataLocalDir + "notPlaying.json", notPlaying);
-        fixture.saveGameNotPlayedtoJson(appDataLocalDir + "notPlaying9.json", notPlaying9);
+        fixture.saveGameNotPlayedToJson(appDataLocalDir + "gamePostponed.json", gamePostponed);
+        fixture.saveGameNotPlayedToJson(appDataLocalDir + "notPlaying.json", notPlaying);
+        fixture.saveGameNotPlayedToJson(appDataLocalDir + "notPlaying9.json", notPlaying9);
         fixture.saveResultsToJson(appDataLocalDirGit + "results5.json", results5);
         fixture.saveResultsToJson(appDataLocalDirGit + "results6.json", results6);
         fixture.saveResultsToJson(appDataLocalDirGit + "results7.json", results7);
         fixture.saveResultsToJson(appDataLocalDirGit + "results8.json", results8);
         fixture.saveResultsToJson(appDataLocalDirGit + "results9.json", results9);
-        fixture.saveGameNotPlayedtoJson(appDataLocalDirGit + "gamePostponed.json", gamePostponed);
-        fixture.saveGameNotPlayedtoJson(appDataLocalDirGit + "notPlaying.json", notPlaying);
-        fixture.saveGameNotPlayedtoJson(appDataLocalDirGit + "notPlaying9.json", notPlaying9);
+        fixture.saveGameNotPlayedToJson(appDataLocalDirGit + "gamePostponed.json", gamePostponed);
+        fixture.saveGameNotPlayedToJson(appDataLocalDirGit + "notPlaying.json", notPlaying);
+        fixture.saveGameNotPlayedToJson(appDataLocalDirGit + "notPlaying9.json", notPlaying9);
         ftpClient.uploadFile(appDataServerDir + "results5.json", appDataLocalDir + "results5.json");
         ftpClient.uploadFile(appDataServerDir + "results6.json", appDataLocalDir + "results6.json");
         ftpClient.uploadFile(appDataServerDir + "results7.json", appDataLocalDir + "results7.json");
@@ -177,12 +208,12 @@ public class FutsalService {
             if (t.getTeamName().equals("pauza") || t.getTeamName().equals("pauza9")) {
                 LOGGER.info("nisam dirao pauza9 tim");
             } else {
-                t.setId(t.getId());
-                t.setTeamName(t.getTeamName());
-                t.setTeamCity(t.getTeamCity());
-                t.setKitColor(t.getKitColor());
-                t.setVenue(t.getVenue());
-                t.setGameTime(t.getGameTime());
+                t.setId(team.getId());
+                t.setTeamName(team.getTeamName());
+                t.setTeamCity(team.getTeamCity());
+                t.setKitColor(team.getKitColor());
+                t.setVenue(team.getVenue());
+                t.setGameTime(team.getGameTime());
             }
         }
         updateTeamData5(getTeams5());
