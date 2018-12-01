@@ -12,56 +12,16 @@
     <div th:insert="fragments :: header"></div>
     <div class="content">
       <div class="results">
-        <p>Rezultati 2005:</p>
+        <p>Rezultati 2009:</p>
         <table>
-          <tr th:each="element: ${results5}">
+          <tr th:each="element: ${results9}">
             <p class="resMday" th:text="${element.key}+ '. kolo:'"></p>
             <table>
               <tr th:each="rez: ${element.value}">
-                <td th:text="${rez.homeTeam}">Some name</td>               
+                <td th:text="${rez.homeTeam}">Some name</td>             
                 <td th:text="${rez.goalsHome}">Some name</td> 
                 <td>-</td>
                 <td th:text="${rez.goalsAway}">Some name</td> 
-                <td th:text="${rez.awayTeam}">Some name</td> 
-              </tr>
-              <tr>
-                <td colspan="5" th:text="|${freeTeam.get(element.key)} pauzira|"></td>   
-              </tr>
-            </table>
-          </tr>
-        </table>
-      </div>
-      <div class="results">
-        <p>Rezultati 2006:</p>
-        <table>
-          <tr th:each="element: ${results6}">
-            <p class="resMday" th:text="${element.key}+ '. kolo:'"></p>
-            <table>
-              <tr th:each="rez: ${element.value}">
-                <td th:text="${rez.homeTeam}">Some name</td>               
-                <td th:text="${rez.goalsHome}">Some name</td> 
-                <td>-</td>
-                <td th:text="${rez.goalsAway}">Some name</td> 
-                <td th:text="${rez.awayTeam}">Some name</td> 
-              </tr>
-              <tr>
-                <td colspan="5" th:text="|${freeTeam.get(element.key)} pauzira|"></td>   
-              </tr>
-            </table>
-          </tr>
-        </table>
-      </div>
-      <div class="results">
-        <p>Rezultati 2007:</p>
-        <table>
-          <tr th:each="element: ${results7}">
-            <p class="resMday" th:text="${element.key}+ '. kolo:'"></p>
-            <table>
-              <tr th:each="rez: ${element.value}">
-                <td th:text="${rez.homeTeam}">Some name</td>               
-                <td th:text="${rez.goalsHome}">Some name</td> 
-                <td>-</td>
-                <td th:text="${rez.goalsAway}">Some name</td>
                 <td th:text="${rez.awayTeam}">Some name</td> 
               </tr>
               <tr>
@@ -92,13 +52,33 @@
         </table>
       </div>
       <div class="results">
-        <p>Rezultati 2009:</p>
+        <p>Rezultati 2007:</p>
         <table>
-          <tr th:each="element: ${results9}">
+          <tr th:each="element: ${results7}">
             <p class="resMday" th:text="${element.key}+ '. kolo:'"></p>
             <table>
               <tr th:each="rez: ${element.value}">
-                <td th:text="${rez.homeTeam}">Some name</td>             
+                <td th:text="${rez.homeTeam}">Some name</td>               
+                <td th:text="${rez.goalsHome}">Some name</td> 
+                <td>-</td>
+                <td th:text="${rez.goalsAway}">Some name</td>
+                <td th:text="${rez.awayTeam}">Some name</td> 
+              </tr>
+              <tr>
+                <td colspan="5" th:text="|${freeTeam.get(element.key)} pauzira|"></td>   
+              </tr>
+            </table>
+          </tr>
+        </table>
+      </div>
+      <div class="results">
+        <p>Rezultati 2006:</p>
+        <table>
+          <tr th:each="element: ${results6}">
+            <p class="resMday" th:text="${element.key}+ '. kolo:'"></p>
+            <table>
+              <tr th:each="rez: ${element.value}">
+                <td th:text="${rez.homeTeam}">Some name</td>               
                 <td th:text="${rez.goalsHome}">Some name</td> 
                 <td>-</td>
                 <td th:text="${rez.goalsAway}">Some name</td> 
@@ -111,6 +91,26 @@
           </tr>
         </table>
       </div>
+      <div class="results">
+        <p>Rezultati 2005:</p>
+        <table>
+          <tr th:each="element: ${results5}">
+            <p class="resMday" th:text="${element.key}+ '. kolo:'"></p>
+            <table>
+              <tr th:each="rez: ${element.value}">
+                <td th:text="${rez.homeTeam}">Some name</td>               
+                <td th:text="${rez.goalsHome}">Some name</td> 
+                <td>-</td>
+                <td th:text="${rez.goalsAway}">Some name</td> 
+                <td th:text="${rez.awayTeam}">Some name</td> 
+              </tr>
+              <tr>
+                <td colspan="5" th:text="|${freeTeam.get(element.key)} pauzira|"></td>   
+              </tr>
+            </table>
+          </tr>
+        </table>
+      </div>   
     </div>    
     <div th:insert="fragments :: footer"></div>
   </body>

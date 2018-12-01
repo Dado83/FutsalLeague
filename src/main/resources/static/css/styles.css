@@ -245,7 +245,7 @@ a:link, a:visited {
 }
 
 .bulletin h1, .bulletin h2, .bulletin h3 {
-    
+
 }
 
 .bulletin {
@@ -441,6 +441,59 @@ td.fixtures {
     background-color: rgba(255, 255, 255, 0.4);
     text-align: right;
     margin-top: 100px;
+}
+
+.fixtureNext {
+    width: 70%;
+    margin-left: 150px;
+    background-color: rgba(0, 0, 0, 0.4);
+    padding: 20px;
+}
+
+.liga {
+    text-align: center;
+    color: var(--yellow);
+    font-size: 30px;
+    text-shadow: -1px 0 var(--black), 0 1px var(--black), 1px 0 var(--black), 0 -1px var(--black);
+}
+
+.nextGame {
+
+}
+
+.nextGameH {
+    text-align: right;
+    font-size: 30px;
+    color: var(--yellow);
+    padding-right: 10px;
+}
+
+.nextGameA {
+    text-align: left;
+    font-size: 30px;
+    color: var(--yellow);
+    padding-left: 10px;
+}
+
+.nextGameImg {
+    text-align: center;
+}
+
+.nextGameImg img {
+    height: 90px;
+}
+
+.nextGameTime {
+    font-size: 14px;
+    color: var(--orange);
+    padding: 0 20px
+}
+
+.leagueDate {
+    color: var(--red);
+    font-size: 18px;
+    text-align: center;
+    padding: 20px 0;
 }
 
 

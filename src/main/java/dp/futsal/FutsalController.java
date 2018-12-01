@@ -78,11 +78,6 @@ public class FutsalController {
         return "adminDashboard";
     }
 
-    @GetMapping("/newsletter")
-    public String newsletter() {
-        return "newsletter";
-    }
-
     @GetMapping("/team")
     public String team(Model model, int index) {
         model.addAttribute("team5", service.getTeamLinks5().get(index));
@@ -275,22 +270,39 @@ public class FutsalController {
 
     @GetMapping("/results")
     public String results(Model model) {
-
         return "results";
     }
 
     @GetMapping("/fixtures")
     public String fixtures(Model model) {
-
         return "fixtures";
     }
 
     @GetMapping("/admin/save")
     public String save(Model model) {
-        LOGGER.info("save");
+        LOGGER.info("save to DB");
+        service.saveDataToDatabase();
+        LOGGER.info("save to DB successful");
+
+        return "adminDashboard";
+    }
+
+    @GetMapping("/admin/backup")
+    public String backup(Model model) {
+        LOGGER.info("backup");
         service.saveFutsalData();
 
         return "adminDashboard";
+    }
+
+    @GetMapping("/newsletter")
+    public String newsletter() {
+        return "newsletter";
+    }
+
+    @GetMapping("/nextGame")
+    public String nextGame() {
+        return "nextGame";
     }
 
     @GetMapping("/admin/deleteMDay")
