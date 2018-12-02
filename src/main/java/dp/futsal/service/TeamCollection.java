@@ -2,7 +2,6 @@ package dp.futsal.service;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import dp.futsal.database.Json;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -60,13 +59,6 @@ public class TeamCollection {
         }
         return teamMap = (Map<Integer, Team>) gson.fromJson(stringBuilder.toString(), type);
 
-    }
-
-    public Map<Integer, Team> loadTeamsFromJson(Json json) {
-        Gson gson = new Gson();
-        Type type = new TypeToken<Map<Integer, Team>>() {
-        }.getType();
-        return (Map<Integer, Team>) gson.fromJson(json.getJsonData(), type);
     }
 
     public void saveTeamsToJson(String fileString, Map<Integer, Team> teams) {

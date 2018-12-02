@@ -1,7 +1,5 @@
 package dp.futsal.service;
 
-import dp.futsal.database.DatabaseService;
-import dp.futsal.database.Json;
 import dp.futsal.form.TeamForm;
 import dp.futsal.ftp.FTP;
 import java.util.ArrayList;
@@ -23,8 +21,6 @@ public class FutsalService {
     private Fixture fixture;
     @Autowired
     private TeamCollection teamCollection;
-    @Autowired
-    private DatabaseService databaseService;
     private Map<Integer, List<MatchPair>> matchDaypairs;
     private Map<Integer, String> leagueDates;
     private Map<Integer, List<MatchResult>> results5;
@@ -59,23 +55,7 @@ public class FutsalService {
     public void init() {
         LOGGER.info("init");
 
-        matchDaypairs = fixture.loadFixturesFromJson(databaseService.findJson("berger9-10"));
-        leagueDates = fixture.loadDatesFromJson(databaseService.findJson("leagueDates"));
-        gamePostponed = fixture.loadGameNotPlayedFromJson(databaseService.findJson("gamePostponed"));
-        notPlaying = fixture.loadGameNotPlayedFromJson(databaseService.findJson("notPlaying"));
-        notPlaying9 = fixture.loadGameNotPlayedFromJson(databaseService.findJson("notPlaying9"));
-
-        results5 = fixture.loadResultsFromJson(databaseService.findJson("results5"));
-        results6 = fixture.loadResultsFromJson(databaseService.findJson("results6"));
-        results7 = fixture.loadResultsFromJson(databaseService.findJson("results7"));
-        results8 = fixture.loadResultsFromJson(databaseService.findJson("results8"));
-        results9 = fixture.loadResultsFromJson(databaseService.findJson("results9"));
-
-        teams5 = teamCollection.loadTeamsFromJson(databaseService.findJson("teams5"));
-        teams6 = teamCollection.loadTeamsFromJson(databaseService.findJson("teams6"));
-        teams7 = teamCollection.loadTeamsFromJson(databaseService.findJson("teams7"));
-        teams8 = teamCollection.loadTeamsFromJson(databaseService.findJson("teams8"));
-        teams9 = teamCollection.loadTeamsFromJson(databaseService.findJson("teams9"));
+        loadFromJson();
 
         teamLogos = new ArrayList<>(teams5.values());
 
@@ -125,25 +105,28 @@ public class FutsalService {
         Collections.sort(leagueTable9);
     }
 
-    public void saveDataToDatabase() {
-        databaseService.saveJson(new Json("berger9-10", fixture.saveFixturesToJson(matchDaypairs)));
-        databaseService.saveJson(new Json("leagueDates", fixture.saveLeagueDatesToJson(leagueDates)));
+    private void loadFromJson() {
+        String httpUrl = "http://www.fairplayliga.cf/futsal/";
+        String httpUrl1 = "https://dado83.github.io/jsonRepo/";
 
-        databaseService.saveJson(new Json("gamePostponed", fixture.saveGameNotPlayedToJson(gamePostponed)));
-        databaseService.saveJson(new Json("notPlaying", fixture.saveGameNotPlayedToJson(notPlaying)));
-        databaseService.saveJson(new Json("notPlaying9", fixture.saveGameNotPlayedToJson(notPlaying9)));
+        fixture.loadFixturesFromJson(httpUrl + "berger9-10.json");
+        matchDaypairs = fixture.getPairs();
+        leagueDates = fixture.loadDatesFromJson(httpUrl + "leagueDates.json");
+        gamePostponed = fixture.loadGameNotPlayedFromJson(httpUrl + "gamePostponed.json");
+        notPlaying = fixture.loadGameNotPlayedFromJson(httpUrl + "notPlaying.json");
+        notPlaying9 = fixture.loadGameNotPlayedFromJson(httpUrl + "notPlaying9.json");
 
-        databaseService.saveJson(new Json("results5", fixture.saveResultsToJson(results5)));
-        databaseService.saveJson(new Json("results6", fixture.saveResultsToJson(results6)));
-        databaseService.saveJson(new Json("results7", fixture.saveResultsToJson(results7)));
-        databaseService.saveJson(new Json("results8", fixture.saveResultsToJson(results8)));
-        databaseService.saveJson(new Json("results9", fixture.saveResultsToJson(results9)));
+        results5 = fixture.loadResultsFromJson(httpUrl + "results5.json");
+        results6 = fixture.loadResultsFromJson(httpUrl + "results6.json");
+        results7 = fixture.loadResultsFromJson(httpUrl + "results7.json");
+        results8 = fixture.loadResultsFromJson(httpUrl + "results8.json");
+        results9 = fixture.loadResultsFromJson(httpUrl + "results9.json");
 
-        databaseService.saveJson(new Json("teams5", teamCollection.saveTeamsToJson(teams5)));
-        databaseService.saveJson(new Json("teams6", teamCollection.saveTeamsToJson(teams6)));
-        databaseService.saveJson(new Json("teams7", teamCollection.saveTeamsToJson(teams7)));
-        databaseService.saveJson(new Json("teams8", teamCollection.saveTeamsToJson(teams8)));
-        databaseService.saveJson(new Json("teams9", teamCollection.saveTeamsToJson(teams9)));
+        teams5 = teamCollection.loadTeamsFromJson(httpUrl + "teams5.json");
+        teams6 = teamCollection.loadTeamsFromJson(httpUrl + "teams6.json");
+        teams7 = teamCollection.loadTeamsFromJson(httpUrl + "teams7.json");
+        teams8 = teamCollection.loadTeamsFromJson(httpUrl + "teams8.json");
+        teams9 = teamCollection.loadTeamsFromJson(httpUrl + "teams9.json");
     }
 
     public void saveFutsalData() {

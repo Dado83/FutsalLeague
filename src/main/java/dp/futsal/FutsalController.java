@@ -280,17 +280,9 @@ public class FutsalController {
 
     @GetMapping("/admin/save")
     public String save(Model model) {
-        LOGGER.info("save to DB");
-        service.saveDataToDatabase();
-        LOGGER.info("save to DB successful");
-
-        return "adminDashboard";
-    }
-
-    @GetMapping("/admin/backup")
-    public String backup(Model model) {
-        LOGGER.info("backup");
+        LOGGER.info("save to local");
         service.saveFutsalData();
+        LOGGER.info("save to local successful");
 
         return "adminDashboard";
     }
