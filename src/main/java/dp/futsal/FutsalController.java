@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import dp.futsal.form.TeamForm;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -40,6 +42,8 @@ public class FutsalController {
                 lastMDay = i;
             }
         }
+        List<String> postponedGames = new ArrayList<>();
+        postponedGames = service.getGamePostponed().get(lastMDay);
         model
                 .addAttribute("pairs", service.getPairs())
                 .addAttribute("results5", service.getResults5())
@@ -58,7 +62,8 @@ public class FutsalController {
                 .addAttribute("freeTeam", service.getNotPlaying())
                 .addAttribute("freeTeam9", service.getNotPlaying9())
                 .addAttribute("postponed", service.getGamePostponed())
-                .addAttribute("lastMDay", lastMDay);
+                .addAttribute("lastMDay", lastMDay)
+                .addAttribute("pp", postponedGames);
     }
 
     @GetMapping("/")

@@ -28,7 +28,9 @@
               <td colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
             </tr>
             <tr th:if="${postponed?.get(lastMDay)}">
-              <td colspan="5" th:text="|${postponed.get(lastMDay)} nije odigrano|"></td>   
+              <tr th:each="t: ${pp}">
+                <td colspan="5" th:text="|${t} nije odigrano|"></td>
+              </tr>             
             </tr>
           </tr>         
         </table>
@@ -75,7 +77,9 @@
               <td colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
             </tr>
             <tr th:if="${postponed?.get(lastMDay)}">
-              <td colspan="5" th:text="|${postponed.get(lastMDay)} nije odigrano|"></td>   
+              <tr th:each="t: ${pp}">
+                <td colspan="5" th:text="|${t} nije odigrano|"></td>
+              </tr>       
             </tr>
           </tr>        
         </table>
@@ -122,7 +126,9 @@
               <td colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
             </tr>
             <tr th:if="${postponed?.get(lastMDay)}">
-              <td colspan="5" th:text="|${postponed.get(lastMDay)} nije odigrano|"></td>   
+              <tr th:each="t: ${pp}">
+                <td colspan="5" th:text="|${t} nije odigrano|"></td>
+              </tr>       
             </tr>
           </tr>         
         </table>
@@ -169,7 +175,9 @@
               <td colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
             </tr>
             <tr th:if="${postponed?.get(lastMDay)}">
-              <td colspan="5" th:text="|${postponed.get(lastMDay)} nije odigrano|"></td>   
+              <tr th:each="t: ${pp}">
+                <td colspan="5" th:text="|${t} nije odigrano|"></td>
+              </tr>       
             </tr>
           </tr>
         </table>
@@ -216,7 +224,9 @@
               <td colspan="5" th:text="|${freeTeam.get(lastMDay)} pauzira|"></td>   
             </tr>
             <tr th:if="${postponed?.get(lastMDay)}">
-              <td colspan="5" th:text="|${postponed.get(lastMDay)} nije odigrano|"></td>   
+              <tr th:each="t: ${pp}">
+                <td colspan="5" th:text="|${t} nije odigrano|"></td>
+              </tr>       
             </tr>
           </tr>
         </table>
