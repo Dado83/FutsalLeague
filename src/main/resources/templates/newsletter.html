@@ -18,7 +18,11 @@
       <br/>
       <p>ad 1)</p>  
       <p class="news" th:if="${lastMDay} > 0" th:text="|${freeTeam.get(lastMDay)} pauzira|"></p>
-      <p class="news" th:if="${postponed?.get(lastMDay)}" th:text="|${postponed.get(lastMDay)} nije odigrano|"></p>
+      <p th:if="${postponed?.get(lastMDay)}">
+              <p class="news" th:each="t: ${pp}" th:text="|${t} nije odigrano (odigraće se naknadno)|">
+               
+              </p>             
+            </p>
       <div class="resultsNews">
         <p>godište: 2009</p>
         <table>         
