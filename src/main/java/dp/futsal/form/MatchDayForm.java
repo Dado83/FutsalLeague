@@ -95,7 +95,7 @@ public class MatchDayForm {
         away5 = team.get(pair.get(4).getAwayTeam()).getTeamName();
     }
 
-    public void saveResults(Map<Integer, List<MatchResult>> resultsMap, Map<Integer, String> postponed,
+    public void saveResults(Map<Integer, List<MatchResult>> resultsMap, Map<Integer, List<String>> postponed,
             Map<Integer, String> notPlaying, Map<Integer, String> notPlaying9) {
         LOGGER.info("addresults");
 

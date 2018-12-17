@@ -54,6 +54,23 @@ public class Fixture {
 
         }
     }
+    
+    public void saveGamePostponedToJson(String fileString, Map<Integer, List<String>> games) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<Map<Integer, List<String>>>() {
+        }.getType();
+        String json = gson.toJson(games, type);
+        File file = new File(fileString);
+        try {
+            OutputStream outputStream = new FileOutputStream(file);
+            Writer writer = new OutputStreamWriter(outputStream, Charset.forName("utf-8").newEncoder());
+            try (BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
+                bufferedWriter.write(json);
+            }
+        } catch (IOException e) {
+
+        }
+    }
 
     public String saveGameNotPlayedToJson(Map<Integer, String> games) {
         Gson gson = new Gson();
@@ -61,6 +78,26 @@ public class Fixture {
         }.getType();
         String json = gson.toJson(games, type);
         return json;
+    }
+
+    public Map<Integer, List<String>> loadGamePostponedFromJson(String file) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<Map<Integer, List<String>>>() {
+        }.getType();
+        StringBuilder stringBuilder = new StringBuilder();
+        try {
+            URL url = new URL(file);
+            InputStream inputStream = url.openStream();
+            Reader reader = new InputStreamReader(inputStream, Charset.forName("utf-8").newDecoder());
+            BufferedReader buffReader = new BufferedReader(reader);
+            String line;
+            while ((line = buffReader.readLine()) != null) {
+                stringBuilder.append(line);
+            }
+        } catch (IOException e) {
+            LOGGER.severe("nisam ucitao notPlayed json");
+        }
+        return (Map<Integer, List<String>>) gson.fromJson(stringBuilder.toString(), type);
     }
 
     public Map<Integer, String> loadGameNotPlayedFromJson(String file) {

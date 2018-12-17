@@ -1,5 +1,7 @@
 package dp.futsal.service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
@@ -14,13 +16,14 @@ public class MatchResult {
     private int awayTeamID;
     private int goalsHome;
     private int goalsAway;
+    List<String> pponed = new ArrayList<>();
 
     public MatchResult() {
 
     }
 
     public MatchResult(int matchDay, Map<Integer, Team> teamMap, int homeTeam, int awayTeam, int goalsHome, int goalsAway,
-            Map<Integer, String> postponed) {
+            Map<Integer, List<String>> postponed) {
         Team home;
         Team away;
         home = teamMap.get(homeTeam);
@@ -39,7 +42,8 @@ public class MatchResult {
                 || this.homeTeam.equals("pauza9") || this.awayTeam.equals("pauza9")
                 || this.goalsHome == -1) {
             if (this.goalsHome == -1) {
-                postponed.put(this.matchDay, this.homeTeam + " - " + this.awayTeam);
+                pponed.add(this.homeTeam + " - " + this.awayTeam);
+                postponed.put(this.matchDay, pponed);
                 Logger.getLogger(MatchResult.class.getName()).info("utakmica nije odigrana");
             }
             Logger.getLogger(MatchResult.class.getName()).info("utakmica gdje ekipa pauzira");

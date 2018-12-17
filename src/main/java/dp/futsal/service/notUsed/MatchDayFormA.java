@@ -72,7 +72,7 @@ public class MatchDayFormA {
 
     }
 
-    public void saveResults(Map<Integer, List<MatchResult>> resultsMap, Map<Integer, String> postponed, Map<Integer, String> notPlaying) {
+    public void saveResults(Map<Integer, List<MatchResult>> resultsMap, Map<Integer, List<String>> postponed, Map<Integer, String> notPlaying) {
         LOGGER.info("addresults");
 
         MatchResult m1 = new MatchResult(this.mDay, this.teamMap, this.teamH1, this.teamA1, this.goalsH1, this.goalsA1, postponed);

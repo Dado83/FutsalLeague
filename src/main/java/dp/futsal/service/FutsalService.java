@@ -44,7 +44,7 @@ public class FutsalService {
     private List<Team> teamLinks8;
     private List<Team> teamLinks9;
     private List<Team> teamLogos;
-    private Map<Integer, String> gamePostponed;
+    private Map<Integer, List<String>> gamePostponed;
     private Map<Integer, String> notPlaying;
     private Map<Integer, String> notPlaying9;
 
@@ -112,7 +112,7 @@ public class FutsalService {
         fixture.loadFixturesFromJson(httpUrl + "berger9-10.json");
         matchDaypairs = fixture.getPairs();
         leagueDates = fixture.loadDatesFromJson(httpUrl + "leagueDates.json");
-        gamePostponed = fixture.loadGameNotPlayedFromJson(httpUrl + "gamePostponed.json");
+        gamePostponed = fixture.loadGamePostponedFromJson(httpUrl + "gamePostponed.json");
         notPlaying = fixture.loadGameNotPlayedFromJson(httpUrl + "notPlaying.json");
         notPlaying9 = fixture.loadGameNotPlayedFromJson(httpUrl + "notPlaying9.json");
 
@@ -139,7 +139,7 @@ public class FutsalService {
         fixture.saveResultsToJson(appDataLocalDir + "results7.json", results7);
         fixture.saveResultsToJson(appDataLocalDir + "results8.json", results8);
         fixture.saveResultsToJson(appDataLocalDir + "results9.json", results9);
-        fixture.saveGameNotPlayedToJson(appDataLocalDir + "gamePostponed.json", gamePostponed);
+        fixture.saveGamePostponedToJson(appDataLocalDir + "gamePostponed.json", gamePostponed);
         fixture.saveGameNotPlayedToJson(appDataLocalDir + "notPlaying.json", notPlaying);
         fixture.saveGameNotPlayedToJson(appDataLocalDir + "notPlaying9.json", notPlaying9);
         fixture.saveResultsToJson(appDataLocalDirGit + "results5.json", results5);
@@ -147,7 +147,7 @@ public class FutsalService {
         fixture.saveResultsToJson(appDataLocalDirGit + "results7.json", results7);
         fixture.saveResultsToJson(appDataLocalDirGit + "results8.json", results8);
         fixture.saveResultsToJson(appDataLocalDirGit + "results9.json", results9);
-        fixture.saveGameNotPlayedToJson(appDataLocalDirGit + "gamePostponed.json", gamePostponed);
+        fixture.saveGamePostponedToJson(appDataLocalDirGit + "gamePostponed.json", gamePostponed);
         fixture.saveGameNotPlayedToJson(appDataLocalDirGit + "notPlaying.json", notPlaying);
         fixture.saveGameNotPlayedToJson(appDataLocalDirGit + "notPlaying9.json", notPlaying9);
         ftpClient.uploadFile(appDataServerDir + "results5.json", appDataLocalDir + "results5.json");
@@ -494,11 +494,11 @@ public class FutsalService {
         return teams9.get(index);
     }
 
-    public Map<Integer, String> getGamePostponed() {
+    public Map<Integer, List<String>> getGamePostponed() {
         return gamePostponed;
     }
 
-    public void setGamePostponed(Map<Integer, String> gamePostponed) {
+    public void setGamePostponed(Map<Integer, List<String>> gamePostponed) {
         this.gamePostponed = gamePostponed;
     }
 
