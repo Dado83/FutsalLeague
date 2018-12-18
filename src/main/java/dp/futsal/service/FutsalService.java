@@ -129,7 +129,7 @@ public class FutsalService {
         teams9 = teamCollection.loadTeamsFromJson(httpUrl + "teams9.json");
     }
 
-    public void saveFutsalData() {
+    public void saveFutsalDataFromLocal() {
         String appDataLocalDir = "D:/Fair Play/Zimska liga 2018-2019/app data/";
         String appDataLocalDirGit = "E:/Java/JsonLiga/";
         String appDataServerDir = "public_html/futsal/";
@@ -174,6 +174,23 @@ public class FutsalService {
         ftpClient.uploadFile(appDataServerDir + "teams7.json", appDataLocalDir + "teams7.json");
         ftpClient.uploadFile(appDataServerDir + "teams8.json", appDataLocalDir + "teams8.json");
         ftpClient.uploadFile(appDataServerDir + "teams9.json", appDataLocalDir + "teams9.json");
+    }
+
+    public void saveFutsalData() {
+        ftpClient.uploadToServer(fixture.saveResultsToJson(results5));
+        ftpClient.uploadToServer(fixture.saveResultsToJson(results6));
+        ftpClient.uploadToServer(fixture.saveResultsToJson(results7));
+        ftpClient.uploadToServer(fixture.saveResultsToJson(results8));
+        ftpClient.uploadToServer(fixture.saveResultsToJson(results9));
+        ftpClient.uploadToServer(fixture.saveGamePostponedToJson(gamePostponed));
+        ftpClient.uploadToServer(fixture.saveGameNotPlayedToJson(notPlaying));
+        ftpClient.uploadToServer(fixture.saveGameNotPlayedToJson(notPlaying9));
+
+        ftpClient.uploadToServer(teamCollection.saveTeamsToJson(teams5));
+        ftpClient.uploadToServer(teamCollection.saveTeamsToJson(teams6));
+        ftpClient.uploadToServer(teamCollection.saveTeamsToJson(teams7));
+        ftpClient.uploadToServer(teamCollection.saveTeamsToJson(teams8));
+        ftpClient.uploadToServer(teamCollection.saveTeamsToJson(teams9));
     }
 
     public void updateTeam(TeamForm team) {

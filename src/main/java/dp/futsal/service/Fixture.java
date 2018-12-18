@@ -54,7 +54,15 @@ public class Fixture {
 
         }
     }
-    
+
+    public String saveGameNotPlayedToJson(Map<Integer, String> games) {
+        Gson gson = new Gson();
+        Type type = new TypeToken<Map<Integer, String>>() {
+        }.getType();
+        String json = gson.toJson(games, type);
+        return json;
+    }
+
     public void saveGamePostponedToJson(String fileString, Map<Integer, List<String>> games) {
         Gson gson = new Gson();
         Type type = new TypeToken<Map<Integer, List<String>>>() {
@@ -71,10 +79,10 @@ public class Fixture {
 
         }
     }
-
-    public String saveGameNotPlayedToJson(Map<Integer, String> games) {
+    
+    public String saveGamePostponedToJson(Map<Integer, List<String>> games) {
         Gson gson = new Gson();
-        Type type = new TypeToken<Map<Integer, String>>() {
+        Type type = new TypeToken<Map<Integer, List<String>>>() {
         }.getType();
         String json = gson.toJson(games, type);
         return json;

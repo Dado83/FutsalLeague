@@ -1,11 +1,16 @@
 package dp.futsal.ftp;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
+import java.io.OutputStreamWriter;
+import java.io.Writer;
+import java.nio.charset.Charset;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.net.ftp.FTPClient;
@@ -15,9 +20,12 @@ import org.springframework.stereotype.Service;
 @Service
 public class FTP {
 
+    private static final Logger LOGGER = Logger.getLogger(FTP.class.getName());
+
     FTPClient ftp;
     String[] loggonData = new String[2];
     InputStream inputStream;
+    
 
     public FTP() {
 
@@ -44,6 +52,34 @@ public class FTP {
             if (ftp.isConnected()) {
                 ftp.logout();
                 ftp.disconnect();
+            }
+        } catch (IOException ex) {
+            Logger.getLogger(FTP.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public void uploadToServer(String data) {
+        ftp = new FTPClient();
+        String appDataServerDir = "public_html/futsal/";
+        try {
+            ftp.connect("files.000webhost.com");
+            LOGGER.info("connected to server");
+
+            ftp.login("app-1542391754", "fpliga2014");
+            LOGGER.info("logged to server");
+
+            OutputStream outputStream = ftp.storeFileStream(appDataServerDir);
+            Writer writer = new OutputStreamWriter(outputStream, Charset.forName("utf-8").newEncoder());
+            Writer bufferedWriter = new BufferedWriter(writer);
+            bufferedWriter.write(data);
+            bufferedWriter.close();
+
+            LOGGER.info("Upload done?..." + ftp.completePendingCommand());
+
+            if (ftp.isConnected()) {
+                ftp.logout();
+                ftp.disconnect();
+                LOGGER.info("logged out & disconnected from server");
             }
         } catch (IOException ex) {
             Logger.getLogger(FTP.class.getName()).log(Level.SEVERE, null, ex);
