@@ -177,20 +177,20 @@ public class FutsalService {
     }
 
     public void saveFutsalData() {
-        ftpClient.uploadToServer(fixture.saveResultsToJson(results5));
-        ftpClient.uploadToServer(fixture.saveResultsToJson(results6));
-        ftpClient.uploadToServer(fixture.saveResultsToJson(results7));
-        ftpClient.uploadToServer(fixture.saveResultsToJson(results8));
-        ftpClient.uploadToServer(fixture.saveResultsToJson(results9));
-        ftpClient.uploadToServer(fixture.saveGamePostponedToJson(gamePostponed));
-        ftpClient.uploadToServer(fixture.saveGameNotPlayedToJson(notPlaying));
-        ftpClient.uploadToServer(fixture.saveGameNotPlayedToJson(notPlaying9));
+        ftpClient.uploadToServer("results5.json", fixture.saveResultsToJson(results5));
+        ftpClient.uploadToServer("results6.json", fixture.saveResultsToJson(results6));
+        ftpClient.uploadToServer("results7.json", fixture.saveResultsToJson(results7));
+        ftpClient.uploadToServer("results8.json", fixture.saveResultsToJson(results8));
+        ftpClient.uploadToServer("results9.json", fixture.saveResultsToJson(results9));
+        ftpClient.uploadToServer("gamePostponed.json", fixture.saveGamePostponedToJson(gamePostponed));
+        ftpClient.uploadToServer("notPlaying.json", fixture.saveGameNotPlayedToJson(notPlaying));
+        ftpClient.uploadToServer("notPlaying9.json", fixture.saveGameNotPlayedToJson(notPlaying9));
 
-        ftpClient.uploadToServer(teamCollection.saveTeamsToJson(teams5));
-        ftpClient.uploadToServer(teamCollection.saveTeamsToJson(teams6));
-        ftpClient.uploadToServer(teamCollection.saveTeamsToJson(teams7));
-        ftpClient.uploadToServer(teamCollection.saveTeamsToJson(teams8));
-        ftpClient.uploadToServer(teamCollection.saveTeamsToJson(teams9));
+        ftpClient.uploadToServer("teams5.json", teamCollection.saveTeamsToJson(teams5));
+        ftpClient.uploadToServer("teams6.json", teamCollection.saveTeamsToJson(teams6));
+        ftpClient.uploadToServer("teams7.json", teamCollection.saveTeamsToJson(teams7));
+        ftpClient.uploadToServer("teams8.json", teamCollection.saveTeamsToJson(teams8));
+        ftpClient.uploadToServer("teams9.json", teamCollection.saveTeamsToJson(teams9));
     }
 
     public void updateTeam(TeamForm team) {

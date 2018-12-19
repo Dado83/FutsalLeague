@@ -25,7 +25,6 @@ public class FTP {
     FTPClient ftp;
     String[] loggonData = new String[2];
     InputStream inputStream;
-    
 
     public FTP() {
 
@@ -58,23 +57,23 @@ public class FTP {
         }
     }
 
-    public void uploadToServer(String data) {
+    public void uploadToServer(String remote, String data) {
         ftp = new FTPClient();
         String appDataServerDir = "public_html/futsal/";
         try {
             ftp.connect("files.000webhost.com");
             LOGGER.info("connected to server");
 
-            ftp.login("app-1542391754", "fpliga2014");
-            LOGGER.info("logged to server");
+            if (ftp.login("app-1542391754", "fpliga2014")) {
+                LOGGER.info("logged to server");
 
-            OutputStream outputStream = ftp.storeFileStream(appDataServerDir);
-            Writer writer = new OutputStreamWriter(outputStream, Charset.forName("utf-8").newEncoder());
-            Writer bufferedWriter = new BufferedWriter(writer);
-            bufferedWriter.write(data);
-            bufferedWriter.close();
-
-            LOGGER.info("Upload done?..." + ftp.completePendingCommand());
+                try (OutputStream outputStream = ftp.storeFileStream(appDataServerDir + remote);
+                        Writer writer = new OutputStreamWriter(outputStream, Charset.forName("utf-8").newEncoder());
+                        Writer bufferedWriter = new BufferedWriter(writer);) {
+                    bufferedWriter.write(data);
+                }
+                LOGGER.info("Upload done?..." + ftp.completePendingCommand());
+            }
 
             if (ftp.isConnected()) {
                 ftp.logout();
