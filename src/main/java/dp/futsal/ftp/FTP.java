@@ -14,6 +14,9 @@ import java.nio.charset.Charset;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.apache.commons.net.ftp.FTPClient;
+import org.springframework.context.annotation.Bean;
+import org.springframework.core.task.TaskExecutor;
+import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
 
@@ -72,7 +75,7 @@ public class FTP {
                         Writer bufferedWriter = new BufferedWriter(writer);) {
                     bufferedWriter.write(data);
                 }
-                LOGGER.info("Upload done?..." + ftp.completePendingCommand());
+                LOGGER.info("Upload done?..." + ftp.completePendingCommand() + "(" + remote + ")");
             }
 
             if (ftp.isConnected()) {
@@ -83,5 +86,13 @@ public class FTP {
         } catch (IOException ex) {
             Logger.getLogger(FTP.class.getName()).log(Level.SEVERE, null, ex);
         }
+    }
+
+    @Bean
+    public TaskExecutor getTaskExecutor() {
+        ThreadPoolTaskExecutor taskExecutor = new ThreadPoolTaskExecutor();
+        taskExecutor.setCorePoolSize(1);
+        taskExecutor.setMaxPoolSize(1);
+        return taskExecutor;
     }
 }

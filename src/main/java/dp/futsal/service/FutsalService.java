@@ -8,6 +8,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.task.TaskExecutor;
 import org.springframework.stereotype.Service;
 
 
@@ -21,6 +22,8 @@ public class FutsalService {
     private Fixture fixture;
     @Autowired
     private TeamCollection teamCollection;
+    @Autowired
+    private TaskExecutor taskExecutor;
     private Map<Integer, List<MatchPair>> matchDaypairs;
     private Map<Integer, String> leagueDates;
     private Map<Integer, List<MatchResult>> results5;
@@ -177,20 +180,27 @@ public class FutsalService {
     }
 
     public void saveFutsalData() {
-        ftpClient.uploadToServer("results5.json", fixture.saveResultsToJson(results5));
-        ftpClient.uploadToServer("results6.json", fixture.saveResultsToJson(results6));
-        ftpClient.uploadToServer("results7.json", fixture.saveResultsToJson(results7));
-        ftpClient.uploadToServer("results8.json", fixture.saveResultsToJson(results8));
-        ftpClient.uploadToServer("results9.json", fixture.saveResultsToJson(results9));
-        ftpClient.uploadToServer("gamePostponed.json", fixture.saveGamePostponedToJson(gamePostponed));
-        ftpClient.uploadToServer("notPlaying.json", fixture.saveGameNotPlayedToJson(notPlaying));
-        ftpClient.uploadToServer("notPlaying9.json", fixture.saveGameNotPlayedToJson(notPlaying9));
+        taskExecutor.execute(() -> {
+            LOGGER.info("start of upload");
+            long startTime = System.currentTimeMillis();
+            ftpClient.uploadToServer("results5.json", fixture.saveResultsToJson(results5));
+            ftpClient.uploadToServer("results6.json", fixture.saveResultsToJson(results6));
+            ftpClient.uploadToServer("results7.json", fixture.saveResultsToJson(results7));
+            ftpClient.uploadToServer("results8.json", fixture.saveResultsToJson(results8));
+            ftpClient.uploadToServer("results9.json", fixture.saveResultsToJson(results9));
+            ftpClient.uploadToServer("gamePostponed.json", fixture.saveGamePostponedToJson(gamePostponed));
+            ftpClient.uploadToServer("notPlaying.json", fixture.saveGameNotPlayedToJson(notPlaying));
+            ftpClient.uploadToServer("notPlaying9.json", fixture.saveGameNotPlayedToJson(notPlaying9));
 
-        ftpClient.uploadToServer("teams5.json", teamCollection.saveTeamsToJson(teams5));
-        ftpClient.uploadToServer("teams6.json", teamCollection.saveTeamsToJson(teams6));
-        ftpClient.uploadToServer("teams7.json", teamCollection.saveTeamsToJson(teams7));
-        ftpClient.uploadToServer("teams8.json", teamCollection.saveTeamsToJson(teams8));
-        ftpClient.uploadToServer("teams9.json", teamCollection.saveTeamsToJson(teams9));
+            ftpClient.uploadToServer("teams5.json", teamCollection.saveTeamsToJson(teams5));
+            ftpClient.uploadToServer("teams6.json", teamCollection.saveTeamsToJson(teams6));
+            ftpClient.uploadToServer("teams7.json", teamCollection.saveTeamsToJson(teams7));
+            ftpClient.uploadToServer("teams8.json", teamCollection.saveTeamsToJson(teams8));
+            ftpClient.uploadToServer("teams9.json", teamCollection.saveTeamsToJson(teams9));
+            long endtTime = System.currentTimeMillis();
+            LOGGER.info("end of upload");
+            LOGGER.info("Time needed to upload: " + ((endtTime - startTime) / 1000) + " seconds");
+        });
     }
 
     public void updateTeam(TeamForm team) {
