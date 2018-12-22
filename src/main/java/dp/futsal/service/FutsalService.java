@@ -1,9 +1,13 @@
 package dp.futsal.service;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import dp.futsal.form.TeamForm;
 import dp.futsal.ftp.FTP;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
@@ -188,6 +192,7 @@ public class FutsalService {
             ftpClient.uploadToServer("results7.json", fixture.saveResultsToJson(results7));
             ftpClient.uploadToServer("results8.json", fixture.saveResultsToJson(results8));
             ftpClient.uploadToServer("results9.json", fixture.saveResultsToJson(results9));
+
             ftpClient.uploadToServer("gamePostponed.json", fixture.saveGamePostponedToJson(gamePostponed));
             ftpClient.uploadToServer("notPlaying.json", fixture.saveGameNotPlayedToJson(notPlaying));
             ftpClient.uploadToServer("notPlaying9.json", fixture.saveGameNotPlayedToJson(notPlaying9));
@@ -201,6 +206,55 @@ public class FutsalService {
             LOGGER.info("end of upload");
             LOGGER.info("Time needed to upload: " + ((endtTime - startTime) / 1000) + " seconds");
         });
+    }
+
+    //TEST
+    public void saveCompleteFutsalDataToJson() {
+        LOGGER.info("start of upload");
+        long startTime = System.currentTimeMillis();
+        String mPairs = fixture.saveFixturesToJson(matchDaypairs);
+        String lDates = fixture.saveLeagueDatesToJson(leagueDates);
+        
+        String res5 = fixture.saveResultsToJson(results5);
+        String res6 = fixture.saveResultsToJson(results6);
+        String res7 = fixture.saveResultsToJson(results7);
+        String res8 = fixture.saveResultsToJson(results8);
+        String res9 = fixture.saveResultsToJson(results9);
+
+        String postponed = fixture.saveGamePostponedToJson(gamePostponed);
+        String notPl = fixture.saveGameNotPlayedToJson(notPlaying);
+        String notPl9 = fixture.saveGameNotPlayedToJson(notPlaying9);
+
+        String team5 = teamCollection.saveTeamsToJson(teams5);
+        String team6 = teamCollection.saveTeamsToJson(teams6);
+        String team7 = teamCollection.saveTeamsToJson(teams7);
+        String team8 = teamCollection.saveTeamsToJson(teams8);
+        String team9 = teamCollection.saveTeamsToJson(teams9);
+
+        Map<String, String> data = new HashMap<>();
+        data.put("res5", res5);
+        data.put("res6", res6);
+        data.put("res7", res7);
+        data.put("res8", res8);
+        data.put("res9", res9);
+        data.put("postponed", postponed);
+        data.put("notPl", notPl);
+        data.put("notPl9", notPl9);
+        data.put("team5", team5);
+        data.put("team6", team6);
+        data.put("team7", team7);
+        data.put("team8", team8);
+        data.put("team9", team9);
+        data.put("lDates", lDates);
+        data.put("mPairs", mPairs);
+        Gson gson = new Gson();
+        Type type = new TypeToken<Map<String, String>>() {
+        }.getType();
+        String jsonData = gson.toJson(data, type);
+        ftpClient.uploadToServer("futsalDataComplete.json", jsonData);
+        long endtTime = System.currentTimeMillis();
+        LOGGER.info("end of upload");
+        LOGGER.info("Time needed to upload: " + ((endtTime - startTime) / 1000) + " seconds");
     }
 
     public void updateTeam(TeamForm team) {
