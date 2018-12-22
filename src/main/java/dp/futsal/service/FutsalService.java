@@ -210,58 +210,56 @@ public class FutsalService {
 
     //TEST
     public void saveCompleteFutsalDataToJson() {
-        taskExecutor.execute(() -> {
-            LOGGER.info("start of saveCompleteFutsalDataToJson");
-            long startTime = System.currentTimeMillis();
-            String mPairs = fixture.saveFixturesToJson(matchDaypairs);
-            String lDates = fixture.saveLeagueDatesToJson(leagueDates);
+        LOGGER.info("start of saveCompleteFutsalDataToJson");
+        long startTime = System.currentTimeMillis();
+        String mPairs = fixture.saveFixturesToJson(matchDaypairs);
+        String lDates = fixture.saveLeagueDatesToJson(leagueDates);
 
-            String res5 = fixture.saveResultsToJson(results5);
-            String res6 = fixture.saveResultsToJson(results6);
-            String res7 = fixture.saveResultsToJson(results7);
-            String res8 = fixture.saveResultsToJson(results8);
-            String res9 = fixture.saveResultsToJson(results9);
+        String res5 = fixture.saveResultsToJson(results5);
+        String res6 = fixture.saveResultsToJson(results6);
+        String res7 = fixture.saveResultsToJson(results7);
+        String res8 = fixture.saveResultsToJson(results8);
+        String res9 = fixture.saveResultsToJson(results9);
 
-            String postponed = fixture.saveGamePostponedToJson(gamePostponed);
-            String notPl = fixture.saveGameNotPlayedToJson(notPlaying);
-            String notPl9 = fixture.saveGameNotPlayedToJson(notPlaying9);
+        String postponed = fixture.saveGamePostponedToJson(gamePostponed);
+        String notPl = fixture.saveGameNotPlayedToJson(notPlaying);
+        String notPl9 = fixture.saveGameNotPlayedToJson(notPlaying9);
 
-            String team5 = teamCollection.saveTeamsToJson(teams5);
-            String team6 = teamCollection.saveTeamsToJson(teams6);
-            String team7 = teamCollection.saveTeamsToJson(teams7);
-            String team8 = teamCollection.saveTeamsToJson(teams8);
-            String team9 = teamCollection.saveTeamsToJson(teams9);
-            LOGGER.info("acquired data...");
+        String team5 = teamCollection.saveTeamsToJson(teams5);
+        String team6 = teamCollection.saveTeamsToJson(teams6);
+        String team7 = teamCollection.saveTeamsToJson(teams7);
+        String team8 = teamCollection.saveTeamsToJson(teams8);
+        String team9 = teamCollection.saveTeamsToJson(teams9);
+        LOGGER.info("acquired data...");
 
-            Map<String, String> data = new HashMap<>();
-            data.put("res5", res5);
-            data.put("res6", res6);
-            data.put("res7", res7);
-            data.put("res8", res8);
-            data.put("res9", res9);
-            data.put("postponed", postponed);
-            data.put("notPl", notPl);
-            data.put("notPl9", notPl9);
-            data.put("team5", team5);
-            data.put("team6", team6);
-            data.put("team7", team7);
-            data.put("team8", team8);
-            data.put("team9", team9);
-            data.put("lDates", lDates);
-            data.put("mPairs", mPairs);
-            LOGGER.info("map populated...");
-            
-            Gson gson = new Gson();
-            Type type = new TypeToken<Map<String, String>>() {
-            }.getType();
-            String jsonData = gson.toJson(data, type);
-            
-            LOGGER.info("starting upload...");
-            ftpClient.uploadToServer("futsalDataComplete.json", jsonData);
-            long endtTime = System.currentTimeMillis();
-            LOGGER.info("end of upload");
-            LOGGER.info("Time needed to upload: " + ((endtTime - startTime) / 1000) + " seconds");
-        });
+        Map<String, String> data = new HashMap<>();
+        data.put("res5", res5);
+        data.put("res6", res6);
+        data.put("res7", res7);
+        data.put("res8", res8);
+        data.put("res9", res9);
+        data.put("postponed", postponed);
+        data.put("notPl", notPl);
+        data.put("notPl9", notPl9);
+        data.put("team5", team5);
+        data.put("team6", team6);
+        data.put("team7", team7);
+        data.put("team8", team8);
+        data.put("team9", team9);
+        data.put("lDates", lDates);
+        data.put("mPairs", mPairs);
+        LOGGER.info("map populated...");
+
+        Gson gson = new Gson();
+        Type type = new TypeToken<Map<String, String>>() {
+        }.getType();
+        String jsonData = gson.toJson(data, type);
+
+        LOGGER.info("starting upload...");
+        ftpClient.uploadToServer("futsalDataComplete.json", jsonData);
+        long endtTime = System.currentTimeMillis();
+        LOGGER.info("end of upload");
+        LOGGER.info("Time needed to upload: " + ((endtTime - startTime) / 1000) + " seconds");
     }
 
     public void updateTeam(TeamForm team) {
