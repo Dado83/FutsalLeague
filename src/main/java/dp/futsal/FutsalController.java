@@ -286,9 +286,9 @@ public class FutsalController {
     @GetMapping("/admin/save")
     public String save(Model model) {
         LOGGER.info("saving...");
-        //service.saveFutsalData();
-        service.saveCompleteFutsalDataToJson();
-        LOGGER.info("save to successful");
+        service.saveFutsalData();
+        //service.saveCompleteFutsalDataToJson();
+        LOGGER.info("save successful");
 
         return "adminDashboard";
     }
