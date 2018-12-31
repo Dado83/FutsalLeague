@@ -19,7 +19,6 @@ import org.springframework.core.task.TaskExecutor;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 import org.springframework.stereotype.Service;
 
-
 @Service
 public class FTP {
 
