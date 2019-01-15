@@ -64,6 +64,8 @@ public class FutsalController {
                 .addAttribute("postponed", service.getGamePostponed())
                 .addAttribute("lastMDay", lastMDay)
                 .addAttribute("pp", postponedGames);
+        
+        LOGGER.info("end of @modelattribute addcommonatt method");
     }
 
     @GetMapping("/")
