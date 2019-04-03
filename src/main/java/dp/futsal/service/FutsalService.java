@@ -3,7 +3,6 @@ package dp.futsal.service;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import dp.futsal.form.TeamForm;
-import dp.futsal.ftp.FTP;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -11,6 +10,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
+import org.apache.commons.net.ftp.FTP;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.task.TaskExecutor;
 import org.springframework.stereotype.Service;
@@ -157,14 +157,7 @@ public class FutsalService {
         fixture.saveGamePostponedToJson(appDataLocalDirGit + "gamePostponed.json", gamePostponed);
         fixture.saveGameNotPlayedToJson(appDataLocalDirGit + "notPlaying.json", notPlaying);
         fixture.saveGameNotPlayedToJson(appDataLocalDirGit + "notPlaying9.json", notPlaying9);
-        ftpClient.uploadFile(appDataServerDir + "results5.json", appDataLocalDir + "results5.json");
-        ftpClient.uploadFile(appDataServerDir + "results6.json", appDataLocalDir + "results6.json");
-        ftpClient.uploadFile(appDataServerDir + "results7.json", appDataLocalDir + "results7.json");
-        ftpClient.uploadFile(appDataServerDir + "results8.json", appDataLocalDir + "results8.json");
-        ftpClient.uploadFile(appDataServerDir + "results9.json", appDataLocalDir + "results9.json");
-        ftpClient.uploadFile(appDataServerDir + "gamePostponed.json", appDataLocalDir + "gamePostponed.json");
-        ftpClient.uploadFile(appDataServerDir + "notPlaying.json", appDataLocalDir + "notPlaying.json");
-        ftpClient.uploadFile(appDataServerDir + "notPlaying9.json", appDataLocalDir + "notPlaying9.json");
+        
 
         teamCollection.saveTeamsToJson(appDataLocalDir + "teams5.json", teams5);
         teamCollection.saveTeamsToJson(appDataLocalDir + "teams6.json", teams6);
@@ -176,37 +169,10 @@ public class FutsalService {
         teamCollection.saveTeamsToJson(appDataLocalDirGit + "teams7.json", teams7);
         teamCollection.saveTeamsToJson(appDataLocalDirGit + "teams8.json", teams8);
         teamCollection.saveTeamsToJson(appDataLocalDirGit + "teams9.json", teams9);
-        ftpClient.uploadFile(appDataServerDir + "teams5.json", appDataLocalDir + "teams5.json");
-        ftpClient.uploadFile(appDataServerDir + "teams6.json", appDataLocalDir + "teams6.json");
-        ftpClient.uploadFile(appDataServerDir + "teams7.json", appDataLocalDir + "teams7.json");
-        ftpClient.uploadFile(appDataServerDir + "teams8.json", appDataLocalDir + "teams8.json");
-        ftpClient.uploadFile(appDataServerDir + "teams9.json", appDataLocalDir + "teams9.json");
+        
     }
 
-    public void saveFutsalData() {
-        taskExecutor.execute(() -> {
-            LOGGER.info("start of upload");
-            long startTime = System.currentTimeMillis();
-            ftpClient.uploadToServer("results5.json", fixture.saveResultsToJson(results5));
-            ftpClient.uploadToServer("results6.json", fixture.saveResultsToJson(results6));
-            ftpClient.uploadToServer("results7.json", fixture.saveResultsToJson(results7));
-            ftpClient.uploadToServer("results8.json", fixture.saveResultsToJson(results8));
-            ftpClient.uploadToServer("results9.json", fixture.saveResultsToJson(results9));
-
-            ftpClient.uploadToServer("gamePostponed.json", fixture.saveGamePostponedToJson(gamePostponed));
-            ftpClient.uploadToServer("notPlaying.json", fixture.saveGameNotPlayedToJson(notPlaying));
-            ftpClient.uploadToServer("notPlaying9.json", fixture.saveGameNotPlayedToJson(notPlaying9));
-
-            ftpClient.uploadToServer("teams5.json", teamCollection.saveTeamsToJson(teams5));
-            ftpClient.uploadToServer("teams6.json", teamCollection.saveTeamsToJson(teams6));
-            ftpClient.uploadToServer("teams7.json", teamCollection.saveTeamsToJson(teams7));
-            ftpClient.uploadToServer("teams8.json", teamCollection.saveTeamsToJson(teams8));
-            ftpClient.uploadToServer("teams9.json", teamCollection.saveTeamsToJson(teams9));
-            long endtTime = System.currentTimeMillis();
-            LOGGER.info("end of upload");
-            LOGGER.info("Time needed to upload: " + ((endtTime - startTime) / 1000) + " seconds");
-        });
-    }
+    
 
     //TEST
     public void saveCompleteFutsalDataToJson() {
@@ -256,7 +222,6 @@ public class FutsalService {
         String jsonData = gson.toJson(data, type);
 
         LOGGER.info("starting upload...");
-        ftpClient.uploadToServer("futsalDataComplete.json", jsonData);
         long endtTime = System.currentTimeMillis();
         LOGGER.info("end of upload");
         LOGGER.info("Time needed to upload: " + ((endtTime - startTime) / 1000) + " seconds");
