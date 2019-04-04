@@ -2,7 +2,6 @@ package dp.futsal.service;
 
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
-import dp.futsal.form.TeamForm;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -227,32 +226,7 @@ public class FutsalService {
         LOGGER.info("Time needed to upload: " + ((endtTime - startTime) / 1000) + " seconds");
     }
 
-    public void updateTeam(TeamForm team) {
-        Team t5 = getTeam5(team.getId());
-        Team t6 = getTeam6(team.getId());
-        Team t7 = getTeam7(team.getId());
-        Team t8 = getTeam8(team.getId());
-        Team t9 = getTeam9(team.getId());
-
-        Team[] teams = {t5, t6, t7, t8, t9};
-        for (Team t : teams) {
-            if (t.getTeamName().equals("pauza") || t.getTeamName().equals("pauza9")) {
-                LOGGER.info("nisam dirao pauza9 tim");
-            } else {
-                t.setId(team.getId());
-                t.setTeamName(team.getTeamName());
-                t.setTeamCity(team.getTeamCity());
-                t.setKitColor(team.getKitColor());
-                t.setVenue(team.getVenue());
-                t.setGameTime(team.getGameTime());
-            }
-        }
-        updateTeamData5(getTeams5());
-        updateTeamData6(getTeams6());
-        updateTeamData7(getTeams7());
-        updateTeamData8(getTeams8());
-        updateTeamData9(getTeams9());
-    }
+  
 
     public void deleteLastMDay() {
         int md = results5.size();

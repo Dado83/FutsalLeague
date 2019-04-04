@@ -1,7 +1,7 @@
 package dp.futsal;
 
 import dp.futsal.service.FutsalService;
-import dp.futsal.form.MatchDayForm;
+
 import java.util.logging.Logger;
 import javax.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -11,7 +11,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
-import dp.futsal.form.TeamForm;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
@@ -109,10 +109,8 @@ public class FutsalController {
     }
 
     @PostMapping("/updatedTeam")
-    public String updateTeam5(Model model, @ModelAttribute TeamForm team) {
-        LOGGER.info("" + team.getTeamName());
-        service.updateTeam(team);
-        model.addAttribute("updatedTeam", team);
+    public String updateTeam5(Model model) {
+       
         LOGGER.info(service.getTeams5().toString());
 
         return "updatedTeam";
@@ -120,9 +118,8 @@ public class FutsalController {
 
     @GetMapping("/admin/enterMatchDayResults5")
     public String enterResults5(Model model, int index) {
-        MatchDayForm mDayForm = new MatchDayForm();
-        mDayForm.loadForm(index, service.getTeamLinks5(), service.getPairs());
-        model.addAttribute("gameForm", mDayForm);
+        
+       
         model.addAttribute("results", service.getResults5().get(index));
 
         return "enterMatchDayResults5";
@@ -130,9 +127,8 @@ public class FutsalController {
 
     @GetMapping("/admin/enterMatchDayResults6")
     public String enterResults6(Model model, int index) {
-        MatchDayForm mDayForm = new MatchDayForm();
-        mDayForm.loadForm(index, service.getTeamLinks6(), service.getPairs());
-        model.addAttribute("gameForm", mDayForm);
+       
+        
         model.addAttribute("results", service.getResults6().get(index));
 
         return "enterMatchDayResults6";
@@ -140,9 +136,7 @@ public class FutsalController {
 
     @GetMapping("/admin/enterMatchDayResults7")
     public String enterResults7(Model model, int index) {
-        MatchDayForm mDayForm = new MatchDayForm();
-        mDayForm.loadForm(index, service.getTeamLinks7(), service.getPairs());
-        model.addAttribute("gameForm", mDayForm);
+      
         model.addAttribute("results", service.getResults7().get(index));
 
         return "enterMatchDayResults7";
@@ -150,9 +144,8 @@ public class FutsalController {
 
     @GetMapping("/admin/enterMatchDayResults8")
     public String enterResults8(Model model, int index) {
-        MatchDayForm mDayForm = new MatchDayForm();
-        mDayForm.loadForm(index, service.getTeamLinks8(), service.getPairs());
-        model.addAttribute("gameForm", mDayForm);
+      
+
         model.addAttribute("results", service.getResults8().get(index));
 
         return "enterMatchDayResults8";
@@ -160,31 +153,18 @@ public class FutsalController {
 
     @GetMapping("/admin/enterMatchDayResults9")
     public String enterResults9(Model model, int index) {
-        MatchDayForm mDayForm = new MatchDayForm();
-        mDayForm.loadForm(index, service.getTeamLinks9(), service.getPairs());
-        model.addAttribute("gameForm", mDayForm);
+     
         model.addAttribute("results", service.getResults9().get(index));
 
         return "enterMatchDayResults9";
     }
 
     @PostMapping("/addedMatchDayResults5")
-    public String addedResults5(Model model, @ModelAttribute MatchDayForm form) {
+    public String addedResults5(Model model) {
         LOGGER.info("pocetak addedmatch");
 
-        form.setTeamMap(service.getTeams5());
-
-        for (int i = 1; i < 11; i++) {
-            service.getTeam5(i).delMatchDay(form.getmDay() + "");
-        }
-
-        service.getGamePostponed().remove(form.getmDay());
-
-        form.saveResults(service.getResults5(), service.getGamePostponed(), service.getNotPlaying(), service.getNotPlaying9());
-        service.setTeams5(form.getTeamMap());
-        service.updateTeamData5(service.getTeams5());
-        model.addAttribute("result", form.getResults());
-        model.addAttribute("god", "2005");
+      
+      
         LOGGER.info(service.getGamePostponed().toString());
         LOGGER.info(service.getNotPlaying().toString());
 
@@ -192,84 +172,40 @@ public class FutsalController {
     }
 
     @PostMapping("/addedMatchDayResults6")
-    public String addedResults6(Model model, @ModelAttribute MatchDayForm form) {
+    public String addedResults6(Model model) {
         LOGGER.info("pocetak addedmatch");
 
-        form.setTeamMap(service.getTeams6());
-
-        for (int i = 1; i < 11; i++) {
-            service.getTeam6(i).delMatchDay(form.getmDay() + "");
-        }
-
-        service.getGamePostponed().remove(form.getmDay());
-
-        form.saveResults(service.getResults6(), service.getGamePostponed(), service.getNotPlaying(), service.getNotPlaying9());
-        service.setTeams6(form.getTeamMap());
-        service.updateTeamData6(service.getTeams6());
-        model.addAttribute("result", form.getResults());
+    
         model.addAttribute("god", "2006");
 
         return "addedResults";
     }
 
     @PostMapping("/addedMatchDayResults7")
-    public String addedResults7(Model model, @ModelAttribute MatchDayForm form) {
+    public String addedResults7(Model model) {
         LOGGER.info("pocetak addedmatch");
 
-        form.setTeamMap(service.getTeams7());
-
-        for (int i = 1; i < 11; i++) {
-            service.getTeam7(i).delMatchDay(form.getmDay() + "");
-        }
-
-        service.getGamePostponed().remove(form.getmDay());
-
-        form.saveResults(service.getResults7(), service.getGamePostponed(), service.getNotPlaying(), service.getNotPlaying9());
-        service.setTeams7(form.getTeamMap());
-        service.updateTeamData7(service.getTeams7());
-        model.addAttribute("result", form.getResults());
+       
         model.addAttribute("god", "2007");
 
         return "addedResults";
     }
 
     @PostMapping("/addedMatchDayResults8")
-    public String addedResults8(Model model, @ModelAttribute MatchDayForm form) {
+    public String addedResults8(Model model) {
         LOGGER.info("pocetak addedmatch");
 
-        form.setTeamMap(service.getTeams8());
-
-        for (int i = 1; i < 11; i++) {
-            service.getTeam8(i).delMatchDay(form.getmDay() + "");
-        }
-
-        service.getGamePostponed().remove(form.getmDay());
-
-        form.saveResults(service.getResults8(), service.getGamePostponed(), service.getNotPlaying(), service.getNotPlaying9());
-        service.setTeams8(form.getTeamMap());
-        service.updateTeamData8(service.getTeams8());
-        model.addAttribute("result", form.getResults());
+    
         model.addAttribute("god", "2008");
 
         return "addedResults";
     }
 
     @PostMapping("/addedMatchDayResults9")
-    public String addedResults9(Model model, @ModelAttribute MatchDayForm form) {
+    public String addedResults9(Model model) {
         LOGGER.info("pocetak addedmatch");
 
-        form.setTeamMap(service.getTeams9());
-
-        for (int i = 1; i < 11; i++) {
-            service.getTeam9(i).delMatchDay(form.getmDay() + "");
-        }
-
-        service.getGamePostponed().remove(form.getmDay());
-
-        form.saveResults(service.getResults9(), service.getGamePostponed(), service.getNotPlaying(), service.getNotPlaying9());
-        service.setTeams9(form.getTeamMap());
-        service.updateTeamData9(service.getTeams9());
-        model.addAttribute("result", form.getResults());
+        
         model.addAttribute("god", "2009");
 
         return "addedResults";
