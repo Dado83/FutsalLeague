@@ -1,7 +1,6 @@
 package dp.futsal.service;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
+
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -39,10 +38,8 @@ public class Fixture {
     }
 
     public void saveGameNotPlayedToJson(String fileString, Map<Integer, String> games) {
-        Gson gson = new Gson();
-        Type type = new TypeToken<Map<Integer, String>>() {
-        }.getType();
-        String json = gson.toJson(games, type);
+        
+        String json = "";
         File file = new File(fileString);
         try {
             OutputStream outputStream = new FileOutputStream(file);
@@ -56,18 +53,14 @@ public class Fixture {
     }
 
     public String saveGameNotPlayedToJson(Map<Integer, String> games) {
-        Gson gson = new Gson();
-        Type type = new TypeToken<Map<Integer, String>>() {
-        }.getType();
-        String json = gson.toJson(games, type);
+        
+        String json = "";
         return json;
     }
 
     public void saveGamePostponedToJson(String fileString, Map<Integer, List<String>> games) {
-        Gson gson = new Gson();
-        Type type = new TypeToken<Map<Integer, List<String>>>() {
-        }.getType();
-        String json = gson.toJson(games, type);
+       
+        String json = "";
         File file = new File(fileString);
         try {
             OutputStream outputStream = new FileOutputStream(file);
@@ -79,7 +72,7 @@ public class Fixture {
 
         }
     }
-    
+    /*
     public String saveGamePostponedToJson(Map<Integer, List<String>> games) {
         Gson gson = new Gson();
         Type type = new TypeToken<Map<Integer, List<String>>>() {
@@ -250,5 +243,5 @@ public class Fixture {
     public void setLeagueMatchDates(Map<Integer, String> leagueMatchDates) {
         this.leagueMatchDates = leagueMatchDates;
     }
-
+*/
 }

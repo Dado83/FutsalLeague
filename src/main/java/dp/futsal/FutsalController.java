@@ -1,5 +1,22 @@
 package dp.futsal;
 
+import dp.futsal.database.DatabaseService;
+import dp.futsal.database.MatchPairs;
+import dp.futsal.database.NotPlaying;
+import dp.futsal.database.NotPlaying9;
+import dp.futsal.database.Results5;
+import dp.futsal.database.Results6;
+import dp.futsal.database.Results7;
+import dp.futsal.database.Results8;
+import dp.futsal.database.Results9;
+import dp.futsal.database.Table5;
+import dp.futsal.database.Table6;
+import dp.futsal.database.Table7;
+import dp.futsal.database.Table8;
+import dp.futsal.database.Table9;
+import dp.futsal.database.Teams;
+import dp.futsal.database.Users;
+import dp.futsal.database.Visitors;
 import dp.futsal.service.FutsalService;
 
 import java.util.logging.Logger;
@@ -17,242 +34,99 @@ import java.util.List;
 import java.util.Set;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 
-@Controller
+@RestController
 public class FutsalController {
 
     private static final Logger LOGGER = Logger.getLogger(FutsalController.class.getName());
     @Autowired
-    private FutsalService service;
-
-    @PostConstruct
-    public void init() {
-        LOGGER.info("inside controller postconstruct");
-        service.init();
-    }
-
-    @ModelAttribute
-    public void addCommonAttributes(Model model) {
-
-        Set<Integer> mDays = service.getResults5().keySet();
-        int lastMDay = 0;
-        for (Integer i : mDays) {
-            if (i > lastMDay) {
-                lastMDay = i;
-            }
-        }
-        List<String> postponedGames = new ArrayList<>();
-        postponedGames = service.getGamePostponed().get(lastMDay);
-        model
-                .addAttribute("pairs", service.getPairs())
-                .addAttribute("results5", service.getResults5())
-                .addAttribute("results6", service.getResults6())
-                .addAttribute("results7", service.getResults7())
-                .addAttribute("results8", service.getResults8())
-                .addAttribute("results9", service.getResults9())
-                .addAttribute("leagueTable5", service.getLeagueTable5())
-                .addAttribute("leagueTable6", service.getLeagueTable6())
-                .addAttribute("leagueTable7", service.getLeagueTable7())
-                .addAttribute("leagueTable8", service.getLeagueTable8())
-                .addAttribute("leagueTable9", service.getLeagueTable9())
-                .addAttribute("teamLinks", service.getTeamLinks5())
-                .addAttribute("teamLogos", service.getTeamLogos())
-                .addAttribute("leagueDates", service.getLeagueDates())
-                .addAttribute("freeTeam", service.getNotPlaying())
-                .addAttribute("freeTeam9", service.getNotPlaying9())
-                .addAttribute("postponed", service.getGamePostponed())
-                .addAttribute("lastMDay", lastMDay)
-                .addAttribute("pp", postponedGames);
-        
-        LOGGER.info("end of @modelattribute addcommonatt method");
-    }
+    private DatabaseService dbService;
 
     @GetMapping("/")
-    public String index(Model model) {
-        LOGGER.info("inside index");
-
-        return "index";
+    public String index() {
+        return "Fair Play Liga Buducih Sampiona";
     }
 
-    @GetMapping("/login")
-    public String login() {
-        return "login";
+    @GetMapping("/pairs")
+    public List<MatchPairs> getPairs() {
+        return dbService.getPairs();
     }
 
-    @GetMapping("/admin")
-    public String admin(Model model) {
-        return "adminDashboard";
+    @GetMapping("/notplaying")
+    public List<NotPlaying> getNotPlaying() {
+        return dbService.getNotPlaying();
     }
 
-    @GetMapping("/team")
-    public String team(Model model, int index) {
-        model.addAttribute("team5", service.getTeamLinks5().get(index));
-        model.addAttribute("team6", service.getTeamLinks6().get(index));
-        model.addAttribute("team7", service.getTeamLinks7().get(index));
-        model.addAttribute("team8", service.getTeamLinks8().get(index));
-        model.addAttribute("team9", service.getTeamLinks9().get(index));
-        model.addAttribute("results5", service.getTeamLinks5().get(index).getResults());
-        model.addAttribute("results6", service.getTeamLinks6().get(index).getResults());
-        model.addAttribute("results7", service.getTeamLinks7().get(index).getResults());
-        model.addAttribute("results8", service.getTeamLinks8().get(index).getResults());
-        model.addAttribute("results9", service.getTeamLinks9().get(index).getResults());
-
-        return "teamInfo";
+    @GetMapping("/notplaying9")
+    public List<NotPlaying9> getNotPlaying9() {
+        return dbService.getNotPlaying9();
     }
 
-    @GetMapping("/admin/editTeam")
-    public String editTeam5(Model model, int index) {
-        model.addAttribute("team", service.getTeamLinks5().get(index));
-
-        return "editTeam";
+    @GetMapping("/results5")
+    public List<Results5> getResults5() {
+        return dbService.getResults5();
     }
 
-    @PostMapping("/updatedTeam")
-    public String updateTeam5(Model model) {
-       
-        LOGGER.info(service.getTeams5().toString());
-
-        return "updatedTeam";
+    @GetMapping("/results6")
+    public List<Results6> getResults6() {
+        return dbService.getResults6();
     }
 
-    @GetMapping("/admin/enterMatchDayResults5")
-    public String enterResults5(Model model, int index) {
-        
-       
-        model.addAttribute("results", service.getResults5().get(index));
-
-        return "enterMatchDayResults5";
+    @GetMapping("/results7")
+    public List<Results7> getResults7() {
+        return dbService.getResults7();
     }
 
-    @GetMapping("/admin/enterMatchDayResults6")
-    public String enterResults6(Model model, int index) {
-       
-        
-        model.addAttribute("results", service.getResults6().get(index));
-
-        return "enterMatchDayResults6";
+    @GetMapping("/results8")
+    public List<Results8> getResults8() {
+        return dbService.getResults8();
     }
 
-    @GetMapping("/admin/enterMatchDayResults7")
-    public String enterResults7(Model model, int index) {
-      
-        model.addAttribute("results", service.getResults7().get(index));
-
-        return "enterMatchDayResults7";
+    @GetMapping("/results9")
+    public List<Results9> getResults9() {
+        return dbService.getResults9();
     }
 
-    @GetMapping("/admin/enterMatchDayResults8")
-    public String enterResults8(Model model, int index) {
-      
-
-        model.addAttribute("results", service.getResults8().get(index));
-
-        return "enterMatchDayResults8";
+    @GetMapping("/table5")
+    public List<Table5> getTable5() {
+        return dbService.getTable5();
     }
 
-    @GetMapping("/admin/enterMatchDayResults9")
-    public String enterResults9(Model model, int index) {
-     
-        model.addAttribute("results", service.getResults9().get(index));
-
-        return "enterMatchDayResults9";
+    @GetMapping("/table6")
+    public List<Table6> getTable6() {
+        return dbService.getTable6();
     }
 
-    @PostMapping("/addedMatchDayResults5")
-    public String addedResults5(Model model) {
-        LOGGER.info("pocetak addedmatch");
-
-      
-      
-        LOGGER.info(service.getGamePostponed().toString());
-        LOGGER.info(service.getNotPlaying().toString());
-
-        return "addedResults";
+    @GetMapping("/table7")
+    public List<Table7> getTable7() {
+        return dbService.getTable7();
     }
 
-    @PostMapping("/addedMatchDayResults6")
-    public String addedResults6(Model model) {
-        LOGGER.info("pocetak addedmatch");
-
-    
-        model.addAttribute("god", "2006");
-
-        return "addedResults";
+    @GetMapping("/table8")
+    public List<Table8> getTable8() {
+        return dbService.getTable8();
     }
 
-    @PostMapping("/addedMatchDayResults7")
-    public String addedResults7(Model model) {
-        LOGGER.info("pocetak addedmatch");
-
-       
-        model.addAttribute("god", "2007");
-
-        return "addedResults";
+    @GetMapping("/table9")
+    public List<Table9> getTable9() {
+        return dbService.getTable9();
     }
 
-    @PostMapping("/addedMatchDayResults8")
-    public String addedResults8(Model model) {
-        LOGGER.info("pocetak addedmatch");
-
-    
-        model.addAttribute("god", "2008");
-
-        return "addedResults";
+    @GetMapping("/teams")
+    public List<Teams> getTeams() {
+        return dbService.getTeams();
     }
 
-    @PostMapping("/addedMatchDayResults9")
-    public String addedResults9(Model model) {
-        LOGGER.info("pocetak addedmatch");
-
-        
-        model.addAttribute("god", "2009");
-
-        return "addedResults";
+    @GetMapping("/users")
+    public List<Users> getUsers() {
+        return dbService.getUsers();
     }
 
-    @GetMapping("/results")
-    public String results(Model model) {
-        return "results";
-    }
-
-    @GetMapping("/fixtures")
-    public String fixtures(Model model) {
-        return "fixtures";
-    }
-
-    @GetMapping("/admin/save")
-    public String save(Model model) {
-        LOGGER.info("saving...");
-
-        //service.saveCompleteFutsalDataToJson();
-        LOGGER.info("save successful");
-
-        return "adminDashboard";
-    }
-
-    @GetMapping("/newsletter")
-    public String newsletter() {
-        return "newsletter";
-    }
-
-    @GetMapping("/nextGame")
-    public String nextGame() {
-        return "nextGame";
-    }
-
-    @GetMapping("/admin/deleteMDay")
-    public String delMDay(Model model) {
-        LOGGER.info("save");
-
-        service.deleteLastMDay();
-        service.updateTeamData5(service.getTeams5());
-        service.updateTeamData6(service.getTeams6());
-        service.updateTeamData7(service.getTeams7());
-        service.updateTeamData8(service.getTeams8());
-        service.updateTeamData9(service.getTeams9());
-
-        return "adminDashboard";
+    @GetMapping("/visitors")
+    public List<Visitors> getVisitors() {
+        return dbService.getVisitors();
     }
 
     @ExceptionHandler(Exception.class)

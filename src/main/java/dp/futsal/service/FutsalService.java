@@ -1,17 +1,14 @@
 package dp.futsal.service;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
-import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
-import org.apache.commons.net.ftp.FTP;
+
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.core.task.TaskExecutor;
+
 import org.springframework.stereotype.Service;
 
 
@@ -19,14 +16,12 @@ import org.springframework.stereotype.Service;
 public class FutsalService {
 
     private static final Logger LOGGER = Logger.getLogger(FutsalService.class.getName());
-    @Autowired
-    private FTP ftpClient;
+
     @Autowired
     private Fixture fixture;
     @Autowired
     private TeamCollection teamCollection;
-    @Autowired
-    private TaskExecutor taskExecutor;
+
     private Map<Integer, List<MatchPair>> matchDaypairs;
     private Map<Integer, String> leagueDates;
     private Map<Integer, List<MatchResult>> results5;
@@ -115,18 +110,18 @@ public class FutsalService {
         String httpUrl = "http://www.fairplayliga.cf/futsal/";
         String httpUrl1 = "https://dado83.github.io/jsonRepo/";
 
-        fixture.loadFixturesFromJson(httpUrl + "berger9-10.json");
-        matchDaypairs = fixture.getPairs();
-        leagueDates = fixture.loadDatesFromJson(httpUrl + "leagueDates.json");
-        gamePostponed = fixture.loadGamePostponedFromJson(httpUrl + "gamePostponed.json");
-        notPlaying = fixture.loadGameNotPlayedFromJson(httpUrl + "notPlaying.json");
-        notPlaying9 = fixture.loadGameNotPlayedFromJson(httpUrl + "notPlaying9.json");
-
-        results5 = fixture.loadResultsFromJson(httpUrl + "results5.json");
-        results6 = fixture.loadResultsFromJson(httpUrl + "results6.json");
-        results7 = fixture.loadResultsFromJson(httpUrl + "results7.json");
-        results8 = fixture.loadResultsFromJson(httpUrl + "results8.json");
-        results9 = fixture.loadResultsFromJson(httpUrl + "results9.json");
+//        fixture.loadFixturesFromJson(httpUrl + "berger9-10.json");
+//        matchDaypairs = fixture.getPairs();
+//        leagueDates = fixture.loadDatesFromJson(httpUrl + "leagueDates.json");
+//        gamePostponed = fixture.loadGamePostponedFromJson(httpUrl + "gamePostponed.json");
+//        notPlaying = fixture.loadGameNotPlayedFromJson(httpUrl + "notPlaying.json");
+//        notPlaying9 = fixture.loadGameNotPlayedFromJson(httpUrl + "notPlaying9.json");
+//
+//        results5 = fixture.loadResultsFromJson(httpUrl + "results5.json");
+//        results6 = fixture.loadResultsFromJson(httpUrl + "results6.json");
+//        results7 = fixture.loadResultsFromJson(httpUrl + "results7.json");
+//        results8 = fixture.loadResultsFromJson(httpUrl + "results8.json");
+//        results9 = fixture.loadResultsFromJson(httpUrl + "results9.json");
 
         teams5 = teamCollection.loadTeamsFromJson(httpUrl + "teams5.json");
         teams6 = teamCollection.loadTeamsFromJson(httpUrl + "teams6.json");
@@ -140,23 +135,22 @@ public class FutsalService {
         String appDataLocalDirGit = "E:/Java/JsonLiga/";
         String appDataServerDir = "public_html/futsal/";
 
-        fixture.saveResultsToJson(appDataLocalDir + "results5.json", results5);
-        fixture.saveResultsToJson(appDataLocalDir + "results6.json", results6);
-        fixture.saveResultsToJson(appDataLocalDir + "results7.json", results7);
-        fixture.saveResultsToJson(appDataLocalDir + "results8.json", results8);
-        fixture.saveResultsToJson(appDataLocalDir + "results9.json", results9);
-        fixture.saveGamePostponedToJson(appDataLocalDir + "gamePostponed.json", gamePostponed);
-        fixture.saveGameNotPlayedToJson(appDataLocalDir + "notPlaying.json", notPlaying);
-        fixture.saveGameNotPlayedToJson(appDataLocalDir + "notPlaying9.json", notPlaying9);
-        fixture.saveResultsToJson(appDataLocalDirGit + "results5.json", results5);
-        fixture.saveResultsToJson(appDataLocalDirGit + "results6.json", results6);
-        fixture.saveResultsToJson(appDataLocalDirGit + "results7.json", results7);
-        fixture.saveResultsToJson(appDataLocalDirGit + "results8.json", results8);
-        fixture.saveResultsToJson(appDataLocalDirGit + "results9.json", results9);
-        fixture.saveGamePostponedToJson(appDataLocalDirGit + "gamePostponed.json", gamePostponed);
+//        fixture.saveResultsToJson(appDataLocalDir + "results5.json", results5);
+//        fixture.saveResultsToJson(appDataLocalDir + "results6.json", results6);
+//        fixture.saveResultsToJson(appDataLocalDir + "results7.json", results7);
+//        fixture.saveResultsToJson(appDataLocalDir + "results8.json", results8);
+//        fixture.saveResultsToJson(appDataLocalDir + "results9.json", results9);
+//        fixture.saveGamePostponedToJson(appDataLocalDir + "gamePostponed.json", gamePostponed);
+//        fixture.saveGameNotPlayedToJson(appDataLocalDir + "notPlaying.json", notPlaying);
+//        fixture.saveGameNotPlayedToJson(appDataLocalDir + "notPlaying9.json", notPlaying9);
+//        fixture.saveResultsToJson(appDataLocalDirGit + "results5.json", results5);
+//        fixture.saveResultsToJson(appDataLocalDirGit + "results6.json", results6);
+//        fixture.saveResultsToJson(appDataLocalDirGit + "results7.json", results7);
+//        fixture.saveResultsToJson(appDataLocalDirGit + "results8.json", results8);
+//        fixture.saveResultsToJson(appDataLocalDirGit + "results9.json", results9);
+//        fixture.saveGamePostponedToJson(appDataLocalDirGit + "gamePostponed.json", gamePostponed);
         fixture.saveGameNotPlayedToJson(appDataLocalDirGit + "notPlaying.json", notPlaying);
         fixture.saveGameNotPlayedToJson(appDataLocalDirGit + "notPlaying9.json", notPlaying9);
-        
 
         teamCollection.saveTeamsToJson(appDataLocalDir + "teams5.json", teams5);
         teamCollection.saveTeamsToJson(appDataLocalDir + "teams6.json", teams6);
@@ -168,25 +162,23 @@ public class FutsalService {
         teamCollection.saveTeamsToJson(appDataLocalDirGit + "teams7.json", teams7);
         teamCollection.saveTeamsToJson(appDataLocalDirGit + "teams8.json", teams8);
         teamCollection.saveTeamsToJson(appDataLocalDirGit + "teams9.json", teams9);
-        
-    }
 
-    
+    }
 
     //TEST
     public void saveCompleteFutsalDataToJson() {
         LOGGER.info("start of saveCompleteFutsalDataToJson");
         long startTime = System.currentTimeMillis();
-        String mPairs = fixture.saveFixturesToJson(matchDaypairs);
-        String lDates = fixture.saveLeagueDatesToJson(leagueDates);
-
-        String res5 = fixture.saveResultsToJson(results5);
-        String res6 = fixture.saveResultsToJson(results6);
-        String res7 = fixture.saveResultsToJson(results7);
-        String res8 = fixture.saveResultsToJson(results8);
-        String res9 = fixture.saveResultsToJson(results9);
-
-        String postponed = fixture.saveGamePostponedToJson(gamePostponed);
+//        String mPairs = fixture.saveFixturesToJson(matchDaypairs);
+//        String lDates = fixture.saveLeagueDatesToJson(leagueDates);
+//
+//        String res5 = fixture.saveResultsToJson(results5);
+//        String res6 = fixture.saveResultsToJson(results6);
+//        String res7 = fixture.saveResultsToJson(results7);
+//        String res8 = fixture.saveResultsToJson(results8);
+//        String res9 = fixture.saveResultsToJson(results9);
+//
+//        String postponed = fixture.saveGamePostponedToJson(gamePostponed);
         String notPl = fixture.saveGameNotPlayedToJson(notPlaying);
         String notPl9 = fixture.saveGameNotPlayedToJson(notPlaying9);
 
@@ -198,35 +190,31 @@ public class FutsalService {
         LOGGER.info("acquired data...");
 
         Map<String, String> data = new HashMap<>();
-        data.put("res5", res5);
-        data.put("res6", res6);
-        data.put("res7", res7);
-        data.put("res8", res8);
-        data.put("res9", res9);
-        data.put("postponed", postponed);
-        data.put("notPl", notPl);
-        data.put("notPl9", notPl9);
-        data.put("team5", team5);
-        data.put("team6", team6);
-        data.put("team7", team7);
-        data.put("team8", team8);
-        data.put("team9", team9);
-        data.put("lDates", lDates);
-        data.put("mPairs", mPairs);
+//        data.put("res5", res5);
+//        data.put("res6", res6);
+//        data.put("res7", res7);
+//        data.put("res8", res8);
+//        data.put("res9", res9);
+//        data.put("postponed", postponed);
+//        data.put("notPl", notPl);
+//        data.put("notPl9", notPl9);
+//        data.put("team5", team5);
+//        data.put("team6", team6);
+//        data.put("team7", team7);
+//        data.put("team8", team8);
+//        data.put("team9", team9);
+//        data.put("lDates", lDates);
+//        data.put("mPairs", mPairs);
         LOGGER.info("map populated...");
 
-        Gson gson = new Gson();
-        Type type = new TypeToken<Map<String, String>>() {
-        }.getType();
-        String jsonData = gson.toJson(data, type);
+       
+       
 
         LOGGER.info("starting upload...");
         long endtTime = System.currentTimeMillis();
         LOGGER.info("end of upload");
         LOGGER.info("Time needed to upload: " + ((endtTime - startTime) / 1000) + " seconds");
     }
-
-  
 
     public void deleteLastMDay() {
         int md = results5.size();

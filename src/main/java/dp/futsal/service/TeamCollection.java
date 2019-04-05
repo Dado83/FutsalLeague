@@ -1,7 +1,5 @@
 package dp.futsal.service;
 
-import com.google.gson.Gson;
-import com.google.gson.reflect.TypeToken;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -21,6 +19,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
+import net.bytebuddy.description.method.MethodDescription.TypeToken;
 import org.springframework.stereotype.Service;
 
 
@@ -41,9 +40,7 @@ public class TeamCollection {
     }
 
     public Map<Integer, Team> loadTeamsFromJson(String file) {
-        Gson gson = new Gson();
-        Type type = new TypeToken<Map<Integer, Team>>() {
-        }.getType();
+
         StringBuilder stringBuilder = new StringBuilder();
         try {
             URL url = new URL(file);
@@ -57,31 +54,27 @@ public class TeamCollection {
         } catch (IOException e) {
             LOGGER.severe("nisam ucitao teams json");
         }
-        return teamMap = (Map<Integer, Team>) gson.fromJson(stringBuilder.toString(), type);
+        return teamMap;
 
     }
 
     public void saveTeamsToJson(String fileString, Map<Integer, Team> teams) {
-        Gson gson = new Gson();
-        Type type = new TypeToken<Map<Integer, Team>>() {
-        }.getType();
+
         File file = new File(fileString);
         try {
             OutputStream outputStream = new FileOutputStream(file);
             Writer writer = new OutputStreamWriter(outputStream, Charset.forName("utf-8").newEncoder());
             try (BufferedWriter bufferedWriter = new BufferedWriter(writer)) {
-                String json = gson.toJson(teams, type);
-                bufferedWriter.write(json);
+                String json;
+
             }
         } catch (IOException e) {
         }
     }
 
     public String saveTeamsToJson(Map<Integer, Team> teams) {
-        Gson gson = new Gson();
-        Type type = new TypeToken<Map<Integer, Team>>() {
-        }.getType();
-        String json = gson.toJson(teams, type);
+
+        String json = "";
         return json;
     }
 
