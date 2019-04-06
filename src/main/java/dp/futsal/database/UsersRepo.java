@@ -5,5 +5,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface UsersRepo extends JpaRepository<Users, Integer> {
 
-    public Users findById(String id);
+    public Users findById(int id);
 }

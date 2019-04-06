@@ -41,88 +41,91 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 public class FutsalController {
-
+    
     private static final Logger LOGGER = Logger.getLogger(FutsalController.class.getName());
     @Autowired
     private DatabaseService dbService;
-
+    
     @GetMapping("/")
     public String index() {
         return "Fair Play Liga Buducih Sampiona";
     }
-
+    
     @GetMapping("/pairs")
     public List<MatchPairs> getPairs() {
         return dbService.getPairs();
     }
-
-    @GetMapping("/pairs-mday/{mday}")
+    
+    @GetMapping("/pairs/{mday}")
     public List<MatchPairs> getPairsByMday(@PathVariable int mday) {
         return dbService.getPairsByMday(mday);
     }
-
+    
     @GetMapping("/notplaying")
     public List<NotPlaying> getNotPlaying() {
         return dbService.getNotPlaying();
     }
-
+    
+    @GetMapping("/notplaying/{mday}")
+    public List<NotPlaying> getNotPlayingByMday(@PathVariable int mday) {
+        return dbService.getNotPlayingByMday(mday);
+    }
+    
     @GetMapping("/notplaying9")
     public List<NotPlaying9> getNotPlaying9() {
         return dbService.getNotPlaying9();
     }
-
+    
+    @GetMapping("/notplaying9/{mday}")
+    public List<NotPlaying9> getNotPlaying9ByMday(@PathVariable int mday) {
+        return dbService.getNotPlaying9ByMday(mday);
+    }
+    
     @GetMapping("/results/{year}")
     public List getResults(@PathVariable int year) {
-       return dbService.getResults(year);
+        return dbService.getResults(year);
     }
-
     
-
-    @GetMapping("/table5")
-    public List<Table5> getTable5() {
-        return dbService.getTable5();
+    @GetMapping("/results/{year}/{mday}")
+    public List getResultsByMday(@PathVariable int year, @PathVariable int mday) {
+        return dbService.getResultsByMday(year, mday);
     }
-
-    @GetMapping("/table6")
-    public List<Table6> getTable6() {
-        return dbService.getTable6();
+    
+    @GetMapping("/table/{year}")
+    public List getTable(@PathVariable int year) {
+        return dbService.getTable(year);
     }
-
-    @GetMapping("/table7")
-    public List<Table7> getTable7() {
-        return dbService.getTable7();
-    }
-
-    @GetMapping("/table8")
-    public List<Table8> getTable8() {
-        return dbService.getTable8();
-    }
-
-    @GetMapping("/table9")
-    public List<Table9> getTable9() {
-        return dbService.getTable9();
-    }
-
+    
     @GetMapping("/teams")
     public List<Teams> getTeams() {
         return dbService.getTeams();
     }
-
+    
+    @GetMapping("/teams/{id}")
+    public Teams getTeamsById(@PathVariable int id) {
+        return dbService.getTeamsById(id);
+    }
+    
     @GetMapping("/users")
     public List<Users> getUsers() {
         return dbService.getUsers();
     }
-
+    
+    @GetMapping("/users/{id}")
+    public Users getUsersById(@PathVariable int id) {
+        return dbService.getUsersById(id);
+    }
+    
     @GetMapping("/visitors")
     public List<Visitors> getVisitors() {
         return dbService.getVisitors();
     }
-
+    
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Error message")
     public void handleError(Exception e) {
         LOGGER.severe("jebatanja bracala");
         e.printStackTrace();
     }
-
+    
 }

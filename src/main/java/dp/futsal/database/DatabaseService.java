@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DatabaseService {
-
+    
     @Autowired
     private MatchPairsRepo matchPairs;
     @Autowired
@@ -41,23 +41,31 @@ public class DatabaseService {
     private UsersRepo users;
     @Autowired
     private VisitorsRepo visitors;
-
+    
     public List<MatchPairs> getPairs() {
         return matchPairs.findAll();
     }
-
+    
     public List<MatchPairs> getPairsByMday(int mDay) {
         return matchPairs.findByMDay(mDay);
     }
-
+    
     public List<NotPlaying> getNotPlaying() {
         return notPlaying.findAll();
     }
-
+    
+    public List<NotPlaying> getNotPlayingByMday(int mDay) {
+        return notPlaying.findByMDay(mDay);
+    }
+    
     public List<NotPlaying9> getNotPlaying9() {
         return notPlaying9.findAll();
     }
-
+    
+    public List<NotPlaying9> getNotPlaying9ByMday(int mDay) {
+        return notPlaying9.findByMDay(mDay);
+    }
+    
     public List getResults(int year) {
         List results = new ArrayList();
         switch (year) {
@@ -79,37 +87,67 @@ public class DatabaseService {
         }
         return results;
     }
-
     
-
-    public List<Table5> getTable5() {
-        return table5.findAll();
+    public List getResultsByMday(int year, int mDay) {
+        List results = new ArrayList();
+        switch (year) {
+            case 5:
+                results = results5.findByMDay(mDay);
+                break;
+            case 6:
+                results = results6.findByMDay(mDay);
+                break;
+            case 7:
+                results = results7.findByMDay(mDay);
+                break;
+            case 8:
+                results = results8.findByMDay(mDay);
+                break;
+            case 9:
+                results = results9.findByMDay(mDay);
+                break;
+        }
+        return results;
     }
-
-    public List<Table6> getTable6() {
-        return table6.findAll();
+    
+    public List getTable(int year) {
+        List table = new ArrayList();
+        switch (year) {
+            case 5:
+                table = table5.findAll();
+                break;
+            case 6:
+                table = table6.findAll();
+                break;
+            case 7:
+                table = table7.findAll();
+                break;
+            case 8:
+                table = table8.findAll();
+                break;
+            case 9:
+                table = table9.findAll();
+                break;
+        }
+        return table;
     }
-
-    public List<Table7> getTable7() {
-        return table7.findAll();
-    }
-
-    public List<Table8> getTable8() {
-        return table8.findAll();
-    }
-
-    public List<Table9> getTable9() {
-        return table9.findAll();
-    }
-
+    
     public List<Teams> getTeams() {
         return teams.findAll();
     }
-
+    
+    public Teams getTeamsById(int id) {
+        return teams.findById(id);
+    }
+    
     public List<Users> getUsers() {
         return users.findAll();
     }
-
+    
+    public Users getUsersById(int id) {
+        return users.findById(id);
+    }
+    
     public List<Visitors> getVisitors() {
         return visitors.findAll();
     }
