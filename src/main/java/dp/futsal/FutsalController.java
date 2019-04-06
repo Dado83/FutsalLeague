@@ -33,7 +33,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -54,6 +56,11 @@ public class FutsalController {
         return dbService.getPairs();
     }
 
+    @GetMapping("/pairs-mday/{mday}")
+    public List<MatchPairs> getPairsByMday(@PathVariable int mday) {
+        return dbService.getPairsByMday(mday);
+    }
+
     @GetMapping("/notplaying")
     public List<NotPlaying> getNotPlaying() {
         return dbService.getNotPlaying();
@@ -64,30 +71,12 @@ public class FutsalController {
         return dbService.getNotPlaying9();
     }
 
-    @GetMapping("/results5")
-    public List<Results5> getResults5() {
-        return dbService.getResults5();
+    @GetMapping("/results/{year}")
+    public List getResults(@PathVariable int year) {
+       return dbService.getResults(year);
     }
 
-    @GetMapping("/results6")
-    public List<Results6> getResults6() {
-        return dbService.getResults6();
-    }
-
-    @GetMapping("/results7")
-    public List<Results7> getResults7() {
-        return dbService.getResults7();
-    }
-
-    @GetMapping("/results8")
-    public List<Results8> getResults8() {
-        return dbService.getResults8();
-    }
-
-    @GetMapping("/results9")
-    public List<Results9> getResults9() {
-        return dbService.getResults9();
-    }
+    
 
     @GetMapping("/table5")
     public List<Table5> getTable5() {

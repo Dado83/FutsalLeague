@@ -1,5 +1,6 @@
 package dp.futsal.database;
 
+import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,6 +46,10 @@ public class DatabaseService {
         return matchPairs.findAll();
     }
 
+    public List<MatchPairs> getPairsByMday(int mDay) {
+        return matchPairs.findByMDay(mDay);
+    }
+
     public List<NotPlaying> getNotPlaying() {
         return notPlaying.findAll();
     }
@@ -53,25 +58,29 @@ public class DatabaseService {
         return notPlaying9.findAll();
     }
 
-    public List<Results5> getResults5() {
-        return results5.findAll();
+    public List getResults(int year) {
+        List results = new ArrayList();
+        switch (year) {
+            case 5:
+                results = results5.findAll();
+                break;
+            case 6:
+                results = results6.findAll();
+                break;
+            case 7:
+                results = results7.findAll();
+                break;
+            case 8:
+                results = results8.findAll();
+                break;
+            case 9:
+                results = results9.findAll();
+                break;
+        }
+        return results;
     }
 
-    public List<Results6> getResults6() {
-        return results6.findAll();
-    }
-
-    public List<Results7> getResults7() {
-        return results7.findAll();
-    }
-
-    public List<Results8> getResults8() {
-        return results8.findAll();
-    }
-
-    public List<Results9> getResults9() {
-        return results9.findAll();
-    }
+    
 
     public List<Table5> getTable5() {
         return table5.findAll();
