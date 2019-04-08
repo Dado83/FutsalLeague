@@ -139,9 +139,9 @@ public class DatabaseService {
     public Teams getTeamsById(int id) {
         return teams.findById(id);
     }
-    
-    public List<Teams> searchTeams(String search){
-        return teams.searchTeams(search);
+
+    public List<Teams> searchTeams(String search) {
+        return teams.searchTeams("%" + search + "%");
     }
 
     public List<Users> getUsers() {
