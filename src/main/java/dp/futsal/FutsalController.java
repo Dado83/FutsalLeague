@@ -84,6 +84,11 @@ public class FutsalController {
     public Teams getTeamsById(@PathVariable int id) {
         return dbService.getTeamsById(id);
     }
+    
+    @GetMapping("/teams/search/{search}")
+    public List<Teams> searchTeams(@PathVariable String search) {
+        return dbService.searchTeams(search);
+    }
 
     @GetMapping("/users")
     public List<Users> getUsers() {
