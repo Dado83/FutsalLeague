@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class DatabaseService {
-    
+
     @Autowired
     private MatchPairsRepo matchPairs;
     @Autowired
@@ -41,31 +41,31 @@ public class DatabaseService {
     private UsersRepo users;
     @Autowired
     private VisitorsRepo visitors;
-    
+
     public List<MatchPairs> getPairs() {
         return matchPairs.findAll();
     }
-    
+
     public List<MatchPairs> getPairsByMday(int mDay) {
         return matchPairs.findByMDay(mDay);
     }
-    
+
     public List<NotPlaying> getNotPlaying() {
         return notPlaying.findAll();
     }
-    
+
     public List<NotPlaying> getNotPlayingByMday(int mDay) {
         return notPlaying.findByMDay(mDay);
     }
-    
+
     public List<NotPlaying9> getNotPlaying9() {
         return notPlaying9.findAll();
     }
-    
+
     public List<NotPlaying9> getNotPlaying9ByMday(int mDay) {
         return notPlaying9.findByMDay(mDay);
     }
-    
+
     public List getResults(int year) {
         List results = new ArrayList();
         switch (year) {
@@ -87,7 +87,7 @@ public class DatabaseService {
         }
         return results;
     }
-    
+
     public List getResultsByMday(int year, int mDay) {
         List results = new ArrayList();
         switch (year) {
@@ -109,46 +109,47 @@ public class DatabaseService {
         }
         return results;
     }
-    
+
     public List getTable(int year) {
         List table = new ArrayList();
         switch (year) {
             case 5:
-                table = table5.findAll();
+                table = table5.getOrderedTable();
                 break;
             case 6:
-                table = table6.findAll();
+                table = table6.getOrderedTable();
                 break;
             case 7:
-                table = table7.findAll();
+                table = table7.getOrderedTable();
                 break;
             case 8:
-                table = table8.findAll();
+                table = table8.getOrderedTable();
                 break;
             case 9:
-                table = table9.findAll();
+                table = table9.getOrderedTable();
                 break;
         }
         return table;
     }
-    
+
     public List<Teams> getTeams() {
         return teams.findAll();
     }
-    
+
     public Teams getTeamsById(int id) {
         return teams.findById(id);
     }
-    
+
     public List<Users> getUsers() {
         return users.findAll();
     }
-    
+
     public Users getUsersById(int id) {
         return users.findById(id);
     }
-    
+
     public List<Visitors> getVisitors() {
         return visitors.findAll();
     }
+
 }
