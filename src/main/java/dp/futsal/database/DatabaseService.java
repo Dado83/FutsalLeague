@@ -109,6 +109,28 @@ public class DatabaseService {
         }
         return results;
     }
+    
+    public List getResultsById(int year, int id) {
+        List results = new ArrayList();
+        switch (year) {
+            case 5:
+                results = results5.findById(id);
+                break;
+            case 6:
+                results = results6.findById(id);
+                break;
+            case 7:
+                results = results7.findById(id);
+                break;
+            case 8:
+                results = results8.findById(id);
+                break;
+            case 9:
+                results = results9.findById(id);
+                break;
+        }
+        return results;
+    }
 
     public List getTable(int year) {
         List table = new ArrayList();
