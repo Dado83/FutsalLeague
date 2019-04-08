@@ -1,20 +1,27 @@
 package dp.futsal.database;
 
 import java.io.Serializable;
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.SecondaryTable;
 import javax.persistence.Table;
 
 
 @Entity
 @Table(name = "table5")
+@SecondaryTable(name = "teams")
 public class Table5 implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
+    @Column(table = "teams")
+    private String teamName;
+    @Column(table = "teams")
+    private String teamCity;
     private int gamesPlayed;
     private int gamesWon;
     private int gamesDrew;
@@ -109,6 +116,22 @@ public class Table5 implements Serializable {
 
     public void setPoints(int points) {
         this.points = points;
+    }
+
+    public String getTeamName() {
+        return teamName;
+    }
+
+    public void setTeamName(String teamName) {
+        this.teamName = teamName;
+    }
+
+    public String getTeamCity() {
+        return teamCity;
+    }
+
+    public void setTeamCity(String teamCity) {
+        this.teamCity = teamCity;
     }
 
 }
