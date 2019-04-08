@@ -19,12 +19,12 @@ public class MatchPairs implements Serializable {
     private int homeTeam;
     private int awayTeam;
     private String gameDate;
-    private int isPlayed;
+    private boolean isPlayed;
 
     public MatchPairs() {
     }
 
-    public MatchPairs(int mDay, int homeTeam, int awayTeam, String gameDate, int isPlayed) {
+    public MatchPairs(int mDay, int homeTeam, int awayTeam, String gameDate, boolean isPlayed) {
         this.mDay = mDay;
         this.homeTeam = homeTeam;
         this.awayTeam = awayTeam;
@@ -64,11 +64,11 @@ public class MatchPairs implements Serializable {
         this.gameDate = gameDate;
     }
 
-    public int getIsPlatyed() {
+    public boolean getIsPlayed() {
         return isPlayed;
     }
 
-    public void setIsPlayed(int isPlayed) {
+    public void setIsPlayed(boolean isPlayed) {
         this.isPlayed = isPlayed;
     }
 

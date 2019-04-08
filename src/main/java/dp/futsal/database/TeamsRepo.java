@@ -9,7 +9,7 @@ public interface TeamsRepo extends JpaRepository<Teams, Integer> {
 
     public Teams findById(int id);
 
-    final String QUERY = "SELECT t FROM Teams t WHERE teamName LIKE ?1 OR teamCity LIKE ?1";
+    final String QUERY = "SELECT t FROM Teams t WHERE t.teamName LIKE ?1 OR t.teamCity LIKE ?1";
 
     @Query(QUERY)
     public List<Teams> searchTeams(String search);

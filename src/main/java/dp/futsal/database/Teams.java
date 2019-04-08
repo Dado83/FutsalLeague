@@ -1,9 +1,6 @@
 package dp.futsal.database;
 
-import dp.futsal.service.MatchResult;
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -36,13 +33,9 @@ public class Teams implements Serializable {
         this.gameTime = gameTime;
     }
 
-   
-
-    
-
     @Override
     public String toString() {
-        return "ID: " + this.id + " || Club{" + "clubName=" + teamName 
+        return "ID: " + this.id + " || Club{" + "clubName=" + teamName
                 + '}';
     }
 
@@ -93,6 +86,5 @@ public class Teams implements Serializable {
     public void setGameTime(String gameTime) {
         this.gameTime = gameTime;
     }
-    
-    
+
 }

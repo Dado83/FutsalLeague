@@ -35,6 +35,11 @@ public class FutsalController {
         return dbService.getPairs();
     }
 
+    @GetMapping("/pairsToPlay")
+    public List<MatchPairs> getPairsToPlay() {
+        return dbService.getPairsNotPlayed();
+    }
+
     @GetMapping("/pairs/{mday}")
     public List<MatchPairs> getPairsByMday(@PathVariable int mday) {
         return dbService.getPairsByMday(mday);
@@ -70,6 +75,11 @@ public class FutsalController {
         return dbService.getResultsByMday(year, mday);
     }
 
+    @GetMapping("/results/id/{year}/{id}")
+    public List getResultsById(@PathVariable int year, @PathVariable int id) {
+        return dbService.getResultsById(year, id);
+    }
+
     @GetMapping("/table/{year}")
     public List getTable(@PathVariable int year) {
         return dbService.getTable(year);
@@ -84,7 +94,7 @@ public class FutsalController {
     public Teams getTeamsById(@PathVariable int id) {
         return dbService.getTeamsById(id);
     }
-    
+
     @GetMapping("/teams/search/{search}")
     public List<Teams> searchTeams(@PathVariable String search) {
         return dbService.searchTeams(search);

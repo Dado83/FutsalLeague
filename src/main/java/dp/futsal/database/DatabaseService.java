@@ -50,6 +50,10 @@ public class DatabaseService {
         return matchPairs.findByMDay(mDay);
     }
 
+    public List<MatchPairs> getPairsNotPlayed() {
+        return matchPairs.getPairsNotPlayed();
+    }
+
     public List<NotPlaying> getNotPlaying() {
         return notPlaying.findAll();
     }
@@ -109,7 +113,7 @@ public class DatabaseService {
         }
         return results;
     }
-    
+
     public List getResultsById(int year, int id) {
         List results = new ArrayList();
         switch (year) {

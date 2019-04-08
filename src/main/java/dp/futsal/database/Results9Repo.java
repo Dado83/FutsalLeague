@@ -7,4 +7,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 public interface Results9Repo extends JpaRepository<Results9, Long> {
 
     public List<Results9> findByMDay(int mDay);
+
+    public List<Results9> findById(int id);
 }
