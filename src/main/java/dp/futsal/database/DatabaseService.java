@@ -1,9 +1,11 @@
 package dp.futsal.database;
 
+import dp.futsal.form.MatchResultForm;
 import java.util.ArrayList;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.RequestBody;
 
 
 @Service
@@ -182,4 +184,27 @@ public class DatabaseService {
         return visitors.findAll();
     }
 
+    public void saveGame(MatchResultForm form) {
+        int pairID = form.getPairID();
+        int matchDay = form.getMatchDay();
+        String homeTeam = form.getHomeTeam();
+        int homeTeamID = form.getHomeTeamID();
+        String awayTeam = form.getAwayTeam();
+        int awayTeamID = form.getAwayTeamID();
+
+        int goalsHome9 = form.getGoalsHome9();
+        int goalsAway9 = form.getGoalsAway9();
+        int goalsHome8 = form.getGoalsHome8();
+        int goalsAway8 = form.getGoalsAway8();
+        int goalsHome7 = form.getGoalsHome7();
+        int goalsAway7 = form.getGoalsAway7();
+        int goalsHome6 = form.getGoalsHome6();
+        int goalsAway6 = form.getGoalsAway6();
+        int goalsHome5 = form.getGoalsHome5();
+        int goalsAway5 = form.getGoalsAway5();
+
+        Results9 res9 = new Results9(matchDay, homeTeam, homeTeamID, awayTeam, awayTeamID, goalsHome9, goalsAway9);
+        res9.setId(30);
+        results9.save(res9);
+    }
 }
