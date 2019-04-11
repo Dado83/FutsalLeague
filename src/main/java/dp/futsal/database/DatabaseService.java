@@ -3,7 +3,9 @@ package dp.futsal.database;
 import dp.futsal.form.MatchResultForm;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestBody;
 
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 @Service
 public class DatabaseService {
 
+    private static final Logger LOGGER = Logger.getLogger(DatabaseService.class.getName());
     @Autowired
     private MatchPairsRepo matchPairs;
     @Autowired
@@ -204,7 +207,52 @@ public class DatabaseService {
         int goalsAway5 = form.getGoalsAway5();
 
         Results9 res9 = new Results9(matchDay, homeTeam, homeTeamID, awayTeam, awayTeamID, goalsHome9, goalsAway9);
-        res9.setId(30);
         results9.save(res9);
+        Table9 homeTable9 = table9.getOne(homeTeamID);
+        Table9 awayTable9 = table9.getOne(awayTeamID);
+
+        if (goalsHome9 > goalsAway9) {
+            homeTable9.setGamesPlayed(homeTable9.getGamesPlayed() + 1);
+            homeTable9.setGamesWon(homeTable9.getGamesWon() + 1);
+            homeTable9.setGoalsScored(homeTable9.getGoalsScored() + goalsHome9);
+            homeTable9.setGoalsConceded(homeTable9.getGoalsConceded() + goalsAway9);
+            homeTable9.setPoints(homeTable9.getPoints() + 3);
+
+            awayTable9.setGamesPlayed(awayTable9.getGamesPlayed() + 1);
+            awayTable9.setGamesLost(awayTable9.getGamesLost() + 1);
+            awayTable9.setGoalsScored(awayTable9.getGoalsScored() + goalsAway9);
+            awayTable9.setGoalsConceded(awayTable9.getGoalsConceded() + goalsHome9);
+        } else if (goalsAway9 > goalsHome9) {
+            awayTable9.setGamesPlayed(awayTable9.getGamesPlayed() + 1);
+            awayTable9.setGamesWon(awayTable9.getGamesWon() + 1);
+            awayTable9.setGoalsScored(awayTable9.getGoalsScored() + goalsAway9);
+            awayTable9.setGoalsConceded(awayTable9.getGoalsConceded() + goalsHome9);
+            awayTable9.setPoints(awayTable9.getPoints() + 3);
+
+            homeTable9.setGamesPlayed(homeTable9.getGamesPlayed() + 1);
+            homeTable9.setGamesLost(homeTable9.getGamesLost() + 1);
+            homeTable9.setGoalsScored(homeTable9.getGoalsScored() + goalsHome9);
+            homeTable9.setGoalsConceded(homeTable9.getGoalsConceded() + goalsAway9);
+        } else {
+            homeTable9.setGamesPlayed(homeTable9.getGamesPlayed() + 1);
+            homeTable9.setGamesDrew(homeTable9.getGamesDrew() + 1);
+            homeTable9.setGoalsScored(homeTable9.getGoalsScored() + goalsHome9);
+            homeTable9.setGoalsConceded(homeTable9.getGoalsConceded() + goalsAway9);
+            homeTable9.setPoints(homeTable9.getPoints() + 1);
+
+            awayTable9.setGamesPlayed(awayTable9.getGamesPlayed() + 1);
+            awayTable9.setGamesDrew(awayTable9.getGamesDrew() + 1);
+            awayTable9.setGoalsScored(awayTable9.getGoalsScored() + goalsAway9);
+            awayTable9.setGoalsConceded(awayTable9.getGoalsConceded() + goalsHome9);
+            awayTable9.setPoints(awayTable9.getPoints() + 1);
+        }
+    }
+
+    private void tableUpdate(int homeID, int awayID, int goalsHome, int goalsAway) {
+
+    }
+
+    public void deleteGame(int id) {
+
     }
 }
