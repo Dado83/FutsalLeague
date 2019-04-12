@@ -7,6 +7,7 @@ import dp.futsal.database.NotPlaying9;
 import dp.futsal.database.Teams;
 import dp.futsal.database.Users;
 import dp.futsal.database.Visitors;
+import dp.futsal.form.MatchResultForm;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +15,15 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import java.util.List;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
+@CrossOrigin(origins = "*")
 @RestController
 public class FutsalController {
 
@@ -78,6 +84,22 @@ public class FutsalController {
     @GetMapping("/results/id/{year}/{id}")
     public List getResultsById(@PathVariable int year, @PathVariable int id) {
         return dbService.getResultsById(year, id);
+    }
+
+    @PostMapping("/result/input")
+    public String inputResult(@ModelAttribute MatchResultForm form) {
+        LOGGER.info("test metoda pozvana");
+
+        dbService.saveGame(form);
+
+        return form.toString();
+
+    }
+
+    @GetMapping("/result/delete/{id}")
+    public String deleteResult(@PathVariable int id) {
+        dbService.deleteGame(id);
+        return "Utakmica izbrisana" + id;
     }
 
     @GetMapping("/table/{year}")

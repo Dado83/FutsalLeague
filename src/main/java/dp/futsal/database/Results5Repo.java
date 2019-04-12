@@ -4,7 +4,7 @@ import java.util.List;
 import org.springframework.data.jpa.repository.JpaRepository;
 
 
-public interface Results5Repo extends JpaRepository<Results5, Long> {
+public interface Results5Repo extends JpaRepository<Results5, Integer> {
 
     public List<Results5> findByMDay(int mDay);
 

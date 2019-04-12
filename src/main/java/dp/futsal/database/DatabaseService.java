@@ -246,13 +246,54 @@ public class DatabaseService {
             awayTable9.setGoalsConceded(awayTable9.getGoalsConceded() + goalsHome9);
             awayTable9.setPoints(awayTable9.getPoints() + 1);
         }
-    }
-
-    private void tableUpdate(int homeID, int awayID, int goalsHome, int goalsAway) {
-
+        table9.save(homeTable9);
+        table9.save(awayTable9);
     }
 
     public void deleteGame(int id) {
+        Results9 res9 = results9.getOne(id);
+        Table9 homeTable9 = table9.getOne(res9.getHomeTeamid());
+        Table9 awayTable9 = table9.getOne(res9.getAwayTeamid());
+        int goalsHome9 = res9.getGoalsHome();
+        int goalsAway9 = res9.getGoalsAway();
 
+        if (goalsHome9 > goalsAway9) {
+            homeTable9.setGamesPlayed(homeTable9.getGamesPlayed() - 1);
+            homeTable9.setGamesWon(homeTable9.getGamesWon() - 1);
+            homeTable9.setGoalsScored(homeTable9.getGoalsScored() - goalsHome9);
+            homeTable9.setGoalsConceded(homeTable9.getGoalsConceded() - goalsAway9);
+            homeTable9.setPoints(homeTable9.getPoints() - 3);
+
+            awayTable9.setGamesPlayed(awayTable9.getGamesPlayed() - 1);
+            awayTable9.setGamesLost(awayTable9.getGamesLost() - 1);
+            awayTable9.setGoalsScored(awayTable9.getGoalsScored() - goalsAway9);
+            awayTable9.setGoalsConceded(awayTable9.getGoalsConceded() - goalsHome9);
+        } else if (goalsAway9 > goalsHome9) {
+            awayTable9.setGamesPlayed(awayTable9.getGamesPlayed() - 1);
+            awayTable9.setGamesWon(awayTable9.getGamesWon() - 1);
+            awayTable9.setGoalsScored(awayTable9.getGoalsScored() - goalsAway9);
+            awayTable9.setGoalsConceded(awayTable9.getGoalsConceded() - goalsHome9);
+            awayTable9.setPoints(awayTable9.getPoints() - 3);
+
+            homeTable9.setGamesPlayed(homeTable9.getGamesPlayed() - 1);
+            homeTable9.setGamesLost(homeTable9.getGamesLost() - 1);
+            homeTable9.setGoalsScored(homeTable9.getGoalsScored() - goalsHome9);
+            homeTable9.setGoalsConceded(homeTable9.getGoalsConceded() - goalsAway9);
+        } else {
+            homeTable9.setGamesPlayed(homeTable9.getGamesPlayed() - 1);
+            homeTable9.setGamesDrew(homeTable9.getGamesDrew() - 1);
+            homeTable9.setGoalsScored(homeTable9.getGoalsScored() - goalsHome9);
+            homeTable9.setGoalsConceded(homeTable9.getGoalsConceded() - goalsAway9);
+            homeTable9.setPoints(homeTable9.getPoints() - 1);
+
+            awayTable9.setGamesPlayed(awayTable9.getGamesPlayed() - 1);
+            awayTable9.setGamesDrew(awayTable9.getGamesDrew() - 1);
+            awayTable9.setGoalsScored(awayTable9.getGoalsScored() - goalsAway9);
+            awayTable9.setGoalsConceded(awayTable9.getGoalsConceded() - goalsHome9);
+            awayTable9.setPoints(awayTable9.getPoints() - 1);
+        }
+        table9.save(homeTable9);
+        table9.save(awayTable9);
+        results9.delete(res9);
     }
 }

@@ -1,0 +1,98 @@
+<div class="form">
+    <form action="http://localhost:8080/result/input" method="POST">
+        <fieldset>
+            <legend>Unos rezultata <?php echo $game->m_day ?>. kola</legend>
+            <table>
+                <tr>
+                    <th colspan="3">
+                        kolo
+                        <input type="number" name="matchDay">
+                        pair id
+                        <input type="number" name="pairID">
+                    </th>
+                </tr>
+                <tr>
+                    <th>
+                        domacin
+                    </th>
+                    <th colspan="2">
+                        gost
+                    </th>
+                </tr>
+                <tr>                   
+                    <td>
+                        <input type="number" name="homeTeamID">                   
+                        <input type="text" name="homeTeam">
+                    </td>
+                    <td>
+                        <input type="number" name="awayTeamID">
+                    </td>    
+                    <td>
+                        <input type="text" name="awayTeam">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        2009
+                    </td>
+                    <td>
+                        <input type="number" name="goalsHome9" value="0" min="0" max="50">
+                    </td>
+                    <td>
+                        <input type="number" name="goalsAway9" value="0" min="0" max="50">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        2008
+                    </td>
+                    <td>
+                        <input type="number" name="goalsHome8" value="0" min="0" max="50">
+                    </td>
+                    <td>
+                        <input type="number" name="goalsAway8" value="0" min="0" max="50">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        2007
+                    </td>
+                    <td>
+                        <input type="number" name="goalsHome7" value="0" min="0" max="50">
+                    </td>
+                    <td>
+                        <input type="number" name="goalsAway7" value="0" min="0" max="50">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        2006
+                    </td>
+                    <td>
+                        <input type="number" name="goalsHome6" value="0" min="0" max="50">
+                    </td>
+                    <td>
+                        <input type="number" name="goalsAway6" value="0" min="0" max="50">
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        2005
+                    </td>
+                    <td>
+                        <input type="number" name="goalsHome5" value="0" min="0" max="50">
+                    </td>
+                    <td>
+                        <input type="number" name="goalsAway5" value="0" min="0" max="50">
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                        <input type="submit" value="Snimi u bazu">
+                    </td>
+                </tr>
+            </table>                   
+
+        </fieldset>
+    </form>
+</div>
