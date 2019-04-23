@@ -22,12 +22,13 @@ public class Results implements Serializable {
     private int awayTeamid;
     private int goalsHome;
     private int goalsAway;
+    private int youthSelection;
 
     public Results() {
 
     }
 
-    public Results(int mDay, String homeTeam, int homeTeamid, String awayTeam, int awayTeamid, int goalsHome, int goalsAway) {
+    public Results(int mDay, String homeTeam, int homeTeamid, String awayTeam, int awayTeamid, int goalsHome, int goalsAway, int youth) {
         this.mDay = mDay;
         this.homeTeam = homeTeam;
         this.homeTeamid = homeTeamid;
@@ -35,6 +36,7 @@ public class Results implements Serializable {
         this.awayTeamid = awayTeamid;
         this.goalsHome = goalsHome;
         this.goalsAway = goalsAway;
+        this.youthSelection = youth;
     }
 
     public int getId() {
@@ -99,6 +101,14 @@ public class Results implements Serializable {
 
     public void setGoalsAway(int goalsAway) {
         this.goalsAway = goalsAway;
+    }
+
+    public int getYouthSelection() {
+        return youthSelection;
+    }
+
+    public void setYouthSelection(int youthSelection) {
+        this.youthSelection = youthSelection;
     }
 
     @Override
