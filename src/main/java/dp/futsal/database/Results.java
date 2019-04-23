@@ -9,8 +9,8 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "results7")
-public class Results7 implements Serializable {
+@Table(name = "results5")
+public class Results implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -23,11 +23,11 @@ public class Results7 implements Serializable {
     private int goalsHome;
     private int goalsAway;
 
-    public Results7() {
+    public Results() {
 
     }
 
-    public Results7(int mDay, String homeTeam, int homeTeamid, String awayTeam, int awayTeamid, int goalsHome, int goalsAway) {
+    public Results(int mDay, String homeTeam, int homeTeamid, String awayTeam, int awayTeamid, int goalsHome, int goalsAway) {
         this.mDay = mDay;
         this.homeTeam = homeTeam;
         this.homeTeamid = homeTeamid;

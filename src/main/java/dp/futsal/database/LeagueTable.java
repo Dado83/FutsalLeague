@@ -11,9 +11,9 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "table9")
+@Table(name = "table5")
 @SecondaryTable(name = "teams")
-public class Table9 implements Serializable {
+public class LeagueTable implements Serializable {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,11 +30,22 @@ public class Table9 implements Serializable {
     private int goalsConceded;
     private int points;
 
-    public Table9() {
+    public LeagueTable() {
 
     }
 
-    public Table9(int gamesPlayed, int gamesWon, int gamesDrew, int gamesLost, int goalsScored, int goalsConceded, int points) {
+    public LeagueTable(int gamesPlayed, int gamesWon, int gamesDrew, int gamesLost, int goalsScored, int goalsConceded, int points) {
+        this.gamesPlayed = gamesPlayed;
+        this.gamesWon = gamesWon;
+        this.gamesDrew = gamesDrew;
+        this.gamesLost = gamesLost;
+        this.goalsScored = goalsScored;
+        this.goalsConceded = goalsConceded;
+        this.points = points;
+    }
+
+    public LeagueTable(int id, int gamesPlayed, int gamesWon, int gamesDrew, int gamesLost, int goalsScored, int goalsConceded, int points) {
+        this.id = id;
         this.gamesPlayed = gamesPlayed;
         this.gamesWon = gamesWon;
         this.gamesDrew = gamesDrew;

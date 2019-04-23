@@ -21,7 +21,7 @@ public class DatabaseService {
     @Autowired
     private NotPlaying9Repo notPlaying9;
     @Autowired
-    private Results5Repo results5;
+    private ResultsRepo results5;
     @Autowired
     private Results6Repo results6;
     @Autowired
@@ -31,7 +31,7 @@ public class DatabaseService {
     @Autowired
     private Results9Repo results9;
     @Autowired
-    private Table5Repo table5;
+    private LeagueTableRepo table5;
     @Autowired
     private Table6Repo table6;
     @Autowired
@@ -207,93 +207,355 @@ public class DatabaseService {
         int goalsAway5 = form.getGoalsAway5();
 
         Results9 res9 = new Results9(matchDay, homeTeam, homeTeamID, awayTeam, awayTeamID, goalsHome9, goalsAway9);
-        results9.save(res9);
         Table9 homeTable9 = table9.getOne(homeTeamID);
         Table9 awayTable9 = table9.getOne(awayTeamID);
 
-        if (goalsHome9 > goalsAway9) {
-            homeTable9.setGamesPlayed(homeTable9.getGamesPlayed() + 1);
-            homeTable9.setGamesWon(homeTable9.getGamesWon() + 1);
-            homeTable9.setGoalsScored(homeTable9.getGoalsScored() + goalsHome9);
-            homeTable9.setGoalsConceded(homeTable9.getGoalsConceded() + goalsAway9);
-            homeTable9.setPoints(homeTable9.getPoints() + 3);
+        Results8 res8 = new Results8(matchDay, homeTeam, homeTeamID, awayTeam, awayTeamID, goalsHome8, goalsAway8);
+        Table8 homeTable8 = table8.getOne(homeTeamID);
+        Table8 awayTable8 = table8.getOne(awayTeamID);
 
-            awayTable9.setGamesPlayed(awayTable9.getGamesPlayed() + 1);
-            awayTable9.setGamesLost(awayTable9.getGamesLost() + 1);
-            awayTable9.setGoalsScored(awayTable9.getGoalsScored() + goalsAway9);
-            awayTable9.setGoalsConceded(awayTable9.getGoalsConceded() + goalsHome9);
-        } else if (goalsAway9 > goalsHome9) {
-            awayTable9.setGamesPlayed(awayTable9.getGamesPlayed() + 1);
-            awayTable9.setGamesWon(awayTable9.getGamesWon() + 1);
-            awayTable9.setGoalsScored(awayTable9.getGoalsScored() + goalsAway9);
-            awayTable9.setGoalsConceded(awayTable9.getGoalsConceded() + goalsHome9);
-            awayTable9.setPoints(awayTable9.getPoints() + 3);
+        Results7 res7 = new Results7(matchDay, homeTeam, homeTeamID, awayTeam, awayTeamID, goalsHome7, goalsAway7);
+        Table7 homeTable7 = table7.getOne(homeTeamID);
+        Table7 awayTable7 = table7.getOne(awayTeamID);
 
-            homeTable9.setGamesPlayed(homeTable9.getGamesPlayed() + 1);
-            homeTable9.setGamesLost(homeTable9.getGamesLost() + 1);
-            homeTable9.setGoalsScored(homeTable9.getGoalsScored() + goalsHome9);
-            homeTable9.setGoalsConceded(homeTable9.getGoalsConceded() + goalsAway9);
-        } else {
-            homeTable9.setGamesPlayed(homeTable9.getGamesPlayed() + 1);
-            homeTable9.setGamesDrew(homeTable9.getGamesDrew() + 1);
-            homeTable9.setGoalsScored(homeTable9.getGoalsScored() + goalsHome9);
-            homeTable9.setGoalsConceded(homeTable9.getGoalsConceded() + goalsAway9);
-            homeTable9.setPoints(homeTable9.getPoints() + 1);
+        Results6 res6 = new Results6(matchDay, homeTeam, homeTeamID, awayTeam, awayTeamID, goalsHome6, goalsAway6);
+        Table6 homeTable6 = table6.getOne(homeTeamID);
+        Table6 awayTable6 = table6.getOne(awayTeamID);
 
-            awayTable9.setGamesPlayed(awayTable9.getGamesPlayed() + 1);
-            awayTable9.setGamesDrew(awayTable9.getGamesDrew() + 1);
-            awayTable9.setGoalsScored(awayTable9.getGoalsScored() + goalsAway9);
-            awayTable9.setGoalsConceded(awayTable9.getGoalsConceded() + goalsHome9);
-            awayTable9.setPoints(awayTable9.getPoints() + 1);
-        }
-        table9.save(homeTable9);
-        table9.save(awayTable9);
+        Results res5 = new Results(matchDay, homeTeam, homeTeamID, awayTeam, awayTeamID, goalsHome5, goalsAway5);
+        LeagueTable homeTable5 = table5.getOne(homeTeamID);
+        LeagueTable awayTable5 = table5.getOne(awayTeamID);
+
+        updateTableNewGame9(res9, homeTable9, awayTable9);
+
+        results9.save(res9);
+
     }
 
-    public void deleteGame(int id) {
-        Results9 res9 = results9.getOne(id);
-        Table9 homeTable9 = table9.getOne(res9.getHomeTeamid());
-        Table9 awayTable9 = table9.getOne(res9.getAwayTeamid());
-        int goalsHome9 = res9.getGoalsHome();
-        int goalsAway9 = res9.getGoalsAway();
+    private void updateTableNewGame9(Results9 res, Table9 ht, Table9 at) {
+        if (res.getGoalsHome() > res.getGoalsAway()) {
+            table9.save(new Table9(ht.getId(), ht.getGamesPlayed() + 1,
+                    ht.getGamesWon() + 1,
+                    ht.getGamesDrew(),
+                    ht.getGamesLost(),
+                    ht.getGoalsScored() + res.getGoalsHome(),
+                    ht.getGoalsConceded() + res.getGoalsAway(),
+                    ht.getPoints() + 3));
 
-        if (goalsHome9 > goalsAway9) {
-            homeTable9.setGamesPlayed(homeTable9.getGamesPlayed() - 1);
-            homeTable9.setGamesWon(homeTable9.getGamesWon() - 1);
-            homeTable9.setGoalsScored(homeTable9.getGoalsScored() - goalsHome9);
-            homeTable9.setGoalsConceded(homeTable9.getGoalsConceded() - goalsAway9);
-            homeTable9.setPoints(homeTable9.getPoints() - 3);
+            table9.save(new Table9(at.getId(), at.getGamesPlayed() + 1,
+                    at.getGamesWon(),
+                    at.getGamesDrew(),
+                    at.getGamesLost() + 1,
+                    at.getGoalsScored() + res.getGoalsAway(),
+                    at.getGoalsConceded() + res.getGoalsHome(),
+                    at.getPoints()));
 
-            awayTable9.setGamesPlayed(awayTable9.getGamesPlayed() - 1);
-            awayTable9.setGamesLost(awayTable9.getGamesLost() - 1);
-            awayTable9.setGoalsScored(awayTable9.getGoalsScored() - goalsAway9);
-            awayTable9.setGoalsConceded(awayTable9.getGoalsConceded() - goalsHome9);
-        } else if (goalsAway9 > goalsHome9) {
-            awayTable9.setGamesPlayed(awayTable9.getGamesPlayed() - 1);
-            awayTable9.setGamesWon(awayTable9.getGamesWon() - 1);
-            awayTable9.setGoalsScored(awayTable9.getGoalsScored() - goalsAway9);
-            awayTable9.setGoalsConceded(awayTable9.getGoalsConceded() - goalsHome9);
-            awayTable9.setPoints(awayTable9.getPoints() - 3);
+        } else if (res.getGoalsAway() > res.getGoalsHome()) {
+            table9.save(new Table9(ht.getId(), ht.getGamesPlayed() + 1,
+                    ht.getGamesWon(),
+                    ht.getGamesDrew(),
+                    ht.getGamesLost() + 1,
+                    ht.getGoalsScored() + res.getGoalsHome(),
+                    ht.getGoalsConceded() + res.getGoalsAway(),
+                    ht.getPoints()));
 
-            homeTable9.setGamesPlayed(homeTable9.getGamesPlayed() - 1);
-            homeTable9.setGamesLost(homeTable9.getGamesLost() - 1);
-            homeTable9.setGoalsScored(homeTable9.getGoalsScored() - goalsHome9);
-            homeTable9.setGoalsConceded(homeTable9.getGoalsConceded() - goalsAway9);
+            table9.save(new Table9(at.getId(), at.getGamesPlayed() + 1,
+                    at.getGamesWon() + 1,
+                    at.getGamesDrew(),
+                    at.getGamesLost(),
+                    at.getGoalsScored() + res.getGoalsAway(),
+                    at.getGoalsConceded() + res.getGoalsHome(),
+                    at.getPoints() + 3));
         } else {
-            homeTable9.setGamesPlayed(homeTable9.getGamesPlayed() - 1);
-            homeTable9.setGamesDrew(homeTable9.getGamesDrew() - 1);
-            homeTable9.setGoalsScored(homeTable9.getGoalsScored() - goalsHome9);
-            homeTable9.setGoalsConceded(homeTable9.getGoalsConceded() - goalsAway9);
-            homeTable9.setPoints(homeTable9.getPoints() - 1);
+            table9.save(new Table9(ht.getId(), ht.getGamesPlayed() + 1,
+                    ht.getGamesWon(),
+                    ht.getGamesDrew() + 1,
+                    ht.getGamesLost(),
+                    ht.getGoalsScored() + res.getGoalsHome(),
+                    ht.getGoalsConceded() + res.getGoalsAway(),
+                    ht.getPoints() + 1));
 
-            awayTable9.setGamesPlayed(awayTable9.getGamesPlayed() - 1);
-            awayTable9.setGamesDrew(awayTable9.getGamesDrew() - 1);
-            awayTable9.setGoalsScored(awayTable9.getGoalsScored() - goalsAway9);
-            awayTable9.setGoalsConceded(awayTable9.getGoalsConceded() - goalsHome9);
-            awayTable9.setPoints(awayTable9.getPoints() - 1);
+            table9.save(new Table9(at.getId(), at.getGamesPlayed() + 1,
+                    at.getGamesWon(),
+                    at.getGamesDrew() + 1,
+                    at.getGamesLost(),
+                    at.getGoalsScored() + res.getGoalsAway(),
+                    at.getGoalsConceded() + res.getGoalsHome(),
+                    at.getPoints() + 1));
         }
-        table9.save(homeTable9);
-        table9.save(awayTable9);
-        results9.delete(res9);
+    }
+    
+    private void updateTableNewGame8(Results8 res, Table8 ht, Table8 at) {
+        if (res.getGoalsHome() > res.getGoalsAway()) {
+            table8.save(new Table8(ht.getId(), ht.getGamesPlayed() + 1,
+                    ht.getGamesWon() + 1,
+                    ht.getGamesDrew(),
+                    ht.getGamesLost(),
+                    ht.getGoalsScored() + res.getGoalsHome(),
+                    ht.getGoalsConceded() + res.getGoalsAway(),
+                    ht.getPoints() + 3));
+
+            table8.save(new Table8(at.getId(), at.getGamesPlayed() + 1,
+                    at.getGamesWon(),
+                    at.getGamesDrew(),
+                    at.getGamesLost() + 1,
+                    at.getGoalsScored() + res.getGoalsAway(),
+                    at.getGoalsConceded() + res.getGoalsHome(),
+                    at.getPoints()));
+
+        } else if (res.getGoalsAway() > res.getGoalsHome()) {
+            table8.save(new Table8(ht.getId(), ht.getGamesPlayed() + 1,
+                    ht.getGamesWon(),
+                    ht.getGamesDrew(),
+                    ht.getGamesLost() + 1,
+                    ht.getGoalsScored() + res.getGoalsHome(),
+                    ht.getGoalsConceded() + res.getGoalsAway(),
+                    ht.getPoints()));
+
+            table8.save(new Table8(at.getId(), at.getGamesPlayed() + 1,
+                    at.getGamesWon() + 1,
+                    at.getGamesDrew(),
+                    at.getGamesLost(),
+                    at.getGoalsScored() + res.getGoalsAway(),
+                    at.getGoalsConceded() + res.getGoalsHome(),
+                    at.getPoints() + 3));
+        } else {
+            table8.save(new Table8(ht.getId(), ht.getGamesPlayed() + 1,
+                    ht.getGamesWon(),
+                    ht.getGamesDrew() + 1,
+                    ht.getGamesLost(),
+                    ht.getGoalsScored() + res.getGoalsHome(),
+                    ht.getGoalsConceded() + res.getGoalsAway(),
+                    ht.getPoints() + 1));
+
+            table8.save(new Table8(at.getId(), at.getGamesPlayed() + 1,
+                    at.getGamesWon(),
+                    at.getGamesDrew() + 1,
+                    at.getGamesLost(),
+                    at.getGoalsScored() + res.getGoalsAway(),
+                    at.getGoalsConceded() + res.getGoalsHome(),
+                    at.getPoints() + 1));
+        }
+    }
+    
+    private void updateTableNewGame7(Results7 res, Table7 ht, Table7 at) {
+        if (res.getGoalsHome() > res.getGoalsAway()) {
+            table7.save(new Table7(ht.getId(), ht.getGamesPlayed() + 1,
+                    ht.getGamesWon() + 1,
+                    ht.getGamesDrew(),
+                    ht.getGamesLost(),
+                    ht.getGoalsScored() + res.getGoalsHome(),
+                    ht.getGoalsConceded() + res.getGoalsAway(),
+                    ht.getPoints() + 3));
+
+            table7.save(new Table7(at.getId(), at.getGamesPlayed() + 1,
+                    at.getGamesWon(),
+                    at.getGamesDrew(),
+                    at.getGamesLost() + 1,
+                    at.getGoalsScored() + res.getGoalsAway(),
+                    at.getGoalsConceded() + res.getGoalsHome(),
+                    at.getPoints()));
+
+        } else if (res.getGoalsAway() > res.getGoalsHome()) {
+            table7.save(new Table7(ht.getId(), ht.getGamesPlayed() + 1,
+                    ht.getGamesWon(),
+                    ht.getGamesDrew(),
+                    ht.getGamesLost() + 1,
+                    ht.getGoalsScored() + res.getGoalsHome(),
+                    ht.getGoalsConceded() + res.getGoalsAway(),
+                    ht.getPoints()));
+
+            table7.save(new Table7(at.getId(), at.getGamesPlayed() + 1,
+                    at.getGamesWon() + 1,
+                    at.getGamesDrew(),
+                    at.getGamesLost(),
+                    at.getGoalsScored() + res.getGoalsAway(),
+                    at.getGoalsConceded() + res.getGoalsHome(),
+                    at.getPoints() + 3));
+        } else {
+            table7.save(new Table7(ht.getId(), ht.getGamesPlayed() + 1,
+                    ht.getGamesWon(),
+                    ht.getGamesDrew() + 1,
+                    ht.getGamesLost(),
+                    ht.getGoalsScored() + res.getGoalsHome(),
+                    ht.getGoalsConceded() + res.getGoalsAway(),
+                    ht.getPoints() + 1));
+
+            table7.save(new Table7(at.getId(), at.getGamesPlayed() + 1,
+                    at.getGamesWon(),
+                    at.getGamesDrew() + 1,
+                    at.getGamesLost(),
+                    at.getGoalsScored() + res.getGoalsAway(),
+                    at.getGoalsConceded() + res.getGoalsHome(),
+                    at.getPoints() + 1));
+        }
+    }
+    
+    private void updateTableNewGame6(Results6 res, Table6 ht, Table6 at) {
+        if (res.getGoalsHome() > res.getGoalsAway()) {
+            table6.save(new Table6(ht.getId(), ht.getGamesPlayed() + 1,
+                    ht.getGamesWon() + 1,
+                    ht.getGamesDrew(),
+                    ht.getGamesLost(),
+                    ht.getGoalsScored() + res.getGoalsHome(),
+                    ht.getGoalsConceded() + res.getGoalsAway(),
+                    ht.getPoints() + 3));
+
+            table6.save(new Table6(at.getId(), at.getGamesPlayed() + 1,
+                    at.getGamesWon(),
+                    at.getGamesDrew(),
+                    at.getGamesLost() + 1,
+                    at.getGoalsScored() + res.getGoalsAway(),
+                    at.getGoalsConceded() + res.getGoalsHome(),
+                    at.getPoints()));
+
+        } else if (res.getGoalsAway() > res.getGoalsHome()) {
+            table6.save(new Table6(ht.getId(), ht.getGamesPlayed() + 1,
+                    ht.getGamesWon(),
+                    ht.getGamesDrew(),
+                    ht.getGamesLost() + 1,
+                    ht.getGoalsScored() + res.getGoalsHome(),
+                    ht.getGoalsConceded() + res.getGoalsAway(),
+                    ht.getPoints()));
+
+            table6.save(new Table6(at.getId(), at.getGamesPlayed() + 1,
+                    at.getGamesWon() + 1,
+                    at.getGamesDrew(),
+                    at.getGamesLost(),
+                    at.getGoalsScored() + res.getGoalsAway(),
+                    at.getGoalsConceded() + res.getGoalsHome(),
+                    at.getPoints() + 3));
+        } else {
+            table6.save(new Table6(ht.getId(), ht.getGamesPlayed() + 1,
+                    ht.getGamesWon(),
+                    ht.getGamesDrew() + 1,
+                    ht.getGamesLost(),
+                    ht.getGoalsScored() + res.getGoalsHome(),
+                    ht.getGoalsConceded() + res.getGoalsAway(),
+                    ht.getPoints() + 1));
+
+            table6.save(new Table6(at.getId(), at.getGamesPlayed() + 1,
+                    at.getGamesWon(),
+                    at.getGamesDrew() + 1,
+                    at.getGamesLost(),
+                    at.getGoalsScored() + res.getGoalsAway(),
+                    at.getGoalsConceded() + res.getGoalsHome(),
+                    at.getPoints() + 1));
+        }
+    }
+    
+    private void updateTableNewGame5(Results res, LeagueTable ht, LeagueTable at) {
+        if (res.getGoalsHome() > res.getGoalsAway()) {
+            table5.save(new LeagueTable(ht.getId(), ht.getGamesPlayed() + 1,
+                    ht.getGamesWon() + 1,
+                    ht.getGamesDrew(),
+                    ht.getGamesLost(),
+                    ht.getGoalsScored() + res.getGoalsHome(),
+                    ht.getGoalsConceded() + res.getGoalsAway(),
+                    ht.getPoints() + 3));
+
+            table5.save(new LeagueTable(at.getId(), at.getGamesPlayed() + 1,
+                    at.getGamesWon(),
+                    at.getGamesDrew(),
+                    at.getGamesLost() + 1,
+                    at.getGoalsScored() + res.getGoalsAway(),
+                    at.getGoalsConceded() + res.getGoalsHome(),
+                    at.getPoints()));
+
+        } else if (res.getGoalsAway() > res.getGoalsHome()) {
+            table5.save(new LeagueTable(ht.getId(), ht.getGamesPlayed() + 1,
+                    ht.getGamesWon(),
+                    ht.getGamesDrew(),
+                    ht.getGamesLost() + 1,
+                    ht.getGoalsScored() + res.getGoalsHome(),
+                    ht.getGoalsConceded() + res.getGoalsAway(),
+                    ht.getPoints()));
+
+            table5.save(new LeagueTable(at.getId(), at.getGamesPlayed() + 1,
+                    at.getGamesWon() + 1,
+                    at.getGamesDrew(),
+                    at.getGamesLost(),
+                    at.getGoalsScored() + res.getGoalsAway(),
+                    at.getGoalsConceded() + res.getGoalsHome(),
+                    at.getPoints() + 3));
+        } else {
+            table5.save(new LeagueTable(ht.getId(), ht.getGamesPlayed() + 1,
+                    ht.getGamesWon(),
+                    ht.getGamesDrew() + 1,
+                    ht.getGamesLost(),
+                    ht.getGoalsScored() + res.getGoalsHome(),
+                    ht.getGoalsConceded() + res.getGoalsAway(),
+                    ht.getPoints() + 1));
+
+            table5.save(new LeagueTable(at.getId(), at.getGamesPlayed() + 1,
+                    at.getGamesWon(),
+                    at.getGamesDrew() + 1,
+                    at.getGamesLost(),
+                    at.getGoalsScored() + res.getGoalsAway(),
+                    at.getGoalsConceded() + res.getGoalsHome(),
+                    at.getPoints() + 1));
+        }
+    }
+
+    public String deleteGame(int id, Table9 ht, Table9 at) {
+        if (!results9.existsById(id)) {
+            LOGGER.info("nema tog rezultata, bibac...");
+            return "nema tog rezultata, bibac...";
+        } else {
+            Results9 res = results9.getOne(id);
+
+            if (res.getGoalsHome() > res.getGoalsAway()) {
+                table9.save(new Table9(ht.getId(), ht.getGamesPlayed() - 1,
+                        ht.getGamesWon() - 1,
+                        ht.getGamesDrew(),
+                        ht.getGamesLost(),
+                        ht.getGoalsScored() - res.getGoalsHome(),
+                        ht.getGoalsConceded() - res.getGoalsAway(),
+                        ht.getPoints() - 3));
+
+                table9.save(new Table9(at.getId(), at.getGamesPlayed() - 1,
+                        at.getGamesWon(),
+                        at.getGamesDrew(),
+                        at.getGamesLost() - 1,
+                        at.getGoalsScored() - res.getGoalsAway(),
+                        at.getGoalsConceded() - res.getGoalsHome(),
+                        at.getPoints()));
+            } else if (res.getGoalsAway() > res.getGoalsHome()) {
+                table9.save(new Table9(ht.getId(), ht.getGamesPlayed() - 1,
+                        ht.getGamesWon(),
+                        ht.getGamesDrew(),
+                        ht.getGamesLost() - 1,
+                        ht.getGoalsScored() - res.getGoalsHome(),
+                        ht.getGoalsConceded() - res.getGoalsAway(),
+                        ht.getPoints()));
+
+                table9.save(new Table9(at.getId(), at.getGamesPlayed() - 1,
+                        at.getGamesWon() - 1,
+                        at.getGamesDrew(),
+                        at.getGamesLost(),
+                        at.getGoalsScored() - res.getGoalsAway(),
+                        at.getGoalsConceded() - res.getGoalsHome(),
+                        at.getPoints() - 3));
+            } else {
+                table9.save(new Table9(ht.getId(), ht.getGamesPlayed() - 1,
+                        ht.getGamesWon(),
+                        ht.getGamesDrew() - 1,
+                        ht.getGamesLost(),
+                        ht.getGoalsScored() - res.getGoalsHome(),
+                        ht.getGoalsConceded() - res.getGoalsAway(),
+                        ht.getPoints() - 1));
+
+                table9.save(new Table9(at.getId(), at.getGamesPlayed() - 1,
+                        at.getGamesWon(),
+                        at.getGamesDrew() - 1,
+                        at.getGamesLost(),
+                        at.getGoalsScored() - res.getGoalsAway(),
+                        at.getGoalsConceded() - res.getGoalsHome(),
+                        at.getPoints() - 1));
+            }
+
+            results9.delete(res);
+        }
+        return "izbrisana tekma sa id = " + id;
     }
 }

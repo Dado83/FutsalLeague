@@ -2,8 +2,6 @@ package dp.futsal;
 
 import dp.futsal.database.DatabaseService;
 import dp.futsal.database.MatchPairs;
-import dp.futsal.database.NotPlaying;
-import dp.futsal.database.NotPlaying9;
 import dp.futsal.database.Teams;
 import dp.futsal.database.Users;
 import dp.futsal.database.Visitors;
@@ -16,7 +14,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import java.util.List;
 import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -98,8 +95,7 @@ public class FutsalController {
 
     @GetMapping("/result/delete/{id}")
     public String deleteResult(@PathVariable int id) {
-        dbService.deleteGame(id);
-        return "Utakmica izbrisana" + id;
+        return "";
     }
 
     @GetMapping("/table/{year}")
