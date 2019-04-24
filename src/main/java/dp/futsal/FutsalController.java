@@ -44,43 +44,24 @@ public class FutsalController {
     }
 
     @GetMapping("/pairs/{mday}")
-    public List<MatchPairs> getPairsByMday(@PathVariable int mday) {
-        return dbService.getPairsByMday(mday);
+    public List<MatchPairs> getPairsByMday(@PathVariable int mDay) {
+        return dbService.getPairsByMday(mDay);
     }
 
-    @GetMapping("/notplaying")
-    public List<NotPlaying> getNotPlaying() {
-        return dbService.getNotPlaying();
-    }
-
-    @GetMapping("/notplaying/{mday}")
-    public List<NotPlaying> getNotPlayingByMday(@PathVariable int mday) {
-        return dbService.getNotPlayingByMday(mday);
-    }
-
-    @GetMapping("/notplaying9")
-    public List<NotPlaying9> getNotPlaying9() {
-        return dbService.getNotPlaying9();
-    }
-
-    @GetMapping("/notplaying9/{mday}")
-    public List<NotPlaying9> getNotPlaying9ByMday(@PathVariable int mday) {
-        return dbService.getNotPlaying9ByMday(mday);
-    }
-
+   
     @GetMapping("/results/{year}")
-    public List getResults(@PathVariable int year) {
-        return dbService.getResults(year);
+    public List getResults(@PathVariable int sel) {
+        return dbService.getResults(sel);
     }
 
     @GetMapping("/results/{year}/{mday}")
-    public List getResultsByMday(@PathVariable int year, @PathVariable int mday) {
-        return dbService.getResultsByMday(year, mday);
+    public List getResultsByMday(@PathVariable int sel, @PathVariable int mDay) {
+        return dbService.getResultsByMday(sel, mDay);
     }
 
-    @GetMapping("/results/id/{year}/{id}")
-    public List getResultsById(@PathVariable int year, @PathVariable int id) {
-        return dbService.getResultsById(year, id);
+    @GetMapping("/results/id/{id}")
+    public List getResultsById(@PathVariable int id) {
+        return dbService.getResultsById(id);
     }
 
     @PostMapping("/result/input")

@@ -30,12 +30,14 @@ public class LeagueTable implements Serializable {
     private int goalsConceded;
     private int points;
     private int youthSelection;
+    private int teamId;
 
     public LeagueTable() {
 
     }
 
-    public LeagueTable(int gamesPlayed, int gamesWon, int gamesDrew, int gamesLost, int goalsScored, int goalsConceded, int points, int youth) {
+    public LeagueTable(int youth, int teamId, int gamesPlayed, int gamesWon, int gamesDrew, int gamesLost,
+            int goalsScored, int goalsConceded, int points) {
         this.gamesPlayed = gamesPlayed;
         this.gamesWon = gamesWon;
         this.gamesDrew = gamesDrew;
@@ -44,9 +46,11 @@ public class LeagueTable implements Serializable {
         this.goalsConceded = goalsConceded;
         this.points = points;
         this.youthSelection = youth;
+        this.teamId = teamId;
     }
 
-    public LeagueTable(int id, int gamesPlayed, int gamesWon, int gamesDrew, int gamesLost, int goalsScored, int goalsConceded, int points, int youth) {
+    public LeagueTable(int id, int youth, int teamId, int gamesPlayed, int gamesWon, int gamesDrew, int gamesLost,
+            int goalsScored, int goalsConceded, int points) {
         this.id = id;
         this.gamesPlayed = gamesPlayed;
         this.gamesWon = gamesWon;
@@ -56,6 +60,7 @@ public class LeagueTable implements Serializable {
         this.goalsConceded = goalsConceded;
         this.points = points;
         this.youthSelection = youth;
+        this.teamId = teamId;
     }
 
     @Override
@@ -138,6 +143,14 @@ public class LeagueTable implements Serializable {
 
     public void setYouthSelection(int youthSelection) {
         this.youthSelection = youthSelection;
+    }
+
+    public int getTeamId() {
+        return teamId;
+    }
+
+    public void setTeamId(int teamId) {
+        this.teamId = teamId;
     }
 
     public String getTeamName() {
