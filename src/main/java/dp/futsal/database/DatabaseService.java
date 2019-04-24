@@ -95,7 +95,7 @@ public class DatabaseService {
         int goalsHome5 = form.getGoalsHome5();
         int goalsAway5 = form.getGoalsAway5();
 
-        Results res9 = new Results(matchDay, homeTeam, homeTeamID, awayTeam, awayTeamID, goalsHome5, goalsAway5, 2005);
+        Results res9 = new Results(matchDay, homeTeam, homeTeamID, awayTeam, awayTeamID, goalsHome9, goalsAway9, 2009);
         LeagueTable homeTable9 = table.getOne(homeTeamID);
         LeagueTable awayTable9 = table.getOne(awayTeamID);
 
@@ -176,15 +176,18 @@ public class DatabaseService {
         }
     }
 
-    public String deleteGame(int id, Table9 ht, Table9 at) {
-        if (!results9.existsById(id)) {
+    public String deleteGame(int id, LeagueTable ht, LeagueTable at) {
+        if (!results.existsById(id)) {
             LOGGER.info("nema tog rezultata, bibac...");
             return "nema tog rezultata, bibac...";
         } else {
-            Results9 res = results9.getOne(id);
+            Results res = results.getOne(id);
 
             if (res.getGoalsHome() > res.getGoalsAway()) {
-                table9.save(new Table9(ht.getId(), ht.getGamesPlayed() - 1,
+                table.save(new LeagueTable(ht.getId(),
+                        ht.getYouthSelection(),
+                        ht.getTeamId(),
+                        ht.getGamesPlayed() - 1,
                         ht.getGamesWon() - 1,
                         ht.getGamesDrew(),
                         ht.getGamesLost(),
@@ -192,7 +195,10 @@ public class DatabaseService {
                         ht.getGoalsConceded() - res.getGoalsAway(),
                         ht.getPoints() - 3));
 
-                table9.save(new Table9(at.getId(), at.getGamesPlayed() - 1,
+                table.save(new LeagueTable(at.getId(),
+                        at.getYouthSelection(),
+                        at.getTeamId(),
+                        at.getGamesPlayed() - 1,
                         at.getGamesWon(),
                         at.getGamesDrew(),
                         at.getGamesLost() - 1,
@@ -200,7 +206,10 @@ public class DatabaseService {
                         at.getGoalsConceded() - res.getGoalsHome(),
                         at.getPoints()));
             } else if (res.getGoalsAway() > res.getGoalsHome()) {
-                table9.save(new Table9(ht.getId(), ht.getGamesPlayed() - 1,
+                table.save(new LeagueTable(ht.getId(),
+                        ht.getYouthSelection(),
+                        ht.getTeamId(),
+                        ht.getGamesPlayed() - 1,
                         ht.getGamesWon(),
                         ht.getGamesDrew(),
                         ht.getGamesLost() - 1,
@@ -208,7 +217,10 @@ public class DatabaseService {
                         ht.getGoalsConceded() - res.getGoalsAway(),
                         ht.getPoints()));
 
-                table9.save(new Table9(at.getId(), at.getGamesPlayed() - 1,
+                table.save(new LeagueTable(at.getId(),
+                        at.getYouthSelection(),
+                        at.getTeamId(),
+                        at.getGamesPlayed() - 1,
                         at.getGamesWon() - 1,
                         at.getGamesDrew(),
                         at.getGamesLost(),
@@ -216,7 +228,10 @@ public class DatabaseService {
                         at.getGoalsConceded() - res.getGoalsHome(),
                         at.getPoints() - 3));
             } else {
-                table9.save(new Table9(ht.getId(), ht.getGamesPlayed() - 1,
+                table.save(new LeagueTable(ht.getId(),
+                        ht.getYouthSelection(),
+                        ht.getTeamId(),
+                        ht.getGamesPlayed() - 1,
                         ht.getGamesWon(),
                         ht.getGamesDrew() - 1,
                         ht.getGamesLost(),
@@ -224,7 +239,10 @@ public class DatabaseService {
                         ht.getGoalsConceded() - res.getGoalsAway(),
                         ht.getPoints() - 1));
 
-                table9.save(new Table9(at.getId(), at.getGamesPlayed() - 1,
+                table.save(new LeagueTable(at.getId(),
+                        at.getYouthSelection(),
+                        at.getTeamId(),
+                        at.getGamesPlayed() - 1,
                         at.getGamesWon(),
                         at.getGamesDrew() - 1,
                         at.getGamesLost(),
@@ -233,7 +251,7 @@ public class DatabaseService {
                         at.getPoints() - 1));
             }
 
-            results9.delete(res);
+            results.delete(res);
         }
         return "izbrisana tekma sa id = " + id;
     }
