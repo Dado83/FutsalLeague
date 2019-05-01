@@ -9,7 +9,7 @@ import javax.persistence.Table;
 
 
 @Entity
-@Table(name = "results5")
+@Table(name = "results")
 public class Results implements Serializable {
 
     @Id
@@ -113,6 +113,6 @@ public class Results implements Serializable {
 
     @Override
     public String toString() {
-        return mDay + " " + homeTeam + " " + awayTeam + " " + goalsHome + " " + goalsAway;
+        return id + ": " + mDay + " " + homeTeam + " " + awayTeam + " " + goalsHome + " " + goalsAway;
     }
 }

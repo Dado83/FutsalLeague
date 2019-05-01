@@ -44,7 +44,7 @@ public class DatabaseService {
         return results.findByYouthSelectionAndMDay(sel, mDay);
     }
 
-    public List getResultsById(int id) {
+    public Results getResultsById(int id) {
         return results.findById(id);
     }
 

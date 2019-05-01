@@ -8,9 +8,9 @@ public interface ResultsRepo extends JpaRepository<Results, Integer> {
 
     public List<Results> findByMDay(int mDay);
 
-    public List<Results> findById(int id);
+    public Results findById(int id);
 
     public List<Results> findByYouthSelection(int sel);
-    
+
     public List<Results> findByYouthSelectionAndMDay(int sel, int mday);
 }

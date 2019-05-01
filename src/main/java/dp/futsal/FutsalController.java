@@ -2,6 +2,7 @@ package dp.futsal;
 
 import dp.futsal.database.DatabaseService;
 import dp.futsal.database.MatchPairs;
+import dp.futsal.database.Results;
 import dp.futsal.database.Teams;
 import dp.futsal.database.Users;
 import dp.futsal.database.Visitors;
@@ -48,7 +49,6 @@ public class FutsalController {
         return dbService.getPairsByMday(mDay);
     }
 
-   
     @GetMapping("/results/{year}")
     public List getResults(@PathVariable int sel) {
         return dbService.getResults(sel);
@@ -60,7 +60,7 @@ public class FutsalController {
     }
 
     @GetMapping("/results/id/{id}")
-    public List getResultsById(@PathVariable int id) {
+    public Results getResultsById(@PathVariable int id) {
         return dbService.getResultsById(id);
     }
 
@@ -80,8 +80,8 @@ public class FutsalController {
     }
 
     @GetMapping("/table/{year}")
-    public List getTable(@PathVariable int year) {
-        return dbService.getTable(year);
+    public List getTable(@PathVariable int sel) {
+        return dbService.getTable(sel);
     }
 
     @GetMapping("/teams")
@@ -89,7 +89,7 @@ public class FutsalController {
         return dbService.getTeams();
     }
 
-    @GetMapping("/teams/{id}")
+    @GetMapping("/teams/id/{id}")
     public Teams getTeamsById(@PathVariable int id) {
         return dbService.getTeamsById(id);
     }
@@ -104,7 +104,7 @@ public class FutsalController {
         return dbService.getUsers();
     }
 
-    @GetMapping("/users/{id}")
+    @GetMapping("/users/id/{id}")
     public Users getUsersById(@PathVariable int id) {
         return dbService.getUsersById(id);
     }

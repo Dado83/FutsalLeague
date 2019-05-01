@@ -33,6 +33,15 @@ public class Teams implements Serializable {
         this.gameTime = gameTime;
     }
 
+    public Teams(int id, String teamName, String teamCity, String kitColor, String venue, String gameTime) {
+        this.id = id;
+        this.teamName = teamName;
+        this.teamCity = teamCity;
+        this.kitColor = kitColor;
+        this.venue = venue;
+        this.gameTime = gameTime;
+    }
+
     @Override
     public String toString() {
         return "ID: " + this.id + " || Club{" + "clubName=" + teamName
