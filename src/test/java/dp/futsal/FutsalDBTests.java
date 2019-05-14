@@ -47,99 +47,99 @@ public class FutsalDBTests {
 
     @Before
     public void init() {
-        Results results1 = new Results(1, "m utd", 1, "city", 2, 3, 0, 2009);
-        Results results2 = new Results(2, "ars", 3, "chelsea", 4, 2, 2, 2006);
-        entityManager.persist(results1);
-        entityManager.persist(results2);
+	Results results1 = new Results(1, "m utd", 1, "city", 2, 3, 0, 2009);
+	Results results2 = new Results(2, "ars", 3, "chelsea", 4, 2, 2, 2006);
+	entityManager.persist(results1);
+	entityManager.persist(results2);
 
-        Teams zeljo = new Teams("FK Zeljeznicar", "Doboj", "plava", "stadion Luke", "nedjelja");
-        Teams ferplej = new Teams("OFK Fair Play", "Doboj", "zuta", "stadion Traford", "subota");
-        entityManager.persist(zeljo);
-        entityManager.persist(ferplej);
+	Teams zeljo = new Teams("FK Zeljeznicar", "Doboj", "plava", "stadion Luke", "nedjelja");
+	Teams ferplej = new Teams("OFK Fair Play", "Doboj", "zuta", "stadion Traford", "subota");
+	entityManager.persist(zeljo);
+	entityManager.persist(ferplej);
 
-        LeagueTable table1 = new LeagueTable(2005, 1, 1, 1, 0, 0, 10, 0, 3);
-        LeagueTable table2 = new LeagueTable(2005, 2, 1, 0, 0, 1, 0, 10, 0);
-        entityManager.persist(table1);
-        entityManager.persist(table2);
+	LeagueTable table1 = new LeagueTable(2005, 1, 1, 1, 0, 0, 10, 0, 3);
+	LeagueTable table2 = new LeagueTable(2005, 2, 1, 0, 0, 1, 0, 10, 0);
+	entityManager.persist(table1);
+	entityManager.persist(table2);
 
-        MatchPairs match1 = new MatchPairs(1, 1, 2, "subota", true);
-        MatchPairs match2 = new MatchPairs(1, 3, 4, "nedjelja", false);
-        entityManager.persist(match1);
-        entityManager.persist(match2);
+	MatchPairs match1 = new MatchPairs(1, 1, 2, "subota", true);
+	MatchPairs match2 = new MatchPairs(1, 3, 4, "nedjelja", false);
+	entityManager.persist(match1);
+	entityManager.persist(match2);
 
-        Users user = new Users("dado", "batman");
-        entityManager.persist(user);
+	Users user = new Users("dado", "batman");
+	entityManager.persist(user);
 
-        Visitors visitor =
-                new Visitors("local", "", "", "win10", "chrome", "", "", 0, "admin", (int) System.currentTimeMillis());
-        entityManager.persist(visitor);
+	Visitors visitor =
+		new Visitors("local", "", "", "win10", "chrome", "", "", 0, "admin", (int) System.currentTimeMillis());
+	entityManager.persist(visitor);
     }
 
     @Test
     public void findTeamById() {
-        Teams foundTeam = teamsRepo.findById(2);
-        assertThat(foundTeam.getTeamName()).isEqualTo("OFK Fair Play");
+	Teams foundTeam = teamsRepo.findById(2);
+	assertThat(foundTeam.getTeamName()).isEqualTo("OFK Fair Play");
     }
 
     @Test
     public void searchTeams() {
-        List<Teams> foundTeams = teamsRepo.searchTeams("FK Zeljeznicar");
-        assertThat(foundTeams.get(0).getTeamName()).contains("Zelje");
+	List<Teams> foundTeams = teamsRepo.searchTeams("FK Zeljeznicar");
+	assertThat(foundTeams.get(0).getTeamName()).contains("Zelje");
     }
 
     @Test
     public void getTable() {
-        List<LeagueTable> foundLeagueTables = leagueTableRepo.getOrderedTable(2005);
-        assertThat(foundLeagueTables.size()).isEqualTo(2);
+	List<LeagueTable> foundLeagueTables = leagueTableRepo.getOrderedTable(2005);
+	assertThat(foundLeagueTables.size()).isEqualTo(2);
     }
 
     @Test
     public void getResultsByMDay() {
-        List<Results> foundResults = resultsRepo.findByMDay(2);
-        assertThat(foundResults.get(0).getYouthSelection()).isEqualTo(2006);
+	List<Results> foundResults = resultsRepo.findByMDay(2);
+	assertThat(foundResults.get(0).getYouthSelection()).isEqualTo(2006);
     }
 
     @Test
     public void getResultsById() {
-        Results foundResult = resultsRepo.findById(1);
-        assertThat(foundResult.getHomeTeam()).isEqualTo("m utd");
+	Results foundResult = resultsRepo.findById(1);
+	assertThat(foundResult.getHomeTeam()).isEqualTo("m utd");
     }
 
     @Test
     public void getResultsByYouthSelection() {
-        List<Results> foundResults = resultsRepo.findByYouthSelection(2009);
-        assertThat(foundResults.get(0).getAwayTeam()).isEqualTo("city");
+	List<Results> foundResults = resultsRepo.findByYouthSelection(2009);
+	assertThat(foundResults.get(0).getAwayTeam()).isEqualTo("city");
     }
 
     @Test
     public void getResultsByYouthSelectionAndMDay() {
-        List<Results> foundResults = resultsRepo.findByYouthSelectionAndMDay(2009, 1);
-        assertThat(foundResults.get(0).getAwayTeamid()).isEqualTo(2);
+	List<Results> foundResults = resultsRepo.findByYouthSelectionAndMDay(2009, 1);
+	assertThat(foundResults.get(0).getAwayTeamid()).isEqualTo(2);
     }
 
     @Test
     public void findMatchPairsByMDay() {
-        List<MatchPairs> foundMatchPair = matchPairsRepo.findByMDay(1);
-        assertThat(foundMatchPair.size()).isEqualTo(2);
+	List<MatchPairs> foundMatchPair = matchPairsRepo.findByMDay(1);
+	assertThat(foundMatchPair.size()).isEqualTo(2);
 
     }
 
     @Test
     public void findNotPlayedMatchPairs() {
-        List<MatchPairs> foundMatchPair = matchPairsRepo.getPairsNotPlayed();
-        assertThat(foundMatchPair.get(0).getGameDate()).isEqualTo("nedjelja");
+	List<MatchPairs> foundMatchPair = matchPairsRepo.getPairsNotPlayed();
+	assertThat(foundMatchPair.get(0).getGameDate()).isEqualTo("nedjelja");
     }
 
     @Test
     public void findUserById() {
-        Users foundUser = usersRepo.findById(1);
-        assertThat(foundUser.getUser()).isEqualTo("dado");
+	Users foundUser = usersRepo.findById(1);
+	assertThat(foundUser.getUser()).isEqualTo("dado");
     }
 
     @Test
     public void findVisitorById() {
-        Visitors foundVisitor = visitorsRepo.findById(1);
-        assertThat(foundVisitor.getIp()).isEqualTo("local");
+	Visitors foundVisitor = visitorsRepo.findById(1);
+	assertThat(foundVisitor.getIp()).isEqualTo("local");
     }
 
 }
