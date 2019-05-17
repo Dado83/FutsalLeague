@@ -23,32 +23,32 @@ public class Users implements Serializable {
     }
 
     public Users(String user, String password) {
-        this.user = user;
-        this.password = password;
+	this.user = user;
+	this.password = password;
     }
 
     public int getId() {
-        return id;
+	return id;
     }
 
     public void setId(int id) {
-        this.id = id;
+	this.id = id;
     }
 
     public String getUser() {
-        return user;
+	return user;
     }
 
     public void setUser(String user) {
-        this.user = user;
+	this.user = user;
     }
 
     public String getPassword() {
-        return password;
+	return password;
     }
 
     public void setPassword(String password) {
-        this.password = password;
+	this.password = password;
     }
 
 }

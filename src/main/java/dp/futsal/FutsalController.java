@@ -31,94 +31,94 @@ public class FutsalController {
 
     @GetMapping("/")
     public String index() {
-        return "Fair Play Liga Buducih Sampiona";
+	return "Fair Play Liga Buducih Sampiona";
     }
 
     @GetMapping("/pairs")
     public List<MatchPairs> getPairs() {
-        return dbService.getPairs();
+	return dbService.getPairs();
     }
 
     @GetMapping("/pairsToPlay")
     public List<MatchPairs> getPairsToPlay() {
-        return dbService.getPairsNotPlayed();
+	return dbService.getPairsNotPlayed();
     }
 
     @GetMapping("/pairs/{mday}")
     public List<MatchPairs> getPairsByMday(@PathVariable int mDay) {
-        return dbService.getPairsByMday(mDay);
+	return dbService.getPairsByMday(mDay);
     }
 
     @GetMapping("/results/{year}")
     public List getResults(@PathVariable int sel) {
-        return dbService.getResults(sel);
+	return dbService.getResults(sel);
     }
 
     @GetMapping("/results/{year}/{mday}")
     public List getResultsByMday(@PathVariable int sel, @PathVariable int mDay) {
-        return dbService.getResultsByMday(sel, mDay);
+	return dbService.getResultsByMday(sel, mDay);
     }
 
     @GetMapping("/results/id/{id}")
     public Results getResultsById(@PathVariable int id) {
-        return dbService.getResultsById(id);
+	return dbService.getResultsById(id);
     }
 
     @PostMapping("/result/input")
     public String inputResult(@ModelAttribute MatchResultForm form) {
-        LOGGER.info("test metoda pozvana");
+	LOGGER.info("test metoda pozvana");
 
-        dbService.saveGame(form);
+	dbService.saveGame(form);
 
-        return form.toString();
+	return form.toString();
 
     }
 
     @GetMapping("/result/delete/{id}")
     public String deleteResult(@PathVariable int id) {
-        return "";
+	return "";
     }
 
     @GetMapping("/table/{year}")
     public List getTable(@PathVariable int sel) {
-        return dbService.getTable(sel);
+	return dbService.getTable(sel);
     }
 
     @GetMapping("/teams")
     public List<Teams> getTeams() {
-        return dbService.getTeams();
+	return dbService.getTeams();
     }
 
     @GetMapping("/teams/id/{id}")
     public Teams getTeamsById(@PathVariable int id) {
-        return dbService.getTeamsById(id);
+	return dbService.getTeamsById(id);
     }
 
     @GetMapping("/teams/search/{search}")
     public List<Teams> searchTeams(@PathVariable String search) {
-        return dbService.searchTeams(search);
+	return dbService.searchTeams(search);
     }
 
     @GetMapping("/users")
     public List<Users> getUsers() {
-        return dbService.getUsers();
+	return dbService.getUsers();
     }
 
     @GetMapping("/users/id/{id}")
     public Users getUsersById(@PathVariable int id) {
-        return dbService.getUsersById(id);
+	return dbService.getUsersById(id);
     }
 
     @GetMapping("/visitors")
     public List<Visitors> getVisitors() {
-        return dbService.getVisitors();
+	return dbService.getVisitors();
     }
 
     @ExceptionHandler(Exception.class)
     @ResponseStatus(value = HttpStatus.INTERNAL_SERVER_ERROR, reason = "Error message")
     public void handleError(Exception e) {
-        LOGGER.severe("jebatanja bracala");
-        e.printStackTrace();
+	LOGGER.severe("jebatanja bracala");
+	e.printStackTrace();
     }
 
 }

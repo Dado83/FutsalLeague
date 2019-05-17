@@ -28,91 +28,92 @@ public class Results implements Serializable {
 
     }
 
-    public Results(int mDay, String homeTeam, int homeTeamid, String awayTeam, int awayTeamid, int goalsHome, int goalsAway, int youth) {
-        this.mDay = mDay;
-        this.homeTeam = homeTeam;
-        this.homeTeamid = homeTeamid;
-        this.awayTeam = awayTeam;
-        this.awayTeamid = awayTeamid;
-        this.goalsHome = goalsHome;
-        this.goalsAway = goalsAway;
-        this.youthSelection = youth;
+    public Results(int mDay, String homeTeam, int homeTeamid, String awayTeam, int awayTeamid, int goalsHome,
+	    int goalsAway, int youth) {
+	this.mDay = mDay;
+	this.homeTeam = homeTeam;
+	this.homeTeamid = homeTeamid;
+	this.awayTeam = awayTeam;
+	this.awayTeamid = awayTeamid;
+	this.goalsHome = goalsHome;
+	this.goalsAway = goalsAway;
+	this.youthSelection = youth;
     }
 
     public int getId() {
-        return id;
+	return id;
     }
 
     public void setId(int id) {
-        this.id = id;
+	this.id = id;
     }
 
     public int getmDay() {
-        return mDay;
+	return mDay;
     }
 
     public void setmDay(int mDay) {
-        this.mDay = mDay;
+	this.mDay = mDay;
     }
 
     public String getHomeTeam() {
-        return homeTeam;
+	return homeTeam;
     }
 
     public void setHomeTeam(String homeTeam) {
-        this.homeTeam = homeTeam;
+	this.homeTeam = homeTeam;
     }
 
     public int getHomeTeamid() {
-        return homeTeamid;
+	return homeTeamid;
     }
 
     public void setHomeTeamid(int homeTeamid) {
-        this.homeTeamid = homeTeamid;
+	this.homeTeamid = homeTeamid;
     }
 
     public String getAwayTeam() {
-        return awayTeam;
+	return awayTeam;
     }
 
     public void setAwayTeam(String awayTeam) {
-        this.awayTeam = awayTeam;
+	this.awayTeam = awayTeam;
     }
 
     public int getAwayTeamid() {
-        return awayTeamid;
+	return awayTeamid;
     }
 
     public void setAwayTeam(int awayTeamid) {
-        this.awayTeamid = awayTeamid;
+	this.awayTeamid = awayTeamid;
     }
 
     public int getGoalsHome() {
-        return goalsHome;
+	return goalsHome;
     }
 
     public void setGoalsHome(int goalsHome) {
-        this.goalsHome = goalsHome;
+	this.goalsHome = goalsHome;
     }
 
     public int getGoalsAway() {
-        return goalsAway;
+	return goalsAway;
     }
 
     public void setGoalsAway(int goalsAway) {
-        this.goalsAway = goalsAway;
+	this.goalsAway = goalsAway;
     }
 
     public int getYouthSelection() {
-        return youthSelection;
+	return youthSelection;
     }
 
     public void setYouthSelection(int youthSelection) {
-        this.youthSelection = youthSelection;
+	this.youthSelection = youthSelection;
     }
 
     @Override
     public String toString() {
-        return id + ": " + mDay + " " + homeTeam + " " + awayTeam + " " + goalsHome + " " + goalsAway;
+	return id + ": " + mDay + " " + homeTeam + " " + awayTeam + " " + goalsHome + " " + goalsAway;
     }
 }

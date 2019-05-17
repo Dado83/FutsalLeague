@@ -9,7 +9,7 @@ import org.springframework.data.jpa.repository.Query;
 public interface LeagueTableRepo extends JpaRepository<LeagueTable, Integer> {
 
     final String QUERY =
-            "SELECT t FROM LeagueTable t WHERE t.teamId <> 10 AND t.youthSelection = :sel ORDER BY t.points DESC, t.goalsScored DESC";
+	    "SELECT t FROM LeagueTable t WHERE t.teamId <> 10 AND t.youthSelection = :sel ORDER BY t.points DESC, t.goalsScored DESC";
 
     @Query(QUERY)
     public List<LeagueTable> getOrderedTable(@Param int sel);

@@ -70,8 +70,8 @@ public class FutsalDBTests {
 	Users user = new Users("dado", "batman");
 	entityManager.persist(user);
 
-	Visitors visitor =
-		new Visitors("local", "", "", "win10", "chrome", "", "", 0, "admin", (int) System.currentTimeMillis());
+	Visitors visitor = new Visitors("local", "", "", "win10", "chrome", "", "", false, "admin",
+		(int) System.currentTimeMillis());
 	entityManager.persist(visitor);
     }
 

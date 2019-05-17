@@ -22,7 +22,7 @@ public class Visitors implements Serializable {
     private String browser;
     private String version;
     private String userAgent;
-    private int newVisitor;
+    private boolean newVisitor;
     private String role;
     private int time;
 
@@ -30,105 +30,106 @@ public class Visitors implements Serializable {
 
     }
 
-    public Visitors(String ip, String mobile, String robot, String platform, String browser, String version, String userAgent, int newVisitor, String role, int time) {
-        this.ip = ip;
-        this.mobile = mobile;
-        this.robot = robot;
-        this.platform = platform;
-        this.browser = browser;
-        this.version = version;
-        this.userAgent = userAgent;
-        this.newVisitor = newVisitor;
-        this.role = role;
-        this.time = time;
+    public Visitors(String ip, String mobile, String robot, String platform, String browser, String version,
+	    String userAgent, boolean newVisitor, String role, int time) {
+	this.ip = ip;
+	this.mobile = mobile;
+	this.robot = robot;
+	this.platform = platform;
+	this.browser = browser;
+	this.version = version;
+	this.userAgent = userAgent;
+	this.newVisitor = newVisitor;
+	this.role = role;
+	this.time = time;
     }
 
     public int getId() {
-        return id;
+	return id;
     }
 
     public void setId(int id) {
-        this.id = id;
+	this.id = id;
     }
 
     public String getIp() {
-        return ip;
+	return ip;
     }
 
     public void setIp(String ip) {
-        this.ip = ip;
+	this.ip = ip;
     }
 
     public String getMobile() {
-        return mobile;
+	return mobile;
     }
 
     public void setMobile(String mobile) {
-        this.mobile = mobile;
+	this.mobile = mobile;
     }
 
     public String getRobot() {
-        return robot;
+	return robot;
     }
 
     public void setRobot(String robot) {
-        this.robot = robot;
+	this.robot = robot;
     }
 
     public String getPlatform() {
-        return platform;
+	return platform;
     }
 
     public void setPlatform(String platform) {
-        this.platform = platform;
+	this.platform = platform;
     }
 
     public String getBrowser() {
-        return browser;
+	return browser;
     }
 
     public void setBrowser(String browser) {
-        this.browser = browser;
+	this.browser = browser;
     }
 
     public String getVersion() {
-        return version;
+	return version;
     }
 
     public void setVersion(String version) {
-        this.version = version;
+	this.version = version;
     }
 
     public String getUserAgent() {
-        return userAgent;
+	return userAgent;
     }
 
     public void setUserAgent(String userAgent) {
-        this.userAgent = userAgent;
+	this.userAgent = userAgent;
     }
 
-    public int getNewVisitor() {
-        return newVisitor;
+    public boolean getNewVisitor() {
+	return newVisitor;
     }
 
-    public void setNewVisitor(int newVisitor) {
-        this.newVisitor = newVisitor;
+    public void setNewVisitor(boolean newVisitor) {
+	this.newVisitor = newVisitor;
     }
 
     public String getRole() {
-        return role;
+	return role;
     }
 
     public void setRole(String role) {
-        this.role = role;
+	this.role = role;
     }
 
     public int getTime() {
-        return time;
+	return time;
     }
 
     public void setTime(int time) {
-        this.time = time;
+	this.time = time;
     }
 
 }

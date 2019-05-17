@@ -8,6 +8,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class FutsalLeagueApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(FutsalLeagueApplication.class, args);
+	SpringApplication.run(FutsalLeagueApplication.class, args);
     }
 }

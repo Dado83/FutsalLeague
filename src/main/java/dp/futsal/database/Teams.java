@@ -26,74 +26,73 @@ public class Teams implements Serializable {
     }
 
     public Teams(String teamName, String teamCity, String kitColor, String venue, String gameTime) {
-        this.teamName = teamName;
-        this.teamCity = teamCity;
-        this.kitColor = kitColor;
-        this.venue = venue;
-        this.gameTime = gameTime;
+	this.teamName = teamName;
+	this.teamCity = teamCity;
+	this.kitColor = kitColor;
+	this.venue = venue;
+	this.gameTime = gameTime;
     }
 
     public Teams(int id, String teamName, String teamCity, String kitColor, String venue, String gameTime) {
-        this.id = id;
-        this.teamName = teamName;
-        this.teamCity = teamCity;
-        this.kitColor = kitColor;
-        this.venue = venue;
-        this.gameTime = gameTime;
+	this.id = id;
+	this.teamName = teamName;
+	this.teamCity = teamCity;
+	this.kitColor = kitColor;
+	this.venue = venue;
+	this.gameTime = gameTime;
     }
 
     @Override
     public String toString() {
-        return "ID: " + this.id + " || Club{" + "clubName=" + teamName
-                + '}';
+	return "ID: " + this.id + " || Club{" + "clubName=" + teamName + '}';
     }
 
     public int getId() {
-        return id;
+	return id;
     }
 
     public void setId(int id) {
-        this.id = id;
+	this.id = id;
     }
 
     public String getTeamName() {
-        return teamName;
+	return teamName;
     }
 
     public void setTeamName(String teamName) {
-        this.teamName = teamName;
+	this.teamName = teamName;
     }
 
     public String getTeamCity() {
-        return teamCity;
+	return teamCity;
     }
 
     public void setTeamCity(String teamCity) {
-        this.teamCity = teamCity;
+	this.teamCity = teamCity;
     }
 
     public String getKitColor() {
-        return kitColor;
+	return kitColor;
     }
 
     public void setKitColor(String kitColor) {
-        this.kitColor = kitColor;
+	this.kitColor = kitColor;
     }
 
     public String getVenue() {
-        return venue;
+	return venue;
     }
 
     public void setVenue(String venue) {
-        this.venue = venue;
+	this.venue = venue;
     }
 
     public String getGameTime() {
-        return gameTime;
+	return gameTime;
     }
 
     public void setGameTime(String gameTime) {
-        this.gameTime = gameTime;
+	this.gameTime = gameTime;
     }
 
 }
