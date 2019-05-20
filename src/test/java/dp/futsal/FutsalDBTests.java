@@ -1,5 +1,15 @@
 package dp.futsal;
 
+import static org.assertj.core.api.Assertions.assertThat;
+import java.util.List;
+import org.junit.Before;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
+import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.annotation.DirtiesContext;
+import org.springframework.test.context.junit4.SpringRunner;
 import dp.futsal.database.LeagueTable;
 import dp.futsal.database.LeagueTableRepo;
 import dp.futsal.database.MatchPairs;
@@ -12,16 +22,6 @@ import dp.futsal.database.Users;
 import dp.futsal.database.UsersRepo;
 import dp.futsal.database.Visitors;
 import dp.futsal.database.VisitorsRepo;
-import java.util.List;
-import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
-import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
-import org.springframework.test.context.junit4.SpringRunner;
-import static org.assertj.core.api.Assertions.*;
-import org.junit.Before;
-import org.springframework.test.annotation.DirtiesContext;
 
 
 @RunWith(SpringRunner.class)
@@ -30,20 +30,20 @@ import org.springframework.test.annotation.DirtiesContext;
 public class FutsalDBTests {
 
     @Autowired
-    TestEntityManager entityManager;
+    private TestEntityManager entityManager;
 
     @Autowired
-    TeamsRepo teamsRepo;
+    private TeamsRepo teamsRepo;
     @Autowired
-    LeagueTableRepo leagueTableRepo;
+    private LeagueTableRepo leagueTableRepo;
     @Autowired
-    ResultsRepo resultsRepo;
+    private ResultsRepo resultsRepo;
     @Autowired
-    MatchPairsRepo matchPairsRepo;
+    private MatchPairsRepo matchPairsRepo;
     @Autowired
-    UsersRepo usersRepo;
+    private UsersRepo usersRepo;
     @Autowired
-    VisitorsRepo visitorsRepo;
+    private VisitorsRepo visitorsRepo;
 
     @Before
     public void init() {
@@ -52,7 +52,7 @@ public class FutsalDBTests {
 	entityManager.persist(results1);
 	entityManager.persist(results2);
 
-	Teams zeljo = new Teams("FK Zeljeznicar", "Doboj", "plava", "stadion Luke", "nedjelja");
+	Teams zeljo = new Teams("FK Zeljeznicar", "Doboj", "plava", "stadion", "nedjelja");
 	Teams ferplej = new Teams("OFK Fair Play", "Doboj", "zuta", "stadion Traford", "subota");
 	entityManager.persist(zeljo);
 	entityManager.persist(ferplej);
@@ -140,6 +140,24 @@ public class FutsalDBTests {
     public void findVisitorById() {
 	Visitors foundVisitor = visitorsRepo.findById(1);
 	assertThat(foundVisitor.getIp()).isEqualTo("local");
+    }
+
+    @Test
+    public void saveTeam() {
+	Teams team = new Teams("Cyberpunk", "Doboj", "plava", "stadion", "nedjelja");
+	teamsRepo.save(team);
+	entityManager.persist(team);
+	List<Teams> foundTeam = teamsRepo.searchTeams("%" + "Cyber" + "%");
+	assertThat(foundTeam.get(0).getTeamName()).isEqualTo(team.getTeamName());
+    }
+
+    @Test
+    public void deleteTeam() {
+	Teams team = new Teams("Cyberpunk", "Doboj", "plava", "stadion", "nedjelja");
+	teamsRepo.save(team);
+	entityManager.persist(team);
+	teamsRepo.delete(team);
+	assertThat(teamsRepo.findAll().size()).isEqualTo(2);
     }
 
 }
