@@ -19,6 +19,11 @@ public class MatchResultForm {
     private int goalsAway4;
     private int goalsHome5;
     private int goalsAway5;
+    private int youthSelection1;
+    private int youthSelection2;
+    private int youthSelection3;
+    private int youthSelection4;
+    private int youthSelection5;
 
     public MatchResultForm() {
 
@@ -47,16 +52,6 @@ public class MatchResultForm {
 
     public int getMatchDay() {
 	return matchDay;
-    }
-
-    @Override
-    public String toString() {
-	return "MatchResult{" + "matchDay=" + matchDay + ", pairID=" + pairID + ", homeTeam=" + homeTeam
-		+ ", homeTeamID=" + homeTeamID + ", awayTeam=" + awayTeam + ", awayTeamID=" + awayTeamID
-		+ ", goalsHome9=" + goalsHome1 + ", goalsAway9=" + goalsAway1 + ", goalsHome8=" + goalsHome2
-		+ ", goalsAway8=" + goalsAway2 + ", goalsHome7=" + goalsHome3 + ", goalsAway7=" + goalsAway3
-		+ ", goalsHome6=" + goalsHome4 + ", goalsAway6=" + goalsAway4 + ", goalsHome5=" + goalsHome5
-		+ ", goalsAway5=" + goalsAway5 + '}';
     }
 
     public void setMatchDay(int matchDay) {
@@ -95,68 +90,68 @@ public class MatchResultForm {
 	this.awayTeamID = awayTeamID;
     }
 
-    public int getGoalsHome9() {
+    public int getGoalsHome1() {
 	return goalsHome1;
     }
 
-    public void setGoalsHome9(int goalsHome9) {
-	this.goalsHome1 = goalsHome9;
+    public void setGoalsHome1(int goalsHome1) {
+	this.goalsHome1 = goalsHome1;
     }
 
-    public int getGoalsAway9() {
+    public int getGoalsAway1() {
 	return goalsAway1;
     }
 
-    public void setGoalsAway9(int goalsAway9) {
-	this.goalsAway1 = goalsAway9;
+    public void setGoalsAway1(int goalsAway1) {
+	this.goalsAway1 = goalsAway1;
     }
 
-    public int getGoalsHome8() {
+    public int getGoalsHome2() {
 	return goalsHome2;
     }
 
-    public void setGoalsHome8(int goalsHome8) {
-	this.goalsHome2 = goalsHome8;
+    public void setGoalsHome2(int goalsHome2) {
+	this.goalsHome2 = goalsHome2;
     }
 
-    public int getGoalsAway8() {
+    public int getGoalsAway2() {
 	return goalsAway2;
     }
 
-    public void setGoalsAway8(int goalsAway8) {
-	this.goalsAway2 = goalsAway8;
+    public void setGoalsAway2(int goalsAway2) {
+	this.goalsAway2 = goalsAway2;
     }
 
-    public int getGoalsHome7() {
+    public int getGoalsHome3() {
 	return goalsHome3;
     }
 
-    public void setGoalsHome7(int goalsHome7) {
-	this.goalsHome3 = goalsHome7;
+    public void setGoalsHome3(int goalsHome3) {
+	this.goalsHome3 = goalsHome3;
     }
 
-    public int getGoalsAway7() {
+    public int getGoalsAway3() {
 	return goalsAway3;
     }
 
-    public void setGoalsAway7(int goalsAway7) {
-	this.goalsAway3 = goalsAway7;
+    public void setGoalsAway3(int goalsAway3) {
+	this.goalsAway3 = goalsAway3;
     }
 
-    public int getGoalsHome6() {
+    public int getGoalsHome4() {
 	return goalsHome4;
     }
 
-    public void setGoalsHome6(int goalsHome6) {
-	this.goalsHome4 = goalsHome6;
+    public void setGoalsHome4(int goalsHome4) {
+	this.goalsHome4 = goalsHome4;
     }
 
-    public int getGoalsAway6() {
+    public int getGoalsAway4() {
 	return goalsAway4;
     }
 
-    public void setGoalsAway6(int goalsAway6) {
-	this.goalsAway4 = goalsAway6;
+    public void setGoalsAway4(int goalsAway4) {
+	this.goalsAway4 = goalsAway4;
     }
 
     public int getGoalsHome5() {
@@ -181,6 +176,56 @@ public class MatchResultForm {
 
     public void setPairID(int pairID) {
 	this.pairID = pairID;
+    }
+
+    public int getYouthSelection1() {
+	return youthSelection1;
+    }
+
+    public void setYouthSelection1(int youthSelection) {
+	this.youthSelection1 = youthSelection;
+    }
+
+    public int getYouthSelection2() {
+	return youthSelection2;
+    }
+
+    public void setYouthSelection2(int youthSelection2) {
+	this.youthSelection2 = youthSelection2;
+    }
+
+    public int getYouthSelection3() {
+	return youthSelection3;
+    }
+
+    public void setYouthSelection3(int youthSelection3) {
+	this.youthSelection3 = youthSelection3;
+    }
+
+    public int getYouthSelection4() {
+	return youthSelection4;
+    }
+
+    public void setYouthSelection4(int youthSelection4) {
+	this.youthSelection4 = youthSelection4;
+    }
+
+    public int getYouthSelection5() {
+	return youthSelection5;
+    }
+
+    public void setYouthSelection5(int youthSelection5) {
+	this.youthSelection5 = youthSelection5;
+    }
+
+    @Override
+    public String toString() {
+	return "MatchResult{" + "matchDay=" + matchDay + ", pairID=" + pairID + ", homeTeam=" + homeTeam
+		+ ", homeTeamID=" + homeTeamID + ", awayTeam=" + awayTeam + ", awayTeamID=" + awayTeamID
+		+ ", goalsHome9=" + goalsHome1 + ", goalsAway9=" + goalsAway1 + ", goalsHome8=" + goalsHome2
+		+ ", goalsAway8=" + goalsAway2 + ", goalsHome7=" + goalsHome3 + ", goalsAway7=" + goalsAway3
+		+ ", goalsHome6=" + goalsHome4 + ", goalsAway6=" + goalsAway4 + ", goalsHome5=" + goalsHome5
+		+ ", goalsAway5=" + goalsAway5 + '}';
     }
 
 }

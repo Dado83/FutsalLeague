@@ -7,6 +7,7 @@ import dp.futsal.database.Teams;
 import dp.futsal.database.Users;
 import dp.futsal.database.Visitors;
 import dp.futsal.form.MatchResultForm;
+import dp.futsal.form.TeamForm;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,6 +16,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import java.util.List;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -65,18 +67,15 @@ public class FutsalController {
     }
 
     @PostMapping("/result/input")
-    public String inputResult(@ModelAttribute MatchResultForm form) {
-	LOGGER.info("test metoda pozvana");
-
+    public String saveGame(@ModelAttribute MatchResultForm form) {
 	dbService.saveGame(form);
-
-	return form.toString();
-
+	return "results saved: " + form.getHomeTeam() + " vs " + form.getAwayTeam();
     }
 
     @GetMapping("/result/delete/{id}")
-    public String deleteResult(@PathVariable int id) {
-	return "";
+    public String deleteGame(@PathVariable int id) {
+	dbService.deleteGame(id);
+	return "results deleted";
     }
 
     @GetMapping("/table/{year}")
@@ -97,6 +96,21 @@ public class FutsalController {
     @GetMapping("/teams/search/{search}")
     public List<Teams> searchTeams(@PathVariable String search) {
 	return dbService.searchTeams(search);
+    }
+
+    @GetMapping("/teams/input")
+    public void newTeam(@ModelAttribute TeamForm form) {
+	dbService.saveTeam(form);
+    }
+    
+    @GetMapping("/teams/update")
+    public void updateTeam(@ModelAttribute TeamForm form) {
+	dbService.updateTeam(form);
+    }
+
+    @DeleteMapping("/teams/delete/{id}")
+    public void deleteTeam(@PathVariable int id) {
+	dbService.deleteTeam(id);
     }
 
     @GetMapping("/users")

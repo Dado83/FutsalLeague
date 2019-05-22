@@ -1,19 +1,7 @@
-package dp.futsal.database;
+package dp.futsal.form;
 
-import java.io.Serializable;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.Table;
+public class TeamForm {
 
-
-@Entity
-@Table(name = "teams")
-public class Teams implements Serializable {
-
-    @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
     private String teamName;
     private String teamCity;
@@ -21,30 +9,18 @@ public class Teams implements Serializable {
     private String venue;
     private String gameTime;
 
-    public Teams() {
+    public TeamForm() {
 
     }
 
-    public Teams(String teamName, String teamCity, String kitColor, String venue, String gameTime) {
-	this.teamName = teamName;
-	this.teamCity = teamCity;
-	this.kitColor = kitColor;
-	this.venue = venue;
-	this.gameTime = gameTime;
-    }
-
-    public Teams(int id, String teamName, String teamCity, String kitColor, String venue, String gameTime) {
+    public TeamForm(int id, String teamName, String teamCity, String kitColor, String venue, String gameTime) {
+	super();
 	this.id = id;
 	this.teamName = teamName;
 	this.teamCity = teamCity;
 	this.kitColor = kitColor;
 	this.venue = venue;
 	this.gameTime = gameTime;
-    }
-
-    @Override
-    public String toString() {
-	return "ID: " + this.id + ", " + "teamName: " + teamName;
     }
 
     public int getId() {

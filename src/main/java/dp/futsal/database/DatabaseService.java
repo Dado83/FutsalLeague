@@ -1,6 +1,7 @@
 package dp.futsal.database;
 
 import dp.futsal.form.MatchResultForm;
+import dp.futsal.form.TeamForm;
 import java.util.List;
 import java.util.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -84,24 +85,58 @@ public class DatabaseService {
 	String awayTeam = form.getAwayTeam();
 	int awayTeamID = form.getAwayTeamID();
 
-	int goalsHome9 = form.getGoalsHome9();
-	int goalsAway9 = form.getGoalsAway9();
-	int goalsHome8 = form.getGoalsHome8();
-	int goalsAway8 = form.getGoalsAway8();
-	int goalsHome7 = form.getGoalsHome7();
-	int goalsAway7 = form.getGoalsAway7();
-	int goalsHome6 = form.getGoalsHome6();
-	int goalsAway6 = form.getGoalsAway6();
+	int goalsHome1 = form.getGoalsHome1();
+	int goalsAway1 = form.getGoalsAway1();
+	int goalsHome2 = form.getGoalsHome2();
+	int goalsAway2 = form.getGoalsAway2();
+	int goalsHome3 = form.getGoalsHome3();
+	int goalsAway3 = form.getGoalsAway3();
+	int goalsHome4 = form.getGoalsHome4();
+	int goalsAway4 = form.getGoalsAway4();
 	int goalsHome5 = form.getGoalsHome5();
 	int goalsAway5 = form.getGoalsAway5();
+	int youthSel1 = form.getYouthSelection1();
+	int youthSel2 = form.getYouthSelection2();
+	int youthSel3 = form.getYouthSelection3();
+	int youthSel4 = form.getYouthSelection4();
+	int youthSel5 = form.getYouthSelection5();
 
-	Results res9 = new Results(matchDay, homeTeam, homeTeamID, awayTeam, awayTeamID, goalsHome9, goalsAway9, 2009);
-	LeagueTable homeTable9 = table.getOne(homeTeamID);
-	LeagueTable awayTable9 = table.getOne(awayTeamID);
+	Results res1 =
+		new Results(matchDay, homeTeam, homeTeamID, awayTeam, awayTeamID, goalsHome1, goalsAway1, youthSel1);
+	LeagueTable homeTable1 = table.getOne(homeTeamID);
+	LeagueTable awayTable1 = table.getOne(awayTeamID);
 
-	updateTableNewGame(res9, homeTable9, awayTable9);
+	Results res2 =
+		new Results(matchDay, homeTeam, homeTeamID, awayTeam, awayTeamID, goalsHome2, goalsAway2, youthSel2);
+	LeagueTable homeTable2 = table.getOne(homeTeamID);
+	LeagueTable awayTable2 = table.getOne(awayTeamID);
 
-	results.save(res9);
+	Results res3 =
+		new Results(matchDay, homeTeam, homeTeamID, awayTeam, awayTeamID, goalsHome3, goalsAway3, youthSel3);
+	LeagueTable homeTable3 = table.getOne(homeTeamID);
+	LeagueTable awayTable3 = table.getOne(awayTeamID);
+
+	Results res4 =
+		new Results(matchDay, homeTeam, homeTeamID, awayTeam, awayTeamID, goalsHome4, goalsAway4, youthSel4);
+	LeagueTable homeTable4 = table.getOne(homeTeamID);
+	LeagueTable awayTable4 = table.getOne(awayTeamID);
+
+	Results res5 =
+		new Results(matchDay, homeTeam, homeTeamID, awayTeam, awayTeamID, goalsHome5, goalsAway5, youthSel5);
+	LeagueTable homeTable5 = table.getOne(homeTeamID);
+	LeagueTable awayTable5 = table.getOne(awayTeamID);
+
+	updateTableNewGame(res1, homeTable1, awayTable1);
+	updateTableNewGame(res2, homeTable2, awayTable2);
+	updateTableNewGame(res3, homeTable3, awayTable3);
+	updateTableNewGame(res4, homeTable4, awayTable4);
+	updateTableNewGame(res5, homeTable5, awayTable5);
+
+	results.save(res1);
+	results.save(res2);
+	results.save(res3);
+	results.save(res4);
+	results.save(res5);
 
     }
 
@@ -140,12 +175,14 @@ public class DatabaseService {
 	}
     }
 
-    public String deleteGame(int id, LeagueTable ht, LeagueTable at) {
+    public String deleteGame(int id) {
 	if (!results.existsById(id)) {
 	    LOGGER.info("nema tog rezultata, bibac...");
 	    return "nema tog rezultata, bibac...";
 	} else {
 	    Results res = results.getOne(id);
+	    LeagueTable ht = table.getOne(res.getHomeTeamid());
+	    LeagueTable at = table.getOne(res.getAwayTeamid());
 
 	    if (res.getGoalsHome() > res.getGoalsAway()) {
 		table.save(new LeagueTable(ht.getId(), ht.getYouthSelection(), ht.getTeamId(), ht.getGamesPlayed() - 1,
@@ -182,5 +219,38 @@ public class DatabaseService {
 	    results.delete(res);
 	}
 	return "izbrisana tekma sa id = " + id;
+    }
+
+    public String saveTeam(TeamForm form) {
+	String teamName = form.getTeamName();
+	String teamCity = form.getTeamCity();
+	String kitColor = form.getKitColor();
+	String venue = form.getVenue();
+	String gameTime = form.getGameTime();
+
+	Teams team = new Teams(teamName, teamCity, kitColor, venue, gameTime);
+
+	teams.save(team);
+	return "team saved: " + form.getTeamName();
+    }
+
+    public String updateTeam(TeamForm form) {
+	int id = form.getId();
+	String teamName = form.getTeamName();
+	String teamCity = form.getTeamCity();
+	String kitColor = form.getKitColor();
+	String venue = form.getVenue();
+	String gameTime = form.getGameTime();
+
+	Teams team = new Teams(id, teamName, teamCity, kitColor, venue, gameTime);
+
+	teams.save(team);
+	return "team saved: " + form.getTeamName();
+    }
+
+    public String deleteTeam(int id) {
+	Teams team = teams.getOne(id);
+	teams.delete(team);
+	return "team deleted: " + team.getTeamName();
     }
 }
