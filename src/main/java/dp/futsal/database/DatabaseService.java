@@ -221,7 +221,7 @@ public class DatabaseService {
 	return "izbrisana tekma sa id = " + id;
     }
 
-    public String saveTeam(TeamForm form) {
+    public Teams saveTeam(TeamForm form) {
 	String teamName = form.getTeamName();
 	String teamCity = form.getTeamCity();
 	String kitColor = form.getKitColor();
@@ -231,7 +231,7 @@ public class DatabaseService {
 	Teams team = new Teams(teamName, teamCity, kitColor, venue, gameTime);
 
 	teams.save(team);
-	return "team saved: " + form.getTeamName();
+	return team;
     }
 
     public String updateTeam(TeamForm form) {

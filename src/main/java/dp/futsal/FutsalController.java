@@ -99,10 +99,10 @@ public class FutsalController {
     }
 
     @GetMapping("/teams/input")
-    public void newTeam(@ModelAttribute TeamForm form) {
-	dbService.saveTeam(form);
+    public Teams newTeam(@ModelAttribute TeamForm form) {
+	return dbService.saveTeam(form);
     }
-    
+
     @GetMapping("/teams/update")
     public void updateTeam(@ModelAttribute TeamForm form) {
 	dbService.updateTeam(form);

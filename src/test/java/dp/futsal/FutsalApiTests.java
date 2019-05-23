@@ -8,6 +8,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import java.util.ArrayList;
 import java.util.List;
+import org.hibernate.annotations.Any;
 import org.junit.BeforeClass;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -30,6 +31,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import dp.futsal.database.DatabaseService;
 import dp.futsal.database.Teams;
 import dp.futsal.form.MatchResultForm;
+import dp.futsal.form.TeamForm;
 import junit.extensions.TestSetup;
 
 
@@ -46,6 +48,7 @@ public class FutsalApiTests {
     private DatabaseService dbService;
 
     private static List<Teams> teamRepo;
+    private static Teams teams;
 
     @BeforeClass
     public static void setUp() {
@@ -54,6 +57,7 @@ public class FutsalApiTests {
 	teamRepo.add(new Teams(2, "man city", "manchester", "blue", "etihad", "saturday"));
 	teamRepo.add(new Teams(3, "tottenham", "london", "white", "hart lane", "saturday"));
 	teamRepo.add(new Teams(4, "liverpool", "liverpool", "red", "anfield", "saturday"));
+	teams = new Teams("zeljo", "doboj", "plava", "lipa", "nedjelja");
     }
 
     @Test
@@ -70,22 +74,26 @@ public class FutsalApiTests {
 
 	String response = mr.getResponse().getContentAsString();
 	ObjectMapper mapper = new ObjectMapper();
-	List<Teams> teams = mapper.readValue(response, new TypeReference<List<Teams>>() {
-	});
+	List<Teams> teams = mapper.readValue(response, new TypeReference<List<Teams>>() {});
 
 	assertThat(teams.size()).isEqualTo(4);
     }
 
     @Test
-    public void saveTeam() {
+    public void saveTeam() throws Exception {
+	Mockito.when(dbService.saveTeam(Mockito.any(TeamForm.class))).thenReturn(teams);
 
+	RequestBuilder rb = MockMvcRequestBuilders.get("/teams/input");
+	MvcResult mr = mockMvc.perform(rb).andReturn();
+
+	String response = mr.getResponse().getContentAsString();
+	ObjectMapper mapper = new ObjectMapper();
+	Teams team = mapper.readValue(response, new TypeReference<Teams>() {});
+
+	assertThat(teams.getTeamName()).isEqualTo(team.getTeamName());
     }
 
-    @Test
-    public void updateTeam() {
-
-    }
-
+    
     @Test
     public void saveGame() {
 
