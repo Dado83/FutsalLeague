@@ -77,7 +77,7 @@ public class DatabaseService {
 	return visitors.findAll();
     }
 
-    public void saveGame(MatchResultForm form) {
+    public String saveGame(MatchResultForm form) {
 	int pairID = form.getPairID();
 	int matchDay = form.getMatchDay();
 	String homeTeam = form.getHomeTeam();
@@ -137,7 +137,8 @@ public class DatabaseService {
 	results.save(res3);
 	results.save(res4);
 	results.save(res5);
-
+	
+	return String.format("Utakmica: %1$s - %2$s je snimljena", form.getHomeTeam(), form.getAwayTeam());
     }
 
     private void updateTableNewGame(Results res, LeagueTable ht, LeagueTable at) {
@@ -234,7 +235,7 @@ public class DatabaseService {
 	return team;
     }
 
-    public String updateTeam(TeamForm form) {
+    public Teams updateTeam(TeamForm form) {
 	int id = form.getId();
 	String teamName = form.getTeamName();
 	String teamCity = form.getTeamCity();
@@ -245,7 +246,7 @@ public class DatabaseService {
 	Teams team = new Teams(id, teamName, teamCity, kitColor, venue, gameTime);
 
 	teams.save(team);
-	return "team saved: " + form.getTeamName();
+	return team;
     }
 
     public String deleteTeam(int id) {

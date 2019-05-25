@@ -68,14 +68,12 @@ public class FutsalController {
 
     @PostMapping("/result/input")
     public String saveGame(@ModelAttribute MatchResultForm form) {
-	dbService.saveGame(form);
-	return "results saved: " + form.getHomeTeam() + " vs " + form.getAwayTeam();
+	return dbService.saveGame(form);
     }
 
     @GetMapping("/result/delete/{id}")
     public String deleteGame(@PathVariable int id) {
-	dbService.deleteGame(id);
-	return "results deleted";
+	return dbService.deleteGame(id);
     }
 
     @GetMapping("/table/{year}")
@@ -104,8 +102,8 @@ public class FutsalController {
     }
 
     @GetMapping("/teams/update")
-    public void updateTeam(@ModelAttribute TeamForm form) {
-	dbService.updateTeam(form);
+    public Teams updateTeam(@ModelAttribute TeamForm form) {
+	return dbService.updateTeam(form);
     }
 
     @DeleteMapping("/teams/delete/{id}")

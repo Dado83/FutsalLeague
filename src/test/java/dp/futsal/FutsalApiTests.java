@@ -6,6 +6,7 @@ import static org.springframework.test.web.servlet.request.MockMvcRequestBuilder
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.annotations.Any;
@@ -93,15 +94,28 @@ public class FutsalApiTests {
 	assertThat(teams.getTeamName()).isEqualTo(team.getTeamName());
     }
 
-    
     @Test
-    public void saveGame() {
+    public void saveGame() throws Exception {
+	Mockito.when(dbService.saveGame(Mockito.any(MatchResultForm.class))).thenReturn("utakmica snimljena");
 
+	RequestBuilder rb = MockMvcRequestBuilders.post("/result/input");
+	MvcResult mr = mockMvc.perform(rb).andReturn();
+
+	String response = mr.getResponse().getContentAsString();
+
+	assertThat(response).isEqualTo("utakmica snimljena");
     }
 
     @Test
-    public void deleteGame() {
+    public void deleteGame() throws Exception {
+	Mockito.when(dbService.deleteGame(Mockito.anyInt())).thenReturn("utakmica izbrisana");
 
+	RequestBuilder rb = MockMvcRequestBuilders.get("/result/delete/1");
+	MvcResult mr = mockMvc.perform(rb).andReturn();
+
+	String response = mr.getResponse().getContentAsString();
+
+	assertThat(response).isEqualTo("utakmica izbrisana");
     }
 
     @Test
