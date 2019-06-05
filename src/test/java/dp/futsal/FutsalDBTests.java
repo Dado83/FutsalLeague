@@ -52,8 +52,8 @@ public class FutsalDBTests {
 	entityManager.persist(results1);
 	entityManager.persist(results2);
 
-	Teams zeljo = new Teams("FK Zeljeznicar", "Doboj", "plava", "stadion", "nedjelja");
-	Teams ferplej = new Teams("OFK Fair Play", "Doboj", "zuta", "stadion Traford", "subota");
+	Teams zeljo = new Teams("FK Zeljeznicar", "Doboj", "plava", "stadion", "nedjelja", 1);
+	Teams ferplej = new Teams("OFK Fair Play", "Doboj", "zuta", "stadion Traford", "subota", 2);
 	entityManager.persist(zeljo);
 	entityManager.persist(ferplej);
 
@@ -144,7 +144,7 @@ public class FutsalDBTests {
 
     @Test
     public void saveTeam() {
-	Teams team = new Teams("Cyberpunk", "Doboj", "plava", "stadion", "nedjelja");
+	Teams team = new Teams("Cyberpunk", "Doboj", "plava", "stadion", "nedjelja", 1);
 	teamsRepo.save(team);
 	entityManager.persist(team);
 	List<Teams> foundTeam = teamsRepo.searchTeams("%" + "Cyber" + "%");
@@ -153,7 +153,7 @@ public class FutsalDBTests {
 
     @Test
     public void deleteTeam() {
-	Teams team = new Teams("Cyberpunk", "Doboj", "plava", "stadion", "nedjelja");
+	Teams team = new Teams("Cyberpunk", "Doboj", "plava", "stadion", "nedjelja", 2);
 	teamsRepo.save(team);
 	entityManager.persist(team);
 	teamsRepo.delete(team);

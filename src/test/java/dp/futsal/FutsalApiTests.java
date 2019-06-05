@@ -54,11 +54,11 @@ public class FutsalApiTests {
     @BeforeClass
     public static void setUp() {
 	teamRepo = new ArrayList<>();
-	teamRepo.add(new Teams(1, "man utd", "manchester", "red", "old trafford", "saturday"));
-	teamRepo.add(new Teams(2, "man city", "manchester", "blue", "etihad", "saturday"));
-	teamRepo.add(new Teams(3, "tottenham", "london", "white", "hart lane", "saturday"));
-	teamRepo.add(new Teams(4, "liverpool", "liverpool", "red", "anfield", "saturday"));
-	teams = new Teams("zeljo", "doboj", "plava", "lipa", "nedjelja");
+	teamRepo.add(new Teams(1, "man utd", "manchester", "red", "old trafford", "saturday", 1));
+	teamRepo.add(new Teams(2, "man city", "manchester", "blue", "etihad", "saturday", 2));
+	teamRepo.add(new Teams(3, "tottenham", "london", "white", "hart lane", "saturday", 3));
+	teamRepo.add(new Teams(4, "liverpool", "liverpool", "red", "anfield", "saturday", 4));
+	teams = new Teams("zeljo", "doboj", "plava", "lipa", "nedjelja", 5);
     }
 
     @Test
