@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 
@@ -66,12 +67,12 @@ public class FutsalController {
 	return dbService.getResultsById(id);
     }
 
-    @PostMapping("/result/input")
+    @PutMapping("/result/input")
     public String saveGame(@ModelAttribute MatchResultForm form) {
 	return dbService.saveGame(form);
     }
 
-    @GetMapping("/result/delete/{id}")
+    @DeleteMapping("/result/delete/{id}")
     public String deleteGame(@PathVariable int id) {
 	return dbService.deleteGame(id);
     }
@@ -96,12 +97,12 @@ public class FutsalController {
 	return dbService.searchTeams(search);
     }
 
-    @GetMapping("/teams/input")
+    @PutMapping("/teams/input")
     public Teams newTeam(@ModelAttribute TeamForm form) {
 	return dbService.saveTeam(form);
     }
 
-    @GetMapping("/teams/update")
+    @PostMapping("/teams/update")
     public Teams updateTeam(@ModelAttribute TeamForm form) {
 	return dbService.updateTeam(form);
     }
