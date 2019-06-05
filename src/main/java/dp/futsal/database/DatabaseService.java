@@ -223,14 +223,13 @@ public class DatabaseService {
     }
 
     public Teams saveTeam(TeamForm form) {
-	int id = form.getId();
 	String teamName = form.getTeamName();
 	String teamCity = form.getTeamCity();
 	String kitColor = form.getKitColor();
 	String venue = form.getVenue();
 	String gameTime = form.getGameTime();
 
-	Teams team = new Teams(id, teamName, teamCity, kitColor, venue, gameTime);
+	Teams team = new Teams(teamName, teamCity, kitColor, venue, gameTime);
 
 	teams.save(team);
 	return team;
