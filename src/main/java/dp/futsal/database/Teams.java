@@ -20,7 +20,7 @@ public class Teams implements Serializable {
     private String kitColor;
     private String venue;
     private String gameTime;
-    private int teamId;
+    private Integer teamId;
 
     public Teams() {
 
