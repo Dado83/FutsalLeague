@@ -137,7 +137,7 @@ public class DatabaseService {
 	results.save(res3);
 	results.save(res4);
 	results.save(res5);
-	
+
 	return String.format("Utakmica: %1$s - %2$s je snimljena", form.getHomeTeam(), form.getAwayTeam());
     }
 
@@ -223,13 +223,14 @@ public class DatabaseService {
     }
 
     public Teams saveTeam(TeamForm form) {
+	int id = form.getId();
 	String teamName = form.getTeamName();
 	String teamCity = form.getTeamCity();
 	String kitColor = form.getKitColor();
 	String venue = form.getVenue();
 	String gameTime = form.getGameTime();
 
-	Teams team = new Teams(teamName, teamCity, kitColor, venue, gameTime);
+	Teams team = new Teams(id, teamName, teamCity, kitColor, venue, gameTime);
 
 	teams.save(team);
 	return team;
