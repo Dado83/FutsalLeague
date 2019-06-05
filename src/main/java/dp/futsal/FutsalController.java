@@ -108,8 +108,8 @@ public class FutsalController {
     }
 
     @DeleteMapping("/teams/delete/{id}")
-    public void deleteTeam(@PathVariable int id) {
-	dbService.deleteTeam(id);
+    public String deleteTeam(@PathVariable int id) {
+	return dbService.deleteTeam(id);
     }
 
     @GetMapping("/users")
