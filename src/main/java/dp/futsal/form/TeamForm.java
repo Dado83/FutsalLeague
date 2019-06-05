@@ -8,14 +8,14 @@ public class TeamForm {
     private String kitColor;
     private String venue;
     private String gameTime;
-    private int teamId;
+    private String teamId;
 
     public TeamForm() {
 
     }
 
     public TeamForm(int id, String teamName, String teamCity, String kitColor, String venue, String gameTime,
-	    int teamId) {
+	    String teamId) {
 	this.id = id;
 	this.teamName = teamName;
 	this.teamCity = teamCity;
@@ -73,11 +73,11 @@ public class TeamForm {
 	this.gameTime = gameTime;
     }
 
-    public int getTeamId() {
+    public String getTeamId() {
 	return teamId;
     }
 
-    public void setTeamId(int teamId) {
+    public void setTeamId(String teamId) {
 	this.teamId = teamId;
     }
 

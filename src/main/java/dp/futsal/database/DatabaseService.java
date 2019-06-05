@@ -228,7 +228,7 @@ public class DatabaseService {
 	String kitColor = form.getKitColor();
 	String venue = form.getVenue();
 	String gameTime = form.getGameTime();
-	int teamId = form.getTeamId();
+	String teamId = form.getTeamId();
 
 	Teams team = new Teams(teamName, teamCity, kitColor, venue, gameTime, teamId);
 
@@ -243,7 +243,7 @@ public class DatabaseService {
 	String kitColor = form.getKitColor();
 	String venue = form.getVenue();
 	String gameTime = form.getGameTime();
-	int teamId = form.getTeamId();
+	String teamId = form.getTeamId();
 
 	Teams team = new Teams(id, teamName, teamCity, kitColor, venue, gameTime, teamId);
 

@@ -20,13 +20,13 @@ public class Teams implements Serializable {
     private String kitColor;
     private String venue;
     private String gameTime;
-    private Integer teamId;
+    private String teamId;
 
     public Teams() {
 
     }
 
-    public Teams(String teamName, String teamCity, String kitColor, String venue, String gameTime, int teamId) {
+    public Teams(String teamName, String teamCity, String kitColor, String venue, String gameTime, String teamId) {
 	this.teamName = teamName;
 	this.teamCity = teamCity;
 	this.kitColor = kitColor;
@@ -35,7 +35,8 @@ public class Teams implements Serializable {
 	this.teamId = teamId;
     }
 
-    public Teams(int id, String teamName, String teamCity, String kitColor, String venue, String gameTime, int teamId) {
+    public Teams(int id, String teamName, String teamCity, String kitColor, String venue, String gameTime,
+	    String teamId) {
 	this.id = id;
 	this.teamName = teamName;
 	this.teamCity = teamCity;
@@ -98,11 +99,11 @@ public class Teams implements Serializable {
 	this.gameTime = gameTime;
     }
 
-    public int getTeamId() {
+    public String getTeamId() {
 	return teamId;
     }
 
-    public void setTeamId(int teamId) {
+    public void setTeamId(String teamId) {
 	this.teamId = teamId;
     }
 
