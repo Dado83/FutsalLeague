@@ -8,7 +8,7 @@ import org.springframework.data.repository.query.Param;;
 public interface MatchPairsRepo extends JpaRepository<MatchPairs, Integer> {
 
     @Query("SELECT m FROM MatchPairs m WHERE m.mDay = :mDay")
-    public List<MatchPairs> findBymDay(@Param int mDay);
+    public List<MatchPairs> findBymDay(@Param("mDay") int mDay);
 
     @Query("SELECT m FROM MatchPairs m WHERE m.isPlayed = FALSE")
     public List<MatchPairs> getPairsNotPlayed();
